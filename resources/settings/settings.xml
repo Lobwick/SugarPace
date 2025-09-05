@@ -1,0 +1,8 @@
+<settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
+    <setting propertyKey="@Properties.nightscout_token" title="@Strings.nightscout_token_title">
+        <settingConfig type="alphaNumeric" required="false" />
+    </setting>
+    <setting propertyKey="@Properties.nightscout_url" title="@Strings.nightscout_url_title">
+        <settingConfig type="alphaNumeric" required="false" />
+    </setting>
+</settings>

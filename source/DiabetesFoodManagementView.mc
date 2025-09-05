@@ -5,6 +5,7 @@ import Toybox.Communications;
 import Toybox.Timer;
 import Toybox.Time;
 import Toybox.System;
+import Toybox.Application;
 
 class DiabetesFoodManagementView extends WatchUi.View {
 
@@ -49,7 +50,6 @@ class DiabetesFoodManagementView extends WatchUi.View {
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         var bloodSugarText = bloodSugarLevel + " mg/dL";
         var font = Graphics.FONT_NUMBER_THAI_HOT;
-        var textWidth = dc.getTextWidthInPixels(bloodSugarText, font);
         var textHeight = dc.getFontHeight(font);
         dc.drawText(width/2, 20, font, bloodSugarText, Graphics.TEXT_JUSTIFY_CENTER);
         
@@ -146,7 +146,19 @@ class DiabetesFoodManagementView extends WatchUi.View {
         }
         
         isLoading = true;
-        var url = "https://glucosefelix.fly.dev/api/v1/entries.json?count=1&token=6NhkwPyxqR6Jpsur";
+        
+        // Get configuration from app properties
+        var nightscoutUrl = Application.Properties.getValue("nightscout_url");
+        var nightscoutToken = Application.Properties.getValue("nightscout_token");
+        
+        if (nightscoutUrl == null) {
+            nightscoutUrl = "https://glucosefelix.fly.dev";
+        }
+        if (nightscoutToken == null) {
+            nightscoutToken = "6NhkwPyxqR6Jpsur";
+        }
+        
+        var url = nightscoutUrl + "/api/v1/entries.json?count=1&token=" + nightscoutToken;
         
         Communications.makeWebRequest(
             url,
