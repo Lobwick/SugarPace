@@ -9,7 +9,7 @@ import Toybox.Application;
 
 class DiabetesFoodManagementView extends WatchUi.View {
 
-    private var bloodSugarLevel as Lang.Number = 120;
+    private var bloodSugarLevel as Lang.Number = 0;
     private var monkeyBitmap as BitmapResource?;
     private var updateTimer as Timer.Timer?;
     private var isLoading as Lang.Boolean = false;
