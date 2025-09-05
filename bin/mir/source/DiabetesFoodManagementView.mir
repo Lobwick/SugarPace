@@ -28,7 +28,7 @@ class DiabetesFoodManagementView extends WatchUi.View {
     }
     [ @file = "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc"; @line = 12; @position = 16; @symbol_vardef = [bloodSugarLevel,12,16,31]; @symbol_type<0> = [Lang,12,35,39]; @symbol_type<1> = [Number,12,40,46]; ]
     private
-    var bloodSugarLevel as Lang.Number = 120;
+    var bloodSugarLevel as Lang.Number = 0;
     [ @file = "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc"; @line = 13; @position = 16; @symbol_vardef = [monkeyBitmap,13,16,28]; @symbol_type<0> = [BitmapResource,13,32,46]; ]
     private
     var monkeyBitmap as BitmapResource or Null;
