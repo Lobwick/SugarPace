@@ -2,200 +2,358 @@
 <debugInfo>
     <manifest filename="/Users/FELIX/DiabetesFoodManagement/manifest.xml"/>
     <pcToLineNum>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="1" lineNum="26" parent="globals" pc="268435460" symbol="getApp"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="1" lineNum="27" parent="globals" pc="268435470" symbol="getApp"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementDelegate.mc" id="2" lineNum="4" parent="globals/DiabetesFoodManagementDelegate" pc="268435481" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="3" lineNum="10" parent="globals/DiabetesFoodManagementView" pc="268435493" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="4" lineNum="7" parent="globals/Rez" pc="268435505" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="5" lineNum="5" parent="globals/DiabetesFoodManagementApp" pc="268435525" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="6" lineNum="5" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268435537" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementDelegate.mc" id="7" lineNum="10" parent="globals/DiabetesFoodManagementDelegate" pc="268435549" symbol="onMenu"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementDelegate.mc" id="7" lineNum="11" parent="globals/DiabetesFoodManagementDelegate" pc="268435551" symbol="onMenu"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementDelegate.mc" id="7" lineNum="12" parent="globals/DiabetesFoodManagementDelegate" pc="268435616" symbol="onMenu"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementDelegate.mc" id="8" lineNum="6" parent="globals/DiabetesFoodManagementDelegate" pc="268435618" symbol="initialize"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementDelegate.mc" id="8" lineNum="7" parent="globals/DiabetesFoodManagementDelegate" pc="268435620" symbol="initialize"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="9" lineNum="234" parent="globals/DiabetesFoodManagementView" pc="268435633" symbol="getTimeSinceUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="9" lineNum="235" parent="globals/DiabetesFoodManagementView" pc="268435636" symbol="getTimeSinceUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="9" lineNum="236" parent="globals/DiabetesFoodManagementView" pc="268435645" symbol="getTimeSinceUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="9" lineNum="239" parent="globals/DiabetesFoodManagementView" pc="268435654" symbol="getTimeSinceUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="9" lineNum="240" parent="globals/DiabetesFoodManagementView" pc="268435666" symbol="getTimeSinceUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="9" lineNum="241" parent="globals/DiabetesFoodManagementView" pc="268435682" symbol="getTimeSinceUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="9" lineNum="243" parent="globals/DiabetesFoodManagementView" pc="268435691" symbol="getTimeSinceUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="9" lineNum="244" parent="globals/DiabetesFoodManagementView" pc="268435699" symbol="getTimeSinceUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="9" lineNum="246" parent="globals/DiabetesFoodManagementView" pc="268435711" symbol="getTimeSinceUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="9" lineNum="247" parent="globals/DiabetesFoodManagementView" pc="268435718" symbol="getTimeSinceUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="10" lineNum="33" parent="globals/DiabetesFoodManagementView" pc="268435728" symbol="onShow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="10" lineNum="34" parent="globals/DiabetesFoodManagementView" pc="268435730" symbol="onShow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="10" lineNum="36" parent="globals/DiabetesFoodManagementView" pc="268435737" symbol="onShow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="10" lineNum="37" parent="globals/DiabetesFoodManagementView" pc="268435766" symbol="onShow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="11" lineNum="215" parent="globals/DiabetesFoodManagementView" pc="268435799" symbol="getDirectionArrow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="11" lineNum="216" parent="globals/DiabetesFoodManagementView" pc="268435801" symbol="getDirectionArrow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="11" lineNum="217" parent="globals/DiabetesFoodManagementView" pc="268435818" symbol="getDirectionArrow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="11" lineNum="218" parent="globals/DiabetesFoodManagementView" pc="268435827" symbol="getDirectionArrow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="11" lineNum="219" parent="globals/DiabetesFoodManagementView" pc="268435844" symbol="getDirectionArrow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="11" lineNum="220" parent="globals/DiabetesFoodManagementView" pc="268435853" symbol="getDirectionArrow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="11" lineNum="221" parent="globals/DiabetesFoodManagementView" pc="268435870" symbol="getDirectionArrow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="11" lineNum="222" parent="globals/DiabetesFoodManagementView" pc="268435879" symbol="getDirectionArrow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="11" lineNum="223" parent="globals/DiabetesFoodManagementView" pc="268435896" symbol="getDirectionArrow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="11" lineNum="224" parent="globals/DiabetesFoodManagementView" pc="268435905" symbol="getDirectionArrow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="11" lineNum="225" parent="globals/DiabetesFoodManagementView" pc="268435922" symbol="getDirectionArrow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="11" lineNum="226" parent="globals/DiabetesFoodManagementView" pc="268435931" symbol="getDirectionArrow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="11" lineNum="227" parent="globals/DiabetesFoodManagementView" pc="268435948" symbol="getDirectionArrow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="11" lineNum="228" parent="globals/DiabetesFoodManagementView" pc="268435957" symbol="getDirectionArrow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="11" lineNum="229" parent="globals/DiabetesFoodManagementView" pc="268435974" symbol="getDirectionArrow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="11" lineNum="231" parent="globals/DiabetesFoodManagementView" pc="268435983" symbol="getDirectionArrow"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="12" lineNum="25" parent="globals/DiabetesFoodManagementView" pc="268435989" symbol="onLayout"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="12" lineNum="27" parent="globals/DiabetesFoodManagementView" pc="268435991" symbol="onLayout"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="176" parent="globals/DiabetesFoodManagementView" pc="268436030" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="177" parent="globals/DiabetesFoodManagementView" pc="268436033" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="179" parent="globals/DiabetesFoodManagementView" pc="268436041" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="181" parent="globals/DiabetesFoodManagementView" pc="268436056" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="182" parent="globals/DiabetesFoodManagementView" pc="268436084" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="183" parent="globals/DiabetesFoodManagementView" pc="268436090" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="184" parent="globals/DiabetesFoodManagementView" pc="268436105" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="185" parent="globals/DiabetesFoodManagementView" pc="268436123" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="186" parent="globals/DiabetesFoodManagementView" pc="268436140" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="187" parent="globals/DiabetesFoodManagementView" pc="268436161" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="191" parent="globals/DiabetesFoodManagementView" pc="268436176" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="192" parent="globals/DiabetesFoodManagementView" pc="268436194" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="193" parent="globals/DiabetesFoodManagementView" pc="268436211" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="194" parent="globals/DiabetesFoodManagementView" pc="268436232" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="198" parent="globals/DiabetesFoodManagementView" pc="268436247" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="199" parent="globals/DiabetesFoodManagementView" pc="268436265" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="200" parent="globals/DiabetesFoodManagementView" pc="268436282" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="201" parent="globals/DiabetesFoodManagementView" pc="268436303" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="205" parent="globals/DiabetesFoodManagementView" pc="268436318" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="206" parent="globals/DiabetesFoodManagementView" pc="268436335" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="13" lineNum="209" parent="globals/DiabetesFoodManagementView" pc="268436358" symbol="onReceiveGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="14" lineNum="143" parent="globals/DiabetesFoodManagementView" pc="268436378" symbol="fetchGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="14" lineNum="144" parent="globals/DiabetesFoodManagementView" pc="268436381" symbol="fetchGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="14" lineNum="145" parent="globals/DiabetesFoodManagementView" pc="268436389" symbol="fetchGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="14" lineNum="148" parent="globals/DiabetesFoodManagementView" pc="268436393" symbol="fetchGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="14" lineNum="151" parent="globals/DiabetesFoodManagementView" pc="268436401" symbol="fetchGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="14" lineNum="152" parent="globals/DiabetesFoodManagementView" pc="268436420" symbol="fetchGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="14" lineNum="154" parent="globals/DiabetesFoodManagementView" pc="268436439" symbol="fetchGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="14" lineNum="155" parent="globals/DiabetesFoodManagementView" pc="268436445" symbol="fetchGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="14" lineNum="157" parent="globals/DiabetesFoodManagementView" pc="268436455" symbol="fetchGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="14" lineNum="158" parent="globals/DiabetesFoodManagementView" pc="268436461" symbol="fetchGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="14" lineNum="161" parent="globals/DiabetesFoodManagementView" pc="268436471" symbol="fetchGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="14" lineNum="163" parent="globals/DiabetesFoodManagementView" pc="268436484" symbol="fetchGlucoseData"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="15" lineNum="20" parent="globals/DiabetesFoodManagementView" pc="268436539" symbol="initialize"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="15" lineNum="21" parent="globals/DiabetesFoodManagementView" pc="268436541" symbol="initialize"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="16" lineNum="136" parent="globals/DiabetesFoodManagementView" pc="268436554" symbol="onHide"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="16" lineNum="137" parent="globals/DiabetesFoodManagementView" pc="268436556" symbol="onHide"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="16" lineNum="138" parent="globals/DiabetesFoodManagementView" pc="268436565" symbol="onHide"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="16" lineNum="139" parent="globals/DiabetesFoodManagementView" pc="268436577" symbol="onHide"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="41" parent="globals/DiabetesFoodManagementView" pc="268436589" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="43" parent="globals/DiabetesFoodManagementView" pc="268436592" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="44" parent="globals/DiabetesFoodManagementView" pc="268436604" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="46" parent="globals/DiabetesFoodManagementView" pc="268436612" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="47" parent="globals/DiabetesFoodManagementView" pc="268436621" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="50" parent="globals/DiabetesFoodManagementView" pc="268436630" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="51" parent="globals/DiabetesFoodManagementView" pc="268436647" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="52" parent="globals/DiabetesFoodManagementView" pc="268436660" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="53" parent="globals/DiabetesFoodManagementView" pc="268436664" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="54" parent="globals/DiabetesFoodManagementView" pc="268436677" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="57" parent="globals/DiabetesFoodManagementView" pc="268436700" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="58" parent="globals/DiabetesFoodManagementView" pc="268436710" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="61" parent="globals/DiabetesFoodManagementView" pc="268436713" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="62" parent="globals/DiabetesFoodManagementView" pc="268436782" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="65" parent="globals/DiabetesFoodManagementView" pc="268436805" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="66" parent="globals/DiabetesFoodManagementView" pc="268436820" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="69" parent="globals/DiabetesFoodManagementView" pc="268436843" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="70" parent="globals/DiabetesFoodManagementView" pc="268436851" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="73" parent="globals/DiabetesFoodManagementView" pc="268436877" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="74" parent="globals/DiabetesFoodManagementView" pc="268436886" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="75" parent="globals/DiabetesFoodManagementView" pc="268436899" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="76" parent="globals/DiabetesFoodManagementView" pc="268436912" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="77" parent="globals/DiabetesFoodManagementView" pc="268436919" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="78" parent="globals/DiabetesFoodManagementView" pc="268436926" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="79" parent="globals/DiabetesFoodManagementView" pc="268436930" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="81" parent="globals/DiabetesFoodManagementView" pc="268436943" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="82" parent="globals/DiabetesFoodManagementView" pc="268436950" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="85" parent="globals/DiabetesFoodManagementView" pc="268436953" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="86" parent="globals/DiabetesFoodManagementView" pc="268436966" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="87" parent="globals/DiabetesFoodManagementView" pc="268436977" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="88" parent="globals/DiabetesFoodManagementView" pc="268436996" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="90" parent="globals/DiabetesFoodManagementView" pc="268437004" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="91" parent="globals/DiabetesFoodManagementView" pc="268437023" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="96" parent="globals/DiabetesFoodManagementView" pc="268437043" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="97" parent="globals/DiabetesFoodManagementView" pc="268437059" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="98" parent="globals/DiabetesFoodManagementView" pc="268437070" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="99" parent="globals/DiabetesFoodManagementView" pc="268437089" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="101" parent="globals/DiabetesFoodManagementView" pc="268437097" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="106" parent="globals/DiabetesFoodManagementView" pc="268437129" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="107" parent="globals/DiabetesFoodManagementView" pc="268437146" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="108" parent="globals/DiabetesFoodManagementView" pc="268437160" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="109" parent="globals/DiabetesFoodManagementView" pc="268437179" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="110" parent="globals/DiabetesFoodManagementView" pc="268437201" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="112" parent="globals/DiabetesFoodManagementView" pc="268437211" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="113" parent="globals/DiabetesFoodManagementView" pc="268437219" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="114" parent="globals/DiabetesFoodManagementView" pc="268437236" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="119" parent="globals/DiabetesFoodManagementView" pc="268437253" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="120" parent="globals/DiabetesFoodManagementView" pc="268437260" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="121" parent="globals/DiabetesFoodManagementView" pc="268437276" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="122" parent="globals/DiabetesFoodManagementView" pc="268437286" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="123" parent="globals/DiabetesFoodManagementView" pc="268437294" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="124" parent="globals/DiabetesFoodManagementView" pc="268437311" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="17" lineNum="129" parent="globals/DiabetesFoodManagementView" pc="268437321" symbol="onUpdate"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="18" lineNum="12" parent="globals/DiabetesFoodManagementApp" pc="268437349" symbol="onStart"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="19" lineNum="20" parent="globals/DiabetesFoodManagementApp" pc="268437352" symbol="getInitialView"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="19" lineNum="21" parent="globals/DiabetesFoodManagementApp" pc="268437354" symbol="getInitialView"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="20" lineNum="7" parent="globals/DiabetesFoodManagementApp" pc="268437401" symbol="initialize"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="20" lineNum="8" parent="globals/DiabetesFoodManagementApp" pc="268437403" symbol="initialize"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="21" lineNum="16" parent="globals/DiabetesFoodManagementApp" pc="268437416" symbol="onStop"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="22" lineNum="11" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268437419" symbol="onMenuItem"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="22" lineNum="12" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268437421" symbol="onMenuItem"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="22" lineNum="13" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268437432" symbol="onMenuItem"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="22" lineNum="14" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268437453" symbol="onMenuItem"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="22" lineNum="15" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268437464" symbol="onMenuItem"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="23" lineNum="7" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268437486" symbol="initialize"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="23" lineNum="8" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268437488" symbol="initialize"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="24" lineNum="15" parent="globals/Rez/Layouts" pc="268437501" symbol="MainLayout"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="24" lineNum="16" parent="globals/Rez/Layouts" pc="268437512" symbol="MainLayout"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="24" lineNum="18" parent="globals/Rez/Layouts" pc="268437521" symbol="MainLayout"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="24" lineNum="20" parent="globals/Rez/Layouts" pc="268437624" symbol="MainLayout"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="24" lineNum="21" parent="globals/Rez/Layouts" pc="268437708" symbol="MainLayout"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="24" lineNum="23" parent="globals/Rez/Layouts" pc="268437739" symbol="MainLayout"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="25" lineNum="28" parent="globals/Rez/Menus/MainMenu" pc="268437754" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="26" lineNum="29" parent="globals/Rez/Menus/MainMenu" pc="268437766" symbol="initialize"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="26" lineNum="30" parent="globals/Rez/Menus/MainMenu" pc="268437768" symbol="initialize"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="26" lineNum="31" parent="globals/Rez/Menus/MainMenu" pc="268437780" symbol="initialize"/>
-        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="26" lineNum="32" parent="globals/Rez/Menus/MainMenu" pc="268437825" symbol="initialize"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="1" lineNum="9" parent="globals/TempOverridesView" pc="268435460" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="1" lineNum="11" parent="globals/TempOverridesView" pc="268435471" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="2" lineNum="106" parent="globals/TempOverridesInputDelegate" pc="268435481" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="3" lineNum="49" parent="globals" pc="268435493" symbol="getApp"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="3" lineNum="50" parent="globals" pc="268435503" symbol="getApp"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementDelegate.mc" id="4" lineNum="4" parent="globals/DiabetesFoodManagementDelegate" pc="268435514" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="5" lineNum="10" parent="globals/DiabetesFoodManagementView" pc="268435526" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="5" lineNum="19" parent="globals/DiabetesFoodManagementView" pc="268435537" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="6" lineNum="7" parent="globals/Rez" pc="268435547" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="7" lineNum="5" parent="globals/DiabetesFoodManagementApp" pc="268435567" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="8" lineNum="6" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268435579" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="9" lineNum="18" parent="globals/TempOverridesView" pc="268435591" symbol="onShow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="9" lineNum="20" parent="globals/TempOverridesView" pc="268435594" symbol="onShow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="9" lineNum="21" parent="globals/TempOverridesView" pc="268435606" symbol="onShow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="9" lineNum="22" parent="globals/TempOverridesView" pc="268435612" symbol="onShow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="9" lineNum="26" parent="globals/TempOverridesView" pc="268435624" symbol="onShow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="9" lineNum="27" parent="globals/TempOverridesView" pc="268435648" symbol="onShow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="10" lineNum="30" parent="globals/TempOverridesView" pc="268435676" symbol="updateData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="10" lineNum="31" parent="globals/TempOverridesView" pc="268435679" symbol="updateData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="10" lineNum="32" parent="globals/TempOverridesView" pc="268435691" symbol="updateData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="10" lineNum="33" parent="globals/TempOverridesView" pc="268435697" symbol="updateData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="10" lineNum="34" parent="globals/TempOverridesView" pc="268435712" symbol="updateData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="10" lineNum="35" parent="globals/TempOverridesView" pc="268435727" symbol="updateData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="11" lineNum="14" parent="globals/TempOverridesView" pc="268435742" symbol="initialize"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="11" lineNum="15" parent="globals/TempOverridesView" pc="268435744" symbol="initialize"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="39" parent="globals/TempOverridesView" pc="268435757" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="41" parent="globals/TempOverridesView" pc="268435760" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="42" parent="globals/TempOverridesView" pc="268435772" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="43" parent="globals/TempOverridesView" pc="268435778" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="44" parent="globals/TempOverridesView" pc="268435793" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="48" parent="globals/TempOverridesView" pc="268435811" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="49" parent="globals/TempOverridesView" pc="268435823" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="51" parent="globals/TempOverridesView" pc="268435831" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="52" parent="globals/TempOverridesView" pc="268435840" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="55" parent="globals/TempOverridesView" pc="268435849" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="56" parent="globals/TempOverridesView" pc="268435866" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="58" parent="globals/TempOverridesView" pc="268435892" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="59" parent="globals/TempOverridesView" pc="268435896" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="60" parent="globals/TempOverridesView" pc="268435900" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="61" parent="globals/TempOverridesView" pc="268435907" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="64" parent="globals/TempOverridesView" pc="268435911" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="65" parent="globals/TempOverridesView" pc="268435945" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="66" parent="globals/TempOverridesView" pc="268435971" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="69" parent="globals/TempOverridesView" pc="268435981" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="70" parent="globals/TempOverridesView" pc="268436015" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="71" parent="globals/TempOverridesView" pc="268436025" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="72" parent="globals/TempOverridesView" pc="268436058" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="73" parent="globals/TempOverridesView" pc="268436075" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="75" parent="globals/TempOverridesView" pc="268436084" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="76" parent="globals/TempOverridesView" pc="268436114" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="77" parent="globals/TempOverridesView" pc="268436137" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="82" parent="globals/TempOverridesView" pc="268436160" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="83" parent="globals/TempOverridesView" pc="268436176" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="84" parent="globals/TempOverridesView" pc="268436193" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="85" parent="globals/TempOverridesView" pc="268436206" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="12" lineNum="89" parent="globals/TempOverridesView" pc="268436234" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="13" lineNum="92" parent="globals/TempOverridesView" pc="268436263" symbol="drawButton"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="13" lineNum="94" parent="globals/TempOverridesView" pc="268436265" symbol="drawButton"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="13" lineNum="95" parent="globals/TempOverridesView" pc="268436279" symbol="drawButton"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="13" lineNum="98" parent="globals/TempOverridesView" pc="268436299" symbol="drawButton"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="13" lineNum="99" parent="globals/TempOverridesView" pc="268436316" symbol="drawButton"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="13" lineNum="102" parent="globals/TempOverridesView" pc="268436336" symbol="drawButton"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="14" lineNum="116" parent="globals/TempOverridesInputDelegate" pc="268436372" symbol="onBack"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="14" lineNum="117" parent="globals/TempOverridesInputDelegate" pc="268436374" symbol="onBack"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="14" lineNum="118" parent="globals/TempOverridesInputDelegate" pc="268436389" symbol="onBack"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="15" lineNum="111" parent="globals/TempOverridesInputDelegate" pc="268436391" symbol="onMenu"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="15" lineNum="112" parent="globals/TempOverridesInputDelegate" pc="268436393" symbol="onMenu"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="15" lineNum="113" parent="globals/TempOverridesInputDelegate" pc="268436408" symbol="onMenu"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="16" lineNum="107" parent="globals/TempOverridesInputDelegate" pc="268436410" symbol="initialize"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" id="16" lineNum="108" parent="globals/TempOverridesInputDelegate" pc="268436412" symbol="initialize"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementDelegate.mc" id="17" lineNum="10" parent="globals/DiabetesFoodManagementDelegate" pc="268436425" symbol="onMenu"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementDelegate.mc" id="17" lineNum="11" parent="globals/DiabetesFoodManagementDelegate" pc="268436427" symbol="onMenu"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementDelegate.mc" id="17" lineNum="12" parent="globals/DiabetesFoodManagementDelegate" pc="268436492" symbol="onMenu"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementDelegate.mc" id="18" lineNum="6" parent="globals/DiabetesFoodManagementDelegate" pc="268436494" symbol="initialize"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementDelegate.mc" id="18" lineNum="7" parent="globals/DiabetesFoodManagementDelegate" pc="268436496" symbol="initialize"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="19" lineNum="236" parent="globals/DiabetesFoodManagementView" pc="268436509" symbol="getTimeSinceUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="19" lineNum="237" parent="globals/DiabetesFoodManagementView" pc="268436512" symbol="getTimeSinceUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="19" lineNum="238" parent="globals/DiabetesFoodManagementView" pc="268436521" symbol="getTimeSinceUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="19" lineNum="241" parent="globals/DiabetesFoodManagementView" pc="268436530" symbol="getTimeSinceUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="19" lineNum="242" parent="globals/DiabetesFoodManagementView" pc="268436542" symbol="getTimeSinceUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="19" lineNum="243" parent="globals/DiabetesFoodManagementView" pc="268436558" symbol="getTimeSinceUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="19" lineNum="245" parent="globals/DiabetesFoodManagementView" pc="268436567" symbol="getTimeSinceUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="19" lineNum="246" parent="globals/DiabetesFoodManagementView" pc="268436575" symbol="getTimeSinceUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="19" lineNum="248" parent="globals/DiabetesFoodManagementView" pc="268436587" symbol="getTimeSinceUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="19" lineNum="249" parent="globals/DiabetesFoodManagementView" pc="268436594" symbol="getTimeSinceUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="20" lineNum="35" parent="globals/DiabetesFoodManagementView" pc="268436604" symbol="onShow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="20" lineNum="36" parent="globals/DiabetesFoodManagementView" pc="268436606" symbol="onShow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="20" lineNum="38" parent="globals/DiabetesFoodManagementView" pc="268436613" symbol="onShow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="20" lineNum="39" parent="globals/DiabetesFoodManagementView" pc="268436642" symbol="onShow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="21" lineNum="217" parent="globals/DiabetesFoodManagementView" pc="268436675" symbol="getDirectionArrow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="21" lineNum="218" parent="globals/DiabetesFoodManagementView" pc="268436677" symbol="getDirectionArrow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="21" lineNum="219" parent="globals/DiabetesFoodManagementView" pc="268436694" symbol="getDirectionArrow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="21" lineNum="220" parent="globals/DiabetesFoodManagementView" pc="268436703" symbol="getDirectionArrow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="21" lineNum="221" parent="globals/DiabetesFoodManagementView" pc="268436720" symbol="getDirectionArrow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="21" lineNum="222" parent="globals/DiabetesFoodManagementView" pc="268436729" symbol="getDirectionArrow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="21" lineNum="223" parent="globals/DiabetesFoodManagementView" pc="268436746" symbol="getDirectionArrow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="21" lineNum="224" parent="globals/DiabetesFoodManagementView" pc="268436755" symbol="getDirectionArrow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="21" lineNum="225" parent="globals/DiabetesFoodManagementView" pc="268436772" symbol="getDirectionArrow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="21" lineNum="226" parent="globals/DiabetesFoodManagementView" pc="268436781" symbol="getDirectionArrow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="21" lineNum="227" parent="globals/DiabetesFoodManagementView" pc="268436798" symbol="getDirectionArrow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="21" lineNum="228" parent="globals/DiabetesFoodManagementView" pc="268436807" symbol="getDirectionArrow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="21" lineNum="229" parent="globals/DiabetesFoodManagementView" pc="268436824" symbol="getDirectionArrow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="21" lineNum="230" parent="globals/DiabetesFoodManagementView" pc="268436833" symbol="getDirectionArrow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="21" lineNum="231" parent="globals/DiabetesFoodManagementView" pc="268436850" symbol="getDirectionArrow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="21" lineNum="233" parent="globals/DiabetesFoodManagementView" pc="268436859" symbol="getDirectionArrow"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="22" lineNum="27" parent="globals/DiabetesFoodManagementView" pc="268436865" symbol="onLayout"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="22" lineNum="29" parent="globals/DiabetesFoodManagementView" pc="268436867" symbol="onLayout"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="178" parent="globals/DiabetesFoodManagementView" pc="268436906" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="179" parent="globals/DiabetesFoodManagementView" pc="268436909" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="181" parent="globals/DiabetesFoodManagementView" pc="268436917" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="183" parent="globals/DiabetesFoodManagementView" pc="268436932" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="184" parent="globals/DiabetesFoodManagementView" pc="268436960" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="185" parent="globals/DiabetesFoodManagementView" pc="268436966" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="186" parent="globals/DiabetesFoodManagementView" pc="268436981" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="187" parent="globals/DiabetesFoodManagementView" pc="268436999" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="188" parent="globals/DiabetesFoodManagementView" pc="268437016" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="189" parent="globals/DiabetesFoodManagementView" pc="268437037" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="193" parent="globals/DiabetesFoodManagementView" pc="268437052" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="194" parent="globals/DiabetesFoodManagementView" pc="268437070" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="195" parent="globals/DiabetesFoodManagementView" pc="268437087" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="196" parent="globals/DiabetesFoodManagementView" pc="268437108" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="200" parent="globals/DiabetesFoodManagementView" pc="268437123" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="201" parent="globals/DiabetesFoodManagementView" pc="268437141" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="202" parent="globals/DiabetesFoodManagementView" pc="268437158" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="203" parent="globals/DiabetesFoodManagementView" pc="268437179" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="207" parent="globals/DiabetesFoodManagementView" pc="268437194" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="208" parent="globals/DiabetesFoodManagementView" pc="268437211" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="23" lineNum="211" parent="globals/DiabetesFoodManagementView" pc="268437234" symbol="onReceiveGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="24" lineNum="412" parent="globals/DiabetesFoodManagementView" pc="268437254" symbol="getActiveProfile"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="24" lineNum="413" parent="globals/DiabetesFoodManagementView" pc="268437256" symbol="getActiveProfile"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="293" parent="globals/DiabetesFoodManagementView" pc="268437262" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="294" parent="globals/DiabetesFoodManagementView" pc="268437265" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="296" parent="globals/DiabetesFoodManagementView" pc="268437280" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="298" parent="globals/DiabetesFoodManagementView" pc="268437308" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="299" parent="globals/DiabetesFoodManagementView" pc="268437314" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="301" parent="globals/DiabetesFoodManagementView" pc="268437329" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="302" parent="globals/DiabetesFoodManagementView" pc="268437347" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="303" parent="globals/DiabetesFoodManagementView" pc="268437364" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="304" parent="globals/DiabetesFoodManagementView" pc="268437370" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="309" parent="globals/DiabetesFoodManagementView" pc="268437391" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="310" parent="globals/DiabetesFoodManagementView" pc="268437409" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="311" parent="globals/DiabetesFoodManagementView" pc="268437426" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="312" parent="globals/DiabetesFoodManagementView" pc="268437459" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="313" parent="globals/DiabetesFoodManagementView" pc="268437476" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="314" parent="globals/DiabetesFoodManagementView" pc="268437491" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="315" parent="globals/DiabetesFoodManagementView" pc="268437495" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="316" parent="globals/DiabetesFoodManagementView" pc="268437512" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="317" parent="globals/DiabetesFoodManagementView" pc="268437519" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="318" parent="globals/DiabetesFoodManagementView" pc="268437552" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="319" parent="globals/DiabetesFoodManagementView" pc="268437569" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="323" parent="globals/DiabetesFoodManagementView" pc="268437592" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="326" parent="globals/DiabetesFoodManagementView" pc="268437617" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="332" parent="globals/DiabetesFoodManagementView" pc="268437647" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="334" parent="globals/DiabetesFoodManagementView" pc="268437651" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="341" parent="globals/DiabetesFoodManagementView" pc="268437693" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="25" lineNum="348" parent="globals/DiabetesFoodManagementView" pc="268437720" symbol="onReceiveTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="26" lineNum="408" parent="globals/DiabetesFoodManagementView" pc="268437732" symbol="getTempBasals"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="26" lineNum="409" parent="globals/DiabetesFoodManagementView" pc="268437734" symbol="getTempBasals"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="27" lineNum="145" parent="globals/DiabetesFoodManagementView" pc="268437740" symbol="fetchGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="27" lineNum="146" parent="globals/DiabetesFoodManagementView" pc="268437743" symbol="fetchGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="27" lineNum="147" parent="globals/DiabetesFoodManagementView" pc="268437751" symbol="fetchGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="27" lineNum="150" parent="globals/DiabetesFoodManagementView" pc="268437755" symbol="fetchGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="27" lineNum="153" parent="globals/DiabetesFoodManagementView" pc="268437763" symbol="fetchGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="27" lineNum="154" parent="globals/DiabetesFoodManagementView" pc="268437782" symbol="fetchGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="27" lineNum="156" parent="globals/DiabetesFoodManagementView" pc="268437801" symbol="fetchGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="27" lineNum="157" parent="globals/DiabetesFoodManagementView" pc="268437807" symbol="fetchGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="27" lineNum="159" parent="globals/DiabetesFoodManagementView" pc="268437817" symbol="fetchGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="27" lineNum="160" parent="globals/DiabetesFoodManagementView" pc="268437823" symbol="fetchGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="27" lineNum="163" parent="globals/DiabetesFoodManagementView" pc="268437833" symbol="fetchGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="27" lineNum="165" parent="globals/DiabetesFoodManagementView" pc="268437846" symbol="fetchGlucoseData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="351" parent="globals/DiabetesFoodManagementView" pc="268437901" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="352" parent="globals/DiabetesFoodManagementView" pc="268437904" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="354" parent="globals/DiabetesFoodManagementView" pc="268437919" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="356" parent="globals/DiabetesFoodManagementView" pc="268437934" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="358" parent="globals/DiabetesFoodManagementView" pc="268437937" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="359" parent="globals/DiabetesFoodManagementView" pc="268437963" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="360" parent="globals/DiabetesFoodManagementView" pc="268437970" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="363" parent="globals/DiabetesFoodManagementView" pc="268437985" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="364" parent="globals/DiabetesFoodManagementView" pc="268437988" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="365" parent="globals/DiabetesFoodManagementView" pc="268438006" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="366" parent="globals/DiabetesFoodManagementView" pc="268438023" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="367" parent="globals/DiabetesFoodManagementView" pc="268438053" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="369" parent="globals/DiabetesFoodManagementView" pc="268438062" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="370" parent="globals/DiabetesFoodManagementView" pc="268438100" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="373" parent="globals/DiabetesFoodManagementView" pc="268438106" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="374" parent="globals/DiabetesFoodManagementView" pc="268438111" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="375" parent="globals/DiabetesFoodManagementView" pc="268438129" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="376" parent="globals/DiabetesFoodManagementView" pc="268438146" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="377" parent="globals/DiabetesFoodManagementView" pc="268438152" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="378" parent="globals/DiabetesFoodManagementView" pc="268438162" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="379" parent="globals/DiabetesFoodManagementView" pc="268438180" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="380" parent="globals/DiabetesFoodManagementView" pc="268438192" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="381" parent="globals/DiabetesFoodManagementView" pc="268438198" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="382" parent="globals/DiabetesFoodManagementView" pc="268438216" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="383" parent="globals/DiabetesFoodManagementView" pc="268438228" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="391" parent="globals/DiabetesFoodManagementView" pc="268438256" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="392" parent="globals/DiabetesFoodManagementView" pc="268438262" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="395" parent="globals/DiabetesFoodManagementView" pc="268438280" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="397" parent="globals/DiabetesFoodManagementView" pc="268438298" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="398" parent="globals/DiabetesFoodManagementView" pc="268438302" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="401" parent="globals/DiabetesFoodManagementView" pc="268438329" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="28" lineNum="405" parent="globals/DiabetesFoodManagementView" pc="268438341" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="29" lineNum="253" parent="globals/DiabetesFoodManagementView" pc="268438353" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="29" lineNum="254" parent="globals/DiabetesFoodManagementView" pc="268438356" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="29" lineNum="255" parent="globals/DiabetesFoodManagementView" pc="268438375" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="29" lineNum="257" parent="globals/DiabetesFoodManagementView" pc="268438394" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="29" lineNum="258" parent="globals/DiabetesFoodManagementView" pc="268438400" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="29" lineNum="260" parent="globals/DiabetesFoodManagementView" pc="268438410" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="29" lineNum="261" parent="globals/DiabetesFoodManagementView" pc="268438416" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="29" lineNum="265" parent="globals/DiabetesFoodManagementView" pc="268438426" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="29" lineNum="266" parent="globals/DiabetesFoodManagementView" pc="268438439" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="29" lineNum="279" parent="globals/DiabetesFoodManagementView" pc="268438493" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="29" lineNum="280" parent="globals/DiabetesFoodManagementView" pc="268438506" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="30" lineNum="22" parent="globals/DiabetesFoodManagementView" pc="268438561" symbol="initialize"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="30" lineNum="23" parent="globals/DiabetesFoodManagementView" pc="268438563" symbol="initialize"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="31" lineNum="138" parent="globals/DiabetesFoodManagementView" pc="268438576" symbol="onHide"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="31" lineNum="139" parent="globals/DiabetesFoodManagementView" pc="268438578" symbol="onHide"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="31" lineNum="140" parent="globals/DiabetesFoodManagementView" pc="268438587" symbol="onHide"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="31" lineNum="141" parent="globals/DiabetesFoodManagementView" pc="268438599" symbol="onHide"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="43" parent="globals/DiabetesFoodManagementView" pc="268438611" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="45" parent="globals/DiabetesFoodManagementView" pc="268438614" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="46" parent="globals/DiabetesFoodManagementView" pc="268438626" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="48" parent="globals/DiabetesFoodManagementView" pc="268438634" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="49" parent="globals/DiabetesFoodManagementView" pc="268438643" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="52" parent="globals/DiabetesFoodManagementView" pc="268438652" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="53" parent="globals/DiabetesFoodManagementView" pc="268438669" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="54" parent="globals/DiabetesFoodManagementView" pc="268438682" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="55" parent="globals/DiabetesFoodManagementView" pc="268438686" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="56" parent="globals/DiabetesFoodManagementView" pc="268438699" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="59" parent="globals/DiabetesFoodManagementView" pc="268438722" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="60" parent="globals/DiabetesFoodManagementView" pc="268438732" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="63" parent="globals/DiabetesFoodManagementView" pc="268438735" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="64" parent="globals/DiabetesFoodManagementView" pc="268438804" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="67" parent="globals/DiabetesFoodManagementView" pc="268438827" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="68" parent="globals/DiabetesFoodManagementView" pc="268438842" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="71" parent="globals/DiabetesFoodManagementView" pc="268438865" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="72" parent="globals/DiabetesFoodManagementView" pc="268438873" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="75" parent="globals/DiabetesFoodManagementView" pc="268438899" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="76" parent="globals/DiabetesFoodManagementView" pc="268438908" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="77" parent="globals/DiabetesFoodManagementView" pc="268438921" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="78" parent="globals/DiabetesFoodManagementView" pc="268438934" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="79" parent="globals/DiabetesFoodManagementView" pc="268438941" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="80" parent="globals/DiabetesFoodManagementView" pc="268438948" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="81" parent="globals/DiabetesFoodManagementView" pc="268438952" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="83" parent="globals/DiabetesFoodManagementView" pc="268438965" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="84" parent="globals/DiabetesFoodManagementView" pc="268438972" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="87" parent="globals/DiabetesFoodManagementView" pc="268438975" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="88" parent="globals/DiabetesFoodManagementView" pc="268438988" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="89" parent="globals/DiabetesFoodManagementView" pc="268438999" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="90" parent="globals/DiabetesFoodManagementView" pc="268439018" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="92" parent="globals/DiabetesFoodManagementView" pc="268439026" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="93" parent="globals/DiabetesFoodManagementView" pc="268439045" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="98" parent="globals/DiabetesFoodManagementView" pc="268439065" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="99" parent="globals/DiabetesFoodManagementView" pc="268439081" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="100" parent="globals/DiabetesFoodManagementView" pc="268439092" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="101" parent="globals/DiabetesFoodManagementView" pc="268439111" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="103" parent="globals/DiabetesFoodManagementView" pc="268439119" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="108" parent="globals/DiabetesFoodManagementView" pc="268439151" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="109" parent="globals/DiabetesFoodManagementView" pc="268439168" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="110" parent="globals/DiabetesFoodManagementView" pc="268439182" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="111" parent="globals/DiabetesFoodManagementView" pc="268439201" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="112" parent="globals/DiabetesFoodManagementView" pc="268439223" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="114" parent="globals/DiabetesFoodManagementView" pc="268439233" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="115" parent="globals/DiabetesFoodManagementView" pc="268439241" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="116" parent="globals/DiabetesFoodManagementView" pc="268439258" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="121" parent="globals/DiabetesFoodManagementView" pc="268439275" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="122" parent="globals/DiabetesFoodManagementView" pc="268439282" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="123" parent="globals/DiabetesFoodManagementView" pc="268439298" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="124" parent="globals/DiabetesFoodManagementView" pc="268439308" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="125" parent="globals/DiabetesFoodManagementView" pc="268439316" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="126" parent="globals/DiabetesFoodManagementView" pc="268439333" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementView.mc" id="32" lineNum="131" parent="globals/DiabetesFoodManagementView" pc="268439343" symbol="onUpdate"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="33" lineNum="27" parent="globals/DiabetesFoodManagementApp" pc="268439371" symbol="getTempBasals"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="33" lineNum="28" parent="globals/DiabetesFoodManagementApp" pc="268439373" symbol="getTempBasals"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="33" lineNum="29" parent="globals/DiabetesFoodManagementApp" pc="268439382" symbol="getTempBasals"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="33" lineNum="31" parent="globals/DiabetesFoodManagementApp" pc="268439397" symbol="getTempBasals"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="34" lineNum="14" parent="globals/DiabetesFoodManagementApp" pc="268439400" symbol="onStart"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="35" lineNum="22" parent="globals/DiabetesFoodManagementApp" pc="268439403" symbol="getInitialView"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="35" lineNum="23" parent="globals/DiabetesFoodManagementApp" pc="268439405" symbol="getInitialView"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="35" lineNum="24" parent="globals/DiabetesFoodManagementApp" pc="268439430" symbol="getInitialView"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="36" lineNum="34" parent="globals/DiabetesFoodManagementApp" pc="268439464" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="36" lineNum="35" parent="globals/DiabetesFoodManagementApp" pc="268439466" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="36" lineNum="36" parent="globals/DiabetesFoodManagementApp" pc="268439475" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="37" lineNum="9" parent="globals/DiabetesFoodManagementApp" pc="268439491" symbol="initialize"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="37" lineNum="10" parent="globals/DiabetesFoodManagementApp" pc="268439493" symbol="initialize"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="38" lineNum="40" parent="globals/DiabetesFoodManagementApp" pc="268439506" symbol="getActiveProfile"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="38" lineNum="41" parent="globals/DiabetesFoodManagementApp" pc="268439508" symbol="getActiveProfile"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="38" lineNum="42" parent="globals/DiabetesFoodManagementApp" pc="268439517" symbol="getActiveProfile"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="38" lineNum="44" parent="globals/DiabetesFoodManagementApp" pc="268439532" symbol="getActiveProfile"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" id="39" lineNum="18" parent="globals/DiabetesFoodManagementApp" pc="268439538" symbol="onStop"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="40" lineNum="18" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268439541" symbol="showTempOverrides"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="40" lineNum="19" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268439544" symbol="showTempOverrides"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="40" lineNum="20" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268439556" symbol="showTempOverrides"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="40" lineNum="21" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268439562" symbol="showTempOverrides"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="40" lineNum="24" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268439574" symbol="showTempOverrides"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="40" lineNum="25" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268439594" symbol="showTempOverrides"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="41" lineNum="12" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268439630" symbol="onMenuItem"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="41" lineNum="13" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268439632" symbol="onMenuItem"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="41" lineNum="14" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268439643" symbol="onMenuItem"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="42" lineNum="8" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268439654" symbol="initialize"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" id="42" lineNum="9" parent="globals/DiabetesFoodManagementMenuDelegate" pc="268439656" symbol="initialize"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="43" lineNum="15" parent="globals/Rez/Layouts" pc="268439669" symbol="MainLayout"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="43" lineNum="16" parent="globals/Rez/Layouts" pc="268439680" symbol="MainLayout"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="43" lineNum="18" parent="globals/Rez/Layouts" pc="268439689" symbol="MainLayout"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="43" lineNum="20" parent="globals/Rez/Layouts" pc="268439792" symbol="MainLayout"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="43" lineNum="21" parent="globals/Rez/Layouts" pc="268439876" symbol="MainLayout"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="43" lineNum="23" parent="globals/Rez/Layouts" pc="268439907" symbol="MainLayout"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="44" lineNum="28" parent="globals/Rez/Menus/MainMenu" pc="268439922" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="45" lineNum="29" parent="globals/Rez/Menus/MainMenu" pc="268439934" symbol="initialize"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="45" lineNum="30" parent="globals/Rez/Menus/MainMenu" pc="268439936" symbol="initialize"/>
+        <entry filename="/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="45" lineNum="31" parent="globals/Rez/Menus/MainMenu" pc="268439948" symbol="initialize"/>
     </pcToLineNum>
     <symbolTable>
         <entry id="8388639" module="true" symbol="Graphics"/>
         <entry id="9" object="true" symbol="DiabetesFoodManagementMenuDelegate"/>
         <entry id="8389346" symbol="text"/>
-        <entry field="true" id="32" symbol="nightscout_token_title"/>
-        <entry field="true" id="17" symbol="&lt;globals/DiabetesFoodManagementView/&lt;&gt;lastUpdateTime&gt;"/>
+        <entry field="true" id="47" symbol="nightscout_token_title"/>
+        <entry field="true" id="27" symbol="&lt;globals/DiabetesFoodManagementView/&lt;&gt;lastUpdateTime&gt;"/>
         <entry id="8388632" method="true" symbol="&lt;init&gt;"/>
-        <entry field="true" id="20" symbol="&lt;globals/DiabetesFoodManagementView/&lt;&gt;trendRate&gt;"/>
+        <entry field="true" id="33" symbol="&lt;globals/DiabetesFoodManagementView/&lt;&gt;trendRate&gt;"/>
         <entry id="5" module="true" symbol="globals/Rez/Menus"/>
-        <entry id="27" method="true" symbol="MainLayout"/>
-        <entry id="19" method="true" symbol="onReceiveGlucoseData"/>
-        <entry field="true" id="33" symbol="nightscout_url_title"/>
+        <entry id="42" method="true" symbol="MainLayout"/>
+        <entry field="true" id="50" symbol="temp_overrides_label"/>
+        <entry field="true" id="32" symbol="&lt;globals/DiabetesFoodManagementView/&lt;&gt;tempBasals&gt;"/>
+        <entry field="true" id="37" symbol="&lt;globals/DiabetesFoodManagementApp/&lt;&gt;mainView&gt;"/>
+        <entry id="30" method="true" symbol="onReceiveGlucoseData"/>
+        <entry field="true" id="15" symbol="&lt;globals/TempOverridesView/&lt;&gt;tempBasals&gt;"/>
+        <entry field="true" id="48" symbol="nightscout_url_title"/>
         <entry field="true" id="8388611" module="true" symbol="Toybox"/>
-        <entry id="14" method="true" symbol="getDirectionArrow"/>
-        <entry field="true" id="29" symbol="AppName"/>
+        <entry id="23" method="true" symbol="getDirectionArrow"/>
+        <entry id="38" method="true" symbol="showTempOverrides"/>
+        <entry field="true" id="44" symbol="AppName"/>
         <entry id="6" module="true" symbol="globals/Rez/Strings"/>
         <entry id="8389594" symbol="headers"/>
         <entry id="8389080" method="true" symbol="onMenu"/>
+        <entry id="16" method="true" symbol="updateData"/>
         <entry id="8389345" symbol="rezId"/>
         <entry id="8388648" module="true" symbol="WatchUi"/>
+        <entry id="8389081" method="true" symbol="onBack"/>
         <entry id="2" module="true" symbol="globals/Rez"/>
-        <entry field="true" id="34" symbol="prompt"/>
-        <entry field="true" id="25" symbol="id_monkey"/>
+        <entry field="true" id="49" symbol="prompt"/>
+        <entry field="true" id="40" symbol="id_monkey"/>
         <entry id="8389124" method="true" symbol="onUpdate"/>
         <entry field="true" id="8389065" symbol="locY"/>
         <entry field="true" id="8389064" symbol="locX"/>
         <entry id="8388771" module="true" object="true" symbol="Drawables"/>
         <entry id="8389348" symbol="font"/>
-        <entry id="36" symbol="item_2"/>
-        <entry id="35" symbol="item_1"/>
-        <entry id="23" module="true" symbol="Menus"/>
+        <entry id="14" method="true" symbol="drawButton"/>
+        <entry id="36" module="true" symbol="Menus"/>
         <entry id="8389275" method="true" symbol="getApp"/>
         <entry id="4" module="true" symbol="globals/Rez/Layouts"/>
+        <entry id="22" method="true" symbol="getActiveProfile"/>
         <entry id="8389122" method="true" symbol="onLayout"/>
         <entry field="true" id="8389063" symbol="identifier"/>
         <entry id="8389349" symbol="justification"/>
@@ -204,96 +362,159 @@
         <entry id="8388637" module="true" symbol="Communications"/>
         <entry id="10" object="true" symbol="DiabetesFoodManagementView"/>
         <entry id="3" module="true" symbol="globals/Rez/Drawables"/>
-        <entry id="28" object="true" symbol="MainMenu"/>
+        <entry id="43" object="true" symbol="MainMenu"/>
+        <entry id="12" object="true" symbol="TempOverridesView"/>
         <entry id="8388786" method="true" symbol="method"/>
         <entry id="8388644" module="true" symbol="System"/>
+        <entry field="true" id="17" symbol="&lt;globals/DiabetesFoodManagementView/&lt;&gt;activeProfile&gt;"/>
         <entry id="8388645" module="true" symbol="Time"/>
         <entry id="8388769" module="true" object="true" symbol="Rez"/>
+        <entry id="51" symbol="temp_overrides"/>
         <entry id="8388640" module="true" symbol="Lang"/>
-        <entry field="true" id="12" symbol="&lt;globals/DiabetesFoodManagementView/&lt;&gt;direction&gt;"/>
-        <entry field="true" id="24" symbol="LauncherIcon"/>
+        <entry field="true" id="19" symbol="&lt;globals/DiabetesFoodManagementView/&lt;&gt;direction&gt;"/>
+        <entry field="true" id="39" symbol="LauncherIcon"/>
         <entry id="8388610" symbol="statics"/>
         <entry id="8389123" method="true" symbol="onShow"/>
-        <entry field="true" id="11" symbol="&lt;globals/DiabetesFoodManagementView/&lt;&gt;bloodSugarLevel&gt;"/>
+        <entry id="24" method="true" symbol="getTempBasals"/>
+        <entry field="true" id="18" symbol="&lt;globals/DiabetesFoodManagementView/&lt;&gt;bloodSugarLevel&gt;"/>
         <entry id="8389350" module="true" symbol="globals"/>
-        <entry field="true" id="18" symbol="&lt;globals/DiabetesFoodManagementView/&lt;&gt;monkeyBitmap&gt;"/>
-        <entry field="true" id="16" symbol="&lt;globals/DiabetesFoodManagementView/&lt;&gt;isLoading&gt;"/>
+        <entry field="true" id="28" symbol="&lt;globals/DiabetesFoodManagementView/&lt;&gt;monkeyBitmap&gt;"/>
+        <entry field="true" id="26" symbol="&lt;globals/DiabetesFoodManagementView/&lt;&gt;isLoading&gt;"/>
         <entry id="8388770" module="true" object="true" symbol="Strings"/>
-        <entry id="15" method="true" symbol="getTimeSinceUpdate"/>
+        <entry id="25" method="true" symbol="getTimeSinceUpdate"/>
         <entry id="8388702" method="true" symbol="initialize"/>
         <entry id="8389279" method="true" symbol="onStart"/>
+        <entry id="21" method="true" symbol="fetchTempBasalData"/>
+        <entry id="31" method="true" symbol="onReceiveTempBasalData"/>
+        <entry field="true" id="13" symbol="&lt;globals/TempOverridesView/&lt;&gt;activeProfile&gt;"/>
         <entry id="8389280" method="true" symbol="getInitialView"/>
         <entry id="8389281" method="true" symbol="onStop"/>
         <entry id="8389109" method="true" symbol="onMenuItem"/>
         <entry field="true" id="8389347" symbol="color"/>
-        <entry id="13" method="true" symbol="fetchGlucoseData"/>
+        <entry id="11" object="true" symbol="TempOverridesInputDelegate"/>
+        <entry id="20" method="true" symbol="fetchGlucoseData"/>
         <entry id="8388646" module="true" object="true" symbol="Timer"/>
-        <entry id="22" module="true" symbol="Layouts"/>
-        <entry field="true" id="26" symbol="monkey"/>
-        <entry field="true" id="21" symbol="&lt;globals/DiabetesFoodManagementView/&lt;&gt;updateTimer&gt;"/>
+        <entry id="35" module="true" symbol="Layouts"/>
+        <entry field="true" id="41" symbol="monkey"/>
+        <entry field="true" id="34" symbol="&lt;globals/DiabetesFoodManagementView/&lt;&gt;updateTimer&gt;"/>
         <entry id="8389125" method="true" symbol="onHide"/>
         <entry id="8388635" module="true" symbol="Application"/>
-        <entry field="true" id="31" symbol="menu_label_2"/>
-        <entry field="true" id="30" symbol="menu_label_1"/>
+        <entry id="29" method="true" symbol="onReceiveActiveOverride"/>
+        <entry field="true" id="46" symbol="menu_label_2"/>
+        <entry field="true" id="45" symbol="menu_label_1"/>
     </symbolTable>
     <localVars>
-        <entry endPc="268435726" name="now" stackId="1" startPc="268435636"/>
-        <entry endPc="268435726" name="duration" stackId="2" startPc="268435636"/>
-        <entry endPc="268435726" name="seconds" stackId="3" startPc="268435636"/>
-        <entry endPc="268435726" name="minutes" stackId="4" startPc="268435711"/>
-        <entry arg="true" endPc="268435988" name="dir" stackId="1" startPc="268435799"/>
-        <entry arg="true" endPc="268436029" name="dc" stackId="1" startPc="268435989"/>
-        <entry arg="true" endPc="268436377" name="responseCode" stackId="1" startPc="268436030"/>
-        <entry arg="true" endPc="268436377" name="data" stackId="2" startPc="268436030"/>
-        <entry endPc="268436348" name="entry" stackId="3" startPc="268436084"/>
-        <entry endPc="268436172" name="newValue" stackId="4" startPc="268436123"/>
-        <entry endPc="268436243" name="rate" stackId="5" startPc="268436194"/>
-        <entry endPc="268436314" name="dir" stackId="6" startPc="268436265"/>
-        <entry endPc="268436368" name="e" stackId="7" startPc="268436358"/>
-        <entry endPc="268436537" name="nightscoutUrl" stackId="1" startPc="268436381"/>
-        <entry endPc="268436537" name="nightscoutToken" stackId="2" startPc="268436381"/>
-        <entry endPc="268436537" name="url" stackId="3" startPc="268436381"/>
-        <entry arg="true" endPc="268437348" name="dc" stackId="1" startPc="268436589"/>
-        <entry endPc="268437347" name="width" stackId="2" startPc="268436592"/>
-        <entry endPc="268437347" name="height" stackId="3" startPc="268436592"/>
-        <entry endPc="268437347" name="bloodSugarText" stackId="4" startPc="268436592"/>
-        <entry endPc="268437347" name="font" stackId="5" startPc="268436592"/>
-        <entry endPc="268437347" name="textHeight" stackId="6" startPc="268436592"/>
-        <entry endPc="268437347" name="trendY" stackId="7" startPc="268436592"/>
-        <entry endPc="268437347" name="smallFont" stackId="8" startPc="268436592"/>
-        <entry endPc="268437347" name="trendText" stackId="9" startPc="268436592"/>
-        <entry endPc="268437347" name="arrowText" stackId="10" startPc="268436592"/>
-        <entry endPc="268437347" name="timeText" stackId="11" startPc="268436592"/>
-        <entry endPc="268437344" name="imageWidth" stackId="12" startPc="268436886"/>
-        <entry endPc="268437344" name="imageHeight" stackId="13" startPc="268436886"/>
-        <entry endPc="268437344" name="startY" stackId="14" startPc="268436886"/>
-        <entry endPc="268437344" name="columnWidth" stackId="15" startPc="268436886"/>
-        <entry endPc="268437344" name="spacing" stackId="16" startPc="268436886"/>
-        <entry endPc="268437344" name="imagesPerColumn" stackId="17" startPc="268436886"/>
-        <entry endPc="268437344" name="topMostHorizontalLine" stackId="18" startPc="268436886"/>
-        <entry endPc="268437344" name="drawnImages" stackId="19" startPc="268436886"/>
-        <entry endPc="268437344" name="leftX" stackId="20" startPc="268436886"/>
-        <entry endPc="268437042" name="i" stackId="21" startPc="268436977"/>
-        <entry endPc="268437032" name="y" stackId="22" startPc="268436977"/>
-        <entry endPc="268437344" name="rightX" stackId="23" startPc="268436886"/>
-        <entry endPc="268437128" name="j" stackId="24" startPc="268437070"/>
-        <entry endPc="268437118" name="y" stackId="25" startPc="268437070"/>
-        <entry endPc="268437252" name="k" stackId="26" startPc="268437160"/>
-        <entry endPc="268437242" name="imageBottomY" stackId="27" startPc="268437160"/>
-        <entry endPc="268437242" name="nextImageTopY" stackId="28" startPc="268437160"/>
-        <entry endPc="268437242" name="lineY" stackId="29" startPc="268437160"/>
-        <entry endPc="268437317" name="topImageY" stackId="30" startPc="268437260"/>
-        <entry endPc="268437317" name="lineAboveTop" stackId="31" startPc="268437260"/>
-        <entry arg="true" endPc="268437485" name="item" stackId="1" startPc="268437419"/>
-        <entry arg="true" endPc="268437753" name="dc" stackId="1" startPc="268437501"/>
-        <entry endPc="268437753" name="rez_cmp_local_var_dc_getWidth" stackId="2" startPc="268437512"/>
-        <entry endPc="268437753" name="rez_cmp_local_text_1193959466" stackId="3" startPc="268437512"/>
-        <entry endPc="268437753" name="rez_cmp_local_bitmap_id_monkey" stackId="4" startPc="268437512"/>
+        <entry endPc="268435674" name="app" stackId="1" startPc="268435594"/>
+        <entry endPc="268435674" name="timer" stackId="2" startPc="268435594"/>
+        <entry endPc="268435740" name="app" stackId="1" startPc="268435679"/>
+        <entry arg="true" endPc="268436262" name="dc" stackId="1" startPc="268435757"/>
+        <entry endPc="268436261" name="app" stackId="2" startPc="268435760"/>
+        <entry endPc="268436261" name="width" stackId="3" startPc="268435760"/>
+        <entry endPc="268436261" name="height" stackId="4" startPc="268435760"/>
+        <entry endPc="268436261" name="yPos" stackId="5" startPc="268435760"/>
+        <entry endPc="268436261" name="buttonHeight" stackId="6" startPc="268435760"/>
+        <entry endPc="268436261" name="buttonWidth" stackId="7" startPc="268435760"/>
+        <entry endPc="268436261" name="buttonX" stackId="8" startPc="268435760"/>
+        <entry endPc="268436261" name="defaultColor" stackId="9" startPc="268435760"/>
+        <entry endPc="268436159" name="i" stackId="10" startPc="268436015"/>
+        <entry endPc="268436149" name="override" stackId="11" startPc="268436015"/>
+        <entry endPc="268436146" name="name" stackId="12" startPc="268436058"/>
+        <entry endPc="268436146" name="nameStr" stackId="13" startPc="268436058"/>
+        <entry endPc="268436146" name="buttonColor" stackId="14" startPc="268436058"/>
+        <entry endPc="268436230" name="profileText" stackId="15" startPc="268436176"/>
+        <entry arg="true" endPc="268436371" name="dc" stackId="1" startPc="268436263"/>
+        <entry arg="true" endPc="268436371" name="x" stackId="2" startPc="268436263"/>
+        <entry arg="true" endPc="268436371" name="y" stackId="3" startPc="268436263"/>
+        <entry arg="true" endPc="268436371" name="width" stackId="4" startPc="268436263"/>
+        <entry arg="true" endPc="268436371" name="height" stackId="5" startPc="268436263"/>
+        <entry arg="true" endPc="268436371" name="text" stackId="6" startPc="268436263"/>
+        <entry arg="true" endPc="268436371" name="color" stackId="7" startPc="268436263"/>
+        <entry endPc="268436602" name="now" stackId="1" startPc="268436512"/>
+        <entry endPc="268436602" name="duration" stackId="2" startPc="268436512"/>
+        <entry endPc="268436602" name="seconds" stackId="3" startPc="268436512"/>
+        <entry endPc="268436602" name="minutes" stackId="4" startPc="268436587"/>
+        <entry arg="true" endPc="268436864" name="dir" stackId="1" startPc="268436675"/>
+        <entry arg="true" endPc="268436905" name="dc" stackId="1" startPc="268436865"/>
+        <entry arg="true" endPc="268437253" name="responseCode" stackId="1" startPc="268436906"/>
+        <entry arg="true" endPc="268437253" name="data" stackId="2" startPc="268436906"/>
+        <entry endPc="268437224" name="entry" stackId="3" startPc="268436960"/>
+        <entry endPc="268437048" name="newValue" stackId="4" startPc="268436999"/>
+        <entry endPc="268437119" name="rate" stackId="5" startPc="268437070"/>
+        <entry endPc="268437190" name="dir" stackId="6" startPc="268437141"/>
+        <entry endPc="268437244" name="e" stackId="7" startPc="268437234"/>
+        <entry arg="true" endPc="268437731" name="responseCode" stackId="1" startPc="268437262"/>
+        <entry arg="true" endPc="268437731" name="data" stackId="2" startPc="268437262"/>
+        <entry endPc="268437637" name="firstProfile" stackId="3" startPc="268437308"/>
+        <entry endPc="268437387" name="defaultProfile" stackId="4" startPc="268437347"/>
+        <entry endPc="268437631" name="loopSettings" stackId="5" startPc="268437409"/>
+        <entry endPc="268437628" name="overridePresets" stackId="6" startPc="268437459"/>
+        <entry endPc="268437625" name="profiles" stackId="7" startPc="268437491"/>
+        <entry endPc="268437616" name="i" stackId="8" startPc="268437512"/>
+        <entry endPc="268437606" name="presetData" stackId="9" startPc="268437512"/>
+        <entry endPc="268437603" name="presetName" stackId="10" startPc="268437552"/>
+        <entry endPc="268437603" name="entry" stackId="11" startPc="268437552"/>
+        <entry endPc="268437684" name="e" stackId="12" startPc="268437647"/>
+        <entry endPc="268437899" name="nightscoutUrl" stackId="1" startPc="268437743"/>
+        <entry endPc="268437899" name="nightscoutToken" stackId="2" startPc="268437743"/>
+        <entry endPc="268437899" name="url" stackId="3" startPc="268437743"/>
+        <entry arg="true" endPc="268438352" name="responseCode" stackId="1" startPc="268437901"/>
+        <entry arg="true" endPc="268438352" name="data" stackId="2" startPc="268437901"/>
+        <entry endPc="268438276" name="foundActiveOverride" stackId="3" startPc="268437934"/>
+        <entry endPc="268438255" name="i" stackId="4" startPc="268437963"/>
+        <entry endPc="268438245" name="override" stackId="5" startPc="268437963"/>
+        <entry endPc="268438242" name="isActive" stackId="6" startPc="268437985"/>
+        <entry endPc="268438058" name="durationType" stackId="7" startPc="268438006"/>
+        <entry endPc="268438236" name="reason" stackId="8" startPc="268438129"/>
+        <entry endPc="268438233" name="reasonStr" stackId="9" startPc="268438152"/>
+        <entry endPc="268438320" name="e" stackId="10" startPc="268438298"/>
+        <entry endPc="268438559" name="nightscoutUrl" stackId="1" startPc="268438356"/>
+        <entry endPc="268438559" name="nightscoutToken" stackId="2" startPc="268438356"/>
+        <entry endPc="268438559" name="profileUrl" stackId="3" startPc="268438356"/>
+        <entry endPc="268438559" name="overrideUrl" stackId="4" startPc="268438356"/>
+        <entry arg="true" endPc="268439370" name="dc" stackId="1" startPc="268438611"/>
+        <entry endPc="268439369" name="width" stackId="2" startPc="268438614"/>
+        <entry endPc="268439369" name="height" stackId="3" startPc="268438614"/>
+        <entry endPc="268439369" name="bloodSugarText" stackId="4" startPc="268438614"/>
+        <entry endPc="268439369" name="font" stackId="5" startPc="268438614"/>
+        <entry endPc="268439369" name="textHeight" stackId="6" startPc="268438614"/>
+        <entry endPc="268439369" name="trendY" stackId="7" startPc="268438614"/>
+        <entry endPc="268439369" name="smallFont" stackId="8" startPc="268438614"/>
+        <entry endPc="268439369" name="trendText" stackId="9" startPc="268438614"/>
+        <entry endPc="268439369" name="arrowText" stackId="10" startPc="268438614"/>
+        <entry endPc="268439369" name="timeText" stackId="11" startPc="268438614"/>
+        <entry endPc="268439366" name="imageWidth" stackId="12" startPc="268438908"/>
+        <entry endPc="268439366" name="imageHeight" stackId="13" startPc="268438908"/>
+        <entry endPc="268439366" name="startY" stackId="14" startPc="268438908"/>
+        <entry endPc="268439366" name="columnWidth" stackId="15" startPc="268438908"/>
+        <entry endPc="268439366" name="spacing" stackId="16" startPc="268438908"/>
+        <entry endPc="268439366" name="imagesPerColumn" stackId="17" startPc="268438908"/>
+        <entry endPc="268439366" name="topMostHorizontalLine" stackId="18" startPc="268438908"/>
+        <entry endPc="268439366" name="drawnImages" stackId="19" startPc="268438908"/>
+        <entry endPc="268439366" name="leftX" stackId="20" startPc="268438908"/>
+        <entry endPc="268439064" name="i" stackId="21" startPc="268438999"/>
+        <entry endPc="268439054" name="y" stackId="22" startPc="268438999"/>
+        <entry endPc="268439366" name="rightX" stackId="23" startPc="268438908"/>
+        <entry endPc="268439150" name="j" stackId="24" startPc="268439092"/>
+        <entry endPc="268439140" name="y" stackId="25" startPc="268439092"/>
+        <entry endPc="268439274" name="k" stackId="26" startPc="268439182"/>
+        <entry endPc="268439264" name="imageBottomY" stackId="27" startPc="268439182"/>
+        <entry endPc="268439264" name="nextImageTopY" stackId="28" startPc="268439182"/>
+        <entry endPc="268439264" name="lineY" stackId="29" startPc="268439182"/>
+        <entry endPc="268439339" name="topImageY" stackId="30" startPc="268439282"/>
+        <entry endPc="268439339" name="lineAboveTop" stackId="31" startPc="268439282"/>
+        <entry endPc="268439628" name="app" stackId="1" startPc="268439544"/>
+        <entry endPc="268439628" name="tempOverridesView" stackId="2" startPc="268439544"/>
+        <entry arg="true" endPc="268439653" name="item" stackId="1" startPc="268439630"/>
+        <entry arg="true" endPc="268439921" name="dc" stackId="1" startPc="268439669"/>
+        <entry endPc="268439921" name="rez_cmp_local_var_dc_getWidth" stackId="2" startPc="268439680"/>
+        <entry endPc="268439921" name="rez_cmp_local_text_1193959466" stackId="3" startPc="268439680"/>
+        <entry endPc="268439921" name="rez_cmp_local_bitmap_id_monkey" stackId="4" startPc="268439680"/>
     </localVars>
     <deviceInfo deviceVersion="c78f2ff347753f2d98ab571552af61e920d0a10c" partNumber="006-B4440-00"/>
     <annotations>
         <annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="LauncherIcon"/>
         <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="menu_label_2"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="temp_overrides_label"/>
         <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="nightscout_token_title"/>
         <annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="monkey"/>
         <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="menu_label_1"/>
@@ -304,71 +525,130 @@
     </annotations>
     <dataEntryOffsetMappings>
         <dataEntry label="globals" offset="67" parentId="" symbolId="globals" type="module"/>
-        <dataEntry label="globals/DiabetesFoodManagementDelegate" offset="152" parentId="globals" symbolId="DiabetesFoodManagementDelegate" type="class"/>
-        <dataEntry label="globals/DiabetesFoodManagementView" offset="205" parentId="globals" symbolId="DiabetesFoodManagementView" type="class"/>
-        <dataEntry label="globals/Rez" offset="384" parentId="globals" symbolId="Rez" type="module"/>
-        <dataEntry label="globals/DiabetesFoodManagementApp" offset="446" parentId="globals" symbolId="DiabetesFoodManagementApp" type="class"/>
-        <dataEntry label="globals/DiabetesFoodManagementMenuDelegate" offset="517" parentId="globals" symbolId="DiabetesFoodManagementMenuDelegate" type="class"/>
-        <dataEntry label="globals/Rez/Drawables" offset="570" parentId="Rez" symbolId="Drawables" type="module"/>
-        <dataEntry label="globals/Rez/Layouts" offset="623" parentId="Rez" symbolId="Layouts" type="module"/>
-        <dataEntry label="globals/Rez/Menus" offset="658" parentId="Rez" symbolId="Menus" type="module"/>
-        <dataEntry label="globals/Rez/Strings" offset="693" parentId="Rez" symbolId="Strings" type="module"/>
-        <dataEntry label="globals/Rez/Menus/MainMenu" offset="773" parentId="Menus" symbolId="MainMenu" type="class"/>
+        <dataEntry label="globals/TempOverridesView" offset="170" parentId="globals" symbolId="TempOverridesView" type="class"/>
+        <dataEntry label="globals/TempOverridesInputDelegate" offset="268" parentId="globals" symbolId="TempOverridesInputDelegate" type="class"/>
+        <dataEntry label="globals/DiabetesFoodManagementDelegate" offset="330" parentId="globals" symbolId="DiabetesFoodManagementDelegate" type="class"/>
+        <dataEntry label="globals/DiabetesFoodManagementView" offset="383" parentId="globals" symbolId="DiabetesFoodManagementView" type="class"/>
+        <dataEntry label="globals/Rez" offset="625" parentId="globals" symbolId="Rez" type="module"/>
+        <dataEntry label="globals/DiabetesFoodManagementApp" offset="687" parentId="globals" symbolId="DiabetesFoodManagementApp" type="class"/>
+        <dataEntry label="globals/DiabetesFoodManagementMenuDelegate" offset="794" parentId="globals" symbolId="DiabetesFoodManagementMenuDelegate" type="class"/>
+        <dataEntry label="globals/Rez/Drawables" offset="856" parentId="Rez" symbolId="Drawables" type="module"/>
+        <dataEntry label="globals/Rez/Layouts" offset="909" parentId="Rez" symbolId="Layouts" type="module"/>
+        <dataEntry label="globals/Rez/Menus" offset="944" parentId="Rez" symbolId="Menus" type="module"/>
+        <dataEntry label="globals/Rez/Strings" offset="979" parentId="Rez" symbolId="Strings" type="module"/>
+        <dataEntry label="globals/Rez/Menus/MainMenu" offset="1068" parentId="Menus" symbolId="MainMenu" type="class"/>
     </dataEntryOffsetMappings>
     <functions>
-        <functionEntry accessMode="public" endPc="268435480" name="getApp" startPc="268435460">
+        <functionEntry accessMode="public" endPc="268435480" name="&lt;init&gt;" parent="TempOverridesView" startPc="268435460">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435492" name="&lt;init&gt;" parent="DiabetesFoodManagementDelegate" startPc="268435481">
+        <functionEntry accessMode="public" endPc="268435492" name="&lt;init&gt;" parent="TempOverridesInputDelegate" startPc="268435481">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435504" name="&lt;init&gt;" parent="DiabetesFoodManagementView" startPc="268435493">
+        <functionEntry accessMode="public" endPc="268435513" name="getApp" startPc="268435493">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435524" name="&lt;init&gt;" parent="Rez" startPc="268435505">
+        <functionEntry accessMode="public" endPc="268435525" name="&lt;init&gt;" parent="DiabetesFoodManagementDelegate" startPc="268435514">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435536" name="&lt;init&gt;" parent="DiabetesFoodManagementApp" startPc="268435525">
+        <functionEntry accessMode="public" endPc="268435546" name="&lt;init&gt;" parent="DiabetesFoodManagementView" startPc="268435526">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435548" name="&lt;init&gt;" parent="DiabetesFoodManagementMenuDelegate" startPc="268435537">
+        <functionEntry accessMode="public" endPc="268435566" name="&lt;init&gt;" parent="Rez" startPc="268435547">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435617" name="onMenu" parent="DiabetesFoodManagementDelegate" startPc="268435549">
+        <functionEntry accessMode="public" endPc="268435578" name="&lt;init&gt;" parent="DiabetesFoodManagementApp" startPc="268435567">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435632" name="initialize" parent="DiabetesFoodManagementDelegate" startPc="268435618">
+        <functionEntry accessMode="public" endPc="268435590" name="&lt;init&gt;" parent="DiabetesFoodManagementMenuDelegate" startPc="268435579">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435727" name="getTimeSinceUpdate" parent="DiabetesFoodManagementView" startPc="268435633">
+        <functionEntry accessMode="public" endPc="268435675" name="onShow" parent="TempOverridesView" startPc="268435591">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435798" name="onShow" parent="DiabetesFoodManagementView" startPc="268435728">
+        <functionEntry accessMode="public" endPc="268435741" name="updateData" parent="TempOverridesView" startPc="268435676">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435988" name="getDirectionArrow" parent="DiabetesFoodManagementView" startPc="268435799">
-            <param id="dir"/>
+        <functionEntry accessMode="public" endPc="268435756" name="initialize" parent="TempOverridesView" startPc="268435742">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268436029" name="onLayout" parent="DiabetesFoodManagementView" startPc="268435989">
+        <functionEntry accessMode="public" endPc="268436262" name="onUpdate" parent="TempOverridesView" startPc="268435757">
             <param id="dc"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268436377" name="onReceiveGlucoseData" parent="DiabetesFoodManagementView" startPc="268436030">
+        <functionEntry accessMode="public" endPc="268436371" name="drawButton" parent="TempOverridesView" startPc="268436263">
+            <param id="dc"/>
+            <param id="x"/>
+            <param id="y"/>
+            <param id="width"/>
+            <param id="height"/>
+            <param id="text"/>
+            <param id="color"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436390" name="onBack" parent="TempOverridesInputDelegate" startPc="268436372">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436409" name="onMenu" parent="TempOverridesInputDelegate" startPc="268436391">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436424" name="initialize" parent="TempOverridesInputDelegate" startPc="268436410">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436493" name="onMenu" parent="DiabetesFoodManagementDelegate" startPc="268436425">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436508" name="initialize" parent="DiabetesFoodManagementDelegate" startPc="268436494">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436603" name="getTimeSinceUpdate" parent="DiabetesFoodManagementView" startPc="268436509">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436674" name="onShow" parent="DiabetesFoodManagementView" startPc="268436604">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436864" name="getDirectionArrow" parent="DiabetesFoodManagementView" startPc="268436675">
+            <param id="dir"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436905" name="onLayout" parent="DiabetesFoodManagementView" startPc="268436865">
+            <param id="dc"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268437253" name="onReceiveGlucoseData" parent="DiabetesFoodManagementView" startPc="268436906">
             <param id="responseCode"/>
             <param id="data"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268436538" name="fetchGlucoseData" parent="DiabetesFoodManagementView" startPc="268436378">
+        <functionEntry accessMode="public" endPc="268437261" name="getActiveProfile" parent="DiabetesFoodManagementView" startPc="268437254">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268436553" name="initialize" parent="DiabetesFoodManagementView" startPc="268436539">
+        <functionEntry accessMode="public" endPc="268437731" name="onReceiveTempBasalData" parent="DiabetesFoodManagementView" startPc="268437262">
+            <param id="responseCode"/>
+            <param id="data"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268436588" name="onHide" parent="DiabetesFoodManagementView" startPc="268436554">
+        <functionEntry accessMode="public" endPc="268437739" name="getTempBasals" parent="DiabetesFoodManagementView" startPc="268437732">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437348" name="onUpdate" parent="DiabetesFoodManagementView" startPc="268436589">
+        <functionEntry accessMode="public" endPc="268437900" name="fetchGlucoseData" parent="DiabetesFoodManagementView" startPc="268437740">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438352" name="onReceiveActiveOverride" parent="DiabetesFoodManagementView" startPc="268437901">
+            <param id="responseCode"/>
+            <param id="data"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438560" name="fetchTempBasalData" parent="DiabetesFoodManagementView" startPc="268438353">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438575" name="initialize" parent="DiabetesFoodManagementView" startPc="268438561">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438610" name="onHide" parent="DiabetesFoodManagementView" startPc="268438576">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268439370" name="onUpdate" parent="DiabetesFoodManagementView" startPc="268438611">
             <param id="dc"/>
             <documentation/>
         </functionEntry>
@@ -384,35 +664,47 @@
         <functionEntry accessMode="public" name="&lt;init&gt;" parent="Strings">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437351" name="onStart" parent="DiabetesFoodManagementApp" startPc="268437349">
+        <functionEntry accessMode="public" endPc="268439399" name="getTempBasals" parent="DiabetesFoodManagementApp" startPc="268439371">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268439402" name="onStart" parent="DiabetesFoodManagementApp" startPc="268439400">
             <param id="state"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437400" name="getInitialView" parent="DiabetesFoodManagementApp" startPc="268437352">
+        <functionEntry accessMode="public" endPc="268439463" name="getInitialView" parent="DiabetesFoodManagementApp" startPc="268439403">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437415" name="initialize" parent="DiabetesFoodManagementApp" startPc="268437401">
+        <functionEntry accessMode="public" endPc="268439490" name="fetchTempBasalData" parent="DiabetesFoodManagementApp" startPc="268439464">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437418" name="onStop" parent="DiabetesFoodManagementApp" startPc="268437416">
+        <functionEntry accessMode="public" endPc="268439505" name="initialize" parent="DiabetesFoodManagementApp" startPc="268439491">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268439537" name="getActiveProfile" parent="DiabetesFoodManagementApp" startPc="268439506">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268439540" name="onStop" parent="DiabetesFoodManagementApp" startPc="268439538">
             <param id="state"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437485" name="onMenuItem" parent="DiabetesFoodManagementMenuDelegate" startPc="268437419">
+        <functionEntry accessMode="public" endPc="268439629" name="showTempOverrides" parent="DiabetesFoodManagementMenuDelegate" startPc="268439541">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268439653" name="onMenuItem" parent="DiabetesFoodManagementMenuDelegate" startPc="268439630">
             <param id="item"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437500" name="initialize" parent="DiabetesFoodManagementMenuDelegate" startPc="268437486">
+        <functionEntry accessMode="public" endPc="268439668" name="initialize" parent="DiabetesFoodManagementMenuDelegate" startPc="268439654">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437753" name="MainLayout" parent="Layouts" startPc="268437501">
+        <functionEntry accessMode="public" endPc="268439921" name="MainLayout" parent="Layouts" startPc="268439669">
             <param id="dc"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437765" name="&lt;init&gt;" parent="MainMenu" startPc="268437754">
+        <functionEntry accessMode="public" endPc="268439933" name="&lt;init&gt;" parent="MainMenu" startPc="268439922">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437870" name="initialize" parent="MainMenu" startPc="268437766">
+        <functionEntry accessMode="public" endPc="268439993" name="initialize" parent="MainMenu" startPc="268439934">
             <documentation/>
         </functionEntry>
     </functions>

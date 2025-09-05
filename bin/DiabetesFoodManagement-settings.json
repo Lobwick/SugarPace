@@ -34,9 +34,10 @@
   "languages" : {
     "valyrian" : {
       "nightscout_url_title" : "Nightscout URL",
+      "nightscout_token_title" : "Nightscout Token",
       "menu_label_1" : "Item 1",
       "menu_label_2" : "Item 2",
-      "nightscout_token_title" : "Nightscout Token",
+      "temp_overrides_label" : "Temp Overrides",
       "prompt" : "Click the menu button",
       "AppName" : "Diabetes Food Management"
     }
