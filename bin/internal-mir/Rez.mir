@@ -199,7 +199,7 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_15_74_
             }
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 29; @symbol_functiondef = [initialize,29,21,31]; ]
             function initialize() as Void {
-_Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_33_12_start:
+_Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_32_12_start:
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 30 16 ]
                 symbol [ Menu %tmp.2 30 16 20 ];
                 %tmp.2 = getv ? :Menu;
@@ -220,53 +220,33 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_
                 %tmp.9 = getv %tmp.8 :Rez;
                 symbol [ Strings %tmp.10 31 52 59 ];
                 %tmp.10 = getv %tmp.9 :Strings;
-                symbol [ menu_label_1 %tmp.11 31 60 72 ];
-                %tmp.11 = getv %tmp.10 :menu_label_1;
+                symbol [ temp_overrides_label %tmp.11 31 60 80 ];
+                %tmp.11 = getv %tmp.10 :temp_overrides_label;
                 %tmp.12 = invoke %tmp.6 %tmp.7(%tmp.11);
                 %tmp.13 = as %tmp.12 String;
-                symbol [ String %tmp.13 31 77 83 ];
-                %tmp.15 = const :item_1;
-                symbol [ item_1 %tmp.15 31 87 93 const ];
+                symbol [ String %tmp.13 31 85 91 ];
+                %tmp.15 = const :temp_overrides;
+                symbol [ temp_overrides %tmp.15 31 95 109 const ];
                 invoke %tmp.4 %tmp.5(%tmp.13, %tmp.15);
-[ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 32 16 ]
-                %tmp.16 = self;
-                symbol [ addItem %tmp.17 32 16 23 ];
-                %tmp.17 = getv function %tmp.16 :addItem;
-                symbol [ WatchUi %tmp.18 32 25 32 ];
-                %tmp.18 = getm $.Toybox.WatchUi;
-                symbol [ loadResource %tmp.19 32 33 45 ];
-                %tmp.19 = getv function %tmp.18 :loadResource;
-                symbol [ $ %tmp.20 32 46 47 ];
-                %tmp.20 = getm $;
-                symbol [ Rez %tmp.21 32 48 51 ];
-                %tmp.21 = getv %tmp.20 :Rez;
-                symbol [ Strings %tmp.22 32 52 59 ];
-                %tmp.22 = getv %tmp.21 :Strings;
-                symbol [ menu_label_2 %tmp.23 32 60 72 ];
-                %tmp.23 = getv %tmp.22 :menu_label_2;
-                %tmp.24 = invoke %tmp.18 %tmp.19(%tmp.23);
-                %tmp.25 = as %tmp.24 String;
-                symbol [ String %tmp.25 32 77 83 ];
-                %tmp.27 = const :item_2;
-                symbol [ item_2 %tmp.27 32 87 93 const ];
-                invoke %tmp.16 %tmp.17(%tmp.25, %tmp.27);
-_Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_33_12_stop:
+_Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_32_12_stop:
             }
         }
     }
-    [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 37; @symbol_moduledef = [Strings,37,11,18]; ]
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 36; @symbol_moduledef = [Strings,36,11,18]; ]
     module Strings {
-        [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 37; ]
+        [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 36; ]
         <init> {
         }
-        [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 38; @position = 27; initialized = true; @symbol_vardef = [nightscout_url_title,38,27,47]; @symbol_type<0> = [ResourceId,38,51,61]; ]
+        [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 37; @position = 27; initialized = true; @symbol_vardef = [nightscout_url_title,37,27,47]; @symbol_type<0> = [ResourceId,37,51,61]; ]
         var nightscout_url_title as ResourceId;
-        [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 39; @position = 27; initialized = true; @symbol_vardef = [nightscout_token_title,39,27,49]; @symbol_type<0> = [ResourceId,39,53,63]; ]
+        [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 38; @position = 27; initialized = true; @symbol_vardef = [nightscout_token_title,38,27,49]; @symbol_type<0> = [ResourceId,38,53,63]; ]
         var nightscout_token_title as ResourceId;
-        [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 40; @position = 27; initialized = true; @symbol_vardef = [menu_label_1,40,27,39]; @symbol_type<0> = [ResourceId,40,43,53]; ]
+        [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 39; @position = 27; initialized = true; @symbol_vardef = [menu_label_1,39,27,39]; @symbol_type<0> = [ResourceId,39,43,53]; ]
         var menu_label_1 as ResourceId;
-        [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 41; @position = 27; initialized = true; @symbol_vardef = [menu_label_2,41,27,39]; @symbol_type<0> = [ResourceId,41,43,53]; ]
+        [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 40; @position = 27; initialized = true; @symbol_vardef = [menu_label_2,40,27,39]; @symbol_type<0> = [ResourceId,40,43,53]; ]
         var menu_label_2 as ResourceId;
+        [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 41; @position = 27; initialized = true; @symbol_vardef = [temp_overrides_label,41,27,47]; @symbol_type<0> = [ResourceId,41,51,61]; ]
+        var temp_overrides_label as ResourceId;
         [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 42; @position = 27; initialized = true; @symbol_vardef = [prompt,42,27,33]; @symbol_type<0> = [ResourceId,42,37,47]; ]
         var prompt as ResourceId;
         [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 43; @position = 27; initialized = true; @symbol_vardef = [AppName,43,27,34]; @symbol_type<0> = [ResourceId,43,38,48]; ]
@@ -392,11 +372,11 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 102; ]
             <init> {
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 104 18 ]
-                symbol [ Graphics %tmp.28 104 31 39 ];
-                %tmp.28 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.29 104 40 57 ];
-                %tmp.29 = getv %tmp.28 :COLOR_TRANSPARENT;
-                putv self :background %tmp.29;
+                symbol [ Graphics %tmp.16 104 31 39 ];
+                %tmp.16 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.17 104 40 57 ];
+                %tmp.17 = getv %tmp.16 :COLOR_TRANSPARENT;
+                putv self :background %tmp.17;
             }
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 103; @position = 18; @symbol_constdef = [color,103,18,23]; @symbol_type<0> = [Number,103,27,33]; ]
             const color as Number = 0xFFFFFF;
@@ -438,22 +418,22 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 122; ]
             <init> {
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 123 18 ]
-                symbol [ Graphics %tmp.30 123 34 42 ];
-                %tmp.30 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_CENTER %tmp.31 123 43 62 ];
-                %tmp.31 = getv %tmp.30 :TEXT_JUSTIFY_CENTER;
-                symbol [ Graphics %tmp.32 123 63 71 ];
-                %tmp.32 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_VCENTER %tmp.33 123 72 92 ];
-                %tmp.33 = getv %tmp.32 :TEXT_JUSTIFY_VCENTER;
-                %tmp.34 = bitor %tmp.31 %tmp.33;
-                putv self :justification %tmp.34;
+                symbol [ Graphics %tmp.18 123 34 42 ];
+                %tmp.18 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.19 123 43 62 ];
+                %tmp.19 = getv %tmp.18 :TEXT_JUSTIFY_CENTER;
+                symbol [ Graphics %tmp.20 123 63 71 ];
+                %tmp.20 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_VCENTER %tmp.21 123 72 92 ];
+                %tmp.21 = getv %tmp.20 :TEXT_JUSTIFY_VCENTER;
+                %tmp.22 = bitor %tmp.19 %tmp.21;
+                putv self :justification %tmp.22;
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 124 18 ]
-                symbol [ Graphics %tmp.35 124 25 33 ];
-                %tmp.35 = getm $.Toybox.Graphics;
-                symbol [ FONT_MEDIUM %tmp.36 124 34 45 ];
-                %tmp.36 = getv %tmp.35 :FONT_MEDIUM;
-                putv self :font %tmp.36;
+                symbol [ Graphics %tmp.23 124 25 33 ];
+                %tmp.23 = getm $.Toybox.Graphics;
+                symbol [ FONT_MEDIUM %tmp.24 124 34 45 ];
+                %tmp.24 = getv %tmp.23 :FONT_MEDIUM;
+                putv self :font %tmp.24;
             }
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 123; @position = 18; @symbol_constdef = [justification,123,18,31]; ]
             const justification;
@@ -509,22 +489,22 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 149; ]
             <init> {
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 150 18 ]
-                symbol [ Graphics %tmp.37 150 34 42 ];
-                %tmp.37 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_CENTER %tmp.38 150 43 62 ];
-                %tmp.38 = getv %tmp.37 :TEXT_JUSTIFY_CENTER;
-                symbol [ Graphics %tmp.39 150 63 71 ];
-                %tmp.39 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_VCENTER %tmp.40 150 72 92 ];
-                %tmp.40 = getv %tmp.39 :TEXT_JUSTIFY_VCENTER;
-                %tmp.41 = bitor %tmp.38 %tmp.40;
-                putv self :justification %tmp.41;
+                symbol [ Graphics %tmp.25 150 34 42 ];
+                %tmp.25 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.26 150 43 62 ];
+                %tmp.26 = getv %tmp.25 :TEXT_JUSTIFY_CENTER;
+                symbol [ Graphics %tmp.27 150 63 71 ];
+                %tmp.27 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_VCENTER %tmp.28 150 72 92 ];
+                %tmp.28 = getv %tmp.27 :TEXT_JUSTIFY_VCENTER;
+                %tmp.29 = bitor %tmp.26 %tmp.28;
+                putv self :justification %tmp.29;
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 151 18 ]
-                symbol [ Graphics %tmp.42 151 25 33 ];
-                %tmp.42 = getm $.Toybox.Graphics;
-                symbol [ FONT_GLANCE_NUMBER %tmp.43 151 34 52 ];
-                %tmp.43 = getv %tmp.42 :FONT_GLANCE_NUMBER;
-                putv self :font %tmp.43;
+                symbol [ Graphics %tmp.30 151 25 33 ];
+                %tmp.30 = getm $.Toybox.Graphics;
+                symbol [ FONT_GLANCE_NUMBER %tmp.31 151 34 52 ];
+                %tmp.31 = getv %tmp.30 :FONT_GLANCE_NUMBER;
+                putv self :font %tmp.31;
             }
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 150; @position = 18; @symbol_constdef = [justification,150,18,31]; ]
             const justification;
@@ -652,11 +632,11 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 212; ]
             <init> {
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 213 18 ]
-                symbol [ WatchUi %tmp.44 213 27 34 ];
-                %tmp.44 = getm $.Toybox.WatchUi;
-                symbol [ KEY_MENU %tmp.45 213 35 43 ];
-                %tmp.45 = getv %tmp.44 :KEY_MENU;
-                putv self :button %tmp.45;
+                symbol [ WatchUi %tmp.32 213 27 34 ];
+                %tmp.32 = getm $.Toybox.WatchUi;
+                symbol [ KEY_MENU %tmp.33 213 35 43 ];
+                %tmp.33 = getv %tmp.32 :KEY_MENU;
+                putv self :button %tmp.33;
             }
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 213; @position = 18; @symbol_constdef = [button,213,18,24]; ]
             const button;
@@ -680,11 +660,11 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 223; ]
             <init> {
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 225 18 ]
-                symbol [ Graphics %tmp.46 225 31 39 ];
-                %tmp.46 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.47 225 40 57 ];
-                %tmp.47 = getv %tmp.46 :COLOR_TRANSPARENT;
-                putv self :background %tmp.47;
+                symbol [ Graphics %tmp.34 225 31 39 ];
+                %tmp.34 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.35 225 40 57 ];
+                %tmp.35 = getv %tmp.34 :COLOR_TRANSPARENT;
+                putv self :background %tmp.35;
             }
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 224; @position = 18; @symbol_constdef = [color,224,18,23]; @symbol_type<0> = [Number,224,27,33]; ]
             const color as Number = 0x313253;
@@ -718,11 +698,11 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 239; ]
             <init> {
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 241 18 ]
-                symbol [ Graphics %tmp.48 241 31 39 ];
-                %tmp.48 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.49 241 40 57 ];
-                %tmp.49 = getv %tmp.48 :COLOR_TRANSPARENT;
-                putv self :background %tmp.49;
+                symbol [ Graphics %tmp.36 241 31 39 ];
+                %tmp.36 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.37 241 40 57 ];
+                %tmp.37 = getv %tmp.36 :COLOR_TRANSPARENT;
+                putv self :background %tmp.37;
             }
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 240; @position = 18; @symbol_constdef = [color,240,18,23]; @symbol_type<0> = [Number,240,27,33]; ]
             const color as Number = 0x17181D;
@@ -816,11 +796,11 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 285; ]
             <init> {
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 287 18 ]
-                symbol [ Graphics %tmp.50 287 31 39 ];
-                %tmp.50 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.51 287 40 57 ];
-                %tmp.51 = getv %tmp.50 :COLOR_TRANSPARENT;
-                putv self :background %tmp.51;
+                symbol [ Graphics %tmp.38 287 31 39 ];
+                %tmp.38 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.39 287 40 57 ];
+                %tmp.39 = getv %tmp.38 :COLOR_TRANSPARENT;
+                putv self :background %tmp.39;
             }
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 286; @position = 18; @symbol_constdef = [color,286,18,23]; @symbol_type<0> = [Number,286,27,33]; ]
             const color as Number = 0xFFFFFF;
@@ -870,11 +850,11 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 309; ]
             <init> {
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 311 18 ]
-                symbol [ Graphics %tmp.52 311 31 39 ];
-                %tmp.52 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.53 311 40 57 ];
-                %tmp.53 = getv %tmp.52 :COLOR_TRANSPARENT;
-                putv self :background %tmp.53;
+                symbol [ Graphics %tmp.40 311 31 39 ];
+                %tmp.40 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.41 311 40 57 ];
+                %tmp.41 = getv %tmp.40 :COLOR_TRANSPARENT;
+                putv self :background %tmp.41;
             }
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 310; @position = 18; @symbol_constdef = [color,310,18,23]; @symbol_type<0> = [Number,310,27,33]; ]
             const color as Number = 0x313253;
@@ -974,11 +954,11 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 358; ]
             <init> {
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 360 18 ]
-                symbol [ Graphics %tmp.54 360 31 39 ];
-                %tmp.54 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.55 360 40 57 ];
-                %tmp.55 = getv %tmp.54 :COLOR_TRANSPARENT;
-                putv self :background %tmp.55;
+                symbol [ Graphics %tmp.42 360 31 39 ];
+                %tmp.42 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.43 360 40 57 ];
+                %tmp.43 = getv %tmp.42 :COLOR_TRANSPARENT;
+                putv self :background %tmp.43;
             }
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 359; @position = 18; @symbol_constdef = [color,359,18,23]; @symbol_type<0> = [Number,359,27,33]; ]
             const color as Number = 0xDCDCDC;
@@ -1004,11 +984,11 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 370; ]
             <init> {
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 372 18 ]
-                symbol [ Graphics %tmp.56 372 31 39 ];
-                %tmp.56 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.57 372 40 57 ];
-                %tmp.57 = getv %tmp.56 :COLOR_TRANSPARENT;
-                putv self :background %tmp.57;
+                symbol [ Graphics %tmp.44 372 31 39 ];
+                %tmp.44 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.45 372 40 57 ];
+                %tmp.45 = getv %tmp.44 :COLOR_TRANSPARENT;
+                putv self :background %tmp.45;
             }
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 371; @position = 18; @symbol_constdef = [color,371,18,23]; @symbol_type<0> = [Number,371,27,33]; ]
             const color as Number = 0xFFFFFF;
@@ -1058,11 +1038,11 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 394; ]
             <init> {
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 396 18 ]
-                symbol [ Graphics %tmp.58 396 31 39 ];
-                %tmp.58 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.59 396 40 57 ];
-                %tmp.59 = getv %tmp.58 :COLOR_TRANSPARENT;
-                putv self :background %tmp.59;
+                symbol [ Graphics %tmp.46 396 31 39 ];
+                %tmp.46 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.47 396 40 57 ];
+                %tmp.47 = getv %tmp.46 :COLOR_TRANSPARENT;
+                putv self :background %tmp.47;
             }
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 395; @position = 18; @symbol_constdef = [color,395,18,23]; @symbol_type<0> = [Number,395,27,33]; ]
             const color as Number = 0x313253;
@@ -1322,11 +1302,11 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 523; ]
             <init> {
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 525 18 ]
-                symbol [ Graphics %tmp.60 525 31 39 ];
-                %tmp.60 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.61 525 40 57 ];
-                %tmp.61 = getv %tmp.60 :COLOR_TRANSPARENT;
-                putv self :background %tmp.61;
+                symbol [ Graphics %tmp.48 525 31 39 ];
+                %tmp.48 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.49 525 40 57 ];
+                %tmp.49 = getv %tmp.48 :COLOR_TRANSPARENT;
+                putv self :background %tmp.49;
             }
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 524; @position = 18; @symbol_constdef = [color,524,18,23]; @symbol_type<0> = [Number,524,27,33]; ]
             const color as Number = 0x313253;
@@ -1534,13 +1514,13 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 626; ]
             <init> {
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 628 18 ]
-                symbol [ Toybox %tmp.63 628 32 38 ];
-                %tmp.63 = getv ? :Toybox;
-                symbol [ System %tmp.64 628 39 45 ];
-                %tmp.64 = getv %tmp.63 :System;
-                symbol [ SCREEN_SHAPE_RECTANGLE %tmp.65 628 46 68 ];
-                %tmp.65 = getv %tmp.64 :SCREEN_SHAPE_RECTANGLE;
-                putv self :screenShape %tmp.65;
+                symbol [ Toybox %tmp.51 628 32 38 ];
+                %tmp.51 = getv ? :Toybox;
+                symbol [ System %tmp.52 628 39 45 ];
+                %tmp.52 = getv %tmp.51 :System;
+                symbol [ SCREEN_SHAPE_RECTANGLE %tmp.53 628 46 68 ];
+                %tmp.53 = getv %tmp.52 :SCREEN_SHAPE_RECTANGLE;
+                putv self :screenShape %tmp.53;
             }
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 627; @position = 18; @symbol_constdef = [screenWidth,627,18,29]; @symbol_type<0> = [Number,627,33,39]; ]
             const screenWidth as Number = 480;
@@ -1576,22 +1556,22 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 643; ]
             <init> {
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 644 18 ]
-                symbol [ Graphics %tmp.66 644 34 42 ];
-                %tmp.66 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_CENTER %tmp.67 644 43 62 ];
-                %tmp.67 = getv %tmp.66 :TEXT_JUSTIFY_CENTER;
-                symbol [ Graphics %tmp.68 644 63 71 ];
-                %tmp.68 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_VCENTER %tmp.69 644 72 92 ];
-                %tmp.69 = getv %tmp.68 :TEXT_JUSTIFY_VCENTER;
-                %tmp.70 = bitor %tmp.67 %tmp.69;
-                putv self :justification %tmp.70;
+                symbol [ Graphics %tmp.54 644 34 42 ];
+                %tmp.54 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.55 644 43 62 ];
+                %tmp.55 = getv %tmp.54 :TEXT_JUSTIFY_CENTER;
+                symbol [ Graphics %tmp.56 644 63 71 ];
+                %tmp.56 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_VCENTER %tmp.57 644 72 92 ];
+                %tmp.57 = getv %tmp.56 :TEXT_JUSTIFY_VCENTER;
+                %tmp.58 = bitor %tmp.55 %tmp.57;
+                putv self :justification %tmp.58;
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 645 18 ]
-                symbol [ Graphics %tmp.71 645 25 33 ];
-                %tmp.71 = getm $.Toybox.Graphics;
-                symbol [ FONT_GLANCE_NUMBER %tmp.72 645 34 52 ];
-                %tmp.72 = getv %tmp.71 :FONT_GLANCE_NUMBER;
-                putv self :font %tmp.72;
+                symbol [ Graphics %tmp.59 645 25 33 ];
+                %tmp.59 = getm $.Toybox.Graphics;
+                symbol [ FONT_GLANCE_NUMBER %tmp.60 645 34 52 ];
+                %tmp.60 = getv %tmp.59 :FONT_GLANCE_NUMBER;
+                putv self :font %tmp.60;
             }
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 644; @position = 18; @symbol_constdef = [justification,644,18,31]; ]
             const justification;
@@ -1651,11 +1631,11 @@ _Users_FELIX_DiabetesFoodManagement_bin_gen_006_B4440_00_source_Rez_mcgen_29_34_
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 672; ]
             <init> {
 [ "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" 674 18 ]
-                symbol [ Graphics %tmp.73 674 31 39 ];
-                %tmp.73 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.74 674 40 57 ];
-                %tmp.74 = getv %tmp.73 :COLOR_TRANSPARENT;
-                putv self :background %tmp.74;
+                symbol [ Graphics %tmp.61 674 31 39 ];
+                %tmp.61 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.62 674 40 57 ];
+                %tmp.62 = getv %tmp.61 :COLOR_TRANSPARENT;
+                putv self :background %tmp.62;
             }
             [ @file = "/Users/FELIX/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen"; @line = 673; @position = 18; @symbol_constdef = [color,673,18,23]; @symbol_type<0> = [Number,673,27,33]; ]
             const color as Number = 0xFFFFFF;

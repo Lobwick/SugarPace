@@ -16,6 +16,8 @@ class DiabetesFoodManagementView extends WatchUi.View {
     private var trendRate as Lang.Float = 0.0;
     private var direction as Lang.String = "Flat";
     private var lastUpdateTime as Time.Moment?;
+    private var tempBasals as Lang.Array = [];
+    private var activeProfile as Lang.String = "";
 
     function initialize() {
         View.initialize();
@@ -246,6 +248,169 @@ class DiabetesFoodManagementView extends WatchUi.View {
             var minutes = seconds / 60;
             return minutes + "m";
         }
+    }
+
+    function fetchTempBasalData() as Void {
+        var nightscoutUrl = Application.Properties.getValue("nightscout_url");
+        var nightscoutToken = Application.Properties.getValue("nightscout_token");
+        
+        if (nightscoutUrl == null) {
+            nightscoutUrl = "https://glucosefelix.fly.dev";
+        }
+        if (nightscoutToken == null) {
+            nightscoutToken = "6NhkwPyxqR6Jpsur";
+        }
+        
+        // D'abord récupérer les profils et presets
+        var profileUrl = nightscoutUrl + "/api/v1/profile.json?token=" + nightscoutToken;
+        Communications.makeWebRequest(
+            profileUrl,
+            {},
+            {
+                :method => Communications.HTTP_REQUEST_METHOD_GET,
+                :headers => {
+                    "Content-Type" => Communications.REQUEST_CONTENT_TYPE_URL_ENCODED
+                }
+            },
+            method(:onReceiveTempBasalData)
+        );
+        
+        // Ensuite récupérer les overrides récents pour déterminer l'actif
+        var overrideUrl = nightscoutUrl + "/api/v1/treatments.json?find[eventType]=Temporary%20Override&count=5&token=" + nightscoutToken;
+        Communications.makeWebRequest(
+            overrideUrl,
+            {},
+            {
+                :method => Communications.HTTP_REQUEST_METHOD_GET,
+                :headers => {
+                    "Content-Type" => Communications.REQUEST_CONTENT_TYPE_URL_ENCODED
+                }
+            },
+            method(:onReceiveActiveOverride)
+        );
+    }
+
+    function onReceiveTempBasalData(responseCode as Lang.Number, data as Lang.Dictionary?) as Void {
+        if (responseCode == 200 && data != null) {
+            try {
+                if (data instanceof Lang.Array && data.size() > 0) {
+                    // Récupérer le premier élément
+                    var firstProfile = data[0];
+                    if (firstProfile instanceof Lang.Dictionary) {
+                        // Récupérer le profil actif
+                        if (firstProfile.hasKey("defaultProfile")) {
+                            var defaultProfile = firstProfile.get("defaultProfile");
+                            if (defaultProfile != null) {
+                                activeProfile = defaultProfile.toString();
+                            }
+                        }
+                        
+                        // Récupérer les overrides
+                        if (firstProfile.hasKey("loopSettings")) {
+                            var loopSettings = firstProfile.get("loopSettings");
+                            if (loopSettings instanceof Lang.Dictionary && loopSettings.hasKey("overridePresets")) {
+                                var overridePresets = loopSettings.get("overridePresets");
+                                if (overridePresets instanceof Lang.Array) {
+                                    var profiles = [];
+                                    for (var i = 0; i < overridePresets.size(); i++) {
+                                        var presetData = overridePresets[i];
+                                        if (presetData instanceof Lang.Dictionary && presetData.hasKey("name")) {
+                                            var presetName = presetData.get("name");
+                                            var entry = {
+                                                "name" => presetName,
+                                                "data" => presetData
+                                            };
+                                            profiles.add(entry);
+                                        }
+                                    }
+                                    tempBasals = profiles;
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (e) {
+                // En cas d'erreur, utiliser des données de fallback
+                tempBasals = [
+                    {"name" => "sporterreur"},
+                    {"name" => "stoperreur"}
+                ];
+            }
+        } else {
+            // Si pas de réponse, utiliser des données de fallback
+            tempBasals = [
+                {"name" => "sporterreur"},
+                {"name" => "stop"}
+            ];
+        }
+        
+        // Forcer la mise à jour de l'affichage
+        WatchUi.requestUpdate();
+    }
+
+    function onReceiveActiveOverride(responseCode as Lang.Number, data as Lang.Dictionary?) as Void {
+        if (responseCode == 200 && data != null) {
+            try {
+                if (data instanceof Lang.Array) {
+                    // Chercher le premier override SANS duration (donc encore actif)
+                    var foundActiveOverride = false;
+                    
+                    for (var i = 0; i < data.size() && !foundActiveOverride; i++) {
+                        var override = data[i];
+                        if (override instanceof Lang.Dictionary) {
+                            // Si l'override a durationType = "indefinite", il est actif
+                            // Si il a une duration numérique, cela veut dire qu'il a expiré
+                            var isActive = false;
+                            if (override.hasKey("durationType")) {
+                                var durationType = override.get("durationType");
+                                if (durationType != null && durationType.toString().equals("indefinite")) {
+                                    isActive = true;
+                                }
+                            } else if (!override.hasKey("duration") || override.get("duration") == null) {
+                                isActive = true;
+                            }
+                            
+                            if (isActive) {
+                                if (override.hasKey("reason")) {
+                                    var reason = override.get("reason");
+                                    if (reason != null) {
+                                        var reasonStr = reason.toString();
+                                        if (reasonStr.find("sport") != null) {
+                                            activeProfile = "sport";
+                                            foundActiveOverride = true;
+                                        } else if (reasonStr.find("stop") != null) {
+                                            activeProfile = "stop";
+                                            foundActiveOverride = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    if (!foundActiveOverride) {
+                        activeProfile = "Default";
+                    }
+                } else {
+                    activeProfile = "Default";
+                }
+            } catch (e) {
+                activeProfile = "Erreur";
+            }
+        } else {
+            activeProfile = "Default";
+        }
+        
+        // Forcer la mise à jour de l'affichage
+        WatchUi.requestUpdate();
+    }
+
+    function getTempBasals() as Lang.Array {
+        return tempBasals;
+    }
+
+    function getActiveProfile() as Lang.String {
+        return activeProfile;
     }
 
 }

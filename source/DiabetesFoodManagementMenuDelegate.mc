@@ -1,6 +1,7 @@
 import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;
+import Toybox.Application;
 
 class DiabetesFoodManagementMenuDelegate extends WatchUi.MenuInputDelegate {
 
@@ -9,11 +10,19 @@ class DiabetesFoodManagementMenuDelegate extends WatchUi.MenuInputDelegate {
     }
 
     function onMenuItem(item as Symbol) as Void {
-        if (item == :item_1) {
-            System.println("item 1");
-        } else if (item == :item_2) {
-            System.println("item 2");
+        if (item == :temp_overrides) {
+            showTempOverrides();
         }
+    }
+
+    function showTempOverrides() as Void {
+        var app = Application.getApp() as DiabetesFoodManagementApp;
+        if (app != null) {
+            app.fetchTempBasalData();
+        }
+        
+        var tempOverridesView = new TempOverridesView();
+        WatchUi.pushView(tempOverridesView, new TempOverridesInputDelegate(), WatchUi.SLIDE_UP);
     }
 
 }

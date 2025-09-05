@@ -4,6 +4,8 @@ import Toybox.WatchUi;
 
 class DiabetesFoodManagementApp extends Application.AppBase {
 
+    private var mainView as DiabetesFoodManagementView?;
+
     function initialize() {
         AppBase.initialize();
     }
@@ -18,7 +20,28 @@ class DiabetesFoodManagementApp extends Application.AppBase {
 
     // Return the initial view of your application here
     function getInitialView() as [Views] or [Views, InputDelegates] {
-        return [ new DiabetesFoodManagementView(), new DiabetesFoodManagementDelegate() ];
+        mainView = new DiabetesFoodManagementView();
+        return [ mainView, new DiabetesFoodManagementDelegate() ];
+    }
+
+    function getTempBasals() as Lang.Array {
+        if (mainView != null) {
+            return mainView.getTempBasals();
+        }
+        return [];
+    }
+
+    function fetchTempBasalData() as Void {
+        if (mainView != null) {
+            mainView.fetchTempBasalData();
+        }
+    }
+
+    function getActiveProfile() as Lang.String {
+        if (mainView != null) {
+            return mainView.getActiveProfile();
+        }
+        return "";
     }
 
 }
