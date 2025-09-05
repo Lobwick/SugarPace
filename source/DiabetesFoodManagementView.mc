@@ -18,6 +18,7 @@ class DiabetesFoodManagementView extends WatchUi.View {
     private var lastUpdateTime as Time.Moment?;
     private var tempBasals as Lang.Array = [];
     private var activeProfile as Lang.String = "";
+    private var foodsList as Lang.Array = [];
 
     function initialize() {
         View.initialize();
@@ -34,6 +35,8 @@ class DiabetesFoodManagementView extends WatchUi.View {
     // loading resources into memory.
     function onShow() as Void {
         fetchGlucoseData();
+        // Récupérer aussi les données d'aliments au démarrage pour les logs
+        fetchFoodData();
         // Update every 5 minutes
         updateTimer = new Timer.Timer();
         updateTimer.start(method(:fetchGlucoseData), 300000, true);
@@ -71,64 +74,45 @@ class DiabetesFoodManagementView extends WatchUi.View {
         var timeText = getTimeSinceUpdate();
         dc.drawText(3 * width/4, trendY, smallFont, timeText, Graphics.TEXT_JUSTIFY_CENTER);
         
-        // Display monkey images in two columns with separator lines
-        if (monkeyBitmap != null) {
-            var imageWidth = monkeyBitmap.getWidth();
-            var imageHeight = monkeyBitmap.getHeight();
-            var startY = trendY + 30;
-            var columnWidth = width / 2;
-            var spacing = 20;
-            var imagesPerColumn = (height - startY) / (imageHeight + spacing);
-            
-            var topMostHorizontalLine = height - 10;
-            var drawnImages = 0;
-            
-            // Left column - start from bottom
-            var leftX = columnWidth / 2 - imageWidth / 2;
-            for (var i = 0; i < imagesPerColumn; i++) {
-                var y = height - 10 - (i + 1) * (imageHeight + spacing);
-                if (y >= startY) {
-                    // Draw bitmap at original size
-                    dc.drawBitmap(leftX, y, monkeyBitmap);
-                    drawnImages++;
+        // Display food list with proper monkey spacing
+        var startY = trendY + 40;
+        var currentY = startY;
+        var itemsDisplayed = 0;
+        
+        // Calculer l'espacement basé sur la taille réelle du singe
+        var monkeyHeight = monkeyBitmap != null ? monkeyBitmap.getHeight() : 30;
+        var spacing = monkeyHeight + 10; // Hauteur du singe + 10px d'espace
+        var maxItems = (height - startY - 20) / spacing;
+        
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        
+        // Afficher les aliments disponibles
+        for (var i = 0; i < foodsList.size() && itemsDisplayed < maxItems; i++) {
+            var food = foodsList[i];
+            if (food instanceof Lang.Dictionary && food.hasKey("name")) {
+                var foodName = food.get("name");
+                if (foodName != null) {
+                    var nameStr = foodName.toString();
+                    
+                    // Dessiner le singe
+                    if (monkeyBitmap != null) {
+                        dc.drawBitmap(8, currentY, monkeyBitmap);
+                        
+                        // Texte au milieu vertical du singe, avec marge à droite de l'image
+                        var textY = currentY + (monkeyHeight / 2) - 8; // Milieu du singe
+                        var textX = 8 + monkeyBitmap.getWidth() + 10; // Position image + largeur image + 10px marge
+                        dc.drawText(textX, textY, Graphics.FONT_SMALL, nameStr, Graphics.TEXT_JUSTIFY_LEFT);
+                    }
+                    
+                    currentY += spacing;
+                    itemsDisplayed++;
                 }
             }
-            
-            // Right column - start from bottom
-            var rightX = width - columnWidth / 2 - imageWidth / 2;
-            for (var j = 0; j < imagesPerColumn; j++) {
-                var y = height - 10 - (j + 1) * (imageHeight + spacing);
-                if (y >= startY) {
-                    // Draw bitmap at original size
-                    dc.drawBitmap(rightX, y, monkeyBitmap);
-                }
-            }
-            
-            // Draw horizontal separator lines between rows - full width
-            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-            for (var k = 0; k < drawnImages - 1; k++) {
-                var imageBottomY = height - 10 - (k + 1) * (imageHeight + spacing);
-                var nextImageTopY = height - 10 - (k + 2) * (imageHeight + spacing) + imageHeight;
-                var lineY = (imageBottomY + nextImageTopY) / 2;
-                
-                if (lineY >= startY) {
-                    dc.drawLine(0, lineY, width, lineY);
-                    topMostHorizontalLine = lineY;
-                }
-            }
-            
-            // Draw line above top row of images
-            if (drawnImages > 0) {
-                var topImageY = height - 10 - drawnImages * (imageHeight + spacing);
-                var lineAboveTop = topImageY - spacing / 2;
-                if (lineAboveTop >= startY) {
-                    dc.drawLine(0, lineAboveTop, width, lineAboveTop);
-                    topMostHorizontalLine = lineAboveTop;
-                }
-            }
-            
-            // Draw vertical separator line between columns - from top horizontal line to bottom
-            dc.drawLine(width / 2, topMostHorizontalLine, width / 2, height);
+        }
+        
+        // Si pas d'aliments, afficher un message
+        if (foodsList.size() == 0) {
+            dc.drawText(width/2, startY + 20, Graphics.FONT_SMALL, "Chargement aliments...", Graphics.TEXT_JUSTIFY_CENTER);
         }
     }
 
@@ -411,6 +395,84 @@ class DiabetesFoodManagementView extends WatchUi.View {
 
     function getActiveProfile() as Lang.String {
         return activeProfile;
+    }
+
+    function fetchFoodData() as Void {
+        var nightscoutUrl = Application.Properties.getValue("nightscout_url");
+        var nightscoutToken = Application.Properties.getValue("nightscout_token");
+        
+        if (nightscoutUrl == null) {
+            nightscoutUrl = "https://glucosefelix.fly.dev";
+        }
+        if (nightscoutToken == null) {
+            nightscoutToken = "6NhkwPyxqR6Jpsur";
+        }
+        
+        var url = nightscoutUrl + "/api/v1/food.json?token=" + nightscoutToken;
+        
+        Communications.makeWebRequest(
+            url,
+            {},
+            {
+                :method => Communications.HTTP_REQUEST_METHOD_GET,
+                :headers => {
+                    "Content-Type" => Communications.REQUEST_CONTENT_TYPE_URL_ENCODED
+                }
+            },
+            method(:onReceiveFoodData)
+        );
+    }
+
+    function onReceiveFoodData(responseCode as Lang.Number, data as Lang.Dictionary?) as Void {
+        if (responseCode == 200 && data != null) {
+            try {
+                if (data instanceof Lang.Array) {
+                    foodsList = data;
+                    
+                    // Afficher les données dans les logs
+                    System.println("=== FOODS DATA ===");
+                    System.println("Nombre d'aliments: " + foodsList.size());
+                    
+                    for (var i = 0; i < foodsList.size() && i < 5; i++) {  // Limiter aux 5 premiers pour les logs
+                        var food = foodsList[i];
+                        if (food instanceof Lang.Dictionary) {
+                            var name = food.hasKey("name") ? food.get("name") : "N/A";
+                            var category = food.hasKey("category") ? food.get("category") : "N/A";
+                            var subcategory = food.hasKey("subcategory") ? food.get("subcategory") : "N/A";
+                            var portion = food.hasKey("portion") ? food.get("portion") : "N/A";
+                            var carbs = "N/A";
+                            
+                            if (food.hasKey("carbs")) {
+                                var carbsValue = food.get("carbs");
+                                if (carbsValue != null) {
+                                    carbs = carbsValue.toString();
+                                }
+                            }
+                            
+                            System.println("Food " + (i+1) + ":");
+                            System.println("  Name: " + name);
+                            System.println("  Category: " + category);
+                            System.println("  Subcategory: " + subcategory);
+                            System.println("  Portion: " + portion);
+                            System.println("  Carbs: " + carbs);
+                            System.println("  ---");
+                        }
+                    }
+                    System.println("=================");
+                    
+                    // Forcer la mise à jour de l'affichage après avoir reçu les données
+                    WatchUi.requestUpdate();
+                }
+            } catch (e) {
+                System.println("Erreur parsing foods: " + e.getErrorMessage());
+            }
+        } else {
+            System.println("Erreur récupération foods: " + responseCode);
+        }
+    }
+
+    function getFoodsList() as Lang.Array {
+        return foodsList;
     }
 
 }

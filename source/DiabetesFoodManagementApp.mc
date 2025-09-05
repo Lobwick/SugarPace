@@ -44,6 +44,19 @@ class DiabetesFoodManagementApp extends Application.AppBase {
         return "";
     }
 
+    function fetchFoodData() as Void {
+        if (mainView != null) {
+            mainView.fetchFoodData();
+        }
+    }
+
+    function getFoodsList() as Lang.Array {
+        if (mainView != null) {
+            return mainView.getFoodsList();
+        }
+        return [];
+    }
+
 }
 
 function getApp() as DiabetesFoodManagementApp {
