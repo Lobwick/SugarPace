@@ -1,0 +1,4 @@
+<properties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
+    <property id="nightscout_token" type="string">REDACTED_API_SECRET</property>
+    <property id="nightscout_url" type="string">https://your-nightscout.example.com</property>
+</properties>

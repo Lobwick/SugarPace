@@ -35,6 +35,8 @@ module Rez {
     } // Menus
 
     module Strings {
+        (:initialized) var nightscout_url_title as ResourceId;
+        (:initialized) var nightscout_token_title as ResourceId;
         (:initialized) var menu_label_1 as ResourceId;
         (:initialized) var menu_label_2 as ResourceId;
         (:initialized) var prompt as ResourceId;
