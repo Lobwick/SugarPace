@@ -19,6 +19,8 @@ class DiabetesFoodManagementView extends WatchUi.View {
     private var tempBasals as Lang.Array = [];
     private var activeProfile as Lang.String = "";
     private var foodsList as Lang.Array = [];
+    private var selectedFoodIndex as Lang.Number = 0;
+    private var foodCoordinates as Lang.Array = []; // Array of {startY, endY} for each food item
 
     function initialize() {
         View.initialize();
@@ -89,6 +91,12 @@ class DiabetesFoodManagementView extends WatchUi.View {
         
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         
+        // Use the selected index from view state
+        var selectedIndex = selectedFoodIndex;
+        
+        // Clear previous coordinates and rebuild them
+        foodCoordinates = [];
+        
         // Afficher les aliments disponibles
         for (var i = 0; i < foodsList.size() && itemsDisplayed < maxItems; i++) {
             var food = foodsList[i];
@@ -96,6 +104,28 @@ class DiabetesFoodManagementView extends WatchUi.View {
                 var foodName = food.get("name");
                 if (foodName != null) {
                     var nameStr = foodName.toString();
+                    
+                    // Record coordinates for this food item
+                    var itemStartY = currentY - 2;
+                    var itemEndY = currentY + monkeyHeight + 2;
+                    var coords = {
+                        "startY" => itemStartY,
+                        "endY" => itemEndY,
+                        "index" => i
+                    };
+                    foodCoordinates.add(coords);
+                    
+                    System.println("Food " + i + " (" + nameStr + "): Y " + itemStartY + " to " + itemEndY);
+                    
+                    // Highlight selected item
+                    var isSelected = (i == selectedIndex);
+                    if (isSelected) {
+                        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE);
+                        dc.fillRectangle(5, currentY - 2, width - 10, monkeyHeight + 4);
+                        dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
+                    } else {
+                        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+                    }
                     
                     // Dessiner le singe
                     if (monkeyBitmap != null) {
@@ -105,6 +135,15 @@ class DiabetesFoodManagementView extends WatchUi.View {
                         var textY = currentY + (monkeyHeight / 2) - 8; // Milieu du singe
                         var textX = 8 + monkeyBitmap.getWidth() + 10; // Position image + largeur image + 10px marge
                         dc.drawText(textX, textY, Graphics.FONT_SMALL, nameStr, Graphics.TEXT_JUSTIFY_LEFT);
+                        
+                        // Show carbs info if available
+                        if (food.hasKey("carbs")) {
+                            var carbs = food.get("carbs");
+                            if (carbs != null) {
+                                var carbsText = carbs.toString() + "g";
+                                dc.drawText(width - 10, textY, Graphics.FONT_SMALL, carbsText, Graphics.TEXT_JUSTIFY_RIGHT);
+                            }
+                        }
                     }
                     
                     currentY += spacing;
@@ -476,6 +515,18 @@ class DiabetesFoodManagementView extends WatchUi.View {
 
     function getFoodsList() as Lang.Array {
         return foodsList;
+    }
+
+    function setSelectedFoodIndex(index as Lang.Number) as Void {
+        selectedFoodIndex = index;
+    }
+
+    function getSelectedFoodIndex() as Lang.Number {
+        return selectedFoodIndex;
+    }
+
+    function getFoodCoordinates() as Lang.Array {
+        return foodCoordinates;
     }
 
 }

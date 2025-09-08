@@ -1,0 +1,29 @@
+meta {
+  name: remote carbs
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://your-nightscout.example.com/api/v2/notifications/loop?token=REDACTED_TOKEN
+  body: json
+  auth: none
+}
+
+query {
+  token: REDACTED_TOKEN
+}
+
+headers {
+  Content-Type: application/json
+  ~api-secret: REDACTED_API_SECRET
+}
+
+body:json {
+  {
+    "reason": "Carb entry",
+    "carbs": 15,
+    "otp": "123456",
+    "created_at": "2025-09-06T10:30:00Z"
+  }
+}

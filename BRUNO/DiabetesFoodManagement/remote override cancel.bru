@@ -1,0 +1,27 @@
+meta {
+  name: remote override cancel
+  type: http
+  seq: 5
+}
+
+post {
+  url: https://your-nightscout.example.com/api/v2/notifications/loop
+  body: json
+  auth: none
+}
+
+query {
+  ~token: REDACTED_TOKEN
+}
+
+headers {
+  Content-Type: application/json
+  api-secret: REDACTED_TOKEN
+}
+
+body:json {
+  {
+    "eventType": "Temporary Override Cancel",
+    "reasonDisplay": "Fin ovveride"
+  }
+}

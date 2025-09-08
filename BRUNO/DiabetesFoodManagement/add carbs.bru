@@ -1,0 +1,29 @@
+meta {
+  name: add carbs
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://your-nightscout.example.com/api/v1/treatments?token=REDACTED_TOKEN
+  body: json
+  auth: none
+}
+
+query {
+  token: REDACTED_TOKEN
+}
+
+headers {
+  Content-Type: application/json
+  ~api-secret: REDACTED_API_SECRET
+}
+
+body:json {
+    {
+      "eventType": "Carb Correction",
+      "carbs": 15,
+      "created_at": "2025-09-06T10:30:00Z",
+      "enteredBy": "Nightscout"
+    }
+}

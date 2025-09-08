@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "DiabetesFoodManagement",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

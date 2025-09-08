@@ -1,0 +1,28 @@
+meta {
+  name: remote override
+  type: http
+  seq: 4
+}
+
+post {
+  url: https://your-nightscout.example.com/api/v2/notifications/loop
+  body: json
+  auth: none
+}
+
+query {
+  ~token: REDACTED_TOKEN
+}
+
+headers {
+  Content-Type: application/json
+  api-secret: REDACTED_TOKEN
+}
+
+body:json {
+  {
+    "eventType": "Temporary Override",
+    "reason": "sport",
+    "reasonDisplay": "sport"
+  }
+}
