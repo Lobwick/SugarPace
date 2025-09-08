@@ -12,7 +12,7 @@ class DiabetesFoodManagementMenuDelegate extends WatchUi.MenuInputDelegate {
     function onMenuItem(item as Symbol) as Void {
         if (item == :temp_overrides) {
             showTempOverrides();
-        }
+        } 
     }
 
     function showTempOverrides() as Void {

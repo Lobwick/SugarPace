@@ -74,8 +74,11 @@ class DiabetesFoodManagementView extends WatchUi.View {
         var timeText = getTimeSinceUpdate();
         dc.drawText(3 * width/4, trendY, smallFont, timeText, Graphics.TEXT_JUSTIFY_CENTER);
         
-        // Display food list with proper monkey spacing
-        var startY = trendY + 40;
+        // Display current OTP code below trend info
+        var otpY = trendY + 30;
+        
+        // Display food list with proper monkey spacing (moved down for OTP display)
+        var startY = otpY + 30;
         var currentY = startY;
         var itemsDisplayed = 0;
         

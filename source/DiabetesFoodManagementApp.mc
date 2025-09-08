@@ -12,9 +12,20 @@ class DiabetesFoodManagementApp extends Application.AppBase {
 
     // onStart() is called on application start up
     function onStart(state as Dictionary?) as Void {
+            System.println("=== Testing OTP Generation ===");
+            // Secret réel du QR code Loop
+            var loopSecret = "MNWUPWJFCJRJJ4WSBPC27HJ5CZUM6YKK";
+            System.println("Loop Secret: " + loopSecret);
+            
+      
+            
+            var otp = Otp.generateTotpSha1(loopSecret );
+            System.println("Generated OTP: " + otp);
+            
+
+            
     }
 
-    // onStop() is called when your application is exiting
     function onStop(state as Dictionary?) as Void {
     }
 
@@ -45,7 +56,7 @@ class DiabetesFoodManagementApp extends Application.AppBase {
     }
 
     function fetchFoodData() as Void {
-        if (mainView != null) {
+        if (mainView != null) {     
             mainView.fetchFoodData();
         }
     }
