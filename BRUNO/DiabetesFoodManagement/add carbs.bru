@@ -1,0 +1,29 @@
+meta {
+  name: add carbs
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://glucosefelix.fly.dev/api/v1/treatments?token=garmin-5709111d29db02b8
+  body: json
+  auth: none
+}
+
+query {
+  token: garmin-5709111d29db02b8
+}
+
+headers {
+  Content-Type: application/json
+  ~api-secret: 6NhkwPyxqR6Jpsur
+}
+
+body:json {
+    {
+      "eventType": "Carb Correction",
+      "carbs": 15,
+      "created_at": "2025-09-06T10:30:00Z",
+      "enteredBy": "Nightscout"
+    }
+}

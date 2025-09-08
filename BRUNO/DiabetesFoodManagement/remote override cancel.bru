@@ -1,0 +1,27 @@
+meta {
+  name: remote override cancel
+  type: http
+  seq: 5
+}
+
+post {
+  url: https://glucosefelix.fly.dev/api/v2/notifications/loop
+  body: json
+  auth: none
+}
+
+query {
+  ~token: garmin-5709111d29db02b8
+}
+
+headers {
+  Content-Type: application/json
+  api-secret: garmin-5709111d29db02b8
+}
+
+body:json {
+  {
+    "eventType": "Temporary Override Cancel",
+    "reasonDisplay": "Fin ovveride"
+  }
+}

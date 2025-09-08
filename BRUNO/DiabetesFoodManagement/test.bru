@@ -1,0 +1,30 @@
+meta {
+  name: test
+  type: http
+  seq: 6
+}
+
+post {
+  url: https://glucosefelix.fly.dev/api/v2/notifications/loop?token=garmin-5709111d29db02b8
+  body: formUrlEncoded
+  auth: none
+}
+
+query {
+  token: garmin-5709111d29db02b8
+}
+
+headers {
+  ~api-secret: eb4928fbc01437c973eeb5c2fe578cf280d363b8
+}
+
+body:form-urlencoded {
+  enteredBy: felix
+  eventType: Remote Carbs Entry
+  otp: 100826
+  remoteCarbs: 11
+  remoteAbsorption: 1
+  notes: test
+  units: mg/dl
+  created_at: 2025-09-08T12:52:04.520Z
+}

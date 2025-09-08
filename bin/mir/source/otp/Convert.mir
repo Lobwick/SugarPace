@@ -1,0 +1,365 @@
+[ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc"; @line = 1; @symbol_importdef<0> = [Toybox,1,7,13]; @symbol_importdef<1> = [Lang,1,14,18]; ]
+import Toybox.Lang;
+[ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc"; @line = 3; @symbol_moduledef = [Convert,3,7,14]; ]
+module Convert {
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc"; @line = 3; ]
+    <init> {
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 23 10 ]
+        symbol [ ALPHABET %tmp.2 23 19 27 ];
+        %tmp.2 = getv ? :ALPHABET;
+        symbol [ toCharArray %tmp.3 23 28 39 ];
+        %tmp.3 = getv function %tmp.2 :toCharArray;
+        %tmp.4 = invoke %tmp.2 %tmp.3();
+        putv self :BASE32 %tmp.4;
+    }
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc"; @line = 5; @symbol_functiondef = [byteArrayToHexString,5,13,33]; @symbol_param<0> = [bytes,5,34,39]; @symbol_param<0>_type<0> = [Array,5,43,48]; @symbol_param<0>_type<1> = [Number,5,49,55]; ]
+    function byteArrayToHexString(bytes as Array<Number>) {
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_5_58_11_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 6 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_5_58_11_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_5_58_11_4_stop" ]
+        %str.1 = local;
+        symbol [ str %str.1 6 12 15 ];
+        %tmp.1 = "";
+        lputv %str.1 %tmp.1;
+        symbol [ str %str.1 6 12 15 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 7 8 ]
+        for @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_7_8_9_8_for_test @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_7_8_9_8_for_incr @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_7_8_9_8_for_end;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_7_8_9_8_for_init:
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_7_8_9_8_for_begin" "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_7_8_9_8_for_end" ]
+        %i.2 = local;
+        symbol [ i %i.2 7 17 18 ];
+        %tmp.2 = 0;
+        lputv %i.2 %tmp.2;
+        symbol [ i %i.2 7 17 18 ];
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_7_8_9_8_for_test:
+        %tmp.3 = lgetv %i.2;
+        symbol [ i %tmp.3 7 24 25 ];
+        %tmp.4 = lgetv %bytes;
+        symbol [ bytes %tmp.4 7 28 33 ];
+        symbol [ size %tmp.5 7 34 38 ];
+        %tmp.5 = getv function %tmp.4 :size;
+        %tmp.6 = invoke %tmp.4 %tmp.5();
+        %tmp.7 = lt %tmp.3 %tmp.6;
+        bf %tmp.7 @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_7_8_9_8_for_end;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_7_8_9_8_for_begin:
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_7_47_9_8_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 8 12 ]
+        %tmp.8 = lgetv %str.1;
+        symbol [ str %tmp.8 8 12 15 ];
+        %tmp.9 = lgetv %bytes;
+        symbol [ bytes %tmp.9 8 19 24 ];
+        %tmp.10 = lgetv %i.2;
+        symbol [ i %tmp.10 8 25 26 ];
+        %tmp.11 = agetv %tmp.9 %tmp.10;
+        symbol [ format %tmp.12 8 28 34 ];
+        %tmp.12 = getv function %tmp.11 :format;
+        %tmp.13 = "%02X";
+        %tmp.14 = invoke %tmp.11 %tmp.12(%tmp.13);
+        %tmp.15 = add %tmp.8 %tmp.14;
+        lputv %str.1 %tmp.15;
+        symbol [ str %str.1 8 12 15 ];
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_7_47_9_8_stop:
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_7_8_9_8_for_incr:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 7 ]
+        %tmp.18 = lgetv %i.2;
+        symbol [ i %tmp.18 7 42 43 ];
+        %tmp.19 = add %tmp.18 1;
+        lputv %i.2 %tmp.19;
+        symbol [ i %i.2 7 42 43 ];
+        goto @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_7_8_9_8_for_test;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_7_8_9_8_for_end:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 10 8 ]
+        %tmp.20 = lgetv %str.1;
+        symbol [ str %tmp.20 10 15 18 ];
+        ret %tmp.20;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_5_58_11_4_stop:
+    }
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc"; @line = 13; @symbol_functiondef = [hexStringToByteArray,13,13,33]; @symbol_param<0> = [hexStr,13,34,40]; ]
+    function hexStringToByteArray(hexStr) {
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_13_42_20_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 14 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_13_42_20_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_13_42_20_4_stop" ]
+        %bytes.1 = local;
+        symbol [ bytes %bytes.1 14 12 17 ];
+        %tmp.2 = lgetv %hexStr;
+        symbol [ hexStr %tmp.2 14 25 31 ];
+        symbol [ length %tmp.3 14 32 38 ];
+        %tmp.3 = getv function %tmp.2 :length;
+        %tmp.4 = invoke %tmp.2 %tmp.3();
+        %tmp.5 = 2;
+        %tmp.6 = div %tmp.4 %tmp.5;
+        %tmp.1 = newa %tmp.6;
+        lputv %bytes.1 %tmp.1;
+        symbol [ bytes %bytes.1 14 12 17 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 15 8 ]
+        for @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_15_8_18_8_for_test @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_15_8_18_8_for_incr @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_15_8_18_8_for_end;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_15_8_18_8_for_init:
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_15_8_18_8_for_begin" "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_15_8_18_8_for_end" ]
+        %i.2 = local;
+        symbol [ i %i.2 15 17 18 ];
+        %tmp.7 = 0;
+        lputv %i.2 %tmp.7;
+        symbol [ i %i.2 15 17 18 ];
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_15_8_18_8_for_test:
+        %tmp.8 = lgetv %i.2;
+        symbol [ i %tmp.8 15 24 25 ];
+        %tmp.9 = lgetv %bytes.1;
+        symbol [ bytes %tmp.9 15 28 33 ];
+        symbol [ size %tmp.10 15 34 38 ];
+        %tmp.10 = getv function %tmp.9 :size;
+        %tmp.11 = invoke %tmp.9 %tmp.10();
+        %tmp.12 = lt %tmp.8 %tmp.11;
+        bf %tmp.12 @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_15_8_18_8_for_end;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_15_8_18_8_for_begin:
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_15_47_18_8_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 16 12 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_15_47_18_8_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_15_47_18_8_stop" ]
+        %hexIdx.3 = local;
+        symbol [ hexIdx %hexIdx.3 16 16 22 ];
+        %tmp.13 = lgetv %i.2;
+        symbol [ i %tmp.13 16 25 26 ];
+        %tmp.14 = 2;
+        %tmp.15 = mul %tmp.13 %tmp.14;
+        lputv %hexIdx.3 %tmp.15;
+        symbol [ hexIdx %hexIdx.3 16 16 22 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 17 12 ]
+        %tmp.16 = lgetv %bytes.1;
+        symbol [ bytes %tmp.16 17 12 17 ];
+        %tmp.17 = lgetv %hexStr;
+        symbol [ hexStr %tmp.17 17 23 29 ];
+        symbol [ substring %tmp.18 17 30 39 ];
+        %tmp.18 = getv function %tmp.17 :substring;
+        %tmp.19 = lgetv %hexIdx.3;
+        symbol [ hexIdx %tmp.19 17 40 46 ];
+        %tmp.20 = lgetv %hexIdx.3;
+        symbol [ hexIdx %tmp.20 17 48 54 ];
+        %tmp.21 = 2;
+        %tmp.22 = add %tmp.20 %tmp.21;
+        %tmp.23 = invoke %tmp.17 %tmp.18(%tmp.19, %tmp.22);
+        symbol [ toNumberWithBase %tmp.24 17 60 76 ];
+        %tmp.24 = getv function %tmp.23 :toNumberWithBase;
+        %tmp.25 = 16;
+        %tmp.26 = invoke %tmp.23 %tmp.24(%tmp.25);
+        %tmp.27 = lgetv %i.2;
+        symbol [ i %tmp.27 17 18 19 ];
+        aputv %tmp.16 %tmp.27 %tmp.26;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_15_47_18_8_stop:
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_15_8_18_8_for_incr:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 15 ]
+        %tmp.30 = lgetv %i.2;
+        symbol [ i %tmp.30 15 42 43 ];
+        %tmp.31 = add %tmp.30 1;
+        lputv %i.2 %tmp.31;
+        symbol [ i %i.2 15 42 43 ];
+        goto @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_15_8_18_8_for_test;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_15_8_18_8_for_end:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 19 8 ]
+        %tmp.32 = lgetv %bytes.1;
+        symbol [ bytes %tmp.32 19 15 20 ];
+        ret %tmp.32;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_13_42_20_4_stop:
+    }
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc"; @line = 22; @position = 10; @symbol_constdef = [ALPHABET,22,10,18]; ]
+    const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc"; @line = 23; @position = 10; @symbol_constdef = [BASE32,23,10,16]; ]
+    const BASE32;
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc"; @line = 24; @position = 10; @symbol_constdef = [SHIFT,24,10,15]; ]
+    const SHIFT = 5;
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc"; @line = 25; @position = 10; @symbol_constdef = [CSIZE,25,10,15]; ]
+    const CSIZE = 8;
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc"; @line = 27; @symbol_functiondef = [base32decode2HexString,27,13,35]; @symbol_param<0> = [encoded,27,36,43]; @symbol_param<0>_type<0> = [String,27,47,53]; ]
+    function base32decode2HexString(encoded as String) {
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_27_55_48_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 28 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_27_55_48_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_27_55_48_4_stop" ]
+        %encodedChars.1 = local;
+        symbol [ encodedChars %encodedChars.1 28 12 24 ];
+        %tmp.1 = lgetv %encoded;
+        symbol [ encoded %tmp.1 28 27 34 ];
+        symbol [ toUpper %tmp.2 28 35 42 ];
+        %tmp.2 = getv function %tmp.1 :toUpper;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        symbol [ toCharArray %tmp.4 28 45 56 ];
+        %tmp.4 = getv function %tmp.3 :toCharArray;
+        %tmp.5 = invoke %tmp.3 %tmp.4();
+        lputv %encodedChars.1 %tmp.5;
+        symbol [ encodedChars %encodedChars.1 28 12 24 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 29 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_27_55_48_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_27_55_48_4_stop" ]
+        %result.2 = local;
+        symbol [ result %result.2 29 12 18 ];
+        %tmp.7 = lgetv %encodedChars.1;
+        symbol [ encodedChars %tmp.7 29 26 38 ];
+        symbol [ size %tmp.8 29 39 43 ];
+        %tmp.8 = getv function %tmp.7 :size;
+        %tmp.9 = invoke %tmp.7 %tmp.8();
+        symbol [ SHIFT %tmp.11 29 48 53 ];
+        %tmp.11 = getv ? :SHIFT;
+        %tmp.12 = mul %tmp.9 %tmp.11;
+        symbol [ CSIZE %tmp.14 29 56 61 ];
+        %tmp.14 = getv ? :CSIZE;
+        %tmp.15 = div %tmp.12 %tmp.14;
+        %tmp.6 = newa %tmp.15;
+        lputv %result.2 %tmp.6;
+        symbol [ result %result.2 29 12 18 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 31 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_27_55_48_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_27_55_48_4_stop" ]
+        %resultStr.3 = local;
+        symbol [ resultStr %resultStr.3 31 12 21 ];
+        %tmp.16 = "";
+        lputv %resultStr.3 %tmp.16;
+        symbol [ resultStr %resultStr.3 31 12 21 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 32 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_27_55_48_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_27_55_48_4_stop" ]
+        %buffer.4 = local;
+        symbol [ buffer %buffer.4 32 12 18 ];
+        %tmp.17 = 0;
+        lputv %buffer.4 %tmp.17;
+        symbol [ buffer %buffer.4 32 12 18 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 33 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_27_55_48_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_27_55_48_4_stop" ]
+        %next.5 = local;
+        symbol [ next %next.5 33 12 16 ];
+        %tmp.18 = 0;
+        lputv %next.5 %tmp.18;
+        symbol [ next %next.5 33 12 16 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 34 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_27_55_48_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_27_55_48_4_stop" ]
+        %bitsLeft.6 = local;
+        symbol [ bitsLeft %bitsLeft.6 34 12 20 ];
+        %tmp.19 = 0;
+        lputv %bitsLeft.6 %tmp.19;
+        symbol [ bitsLeft %bitsLeft.6 34 12 20 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 36 8 ]
+        for @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_36_8_46_8_for_test @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_36_8_46_8_for_incr @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_36_8_46_8_for_end;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_36_8_46_8_for_init:
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_36_8_46_8_for_begin" "_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_36_8_46_8_for_end" ]
+        %i.7 = local;
+        symbol [ i %i.7 36 17 18 ];
+        %tmp.20 = 0;
+        lputv %i.7 %tmp.20;
+        symbol [ i %i.7 36 17 18 ];
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_36_8_46_8_for_test:
+        %tmp.21 = lgetv %i.7;
+        symbol [ i %tmp.21 36 24 25 ];
+        %tmp.22 = lgetv %encodedChars.1;
+        symbol [ encodedChars %tmp.22 36 28 40 ];
+        symbol [ size %tmp.23 36 41 45 ];
+        %tmp.23 = getv function %tmp.22 :size;
+        %tmp.24 = invoke %tmp.22 %tmp.23();
+        %tmp.25 = lt %tmp.21 %tmp.24;
+        bf %tmp.25 @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_36_8_46_8_for_end;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_36_8_46_8_for_begin:
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_36_54_46_8_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 37 12 ]
+        %tmp.26 = lgetv %buffer.4;
+        symbol [ buffer %tmp.26 37 12 18 ];
+        symbol [ SHIFT %tmp.28 37 23 28 ];
+        %tmp.28 = getv ? :SHIFT;
+        %tmp.29 = shl %tmp.26 %tmp.28;
+        lputv %buffer.4 %tmp.29;
+        symbol [ buffer %buffer.4 37 12 18 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 38 12 ]
+        %tmp.30 = lgetv %buffer.4;
+        symbol [ buffer %tmp.30 38 12 18 ];
+        symbol [ BASE32 %tmp.32 38 22 28 ];
+        %tmp.32 = getv ? :BASE32;
+        symbol [ indexOf %tmp.33 38 29 36 ];
+        %tmp.33 = getv function %tmp.32 :indexOf;
+        %tmp.34 = lgetv %encodedChars.1;
+        symbol [ encodedChars %tmp.34 38 37 49 ];
+        %tmp.35 = lgetv %i.7;
+        symbol [ i %tmp.35 38 50 51 ];
+        %tmp.36 = agetv %tmp.34 %tmp.35;
+        %tmp.37 = invoke %tmp.32 %tmp.33(%tmp.36);
+        %tmp.38 = 0x1F;
+        %tmp.39 = bitand %tmp.37 %tmp.38;
+        %tmp.40 = bitor %tmp.30 %tmp.39;
+        lputv %buffer.4 %tmp.40;
+        symbol [ buffer %buffer.4 38 12 18 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 39 12 ]
+        %tmp.41 = lgetv %bitsLeft.6;
+        symbol [ bitsLeft %tmp.41 39 12 20 ];
+        symbol [ SHIFT %tmp.43 39 24 29 ];
+        %tmp.43 = getv ? :SHIFT;
+        %tmp.44 = add %tmp.41 %tmp.43;
+        lputv %bitsLeft.6 %tmp.44;
+        symbol [ bitsLeft %bitsLeft.6 39 12 20 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 40 12 ]
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_40_12_45_12_if_stmt:
+        %tmp.45 = lgetv %bitsLeft.6;
+        symbol [ bitsLeft %tmp.45 40 16 24 ];
+        symbol [ CSIZE %tmp.47 40 28 33 ];
+        %tmp.47 = getv ? :CSIZE;
+        %tmp.48 = gte %tmp.45 %tmp.47;
+        bf %tmp.48 @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_40_12_45_12_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_40_12_45_12_if_true:
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_40_35_45_12_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 41 16 ]
+        %tmp.49 = lgetv %result.2;
+        symbol [ result %tmp.49 41 16 22 ];
+        %tmp.50 = lgetv %buffer.4;
+        symbol [ buffer %tmp.50 41 32 38 ];
+        %tmp.51 = lgetv %bitsLeft.6;
+        symbol [ bitsLeft %tmp.51 41 43 51 ];
+        symbol [ CSIZE %tmp.53 41 54 59 ];
+        %tmp.53 = getv ? :CSIZE;
+        %tmp.54 = sub %tmp.51 %tmp.53;
+        %tmp.55 = shr %tmp.50 %tmp.54;
+        %tmp.56 = 0xFF;
+        %tmp.57 = bitand %tmp.55 %tmp.56;
+        %tmp.58 = lgetv %next.5;
+        symbol [ next %tmp.58 41 23 27 ];
+        aputv %tmp.49 %tmp.58 %tmp.57;
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 42 16 ]
+        %tmp.59 = lgetv %resultStr.3;
+        symbol [ resultStr %tmp.59 42 16 25 ];
+        %tmp.60 = lgetv %result.2;
+        symbol [ result %tmp.60 42 29 35 ];
+        %tmp.61 = lgetv %next.5;
+        symbol [ next %tmp.61 42 36 40 ];
+        %tmp.62 = agetv %tmp.60 %tmp.61;
+        symbol [ format %tmp.63 42 42 48 ];
+        %tmp.63 = getv function %tmp.62 :format;
+        %tmp.64 = "%02X";
+        %tmp.65 = invoke %tmp.62 %tmp.63(%tmp.64);
+        %tmp.66 = add %tmp.59 %tmp.65;
+        lputv %resultStr.3 %tmp.66;
+        symbol [ resultStr %resultStr.3 42 16 25 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 43 16 ]
+        %tmp.67 = lgetv %bitsLeft.6;
+        symbol [ bitsLeft %tmp.67 43 16 24 ];
+        symbol [ CSIZE %tmp.69 43 28 33 ];
+        %tmp.69 = getv ? :CSIZE;
+        %tmp.70 = sub %tmp.67 %tmp.69;
+        lputv %bitsLeft.6 %tmp.70;
+        symbol [ bitsLeft %bitsLeft.6 43 16 24 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 44 16 ]
+        %tmp.73 = lgetv %next.5;
+        symbol [ next %tmp.73 44 16 20 ];
+        %tmp.74 = add %tmp.73 1;
+        lputv %next.5 %tmp.74;
+        symbol [ next %next.5 44 16 20 ];
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_40_35_45_12_stop:
+        goto @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_40_12_45_12_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_40_12_45_12_if_end:
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_36_54_46_8_stop:
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_36_8_46_8_for_incr:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 36 ]
+        %tmp.77 = lgetv %i.7;
+        symbol [ i %tmp.77 36 49 50 ];
+        %tmp.78 = add %tmp.77 1;
+        lputv %i.7 %tmp.78;
+        symbol [ i %i.7 36 49 50 ];
+        goto @_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_36_8_46_8_for_test;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_36_8_46_8_for_end:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc" 47 8 ]
+        %tmp.79 = lgetv %resultStr.3;
+        symbol [ resultStr %tmp.79 47 15 24 ];
+        ret %tmp.79;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Convert_mc_27_55_48_4_stop:
+    }
+}
+[ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Convert.mc"; @line = 1; ]
+<init> {
+}

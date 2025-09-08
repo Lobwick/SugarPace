@@ -33,7 +33,6 @@
   "supportsLiveValidation" : false,
   "languages" : {
     "valyrian" : {
-      "otp_verification_label" : "OTP Verification",
       "nightscout_url_title" : "Nightscout URL",
       "nightscout_token_title" : "Nightscout Token",
       "menu_label_1" : "Item 1",

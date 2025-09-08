@@ -68,6 +68,10 @@ class DiabetesFoodManagementApp extends Application.AppBase {
         return [];
     }
 
+    function getMainView() as DiabetesFoodManagementView? {
+        return mainView;
+    }
+
 }
 
 function getApp() as DiabetesFoodManagementApp {

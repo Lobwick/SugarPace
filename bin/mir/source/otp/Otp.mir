@@ -1,0 +1,281 @@
+[ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc"; @line = 1; @symbol_usingdef<0> = [Toybox,1,6,12]; @symbol_usingdef<1> = [System,1,13,19]; @symbol_usingAlias = [Sys,1,23,26]; ]
+using Toybox.System as :Sys;
+[ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc"; @line = 2; @symbol_usingdef<0> = [Toybox,2,6,12]; @symbol_usingdef<1> = [Time,2,13,17]; @symbol_usingAlias = [Time,2,21,25]; ]
+using Toybox.Time as :Time;
+[ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc"; @line = 3; @symbol_usingdef<0> = [Convert,3,6,13]; @symbol_usingAlias = [Convert,3,17,24]; ]
+using Convert as :Convert;
+//! HOTP and TOTP implementation
+//! https://tools.ietf.org/html/rfc6238
+//!
+//! HOTP(K,C) = Truncate(HMAC-SHA-1(K,C))
+//!
+//! Basically, we define TOTP as TOTP = HOTP(K, T), where T is an integer
+//!       and represents the number of time steps between the initial counter
+//!       time T0 and the current Unix time.
+//! More specifically, T = (Current Unix time - T0) / X, where the
+//!       default floor function is used in the computation.
+[ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc"; @line = 15; @symbol_moduledef = [Otp,15,7,10]; ]
+module Otp {
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc"; @line = 15; ]
+    <init> {
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc" 17 10 ]
+        %tmp.1 = newa 9;
+        %tmp.2 = 1;
+        %tmp.3 = dup %tmp.1;
+        %tmp.4 = aputv %tmp.3 0 %tmp.2;
+        %tmp.5 = 10;
+        %tmp.6 = dup %tmp.4;
+        %tmp.7 = aputv %tmp.6 1 %tmp.5;
+        %tmp.8 = 100;
+        %tmp.9 = dup %tmp.7;
+        %tmp.10 = aputv %tmp.9 2 %tmp.8;
+        %tmp.11 = 1000;
+        %tmp.12 = dup %tmp.10;
+        %tmp.13 = aputv %tmp.12 3 %tmp.11;
+        %tmp.14 = 10000;
+        %tmp.15 = dup %tmp.13;
+        %tmp.16 = aputv %tmp.15 4 %tmp.14;
+        %tmp.17 = 100000;
+        %tmp.18 = dup %tmp.16;
+        %tmp.19 = aputv %tmp.18 5 %tmp.17;
+        %tmp.20 = 1000000;
+        %tmp.21 = dup %tmp.19;
+        %tmp.22 = aputv %tmp.21 6 %tmp.20;
+        %tmp.23 = 10000000;
+        %tmp.24 = dup %tmp.22;
+        %tmp.25 = aputv %tmp.24 7 %tmp.23;
+        %tmp.26 = 100000000;
+        %tmp.27 = dup %tmp.25;
+        %tmp.28 = aputv %tmp.27 8 %tmp.26;
+        putv self :DIGITS_POWER %tmp.28;
+    }
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc"; @line = 17; @position = 10; @symbol_constdef = [DIGITS_POWER,17,10,22]; ]
+    const DIGITS_POWER;
+    //! Generate TOTP code, with help of HMAC_SHA1
+    //! @param [Toybox::Lang::String] key The HEX String of secret key
+    //! @return [Toybox::Lang::String] generated TOTP code
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc"; @line = 24; @symbol_functiondef = [generateTotpSha1,24,13,29]; @symbol_param<0> = [base32EncodedKey,24,30,46]; ]
+    function generateTotpSha1(base32EncodedKey) {
+_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_24_48_28_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc" 25 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_24_48_28_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_24_48_28_4_stop" ]
+        %keyHex.1 = local;
+        symbol [ keyHex %keyHex.1 25 12 18 ];
+        symbol [ Convert %tmp.1 25 21 28 ];
+        %tmp.1 = getm $.Convert;
+        symbol [ base32decode2HexString %tmp.2 25 29 51 ];
+        %tmp.2 = getv function %tmp.1 :base32decode2HexString;
+        %tmp.3 = lgetv %base32EncodedKey;
+        symbol [ base32EncodedKey %tmp.3 25 52 68 ];
+        %tmp.4 = invoke %tmp.1 %tmp.2(%tmp.3);
+        lputv %keyHex.1 %tmp.4;
+        symbol [ keyHex %keyHex.1 25 12 18 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc" 26 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_24_48_28_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_24_48_28_4_stop" ]
+        %message.2 = local;
+        symbol [ message %message.2 26 12 19 ];
+        symbol [ Time %tmp.5 26 22 26 ];
+        %tmp.5 = getm $.Toybox.Time;
+        symbol [ now %tmp.6 26 27 30 ];
+        %tmp.6 = getv function %tmp.5 :now;
+        %tmp.7 = invoke %tmp.5 %tmp.6();
+        symbol [ value %tmp.8 26 33 38 ];
+        %tmp.8 = getv function %tmp.7 :value;
+        %tmp.9 = invoke %tmp.7 %tmp.8();
+        symbol [ Constants %tmp.11 26 43 52 ];
+        %tmp.11 = getv ? :Constants;
+        symbol [ TIME_STEP_SEC %tmp.12 26 53 66 ];
+        %tmp.12 = getv %tmp.11 :TIME_STEP_SEC;
+        %tmp.13 = div %tmp.9 %tmp.12;
+        lputv %message.2 %tmp.13;
+        symbol [ message %message.2 26 12 19 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc" 27 8 ]
+        %tmp.14 = self;
+        symbol [ generateHotpSha1 %tmp.15 27 15 31 ];
+        %tmp.15 = getv function %tmp.14 :generateHotpSha1;
+        %tmp.16 = lgetv %keyHex.1;
+        symbol [ keyHex %tmp.16 27 32 38 ];
+        %tmp.17 = lgetv %message.2;
+        symbol [ message %tmp.17 27 40 47 ];
+        %tmp.18 = 6;
+        %tmp.19 = invoke %tmp.14 %tmp.15(%tmp.16, %tmp.17, %tmp.18);
+        ret %tmp.19;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_24_48_28_4_stop:
+    }
+    //! Generate HOTP code, where H (has function) is HMAC_SHA1
+    //! @param [Toybox::Lang::String] keyHex The HEX String of secret key
+    //! @param [Toybox::Lang::String] message The String message to generate OTP
+    //! @param [Toybox::Lang::String] how many digits to generate in OTP (no more then 8)
+    //! @return [Toybox::Lang::String] generated HOTP code
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc"; @line = 35; @symbol_functiondef = [generateHotpSha1,35,13,29]; @symbol_param<0> = [keyHex,35,30,36]; @symbol_param<1> = [message,35,38,45]; @symbol_param<2> = [returnDigits,35,47,59]; ]
+    function generateHotpSha1(keyHex, message, returnDigits) {
+_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_35_61_60_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc" 36 8 ]
+_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_36_8_38_8_if_stmt:
+        %tmp.1 = lgetv %returnDigits;
+        symbol [ returnDigits %tmp.1 36 12 24 ];
+        %tmp.2 = 8;
+        %tmp.3 = gt %tmp.1 %tmp.2;
+        bf %tmp.3 @_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_36_8_38_8_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_36_8_38_8_if_true:
+_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_36_30_38_8_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc" 37 12 ]
+        %tmp.4 = 8;
+        lputv %returnDigits %tmp.4;
+        symbol [ returnDigits %returnDigits 37 12 24 ];
+_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_36_30_38_8_stop:
+        goto @_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_36_8_38_8_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_36_8_38_8_if_end:
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc" 41 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_35_61_60_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_35_61_60_4_stop" ]
+        %msgHex.1 = local;
+        symbol [ msgHex %msgHex.1 41 12 18 ];
+        %tmp.5 = lgetv %message;
+        symbol [ message %tmp.5 41 21 28 ];
+        symbol [ format %tmp.6 41 29 35 ];
+        %tmp.6 = getv function %tmp.5 :format;
+        %tmp.7 = "%016X";
+        %tmp.8 = invoke %tmp.5 %tmp.6(%tmp.7);
+        lputv %msgHex.1 %tmp.8;
+        symbol [ msgHex %msgHex.1 41 12 18 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc" 44 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_35_61_60_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_35_61_60_4_stop" ]
+        %msgBytes.2 = local;
+        symbol [ msgBytes %msgBytes.2 44 12 20 ];
+        symbol [ Convert %tmp.9 44 23 30 ];
+        %tmp.9 = getm $.Convert;
+        symbol [ hexStringToByteArray %tmp.10 44 31 51 ];
+        %tmp.10 = getv function %tmp.9 :hexStringToByteArray;
+        %tmp.11 = lgetv %msgHex.1;
+        symbol [ msgHex %tmp.11 44 52 58 ];
+        %tmp.12 = invoke %tmp.9 %tmp.10(%tmp.11);
+        lputv %msgBytes.2 %tmp.12;
+        symbol [ msgBytes %msgBytes.2 44 12 20 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc" 45 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_35_61_60_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_35_61_60_4_stop" ]
+        %keyBytes.3 = local;
+        symbol [ keyBytes %keyBytes.3 45 12 20 ];
+        symbol [ Convert %tmp.13 45 23 30 ];
+        %tmp.13 = getm $.Convert;
+        symbol [ hexStringToByteArray %tmp.14 45 31 51 ];
+        %tmp.14 = getv function %tmp.13 :hexStringToByteArray;
+        %tmp.15 = lgetv %keyHex;
+        symbol [ keyHex %tmp.15 45 52 58 ];
+        %tmp.16 = invoke %tmp.13 %tmp.14(%tmp.15);
+        lputv %keyBytes.3 %tmp.16;
+        symbol [ keyBytes %keyBytes.3 45 12 20 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc" 47 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_35_61_60_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_35_61_60_4_stop" ]
+        %hash.4 = local;
+        symbol [ hash %hash.4 47 12 16 ];
+        symbol [ Hmac %tmp.18 47 19 23 ];
+        %tmp.18 = getv ? :Hmac;
+        symbol [ authenticateWithSha1 %tmp.19 47 24 44 ];
+        %tmp.19 = getv function %tmp.18 :authenticateWithSha1;
+        %tmp.20 = lgetv %keyBytes.3;
+        symbol [ keyBytes %tmp.20 47 45 53 ];
+        %tmp.21 = lgetv %msgBytes.2;
+        symbol [ msgBytes %tmp.21 47 55 63 ];
+        %tmp.22 = invoke %tmp.18 %tmp.19(%tmp.20, %tmp.21);
+        lputv %hash.4 %tmp.22;
+        symbol [ hash %hash.4 47 12 16 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc" 50 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_35_61_60_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_35_61_60_4_stop" ]
+        %offset.5 = local;
+        symbol [ offset %offset.5 50 12 18 ];
+        %tmp.23 = lgetv %hash.4;
+        symbol [ hash %tmp.23 50 21 25 ];
+        %tmp.24 = lgetv %hash.4;
+        symbol [ hash %tmp.24 50 26 30 ];
+        symbol [ size %tmp.25 50 31 35 ];
+        %tmp.25 = getv function %tmp.24 :size;
+        %tmp.26 = invoke %tmp.24 %tmp.25();
+        %tmp.27 = 1;
+        %tmp.28 = sub %tmp.26 %tmp.27;
+        %tmp.29 = agetv %tmp.23 %tmp.28;
+        %tmp.30 = 0xf;
+        %tmp.31 = bitand %tmp.29 %tmp.30;
+        lputv %offset.5 %tmp.31;
+        symbol [ offset %offset.5 50 12 18 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc" 52 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_35_61_60_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_35_61_60_4_stop" ]
+        %binary.6 = local;
+        symbol [ binary %binary.6 52 12 18 ];
+        %tmp.32 = lgetv %hash.4;
+        symbol [ hash %tmp.32 53 14 18 ];
+        %tmp.33 = lgetv %offset.5;
+        symbol [ offset %tmp.33 53 19 25 ];
+        %tmp.34 = agetv %tmp.32 %tmp.33;
+        %tmp.35 = 0x7f;
+        %tmp.36 = bitand %tmp.34 %tmp.35;
+        %tmp.37 = 24;
+        %tmp.38 = shl %tmp.36 %tmp.37;
+        %tmp.39 = lgetv %hash.4;
+        symbol [ hash %tmp.39 54 14 18 ];
+        %tmp.40 = lgetv %offset.5;
+        symbol [ offset %tmp.40 54 19 25 ];
+        %tmp.41 = 1;
+        %tmp.42 = add %tmp.40 %tmp.41;
+        %tmp.43 = agetv %tmp.39 %tmp.42;
+        %tmp.44 = 0xff;
+        %tmp.45 = bitand %tmp.43 %tmp.44;
+        %tmp.46 = 16;
+        %tmp.47 = shl %tmp.45 %tmp.46;
+        %tmp.48 = bitor %tmp.38 %tmp.47;
+        %tmp.49 = lgetv %hash.4;
+        symbol [ hash %tmp.49 55 14 18 ];
+        %tmp.50 = lgetv %offset.5;
+        symbol [ offset %tmp.50 55 19 25 ];
+        %tmp.51 = 2;
+        %tmp.52 = add %tmp.50 %tmp.51;
+        %tmp.53 = agetv %tmp.49 %tmp.52;
+        %tmp.54 = 0xff;
+        %tmp.55 = bitand %tmp.53 %tmp.54;
+        %tmp.56 = 8;
+        %tmp.57 = shl %tmp.55 %tmp.56;
+        %tmp.58 = bitor %tmp.48 %tmp.57;
+        %tmp.59 = lgetv %hash.4;
+        symbol [ hash %tmp.59 56 13 17 ];
+        %tmp.60 = lgetv %offset.5;
+        symbol [ offset %tmp.60 56 18 24 ];
+        %tmp.61 = 3;
+        %tmp.62 = add %tmp.60 %tmp.61;
+        %tmp.63 = agetv %tmp.59 %tmp.62;
+        %tmp.64 = 0xff;
+        %tmp.65 = bitand %tmp.63 %tmp.64;
+        %tmp.66 = bitor %tmp.58 %tmp.65;
+        lputv %binary.6 %tmp.66;
+        symbol [ binary %binary.6 52 12 18 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc" 57 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_35_61_60_4_start" "_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_35_61_60_4_stop" ]
+        %otp.7 = local;
+        symbol [ otp %otp.7 57 12 15 ];
+        %tmp.67 = lgetv %binary.6;
+        symbol [ binary %tmp.67 57 18 24 ];
+        symbol [ DIGITS_POWER %tmp.69 57 27 39 ];
+        %tmp.69 = getv ? :DIGITS_POWER;
+        %tmp.70 = lgetv %returnDigits;
+        symbol [ returnDigits %tmp.70 57 40 52 ];
+        %tmp.71 = agetv %tmp.69 %tmp.70;
+        %tmp.72 = mod %tmp.67 %tmp.71;
+        lputv %otp.7 %tmp.72;
+        symbol [ otp %otp.7 57 12 15 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc" 59 8 ]
+        %tmp.73 = lgetv %otp.7;
+        symbol [ otp %tmp.73 59 15 18 ];
+        symbol [ format %tmp.74 59 19 25 ];
+        %tmp.74 = getv function %tmp.73 :format;
+        %tmp.75 = "%0";
+        %tmp.76 = lgetv %returnDigits;
+        symbol [ returnDigits %tmp.76 59 33 45 ];
+        %tmp.77 = add %tmp.75 %tmp.76;
+        %tmp.78 = "d";
+        %tmp.79 = add %tmp.77 %tmp.78;
+        %tmp.80 = invoke %tmp.73 %tmp.74(%tmp.79);
+        ret %tmp.80;
+_Users_FELIX_DiabetesFoodManagement_source_otp_Otp_mc_35_61_60_4_stop:
+    }
+}
+[ @file = "/Users/FELIX/DiabetesFoodManagement/source/otp/Otp.mc"; @line = 1; ]
+<init> {
+}

@@ -237,20 +237,29 @@ _Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementApp_mc_65_8_67_
         ret %tmp.10;
 _Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementApp_mc_64_42_69_4_stop:
     }
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc"; @line = 71; @symbol_functiondef = [getMainView,71,13,24]; @symbol_return<0> = [DiabetesFoodManagementView,71,30,56]; ]
+    function getMainView() as DiabetesFoodManagementView or Null {
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementApp_mc_71_58_73_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" 72 8 ]
+        symbol [ mainView %tmp.2 72 15 23 ];
+        %tmp.2 = getv ? :mainView;
+        ret %tmp.2;
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementApp_mc_71_58_73_4_stop:
+    }
 }
-[ @file = "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc"; @line = 73; @symbol_functiondef = [getApp,73,9,15]; @symbol_return<0> = [DiabetesFoodManagementApp,73,21,46]; ]
+[ @file = "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc"; @line = 77; @symbol_functiondef = [getApp,77,9,15]; @symbol_return<0> = [DiabetesFoodManagementApp,77,21,46]; ]
 function getApp() as DiabetesFoodManagementApp {
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementApp_mc_73_47_75_0_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" 74 4 ]
-    symbol [ Application %tmp.1 74 11 22 ];
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementApp_mc_77_47_79_0_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc" 78 4 ]
+    symbol [ Application %tmp.1 78 11 22 ];
     %tmp.1 = getm $.Toybox.Application;
-    symbol [ getApp %tmp.2 74 23 29 ];
+    symbol [ getApp %tmp.2 78 23 29 ];
     %tmp.2 = getv function %tmp.1 :getApp;
     %tmp.3 = invoke %tmp.1 %tmp.2();
     %tmp.4 = as %tmp.3 DiabetesFoodManagementApp;
-    symbol [ DiabetesFoodManagementApp %tmp.4 74 35 60 ];
+    symbol [ DiabetesFoodManagementApp %tmp.4 78 35 60 ];
     ret %tmp.4;
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementApp_mc_73_47_75_0_stop:
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementApp_mc_77_47_79_0_stop:
 }
 [ @file = "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementApp.mc"; @line = 1; ]
 <init> {
