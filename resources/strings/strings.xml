@@ -6,6 +6,7 @@
     <string id="menu_label_1">Item 1</string>
     <string id="menu_label_2">Item 2</string>
     <string id="temp_overrides_label">Temp Overrides</string>
+    <string id="otp_verification_label">OTP Verification</string>
     
     <string id="nightscout_token_title">Nightscout Token</string>
     <string id="nightscout_url_title">Nightscout URL</string>
