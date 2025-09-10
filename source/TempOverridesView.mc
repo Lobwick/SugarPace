@@ -7,10 +7,6 @@ import Toybox.Time;
 import Toybox.Timer;
 
 class TempOverridesView extends WatchUi.View {
-
-    //private var tempBasals as Lang.Array = [];
-    //public var activeProfile as Lang.String = "";
-    //private var presetCoordinates as Lang.Array = [];
     private var appState as AppState;
 
     function initialize(appState as AppState) {
