@@ -4,26 +4,32 @@ import Toybox.WatchUi;
 
 class DiabetesFoodManagementApp extends Application.AppBase {
 
+    // Core components
+    private var appState as AppState;
+    private var nightscoutService as NightscoutService;
+    private var otpService as OtpService;
+    
+    // Views and delegates
     private var mainView as DiabetesFoodManagementView?;
+    private var mainDelegate as DiabetesFoodManagementDelegate?;
 
     function initialize() {
         AppBase.initialize();
+        
+        // Initialize core components
+        appState = new AppState();
+        nightscoutService = new NightscoutService(appState);
+        otpService = new OtpService();
+        
+        // Set up service callbacks
+        nightscoutService.setCallback(method(:onServiceCallback));
     }
 
     // onStart() is called on application start up
     function onStart(state as Dictionary?) as Void {
-            System.println("=== Testing OTP Generation ===");
-            // Secret réel du QR code Loop
-            var loopSecret = "MNWUPWJFCJRJJ4WSBPC27HJ5CZUM6YKK";
-            System.println("Loop Secret: " + loopSecret);
-            
-      
-            
-            var otp = Otp.generateTotpSha1(loopSecret );
-            System.println("Generated OTP: " + otp);
-            
-
-            
+        // Fetch initial data
+        nightscoutService.fetchGlucoseData();
+        nightscoutService.fetchFoodData();
     }
 
     function onStop(state as Dictionary?) as Void {
@@ -31,47 +37,59 @@ class DiabetesFoodManagementApp extends Application.AppBase {
 
     // Return the initial view of your application here
     function getInitialView() as [Views] or [Views, InputDelegates] {
-        mainView = new DiabetesFoodManagementView();
-        return [ mainView, new DiabetesFoodManagementDelegate() ];
+        mainView = new DiabetesFoodManagementView(appState);
+        mainDelegate = new DiabetesFoodManagementDelegate(appState, nightscoutService, otpService);
+        return [ mainView, mainDelegate ];
     }
 
-    function getTempBasals() as Lang.Array {
-        if (mainView != null) {
-            return mainView.getTempBasals();
-        }
-        return [];
-    }
-
-    function fetchTempBasalData() as Void {
-        if (mainView != null) {
-            mainView.fetchTempBasalData();
-        }
-    }
-
-    function getActiveProfile() as Lang.String {
-        if (mainView != null) {
-            return mainView.getActiveProfile();
-        }
-        return "";
-    }
-
-    function fetchFoodData() as Void {
-        if (mainView != null) {     
-            mainView.fetchFoodData();
+    //! Handle callbacks from services
+    function onServiceCallback(type as Lang.String, data as Lang.Object) as Void {
+        if (type.equals("glucose")) {
+            if (data instanceof Lang.Dictionary) {
+                appState.updateGlucoseData(data);
+            }
+        } else if (type.equals("foods")) {
+            if (data instanceof Lang.Array) {
+                appState.updateFoodItems(data);
+            }
+        } else if (type.equals("tempBasals")) {
+            if (data instanceof Lang.Dictionary) {
+                appState.updateTempBasals(data);
+            }
+        } else if (type.equals("activeProfile")) {
+            if (data instanceof Lang.String) {
+                appState.updateActiveProfile(data);
+            }
+        } else if (type.equals("foodEntrySent")) {
+            // Handle food entry response if needed
         }
     }
 
     function getFoodsList() as Lang.Array {
-        if (mainView != null) {
-            return mainView.getFoodsList();
+        // Convert FoodItem objects back to dictionaries for compatibility
+        var foodsArray = [];
+        for (var i = 0; i < appState.foodItems.size(); i++) {
+            var foodItem = appState.foodItems[i];
+            if (foodItem instanceof FoodItem) {
+                foodsArray.add(foodItem.toDictionary());
+            }
         }
-        return [];
+        return foodsArray;
     }
 
     function getMainView() as DiabetesFoodManagementView? {
         return mainView;
     }
 
+    //! Get app state for access from other components
+    function getAppState() as AppState {
+        return appState;
+    }
+
+    //! Get nightscout service for direct access from other components
+    function getNightscoutService() as NightscoutService {
+        return nightscoutService;
+    }
 }
 
 function getApp() as DiabetesFoodManagementApp {

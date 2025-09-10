@@ -2,7 +2,7 @@
   "settings" : [ {
     "key" : "nightscout_token",
     "valueType" : "string",
-    "defaultValue" : "6NhkwPyxqR6Jpsur",
+    "defaultValue" : "garmin-5709111d29db02b8",
     "configTitle" : "nightscout_token_title",
     "configPrompt" : null,
     "configType" : "alphaNumeric",
@@ -29,17 +29,37 @@
     "configMin" : null,
     "configMax" : null,
     "configMaxLength" : null
+  }, {
+    "key" : "otp_secret",
+    "valueType" : "string",
+    "defaultValue" : "MNWUPWJFCJRJJ4WSBPC27HJ5CZUM6YKK",
+    "configTitle" : "otp_secret_title",
+    "configPrompt" : null,
+    "configType" : "alphaNumeric",
+    "configError" : null,
+    "configHelpUrl" : null,
+    "configReadonly" : false,
+    "configRequired" : false,
+    "configOptions" : null,
+    "configMin" : null,
+    "configMax" : null,
+    "configMaxLength" : null
   } ],
   "supportsLiveValidation" : false,
   "languages" : {
     "valyrian" : {
-      "nightscout_url_title" : "Nightscout URL",
-      "nightscout_token_title" : "Nightscout Token",
-      "menu_label_1" : "Item 1",
-      "menu_label_2" : "Item 2",
-      "temp_overrides_label" : "Temp Overrides",
-      "prompt" : "Click the menu button",
-      "AppName" : "Diabetes Food Management"
+      "nightscout_url_title" : "URL Nightscout",
+      "active_profile_label" : "Profil actif",
+      "menu_return_instruction" : "Menu pour retour",
+      "nightscout_token_title" : "Token Nightscout",
+      "loading_foods" : "Chargement aliments...",
+      "check_nightscout_config" : "Vérifiez votre configuration Nightscout",
+      "menu_label_1" : "Élément 1",
+      "otp_secret_title" : "Secret OTP",
+      "menu_label_2" : "Élément 2",
+      "temp_overrides_label" : "Profils Temporaires",
+      "prompt" : "Appuyez sur le bouton menu",
+      "AppName" : "Gestion Diabète Aliments"
     }
   }
 }

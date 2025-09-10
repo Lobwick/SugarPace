@@ -15,100 +15,118 @@ class DiabetesFoodManagementMenuDelegate extends WatchUi.MenuInputDelegate {
     static
     <init> {
     }
-    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc"; @line = 8; @symbol_functiondef = [initialize,8,13,23]; ]
-    function initialize() as Void {
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_8_26_10_4_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 9 8 ]
-        symbol [ MenuInputDelegate %tmp.2 9 8 25 ];
-        %tmp.2 = getv ? :MenuInputDelegate;
-        symbol [ initialize %tmp.3 9 26 36 ];
-        %tmp.3 = getv function %tmp.2 :initialize;
-        invoke %tmp.2 %tmp.3();
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_8_26_10_4_stop:
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc"; @line = 7; @position = 16; @symbol_vardef = [appState,7,16,24]; @symbol_type<0> = [AppState,7,28,36]; ]
+    private
+    var appState as AppState;
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc"; @line = 9; @symbol_functiondef = [initialize,9,13,23]; @symbol_param<0> = [appState,9,24,32]; @symbol_param<0>_type<0> = [AppState,9,36,44]; ]
+    function initialize(appState as AppState) as Void {
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_9_46_13_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 10 8 ]
+        symbol [ self %self 10 8 12 ];
+        %tmp.1 = lgetv %appState;
+        symbol [ appState %tmp.1 10 24 32 ];
+        symbol [ appState ? 10 13 21 ];
+        putv self :appState %tmp.1;
+[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 12 8 ]
+        symbol [ MenuInputDelegate %tmp.3 12 8 25 ];
+        %tmp.3 = getv ? :MenuInputDelegate;
+        symbol [ initialize %tmp.4 12 26 36 ];
+        %tmp.4 = getv function %tmp.3 :initialize;
+        invoke %tmp.3 %tmp.4();
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_9_46_13_4_stop:
     }
-    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc"; @line = 12; @symbol_functiondef = [onMenuItem,12,13,23]; @symbol_param<0> = [item,12,24,28]; @symbol_param<0>_type<0> = [Symbol,12,32,38]; ]
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc"; @line = 15; @symbol_functiondef = [onMenuItem,15,13,23]; @symbol_param<0> = [item,15,24,28]; @symbol_param<0>_type<0> = [Symbol,15,32,38]; ]
     function onMenuItem(item as Symbol) as Void {
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_12_48_16_4_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 13 8 ]
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_13_8_15_8_if_stmt:
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_15_48_19_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 16 8 ]
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_16_8_18_8_if_stmt:
         %tmp.1 = lgetv %item;
-        symbol [ item %tmp.1 13 12 16 ];
+        symbol [ item %tmp.1 16 12 16 ];
         %tmp.3 = const :temp_overrides;
-        symbol [ temp_overrides %tmp.3 13 21 35 const ];
+        symbol [ temp_overrides %tmp.3 16 21 35 const ];
         %tmp.4 = eq %tmp.1 %tmp.3;
-        bf %tmp.4 @_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_13_8_15_8_if_end;
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_13_8_15_8_if_true:
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_13_37_15_8_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 14 12 ]
+        bf %tmp.4 @_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_16_8_18_8_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_16_8_18_8_if_true:
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_16_37_18_8_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 17 12 ]
         %tmp.5 = self;
-        symbol [ showTempOverrides %tmp.6 14 12 29 ];
+        symbol [ showTempOverrides %tmp.6 17 12 29 ];
         %tmp.6 = getv function %tmp.5 :showTempOverrides;
         invoke %tmp.5 %tmp.6();
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_13_37_15_8_stop:
-        goto @_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_13_8_15_8_if_end;
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_13_8_15_8_if_end:
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_12_48_16_4_stop:
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_16_37_18_8_stop:
+        goto @_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_16_8_18_8_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_16_8_18_8_if_end:
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_15_48_19_4_stop:
     }
-    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc"; @line = 18; @symbol_functiondef = [showTempOverrides,18,13,30]; ]
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc"; @line = 21; @symbol_functiondef = [showTempOverrides,21,13,30]; ]
     function showTempOverrides() as Void {
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_18_41_26_4_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 19 8 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_18_41_26_4_start" "_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_18_41_26_4_stop" ]
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_21_41_29_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 22 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_21_41_29_4_start" "_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_21_41_29_4_stop" ]
         %app.1 = local;
-        symbol [ app %app.1 19 12 15 ];
-        symbol [ Application %tmp.1 19 18 29 ];
+        symbol [ app %app.1 22 12 15 ];
+        symbol [ Application %tmp.1 22 18 29 ];
         %tmp.1 = getm $.Toybox.Application;
-        symbol [ getApp %tmp.2 19 30 36 ];
+        symbol [ getApp %tmp.2 22 30 36 ];
         %tmp.2 = getv function %tmp.1 :getApp;
         %tmp.3 = invoke %tmp.1 %tmp.2();
         %tmp.4 = as %tmp.3 DiabetesFoodManagementApp;
-        symbol [ DiabetesFoodManagementApp %tmp.4 19 42 67 ];
+        symbol [ DiabetesFoodManagementApp %tmp.4 22 42 67 ];
         lputv %app.1 %tmp.4;
-        symbol [ app %app.1 19 12 15 ];
-[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 20 8 ]
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_20_8_22_8_if_stmt:
+        symbol [ app %app.1 22 12 15 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 23 8 ]
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_23_8_25_8_if_stmt:
         %tmp.5 = lgetv %app.1;
-        symbol [ app %tmp.5 20 12 15 ];
+        symbol [ app %tmp.5 23 12 15 ];
         %tmp.6 = null;
         %tmp.7 = ne %tmp.5 %tmp.6;
-        bf %tmp.7 @_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_20_8_22_8_if_end;
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_20_8_22_8_if_true:
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_20_25_22_8_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 21 12 ]
+        bf %tmp.7 @_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_23_8_25_8_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_23_8_25_8_if_true:
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_23_25_25_8_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 24 12 ]
         %tmp.8 = lgetv %app.1;
-        symbol [ app %tmp.8 21 12 15 ];
+        symbol [ app %tmp.8 24 12 15 ];
         %tmp.9 = as %tmp.8 { (!Null) };
-        symbol [ fetchTempBasalData %tmp.10 21 16 34 ];
-        %tmp.10 = getv function %tmp.9 :fetchTempBasalData;
-        invoke %tmp.9 %tmp.10();
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_20_25_22_8_stop:
-        goto @_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_20_8_22_8_if_end;
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_20_8_22_8_if_end:
-[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 24 8 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_18_41_26_4_start" "_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_18_41_26_4_stop" ]
+        symbol [ getNightscoutService %tmp.10 24 16 36 ];
+        %tmp.10 = getv function %tmp.9 :getNightscoutService;
+        %tmp.11 = invoke %tmp.9 %tmp.10();
+        symbol [ fetchTempBasalData %tmp.12 24 39 57 ];
+        %tmp.12 = getv function %tmp.11 :fetchTempBasalData;
+        invoke %tmp.11 %tmp.12();
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_23_25_25_8_stop:
+        goto @_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_23_8_25_8_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_23_8_25_8_if_end:
+[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 27 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_21_41_29_4_start" "_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_21_41_29_4_stop" ]
         %tempOverridesView.2 = local;
-        symbol [ tempOverridesView %tempOverridesView.2 24 12 29 ];
-        symbol [ TempOverridesView %tmp.14 24 36 53 ];
-        %tmp.14 = getv ? :TempOverridesView;
-        %tmp.11 = newc %tmp.14 ();
-        lputv %tempOverridesView.2 %tmp.11;
-        symbol [ tempOverridesView %tempOverridesView.2 24 12 29 ];
-[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 25 8 ]
-        symbol [ WatchUi %tmp.15 25 8 15 ];
-        %tmp.15 = getm $.Toybox.WatchUi;
-        symbol [ pushView %tmp.16 25 16 24 ];
-        %tmp.16 = getv function %tmp.15 :pushView;
-        %tmp.17 = lgetv %tempOverridesView.2;
-        symbol [ tempOverridesView %tmp.17 25 25 42 ];
-        symbol [ TempOverridesInputDelegate %tmp.21 25 48 74 ];
-        %tmp.21 = getv ? :TempOverridesInputDelegate;
-        %tmp.18 = newc %tmp.21 ();
-        symbol [ WatchUi %tmp.22 25 78 85 ];
-        %tmp.22 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_UP %tmp.23 25 86 94 ];
-        %tmp.23 = getv %tmp.22 :SLIDE_UP;
-        invoke %tmp.15 %tmp.16(%tmp.17, %tmp.18, %tmp.23);
-_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_18_41_26_4_stop:
+        symbol [ tempOverridesView %tempOverridesView.2 27 12 29 ];
+        symbol [ TempOverridesView %tmp.16 27 36 53 ];
+        %tmp.16 = getv ? :TempOverridesView;
+        %tmp.17 = self;
+        symbol [ self %tmp.17 27 54 58 ];
+        symbol [ appState %tmp.18 27 59 67 ];
+        %tmp.18 = getv %tmp.17 :appState;
+        %tmp.13 = newc %tmp.16 (%tmp.18);
+        lputv %tempOverridesView.2 %tmp.13;
+        symbol [ tempOverridesView %tempOverridesView.2 27 12 29 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc" 28 8 ]
+        symbol [ WatchUi %tmp.19 28 8 15 ];
+        %tmp.19 = getm $.Toybox.WatchUi;
+        symbol [ pushView %tmp.20 28 16 24 ];
+        %tmp.20 = getv function %tmp.19 :pushView;
+        %tmp.21 = lgetv %tempOverridesView.2;
+        symbol [ tempOverridesView %tmp.21 28 25 42 ];
+        symbol [ TempOverridesInputDelegate %tmp.25 28 48 74 ];
+        %tmp.25 = getv ? :TempOverridesInputDelegate;
+        %tmp.26 = lgetv %tempOverridesView.2;
+        symbol [ tempOverridesView %tmp.26 28 75 92 ];
+        %tmp.22 = newc %tmp.25 (%tmp.26);
+        symbol [ WatchUi %tmp.27 28 95 102 ];
+        %tmp.27 = getm $.Toybox.WatchUi;
+        symbol [ SLIDE_UP %tmp.28 28 103 111 ];
+        %tmp.28 = getv %tmp.27 :SLIDE_UP;
+        invoke %tmp.19 %tmp.20(%tmp.21, %tmp.22, %tmp.28);
+_Users_FELIX_DiabetesFoodManagement_source_DiabetesFoodManagementMenuDelegate_mc_21_41_29_4_stop:
     }
 }
 [ @file = "/Users/FELIX/DiabetesFoodManagement/source/DiabetesFoodManagementMenuDelegate.mc"; @line = 1; ]

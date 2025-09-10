@@ -4,8 +4,11 @@ import Toybox.WatchUi;
 import Toybox.Application;
 
 class DiabetesFoodManagementMenuDelegate extends WatchUi.MenuInputDelegate {
+    private var appState as AppState;
 
-    function initialize() {
+    function initialize(appState as AppState) {
+        self.appState = appState;
+
         MenuInputDelegate.initialize();
     }
 
@@ -18,11 +21,11 @@ class DiabetesFoodManagementMenuDelegate extends WatchUi.MenuInputDelegate {
     function showTempOverrides() as Void {
         var app = Application.getApp() as DiabetesFoodManagementApp;
         if (app != null) {
-            app.fetchTempBasalData();
+            app.getNightscoutService().fetchTempBasalData();
         }
-        
-        var tempOverridesView = new TempOverridesView();
-        WatchUi.pushView(tempOverridesView, new TempOverridesInputDelegate(), WatchUi.SLIDE_UP);
+
+        var tempOverridesView = new TempOverridesView(self.appState);
+        WatchUi.pushView(tempOverridesView, new TempOverridesInputDelegate(tempOverridesView), WatchUi.SLIDE_UP);
     }
 
 }

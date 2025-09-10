@@ -9,4 +9,11 @@
     
     <string id="nightscout_token_title">Nightscout Token</string>
     <string id="nightscout_url_title">Nightscout URL</string>
+    <string id="otp_secret_title">OTP Secret</string>
+    
+    <!-- New strings for temp overrides view -->
+    <string id="active_profile_label">Active profile</string>
+    <string id="menu_return_instruction">Menu to return</string>
+    <string id="loading_foods">Loading foods...</string>
+    <string id="check_nightscout_config">Check your Nightscout configuration</string>
 </strings>
