@@ -1,5 +1,6 @@
 import Toybox.Lang;
 import Toybox.WatchUi;
+import Toybox.Graphics;
 
 //! Centralized state management for the application
 class AppState {
@@ -15,9 +16,10 @@ class AppState {
     public var tempBasals as Lang.Array = [];
     public var activeProfile as Lang.String = "";
     public var presetCoordinatesProfile as Lang.Array = [];
-    
     // UI state
     public var isLoading as Lang.Boolean = false;
+    public var foregroundColor as Graphics.ColorType =  Graphics.COLOR_WHITE;
+    public var backgroundColor as Graphics.ColorType =  Graphics.COLOR_BLACK;
 
 
 

@@ -4,6 +4,7 @@ import Toybox.Lang;
 import Toybox.Timer;
 import Toybox.System;
 
+
 class DiabetesFoodManagementView extends WatchUi.View {
 
     private var monkeyBitmap as BitmapResource?;
@@ -32,8 +33,15 @@ class DiabetesFoodManagementView extends WatchUi.View {
 
     // Update the view
     function onUpdate(dc as Dc) as Void {
-        // Clear the screen
-        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
+        var nightMode = System.getDeviceSettings().isNightModeEnabled;
+        if (nightMode) {
+            appState.backgroundColor = Graphics.COLOR_BLACK;
+            appState.foregroundColor = Graphics.COLOR_WHITE;
+        } else {
+            appState.backgroundColor = Graphics.COLOR_WHITE;
+            appState.foregroundColor = Graphics.COLOR_BLACK ;
+        }
+        dc.setColor(appState.backgroundColor, appState.backgroundColor);
         dc.clear();
         
         var width = dc.getWidth();
@@ -53,7 +61,7 @@ class DiabetesFoodManagementView extends WatchUi.View {
 
     //! Draw glucose information at the top
     private function drawGlucoseInfo(dc as Dc, width as Lang.Number) as Void {
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
         
         // Display blood sugar level in large text at top
         var bloodSugar = appState.glucoseData.bloodSugarLevel;
@@ -63,7 +71,7 @@ class DiabetesFoodManagementView extends WatchUi.View {
 
         // Set color based on glucose level
         if (bloodSugar == 0) {
-            dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+            dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
         } else if (bloodSugar < 70) {
             dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
         } else if (bloodSugar > 180) {
@@ -82,8 +90,8 @@ class DiabetesFoodManagementView extends WatchUi.View {
             var smallFont = Graphics.FONT_XTINY;
             
             // Reset color to white for trend info
-            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-            
+            dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
+
             // Trend rate on the left
             var trendText = appState.glucoseData.trendRate >= 0 ? 
                 "+" + appState.glucoseData.trendRate.format("%.1f") + " " + default_unit : 
@@ -111,7 +119,7 @@ class DiabetesFoodManagementView extends WatchUi.View {
         var spacing = monkeyHeight + 10;
         var maxItems = (height - startY - 20) / spacing;
         
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
         
         // Track coordinates for touch detection
         var coordinates = [];
@@ -136,11 +144,11 @@ class DiabetesFoodManagementView extends WatchUi.View {
                 // Highlight selected item
                 var isSelected = (i == appState.selectedFoodIndex);
                 if (isSelected) {
-                    dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE);
+                    dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
                     dc.fillRectangle(5, currentY - 2, width - 10, monkeyHeight + 4);
                     dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
                 } else {
-                    dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+                    dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
                 }
                 
                 // Draw the monkey bitmap
@@ -169,7 +177,7 @@ class DiabetesFoodManagementView extends WatchUi.View {
         
         // If no foods, show loading message
         if (appState.foodItems.size() == 0) {
-            dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+            dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
             dc.drawText(width/2, startY + 20, Graphics.FONT_SMALL, WatchUi.loadResource(Rez.Strings.loading_foods), Graphics.TEXT_JUSTIFY_CENTER);
             dc.drawText(width/2, startY + 50, Graphics.FONT_XTINY, WatchUi.loadResource(Rez.Strings.check_nightscout_config), Graphics.TEXT_JUSTIFY_CENTER);
         }
