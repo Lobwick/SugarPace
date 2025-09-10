@@ -213,17 +213,11 @@ class NightscoutService {
                 }
             } catch (e) {
                 // En cas d'erreur, utiliser des données de fallback
-                appState.tempBasals = [
-                    {"name" => "sporterreur"},
-                    {"name" => "stoperreur"}
-                ];
+                appState.tempBasals = [];
             }
         } else {
             // Si pas de réponse, utiliser des données de fallback
-            appState.tempBasals = [
-                {"name" => "sporterreur"},
-                {"name" => "stop"}
-            ];
+            appState.tempBasals = [];
         }
         
         // Notify callback with temp basals data
@@ -399,13 +393,8 @@ class NightscoutService {
                                 var reason = override.get("reason");
                                 if (reason != null) {
                                     var reasonStr = reason.toString();
-                                    if (reasonStr.find("sport") != null) {
-                                        activeProfile = "sport";
-                                        break;
-                                    } else if (reasonStr.find("stop") != null) {
-                                        activeProfile = "stop";
-                                        break;
-                                    }
+                                    activeProfile = reasonStr;
+                                    break;
                                 }
                             }
                         }
@@ -445,13 +434,8 @@ class NightscoutService {
                                 var reason = override.get("reason");
                                 if (reason != null) {
                                     var reasonStr = reason.toString();
-                                    if (reasonStr.find("sport") != null) {
-                                        activeProfile = "sport";
-                                        break;
-                                    } else if (reasonStr.find("stop") != null) {
-                                        activeProfile = "stop";
-                                        break;
-                                    }
+                                    activeProfile = reasonStr;
+                                    break;
                                 }
                             }
                         }
