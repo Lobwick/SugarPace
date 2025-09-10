@@ -10,7 +10,7 @@ class AppState {
     
     // Food data
     public var foodItems as Lang.Array = [];
-    public var selectedFoodIndex as Lang.Number = 0;
+    public var selectedFoodIndex as Lang.Number = -1;
     
     // Profile data
     public var tempBasals as Lang.Array = [];
