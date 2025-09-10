@@ -114,7 +114,7 @@ class TempOverridesView extends WatchUi.View {
         // Dessiner le contour
         dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
         dc.drawRoundedRectangle(x, y, width, height, 5);
-        
+                                        
         // Dessiner le texte centré
         dc.drawText(x + width/2, y + height/2 - 8, Graphics.FONT_SMALL, text, Graphics.TEXT_JUSTIFY_CENTER);
     }

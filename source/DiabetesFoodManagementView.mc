@@ -8,6 +8,8 @@ import Toybox.System;
 class DiabetesFoodManagementView extends WatchUi.View {
 
     private var monkeyBitmap as BitmapResource?;
+    private var gelBitmap as BitmapResource?;
+    private var fruitJellyBitmap as BitmapResource?;
     private var updateTimer as Timer.Timer?;
     private var appState as AppState;
 
@@ -20,6 +22,8 @@ class DiabetesFoodManagementView extends WatchUi.View {
     function onLayout(dc as Dc) as Void {
         // Load the monkey bitmap
         monkeyBitmap = WatchUi.loadResource(Rez.Drawables.monkey);
+        gelBitmap = WatchUi.loadResource(Rez.Drawables.gel);
+        fruitJellyBitmap = WatchUi.loadResource(Rez.Drawables.fruit_jelly);
     }
 
     // Called when this View is brought to the foreground
@@ -144,28 +148,16 @@ class DiabetesFoodManagementView extends WatchUi.View {
                 // Highlight selected item
                 var isSelected = (i == appState.selectedFoodIndex);
                 if (isSelected) {
-                    dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
-                    dc.fillRectangle(5, currentY - 2, width - 10, monkeyHeight + 4);
-                    dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
+                    //dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
+                    //dc.fillRectangle(5, currentY - 2, width - 10, monkeyHeight + 4);
+                    dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
                 } else {
                     dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
                 }
                 
-                // Draw the monkey bitmap
-                if (monkeyBitmap != null) {
-                    dc.drawBitmap(8, currentY, monkeyBitmap);
-                    
-                    // Text in vertical middle of monkey, with margin to the right of image
-                    var textY = currentY + (monkeyHeight / 2) - 8;
-                    var textX = 8 + monkeyBitmap.getWidth() + 10;
-                    dc.drawText(textX, textY, Graphics.FONT_SMALL, foodItem.name, Graphics.TEXT_JUSTIFY_LEFT);
-                    
-                    // Show carbs info if available
-                    if (foodItem.carbs > 0) {
-                        var carbsText = foodItem.carbs.toString() + "g";
-                        dc.drawText(width - 10, textY, Graphics.FONT_SMALL, carbsText, Graphics.TEXT_JUSTIFY_RIGHT);
-                    }
-                }
+
+                displayFoodLogo(dc, foodItem, currentY, width);
+              
                 
                 currentY += spacing;
                 itemsDisplayed++;
@@ -183,6 +175,79 @@ class DiabetesFoodManagementView extends WatchUi.View {
         }
     }
 
+    function displayFoodLogo(dc as Dc, foodItem as FoodItem, currentY as Lang.Number, width as Lang.Number) as Void {
+        var subcategory = foodItem.subcategory.toLower();
+
+
+        switch (subcategory) {
+            case "gel":
+                displayGel(dc, foodItem, currentY, width);
+                break;
+            case "fruit_jelly":
+                displayFruitJelly(dc, foodItem, currentY, width);
+                break;
+            default:
+                displayMonkey(dc, foodItem, currentY, width);
+                break;
+        }
+    }
+
+    function displayGel(dc as Dc, foodItem as FoodItem, currentY as Lang.Number, width as Lang.Number) as Void {
+         if (gelBitmap != null) {
+            var gelHeight = gelBitmap.getHeight();
+
+            dc.drawBitmap(8, currentY, gelBitmap);
+            
+            // Text in vertical middle of gel, with margin to the right of image
+            var textY = currentY + (gelHeight / 2) - 8;
+            var textX = 8 + gelBitmap.getWidth() + 10;
+            dc.drawText(textX, textY, Graphics.FONT_SMALL, foodItem.name, Graphics.TEXT_JUSTIFY_LEFT);
+            
+            // Show carbs info if available
+            if (foodItem.carbs > 0) {
+                var carbsText = foodItem.carbs.toString() + "g";
+                dc.drawText(width - 10, textY, Graphics.FONT_SMALL, carbsText, Graphics.TEXT_JUSTIFY_RIGHT);
+            }
+        }
+    }
+
+    function displayFruitJelly(dc as Dc, foodItem as FoodItem, currentY as Lang.Number, width as Lang.Number) as Void {
+         if (fruitJellyBitmap != null) {
+            var fruitJellyHeight = fruitJellyBitmap.getHeight();
+
+            dc.drawBitmap(8, currentY, fruitJellyBitmap);
+
+            // Text in vertical middle of fruit jelly, with margin to the right of image
+            var textY = currentY + (fruitJellyHeight / 2) - 8;
+            var textX = 8 + fruitJellyBitmap.getWidth() + 10;
+            dc.drawText(textX, textY, Graphics.FONT_SMALL, foodItem.name, Graphics.TEXT_JUSTIFY_LEFT);
+            
+            // Show carbs info if available
+            if (foodItem.carbs > 0) {
+                var carbsText = foodItem.carbs.toString() + "g";
+                dc.drawText(width - 10, textY, Graphics.FONT_SMALL, carbsText, Graphics.TEXT_JUSTIFY_RIGHT);
+            }
+        }
+    }
+
+    function displayMonkey(dc as Dc, foodItem as FoodItem, currentY as Lang.Number, width as Lang.Number) as Void {
+        if (monkeyBitmap != null) {
+            var monkeyHeight = monkeyBitmap.getHeight();
+
+            dc.drawBitmap(8, currentY, monkeyBitmap);
+            
+            // Text in vertical middle of monkey, with margin to the right of image
+            var textY = currentY + (monkeyHeight / 2) - 8;
+            var textX = 8 + monkeyBitmap.getWidth() + 10;
+            dc.drawText(textX, textY, Graphics.FONT_SMALL, foodItem.name, Graphics.TEXT_JUSTIFY_LEFT);
+            
+            // Show carbs info if available
+            if (foodItem.carbs > 0) {
+                var carbsText = foodItem.carbs.toString() + "g";
+                dc.drawText(width - 10, textY, Graphics.FONT_SMALL, carbsText, Graphics.TEXT_JUSTIFY_RIGHT);
+            }
+        }
+    }
     //! Request data update from the app orchestrator
     function requestDataUpdate() as Void {
         // Data updates are now handled automatically by the app
