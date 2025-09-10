@@ -5,6 +5,8 @@ module Constants {
     }
     [ @file = "/Users/FELIX/DiabetesFoodManagement/source/Constants.mc"; @line = 5; @position = 10; @symbol_constdef = [TIME_STEP_SEC,5,10,23]; ]
     const TIME_STEP_SEC = 30;
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/Constants.mc"; @line = 6; @position = 10; @symbol_constdef = [DEFAULT_OVERRIDE_PROFIL,6,10,33]; ]
+    const DEFAULT_OVERRIDE_PROFIL = "Default";
 }
 [ @file = "/Users/FELIX/DiabetesFoodManagement/source/Constants.mc"; @line = 1; ]
 <init> {

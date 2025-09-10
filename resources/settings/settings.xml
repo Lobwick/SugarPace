@@ -5,4 +5,7 @@
     <setting propertyKey="@Properties.nightscout_url" title="@Strings.nightscout_url_title">
         <settingConfig type="alphaNumeric" required="false" />
     </setting>
+    <setting propertyKey="@Properties.otp_secret" title="@Strings.otp_secret_title">
+        <settingConfig type="alphaNumeric" required="false" />
+    </setting>
 </settings>

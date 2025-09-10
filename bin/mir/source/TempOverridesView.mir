@@ -16,762 +16,1196 @@ import Toybox.Timer;
 class TempOverridesView extends WatchUi.View {
     [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 9; ]
     <init> {
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 11 16 ]
-        %tmp.1 = newa 0;
-        putv self :tempBasals %tmp.1;
     }
     [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 9; ]
     static
     <init> {
     }
-    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 11; @position = 16; @symbol_vardef = [tempBasals,11,16,26]; @symbol_type<0> = [Lang,11,30,34]; @symbol_type<1> = [Array,11,35,40]; ]
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 14; @position = 16; @symbol_vardef = [appState,14,16,24]; @symbol_type<0> = [AppState,14,28,36]; ]
     private
-    var tempBasals as Lang.Array;
-    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 12; @position = 16; @symbol_vardef = [activeProfile,12,16,29]; @symbol_type<0> = [Lang,12,33,37]; @symbol_type<1> = [String,12,38,44]; ]
-    private
-    var activeProfile as Lang.String = "";
-    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 14; @symbol_functiondef = [initialize,14,13,23]; ]
-    function initialize() as Void {
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_14_26_16_4_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 15 8 ]
-        symbol [ View %tmp.2 15 8 12 ];
+    var appState as AppState;
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 16; @symbol_functiondef = [initialize,16,13,23]; @symbol_param<0> = [appState,16,24,32]; @symbol_param<0>_type<0> = [AppState,16,36,44]; ]
+    function initialize(appState as AppState) as Void {
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_16_46_19_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 17 8 ]
+        symbol [ View %tmp.2 17 8 12 ];
         %tmp.2 = getv ? :View;
-        symbol [ initialize %tmp.3 15 13 23 ];
+        symbol [ initialize %tmp.3 17 13 23 ];
         %tmp.3 = getv function %tmp.2 :initialize;
         invoke %tmp.2 %tmp.3();
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_14_26_16_4_stop:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 18 8 ]
+        symbol [ self %self 18 8 12 ];
+        %tmp.4 = lgetv %appState;
+        symbol [ appState %tmp.4 18 24 32 ];
+        symbol [ appState ? 18 13 21 ];
+        putv self :appState %tmp.4;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_16_46_19_4_stop:
     }
-    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 18; @symbol_functiondef = [onShow,18,13,19]; ]
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 21; @symbol_functiondef = [onShow,21,13,19]; ]
     function onShow() as Void {
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_18_30_28_4_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 20 8 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_18_30_28_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_18_30_28_4_stop" ]
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_21_30_31_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 23 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_21_30_31_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_21_30_31_4_stop" ]
         %app.1 = local;
-        symbol [ app %app.1 20 12 15 ];
-        symbol [ Application %tmp.1 20 18 29 ];
+        symbol [ app %app.1 23 12 15 ];
+        symbol [ Application %tmp.1 23 18 29 ];
         %tmp.1 = getm $.Toybox.Application;
-        symbol [ getApp %tmp.2 20 30 36 ];
+        symbol [ getApp %tmp.2 23 30 36 ];
         %tmp.2 = getv function %tmp.1 :getApp;
         %tmp.3 = invoke %tmp.1 %tmp.2();
         %tmp.4 = as %tmp.3 DiabetesFoodManagementApp;
-        symbol [ DiabetesFoodManagementApp %tmp.4 20 42 67 ];
+        symbol [ DiabetesFoodManagementApp %tmp.4 23 42 67 ];
         lputv %app.1 %tmp.4;
-        symbol [ app %app.1 20 12 15 ];
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 21 8 ]
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_21_8_23_8_if_stmt:
+        symbol [ app %app.1 23 12 15 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 24 8 ]
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_24_8_26_8_if_stmt:
         %tmp.5 = lgetv %app.1;
-        symbol [ app %tmp.5 21 12 15 ];
+        symbol [ app %tmp.5 24 12 15 ];
         %tmp.6 = null;
         %tmp.7 = ne %tmp.5 %tmp.6;
-        bf %tmp.7 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_21_8_23_8_if_end;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_21_8_23_8_if_true:
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_21_25_23_8_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 22 12 ]
+        bf %tmp.7 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_24_8_26_8_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_24_8_26_8_if_true:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_24_25_26_8_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 25 12 ]
         %tmp.8 = lgetv %app.1;
-        symbol [ app %tmp.8 22 12 15 ];
+        symbol [ app %tmp.8 25 12 15 ];
         %tmp.9 = as %tmp.8 { (!Null) };
-        symbol [ fetchTempBasalData %tmp.10 22 16 34 ];
-        %tmp.10 = getv function %tmp.9 :fetchTempBasalData;
-        invoke %tmp.9 %tmp.10();
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_21_25_23_8_stop:
-        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_21_8_23_8_if_end;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_21_8_23_8_if_end:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 26 8 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_18_30_28_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_18_30_28_4_stop" ]
+        symbol [ getNightscoutService %tmp.10 25 16 36 ];
+        %tmp.10 = getv function %tmp.9 :getNightscoutService;
+        %tmp.11 = invoke %tmp.9 %tmp.10();
+        symbol [ fetchTempBasalData %tmp.12 25 39 57 ];
+        %tmp.12 = getv function %tmp.11 :fetchTempBasalData;
+        invoke %tmp.11 %tmp.12();
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_24_25_26_8_stop:
+        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_24_8_26_8_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_24_8_26_8_if_end:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 29 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_21_30_31_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_21_30_31_4_stop" ]
         %timer.2 = local;
-        symbol [ timer %timer.2 26 12 17 ];
-        symbol [ Timer %tmp.13 26 24 29 ];
-        %tmp.13 = getm $.Toybox.Timer;
-        symbol [ Timer %tmp.14 26 30 35 ];
-        %tmp.14 = getv function ? %tmp.13 :Timer;
-        %tmp.11 = newc %tmp.14 ();
-        lputv %timer.2 %tmp.11;
-        symbol [ timer %timer.2 26 12 17 ];
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 27 8 ]
-        %tmp.15 = lgetv %timer.2;
-        symbol [ timer %tmp.15 27 8 13 ];
-        symbol [ start %tmp.16 27 14 19 ];
-        %tmp.16 = getv function %tmp.15 :start;
-        %tmp.17 = self;
-        symbol [ method %tmp.18 27 20 26 ];
-        %tmp.18 = getv function %tmp.17 :method;
-        %tmp.20 = const :updateData;
-        symbol [ updateData %tmp.20 27 28 38 const ];
-        %tmp.21 = invoke %tmp.17 %tmp.18(%tmp.20);
-        %tmp.22 = 2000;
-        %tmp.23 = false;
-        invoke %tmp.15 %tmp.16(%tmp.21, %tmp.22, %tmp.23);
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_18_30_28_4_stop:
+        symbol [ timer %timer.2 29 12 17 ];
+        symbol [ Timer %tmp.15 29 24 29 ];
+        %tmp.15 = getm $.Toybox.Timer;
+        symbol [ Timer %tmp.16 29 30 35 ];
+        %tmp.16 = getv function ? %tmp.15 :Timer;
+        %tmp.13 = newc %tmp.16 ();
+        lputv %timer.2 %tmp.13;
+        symbol [ timer %timer.2 29 12 17 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 30 8 ]
+        %tmp.17 = lgetv %timer.2;
+        symbol [ timer %tmp.17 30 8 13 ];
+        symbol [ start %tmp.18 30 14 19 ];
+        %tmp.18 = getv function %tmp.17 :start;
+        %tmp.19 = self;
+        symbol [ method %tmp.20 30 20 26 ];
+        %tmp.20 = getv function %tmp.19 :method;
+        %tmp.22 = const :updateData;
+        symbol [ updateData %tmp.22 30 28 38 const ];
+        %tmp.23 = invoke %tmp.19 %tmp.20(%tmp.22);
+        %tmp.24 = 2000;
+        %tmp.25 = false;
+        invoke %tmp.17 %tmp.18(%tmp.23, %tmp.24, %tmp.25);
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_21_30_31_4_stop:
     }
-    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 30; @symbol_functiondef = [updateData,30,13,23]; ]
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 33; @symbol_functiondef = [updateData,33,13,23]; ]
     function updateData() as Void {
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_30_34_37_4_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 31 8 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_30_34_37_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_30_34_37_4_stop" ]
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_33_34_38_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 34 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_33_34_38_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_33_34_38_4_stop" ]
         %app.1 = local;
-        symbol [ app %app.1 31 12 15 ];
-        symbol [ Application %tmp.1 31 18 29 ];
+        symbol [ app %app.1 34 12 15 ];
+        symbol [ Application %tmp.1 34 18 29 ];
         %tmp.1 = getm $.Toybox.Application;
-        symbol [ getApp %tmp.2 31 30 36 ];
+        symbol [ getApp %tmp.2 34 30 36 ];
         %tmp.2 = getv function %tmp.1 :getApp;
         %tmp.3 = invoke %tmp.1 %tmp.2();
         %tmp.4 = as %tmp.3 DiabetesFoodManagementApp;
-        symbol [ DiabetesFoodManagementApp %tmp.4 31 42 67 ];
+        symbol [ DiabetesFoodManagementApp %tmp.4 34 42 67 ];
         lputv %app.1 %tmp.4;
-        symbol [ app %app.1 31 12 15 ];
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 32 8 ]
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_32_8_36_8_if_stmt:
+        symbol [ app %app.1 34 12 15 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 35 8 ]
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_35_8_37_8_if_stmt:
         %tmp.5 = lgetv %app.1;
-        symbol [ app %tmp.5 32 12 15 ];
+        symbol [ app %tmp.5 35 12 15 ];
         %tmp.6 = null;
         %tmp.7 = ne %tmp.5 %tmp.6;
-        bf %tmp.7 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_32_8_36_8_if_end;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_32_8_36_8_if_true:
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_32_25_36_8_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 33 12 ]
-        %tmp.8 = lgetv %app.1;
-        symbol [ app %tmp.8 33 25 28 ];
-        %tmp.9 = as %tmp.8 { (!Null) };
-        symbol [ getTempBasals %tmp.10 33 29 42 ];
-        %tmp.10 = getv function %tmp.9 :getTempBasals;
-        %tmp.11 = invoke %tmp.9 %tmp.10();
-        symbol [ tempBasals ? 33 12 22 ];
-        putv self :tempBasals %tmp.11;
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 34 12 ]
-        %tmp.12 = lgetv %app.1;
-        symbol [ app %tmp.12 34 28 31 ];
-        %tmp.13 = as %tmp.12 { (!Null) };
-        symbol [ getActiveProfile %tmp.14 34 32 48 ];
-        %tmp.14 = getv function %tmp.13 :getActiveProfile;
-        %tmp.15 = invoke %tmp.13 %tmp.14();
-        symbol [ activeProfile ? 34 12 25 ];
-        putv self :activeProfile %tmp.15;
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 35 12 ]
-        symbol [ WatchUi %tmp.16 35 12 19 ];
-        %tmp.16 = getm $.Toybox.WatchUi;
-        symbol [ requestUpdate %tmp.17 35 20 33 ];
-        %tmp.17 = getv function %tmp.16 :requestUpdate;
-        invoke %tmp.16 %tmp.17();
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_32_25_36_8_stop:
-        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_32_8_36_8_if_end;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_32_8_36_8_if_end:
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_30_34_37_4_stop:
+        bf %tmp.7 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_35_8_37_8_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_35_8_37_8_if_true:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_35_25_37_8_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 36 12 ]
+        symbol [ WatchUi %tmp.8 36 12 19 ];
+        %tmp.8 = getm $.Toybox.WatchUi;
+        symbol [ requestUpdate %tmp.9 36 20 33 ];
+        %tmp.9 = getv function %tmp.8 :requestUpdate;
+        invoke %tmp.8 %tmp.9();
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_35_25_37_8_stop:
+        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_35_8_37_8_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_35_8_37_8_if_end:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_33_34_38_4_stop:
     }
-    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 39; @symbol_functiondef = [onUpdate,39,13,21]; @symbol_param<0> = [dc,39,22,24]; @symbol_param<0>_type<0> = [Dc,39,28,30]; ]
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 40; @symbol_functiondef = [onUpdate,40,13,21]; @symbol_param<0> = [dc,40,22,24]; @symbol_param<0>_type<0> = [Dc,40,28,30]; ]
     function onUpdate(dc as Dc) as Void {
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 41 8 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_stop" ]
-        %app.1 = local;
-        symbol [ app %app.1 41 12 15 ];
-        symbol [ Application %tmp.1 41 18 29 ];
-        %tmp.1 = getm $.Toybox.Application;
-        symbol [ getApp %tmp.2 41 30 36 ];
-        %tmp.2 = getv function %tmp.1 :getApp;
-        %tmp.3 = invoke %tmp.1 %tmp.2();
-        %tmp.4 = as %tmp.3 DiabetesFoodManagementApp;
-        symbol [ DiabetesFoodManagementApp %tmp.4 41 42 67 ];
-        lputv %app.1 %tmp.4;
-        symbol [ app %app.1 41 12 15 ];
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_start:
 [ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 42 8 ]
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_42_8_45_8_if_stmt:
-        %tmp.5 = lgetv %app.1;
-        symbol [ app %tmp.5 42 12 15 ];
-        %tmp.6 = null;
-        %tmp.7 = ne %tmp.5 %tmp.6;
-        bf %tmp.7 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_42_8_45_8_if_end;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_42_8_45_8_if_true:
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_42_25_45_8_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 43 12 ]
-        %tmp.8 = lgetv %app.1;
-        symbol [ app %tmp.8 43 25 28 ];
-        %tmp.9 = as %tmp.8 { (!Null) };
-        symbol [ getTempBasals %tmp.10 43 29 42 ];
-        %tmp.10 = getv function %tmp.9 :getTempBasals;
-        %tmp.11 = invoke %tmp.9 %tmp.10();
-        symbol [ tempBasals ? 43 12 22 ];
-        putv self :tempBasals %tmp.11;
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 44 12 ]
-        %tmp.12 = lgetv %app.1;
-        symbol [ app %tmp.12 44 28 31 ];
-        %tmp.13 = as %tmp.12 { (!Null) };
-        symbol [ getActiveProfile %tmp.14 44 32 48 ];
-        %tmp.14 = getv function %tmp.13 :getActiveProfile;
-        %tmp.15 = invoke %tmp.13 %tmp.14();
-        symbol [ activeProfile ? 44 12 25 ];
-        putv self :activeProfile %tmp.15;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_42_25_45_8_stop:
-        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_42_8_45_8_if_end;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_42_8_45_8_if_end:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 48 8 ]
-        %tmp.16 = lgetv %dc;
-        symbol [ dc %tmp.16 48 8 10 ];
-        symbol [ setColor %tmp.17 48 11 19 ];
-        %tmp.17 = getv function %tmp.16 :setColor;
-        symbol [ Graphics %tmp.18 48 20 28 ];
-        %tmp.18 = getm $.Toybox.Graphics;
-        symbol [ COLOR_BLACK %tmp.19 48 29 40 ];
-        %tmp.19 = getv %tmp.18 :COLOR_BLACK;
-        symbol [ Graphics %tmp.20 48 42 50 ];
-        %tmp.20 = getm $.Toybox.Graphics;
-        symbol [ COLOR_BLACK %tmp.21 48 51 62 ];
-        %tmp.21 = getv %tmp.20 :COLOR_BLACK;
-        invoke %tmp.16 %tmp.17(%tmp.19, %tmp.21);
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_stop" ]
+        %tempBasals.1 = local;
+        symbol [ tempBasals %tempBasals.1 42 12 22 ];
+        symbol [ appState %tmp.2 42 25 33 ];
+        %tmp.2 = getv ? :appState;
+        symbol [ tempBasals %tmp.3 42 34 44 ];
+        %tmp.3 = getv %tmp.2 :tempBasals;
+        lputv %tempBasals.1 %tmp.3;
+        symbol [ tempBasals %tempBasals.1 42 12 22 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 43 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_stop" ]
+        %activeProfile.2 = local;
+        symbol [ activeProfile %activeProfile.2 43 12 25 ];
+        symbol [ appState %tmp.5 43 28 36 ];
+        %tmp.5 = getv ? :appState;
+        symbol [ activeProfile %tmp.6 43 37 50 ];
+        %tmp.6 = getv %tmp.5 :activeProfile;
+        lputv %activeProfile.2 %tmp.6;
+        symbol [ activeProfile %activeProfile.2 43 12 25 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 44 8 ]
+        symbol [ System %tmp.7 44 8 14 ];
+        %tmp.7 = getm $.Toybox.System;
+        symbol [ println %tmp.8 44 15 22 ];
+        %tmp.8 = getv function %tmp.7 :println;
+        %tmp.9 = "activeProfile: ";
+        %tmp.10 = lgetv %activeProfile.2;
+        symbol [ activeProfile %tmp.10 44 43 56 ];
+        %tmp.11 = add %tmp.9 %tmp.10;
+        invoke %tmp.7 %tmp.8(%tmp.11);
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 46 8 ]
+        %tmp.12 = lgetv %dc;
+        symbol [ dc %tmp.12 46 8 10 ];
+        symbol [ setColor %tmp.13 46 11 19 ];
+        %tmp.13 = getv function %tmp.12 :setColor;
+        symbol [ Graphics %tmp.14 46 20 28 ];
+        %tmp.14 = getm $.Toybox.Graphics;
+        symbol [ COLOR_BLACK %tmp.15 46 29 40 ];
+        %tmp.15 = getv %tmp.14 :COLOR_BLACK;
+        symbol [ Graphics %tmp.16 46 42 50 ];
+        %tmp.16 = getm $.Toybox.Graphics;
+        symbol [ COLOR_BLACK %tmp.17 46 51 62 ];
+        %tmp.17 = getv %tmp.16 :COLOR_BLACK;
+        invoke %tmp.12 %tmp.13(%tmp.15, %tmp.17);
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 47 8 ]
+        %tmp.18 = lgetv %dc;
+        symbol [ dc %tmp.18 47 8 10 ];
+        symbol [ clear %tmp.19 47 11 16 ];
+        %tmp.19 = getv function %tmp.18 :clear;
+        invoke %tmp.18 %tmp.19();
 [ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 49 8 ]
-        %tmp.22 = lgetv %dc;
-        symbol [ dc %tmp.22 49 8 10 ];
-        symbol [ clear %tmp.23 49 11 16 ];
-        %tmp.23 = getv function %tmp.22 :clear;
-        invoke %tmp.22 %tmp.23();
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 51 8 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_stop" ]
-        %width.2 = local;
-        symbol [ width %width.2 51 12 17 ];
-        %tmp.24 = lgetv %dc;
-        symbol [ dc %tmp.24 51 20 22 ];
-        symbol [ getWidth %tmp.25 51 23 31 ];
-        %tmp.25 = getv function %tmp.24 :getWidth;
-        %tmp.26 = invoke %tmp.24 %tmp.25();
-        lputv %width.2 %tmp.26;
-        symbol [ width %width.2 51 12 17 ];
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 52 8 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_stop" ]
-        %height.3 = local;
-        symbol [ height %height.3 52 12 18 ];
-        %tmp.27 = lgetv %dc;
-        symbol [ dc %tmp.27 52 21 23 ];
-        symbol [ getHeight %tmp.28 52 24 33 ];
-        %tmp.28 = getv function %tmp.27 :getHeight;
-        %tmp.29 = invoke %tmp.27 %tmp.28();
-        lputv %height.3 %tmp.29;
-        symbol [ height %height.3 52 12 18 ];
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 55 8 ]
-        %tmp.30 = lgetv %dc;
-        symbol [ dc %tmp.30 55 8 10 ];
-        symbol [ setColor %tmp.31 55 11 19 ];
-        %tmp.31 = getv function %tmp.30 :setColor;
-        symbol [ Graphics %tmp.32 55 20 28 ];
-        %tmp.32 = getm $.Toybox.Graphics;
-        symbol [ COLOR_WHITE %tmp.33 55 29 40 ];
-        %tmp.33 = getv %tmp.32 :COLOR_WHITE;
-        symbol [ Graphics %tmp.34 55 42 50 ];
-        %tmp.34 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.35 55 51 68 ];
-        %tmp.35 = getv %tmp.34 :COLOR_TRANSPARENT;
-        invoke %tmp.30 %tmp.31(%tmp.33, %tmp.35);
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_stop" ]
+        %width.3 = local;
+        symbol [ width %width.3 49 12 17 ];
+        %tmp.20 = lgetv %dc;
+        symbol [ dc %tmp.20 49 20 22 ];
+        symbol [ getWidth %tmp.21 49 23 31 ];
+        %tmp.21 = getv function %tmp.20 :getWidth;
+        %tmp.22 = invoke %tmp.20 %tmp.21();
+        lputv %width.3 %tmp.22;
+        symbol [ width %width.3 49 12 17 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 50 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_stop" ]
+        %height.4 = local;
+        symbol [ height %height.4 50 12 18 ];
+        %tmp.23 = lgetv %dc;
+        symbol [ dc %tmp.23 50 21 23 ];
+        symbol [ getHeight %tmp.24 50 24 33 ];
+        %tmp.24 = getv function %tmp.23 :getHeight;
+        %tmp.25 = invoke %tmp.23 %tmp.24();
+        lputv %height.4 %tmp.25;
+        symbol [ height %height.4 50 12 18 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 53 8 ]
+        %tmp.26 = lgetv %dc;
+        symbol [ dc %tmp.26 53 8 10 ];
+        symbol [ setColor %tmp.27 53 11 19 ];
+        %tmp.27 = getv function %tmp.26 :setColor;
+        symbol [ Graphics %tmp.28 53 20 28 ];
+        %tmp.28 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.29 53 29 40 ];
+        %tmp.29 = getv %tmp.28 :COLOR_WHITE;
+        symbol [ Graphics %tmp.30 53 42 50 ];
+        %tmp.30 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.31 53 51 68 ];
+        %tmp.31 = getv %tmp.30 :COLOR_TRANSPARENT;
+        invoke %tmp.26 %tmp.27(%tmp.29, %tmp.31);
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 54 8 ]
+        %tmp.32 = lgetv %dc;
+        symbol [ dc %tmp.32 54 8 10 ];
+        symbol [ drawText %tmp.33 54 11 19 ];
+        %tmp.33 = getv function %tmp.32 :drawText;
+        %tmp.34 = lgetv %width.3;
+        symbol [ width %tmp.34 54 20 25 ];
+        %tmp.35 = 2;
+        %tmp.36 = div %tmp.34 %tmp.35;
+        %tmp.37 = 10;
+        symbol [ Graphics %tmp.38 54 33 41 ];
+        %tmp.38 = getm $.Toybox.Graphics;
+        symbol [ FONT_SMALL %tmp.39 54 42 52 ];
+        %tmp.39 = getv %tmp.38 :FONT_SMALL;
+        symbol [ WatchUi %tmp.40 54 54 61 ];
+        %tmp.40 = getm $.Toybox.WatchUi;
+        symbol [ loadResource %tmp.41 54 62 74 ];
+        %tmp.41 = getv function %tmp.40 :loadResource;
+        symbol [ Rez %tmp.43 54 75 78 ];
+        %tmp.43 = getv ? :Rez;
+        symbol [ Strings %tmp.44 54 79 86 ];
+        %tmp.44 = getv %tmp.43 :Strings;
+        symbol [ temp_overrides_label %tmp.45 54 87 107 ];
+        %tmp.45 = getv %tmp.44 :temp_overrides_label;
+        %tmp.46 = invoke %tmp.40 %tmp.41(%tmp.45);
+        symbol [ Graphics %tmp.47 54 110 118 ];
+        %tmp.47 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.48 54 119 138 ];
+        %tmp.48 = getv %tmp.47 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.32 %tmp.33(%tmp.36, %tmp.37, %tmp.39, %tmp.46, %tmp.48);
 [ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 56 8 ]
-        %tmp.36 = lgetv %dc;
-        symbol [ dc %tmp.36 56 8 10 ];
-        symbol [ drawText %tmp.37 56 11 19 ];
-        %tmp.37 = getv function %tmp.36 :drawText;
-        %tmp.38 = lgetv %width.2;
-        symbol [ width %tmp.38 56 20 25 ];
-        %tmp.39 = 2;
-        %tmp.40 = div %tmp.38 %tmp.39;
-        %tmp.41 = 10;
-        symbol [ Graphics %tmp.42 56 33 41 ];
-        %tmp.42 = getm $.Toybox.Graphics;
-        symbol [ FONT_SMALL %tmp.43 56 42 52 ];
-        %tmp.43 = getv %tmp.42 :FONT_SMALL;
-        %tmp.44 = "Temp Overrides";
-        symbol [ Graphics %tmp.45 56 72 80 ];
-        %tmp.45 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.46 56 81 100 ];
-        %tmp.46 = getv %tmp.45 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.36 %tmp.37(%tmp.40, %tmp.41, %tmp.43, %tmp.44, %tmp.46);
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_stop" ]
+        %yPos.5 = local;
+        symbol [ yPos %yPos.5 56 12 16 ];
+        %tmp.49 = 50;
+        lputv %yPos.5 %tmp.49;
+        symbol [ yPos %yPos.5 56 12 16 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 57 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_stop" ]
+        %buttonHeight.6 = local;
+        symbol [ buttonHeight %buttonHeight.6 57 12 24 ];
+        %tmp.50 = 50;
+        lputv %buttonHeight.6 %tmp.50;
+        symbol [ buttonHeight %buttonHeight.6 57 12 24 ];
 [ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 58 8 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_stop" ]
-        %yPos.4 = local;
-        symbol [ yPos %yPos.4 58 12 16 ];
-        %tmp.47 = 50;
-        lputv %yPos.4 %tmp.47;
-        symbol [ yPos %yPos.4 58 12 16 ];
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_stop" ]
+        %buttonWidth.7 = local;
+        symbol [ buttonWidth %buttonWidth.7 58 12 23 ];
+        %tmp.51 = lgetv %width.3;
+        symbol [ width %tmp.51 58 26 31 ];
+        %tmp.52 = 20;
+        %tmp.53 = sub %tmp.51 %tmp.52;
+        lputv %buttonWidth.7 %tmp.53;
+        symbol [ buttonWidth %buttonWidth.7 58 12 23 ];
 [ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 59 8 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_stop" ]
-        %buttonHeight.5 = local;
-        symbol [ buttonHeight %buttonHeight.5 59 12 24 ];
-        %tmp.48 = 35;
-        lputv %buttonHeight.5 %tmp.48;
-        symbol [ buttonHeight %buttonHeight.5 59 12 24 ];
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 60 8 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_stop" ]
-        %buttonWidth.6 = local;
-        symbol [ buttonWidth %buttonWidth.6 60 12 23 ];
-        %tmp.49 = lgetv %width.2;
-        symbol [ width %tmp.49 60 26 31 ];
-        %tmp.50 = 20;
-        %tmp.51 = sub %tmp.49 %tmp.50;
-        lputv %buttonWidth.6 %tmp.51;
-        symbol [ buttonWidth %buttonWidth.6 60 12 23 ];
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 61 8 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_stop" ]
-        %buttonX.7 = local;
-        symbol [ buttonX %buttonX.7 61 12 19 ];
-        %tmp.52 = 10;
-        lputv %buttonX.7 %tmp.52;
-        symbol [ buttonX %buttonX.7 61 12 19 ];
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 64 8 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_stop" ]
-        %defaultColor.8 = local;
-        symbol [ defaultColor %defaultColor.8 64 12 24 ];
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_64_27_64_93_begin:
-        symbol [ activeProfile %tmp.54 64 27 40 ];
-        %tmp.54 = getv ? :activeProfile;
-        symbol [ equals %tmp.55 64 41 47 ];
-        %tmp.55 = getv function %tmp.54 :equals;
-        %tmp.56 = "Default";
-        %tmp.57 = invoke %tmp.54 %tmp.55(%tmp.56);
-        bf %tmp.57 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_64_27_64_93_false;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_64_27_64_93_true:
-        symbol [ Graphics %tmp.58 64 61 69 ];
-        %tmp.58 = getm $.Toybox.Graphics;
-        symbol [ COLOR_GREEN %tmp.59 64 70 81 ];
-        %tmp.59 = getv %tmp.58 :COLOR_GREEN;
-        push %tmp.59;
-        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_64_27_64_93_end;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_64_27_64_93_false:
-        symbol [ Graphics %tmp.60 64 84 92 ];
-        %tmp.60 = getm $.Toybox.Graphics;
-        symbol [ COLOR_DK_GRAY %tmp.61 64 93 106 ];
-        %tmp.61 = getv %tmp.60 :COLOR_DK_GRAY;
-        push %tmp.61;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_64_27_64_93_end:
-        %tmp.62 = phi [%tmp.57 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_64_27_64_93_begin] [%tmp.59 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_64_27_64_93_true] [%tmp.61 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_64_27_64_93_false] [%tmp.62 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_64_27_64_93_end];
-        lputv %defaultColor.8 %tmp.62;
-        symbol [ defaultColor %defaultColor.8 64 12 24 ];
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_stop" ]
+        %buttonX.8 = local;
+        symbol [ buttonX %buttonX.8 59 12 19 ];
+        %tmp.54 = 10;
+        lputv %buttonX.8 %tmp.54;
+        symbol [ buttonX %buttonX.8 59 12 19 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 62 8 ]
+        symbol [ appState %tmp.55 62 8 16 ];
+        %tmp.55 = getv self :appState;
+        %tmp.56 = newa 0;
+        symbol [ presetCoordinatesProfile ? 62 17 41 ];
+        putv %tmp.55 :presetCoordinatesProfile %tmp.56;
 [ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 65 8 ]
-        %tmp.63 = self;
-        symbol [ drawButton %tmp.64 65 8 18 ];
-        %tmp.64 = getv function %tmp.63 :drawButton;
-        %tmp.65 = lgetv %dc;
-        symbol [ dc %tmp.65 65 19 21 ];
-        %tmp.66 = lgetv %buttonX.7;
-        symbol [ buttonX %tmp.66 65 23 30 ];
-        %tmp.67 = lgetv %yPos.4;
-        symbol [ yPos %tmp.67 65 32 36 ];
-        %tmp.68 = lgetv %buttonWidth.6;
-        symbol [ buttonWidth %tmp.68 65 38 49 ];
-        %tmp.69 = lgetv %buttonHeight.5;
-        symbol [ buttonHeight %tmp.69 65 51 63 ];
-        %tmp.70 = "Default";
-        %tmp.71 = lgetv %defaultColor.8;
-        symbol [ defaultColor %tmp.71 65 76 88 ];
-        invoke %tmp.63 %tmp.64(%tmp.65, %tmp.66, %tmp.67, %tmp.68, %tmp.69, %tmp.70, %tmp.71);
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_stop" ]
+        %defaultColor.9 = local;
+        symbol [ defaultColor %defaultColor.9 65 12 24 ];
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_65_27_65_117_begin:
+        %tmp.57 = lgetv %activeProfile.2;
+        symbol [ activeProfile %tmp.57 65 27 40 ];
+        symbol [ equals %tmp.58 65 41 47 ];
+        %tmp.58 = getv function %tmp.57 :equals;
+        symbol [ Constants %tmp.60 65 48 57 ];
+        %tmp.60 = getv ? :Constants;
+        symbol [ DEFAULT_OVERRIDE_PROFIL %tmp.61 65 58 81 ];
+        %tmp.61 = getv %tmp.60 :DEFAULT_OVERRIDE_PROFIL;
+        %tmp.62 = invoke %tmp.57 %tmp.58(%tmp.61);
+        bf %tmp.62 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_65_27_65_117_false;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_65_27_65_117_true:
+        symbol [ Graphics %tmp.63 65 85 93 ];
+        %tmp.63 = getm $.Toybox.Graphics;
+        symbol [ COLOR_GREEN %tmp.64 65 94 105 ];
+        %tmp.64 = getv %tmp.63 :COLOR_GREEN;
+        push %tmp.64;
+        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_65_27_65_117_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_65_27_65_117_false:
+        symbol [ Graphics %tmp.65 65 108 116 ];
+        %tmp.65 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_BLUE %tmp.66 65 117 130 ];
+        %tmp.66 = getv %tmp.65 :COLOR_DK_BLUE;
+        push %tmp.66;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_65_27_65_117_end:
+        %tmp.67 = phi [%tmp.62 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_65_27_65_117_begin] [%tmp.64 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_65_27_65_117_true] [%tmp.66 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_65_27_65_117_false] [%tmp.67 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_65_27_65_117_end];
+        lputv %defaultColor.9 %tmp.67;
+        symbol [ defaultColor %defaultColor.9 65 12 24 ];
 [ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 66 8 ]
-        %tmp.72 = lgetv %yPos.4;
-        symbol [ yPos %tmp.72 66 8 12 ];
-        %tmp.73 = lgetv %buttonHeight.5;
-        symbol [ buttonHeight %tmp.73 66 16 28 ];
-        %tmp.74 = 10;
-        %tmp.75 = add %tmp.73 %tmp.74;
-        %tmp.76 = add %tmp.72 %tmp.75;
-        lputv %yPos.4 %tmp.76;
-        symbol [ yPos %yPos.4 66 8 12 ];
+        %tmp.68 = self;
+        symbol [ drawButton %tmp.69 66 8 18 ];
+        %tmp.69 = getv function %tmp.68 :drawButton;
+        %tmp.70 = lgetv %dc;
+        symbol [ dc %tmp.70 66 19 21 ];
+        %tmp.71 = lgetv %buttonX.8;
+        symbol [ buttonX %tmp.71 66 23 30 ];
+        %tmp.72 = lgetv %yPos.5;
+        symbol [ yPos %tmp.72 66 32 36 ];
+        %tmp.73 = lgetv %buttonWidth.7;
+        symbol [ buttonWidth %tmp.73 66 38 49 ];
+        %tmp.74 = lgetv %buttonHeight.6;
+        symbol [ buttonHeight %tmp.74 66 51 63 ];
+        symbol [ Constants %tmp.76 66 65 74 ];
+        %tmp.76 = getv ? :Constants;
+        symbol [ DEFAULT_OVERRIDE_PROFIL %tmp.77 66 75 98 ];
+        %tmp.77 = getv %tmp.76 :DEFAULT_OVERRIDE_PROFIL;
+        %tmp.78 = lgetv %defaultColor.9;
+        symbol [ defaultColor %tmp.78 66 100 112 ];
+        invoke %tmp.68 %tmp.69(%tmp.70, %tmp.71, %tmp.72, %tmp.73, %tmp.74, %tmp.77, %tmp.78);
 [ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 69 8 ]
-        for @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_8_79_8_for_test @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_8_79_8_for_incr @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_8_79_8_for_end;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_8_79_8_for_init:
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_8_79_8_for_begin" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_8_79_8_for_end" ]
-        %i.9 = local;
-        symbol [ i %i.9 69 17 18 ];
-        %tmp.77 = 0;
-        lputv %i.9 %tmp.77;
-        symbol [ i %i.9 69 17 18 ];
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_8_79_8_for_test:
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_24_69_65_begin:
-        %tmp.78 = lgetv %i.9;
-        symbol [ i %tmp.78 69 24 25 ];
-        symbol [ tempBasals %tmp.80 69 28 38 ];
-        %tmp.80 = getv ? :tempBasals;
-        symbol [ size %tmp.81 69 39 43 ];
-        %tmp.81 = getv function %tmp.80 :size;
-        %tmp.82 = invoke %tmp.80 %tmp.81();
-        %tmp.83 = lt %tmp.78 %tmp.82;
-        %tmp.84 = dup %tmp.83;
-        bf %tmp.84 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_49_69_65_end;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_49_69_65_true:
-        %tmp.85 = lgetv %yPos.4;
-        symbol [ yPos %tmp.85 69 49 53 ];
-        %tmp.86 = lgetv %height.3;
-        symbol [ height %tmp.86 69 56 62 ];
-        %tmp.87 = 50;
-        %tmp.88 = sub %tmp.86 %tmp.87;
-        %tmp.89 = lt %tmp.85 %tmp.88;
-        %tmp.90 = and %tmp.83 %tmp.89;
-        push %tmp.90;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_49_69_65_end:
-        %tmp.91 = phi [%tmp.84 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_24_69_65_begin] [%tmp.90 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_49_69_65_true] [%tmp.91 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_49_69_65_end];
-        bf %tmp.91 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_8_79_8_for_end;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_8_79_8_for_begin:
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_74_79_8_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 70 12 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_74_79_8_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_74_79_8_stop" ]
-        %override.10 = local;
-        symbol [ override %override.10 70 16 24 ];
-        symbol [ tempBasals %tmp.93 70 27 37 ];
-        %tmp.93 = getv ? :tempBasals;
-        %tmp.94 = lgetv %i.9;
-        symbol [ i %tmp.94 70 38 39 ];
-        %tmp.95 = agetv %tmp.93 %tmp.94;
-        lputv %override.10 %tmp.95;
-        symbol [ override %override.10 70 16 24 ];
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 71 12 ]
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_12_78_12_if_stmt:
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_16_71_77_begin:
-        %tmp.96 = lgetv %override.10;
-        symbol [ override %tmp.96 71 16 24 ];
-        symbol [ Lang %tmp.97 71 36 40 ];
-        %tmp.97 = getm $.Toybox.Lang;
-        symbol [ Dictionary %tmp.98 71 41 51 ];
-        %tmp.98 = getv %tmp.97 :Dictionary;
-        %tmp.99 = isa %tmp.96 %tmp.98;
-        bf %tmp.99 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_12_78_12_if_end;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_55_71_77_true:
-        %tmp.100 = lgetv %override.10;
-        symbol [ override %tmp.100 71 55 63 ];
-        %tmp.101 = as %tmp.100 { (Lang.Dictionary) };
-        symbol [ hasKey %tmp.102 71 64 70 ];
-        %tmp.102 = getv function %tmp.101 :hasKey;
-        %tmp.103 = "name";
-        %tmp.104 = invoke %tmp.101 %tmp.102(%tmp.103);
-        push %tmp.104;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_55_71_77_end:
-        %tmp.105 = phi [%tmp.99 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_16_71_77_begin] [%tmp.104 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_55_71_77_true] [%tmp.105 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_55_71_77_end];
-        bf %tmp.105 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_12_78_12_if_end;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_12_78_12_if_true:
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_80_78_12_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 72 16 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_80_78_12_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_80_78_12_stop" ]
-        %name.11 = local;
-        symbol [ name %name.11 72 20 24 ];
-        %tmp.106 = lgetv %override.10;
-        symbol [ override %tmp.106 72 27 35 ];
-        %tmp.107 = as %tmp.106 { (Lang.Dictionary) };
-        symbol [ get %tmp.108 72 36 39 ];
-        %tmp.108 = getv function %tmp.107 :get;
-        %tmp.109 = "name";
-        %tmp.110 = invoke %tmp.107 %tmp.108(%tmp.109);
-        lputv %name.11 %tmp.110;
-        symbol [ name %name.11 72 20 24 ];
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 73 16 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_80_78_12_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_80_78_12_stop" ]
-        %nameStr.12 = local;
-        symbol [ nameStr %nameStr.12 73 20 27 ];
-        %tmp.111 = lgetv %name.11;
-        symbol [ name %tmp.111 73 30 34 ];
-        symbol [ toString %tmp.112 73 35 43 ];
-        %tmp.112 = getv function %tmp.111 :toString;
-        %tmp.113 = invoke %tmp.111 %tmp.112();
-        lputv %nameStr.12 %tmp.113;
-        symbol [ nameStr %nameStr.12 73 20 27 ];
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 75 16 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_80_78_12_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_80_78_12_stop" ]
-        %buttonColor.13 = local;
-        symbol [ buttonColor %buttonColor.13 75 20 31 ];
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_75_34_75_98_begin:
-        symbol [ activeProfile %tmp.115 75 34 47 ];
-        %tmp.115 = getv ? :activeProfile;
-        symbol [ equals %tmp.116 75 48 54 ];
-        %tmp.116 = getv function %tmp.115 :equals;
-        %tmp.117 = lgetv %nameStr.12;
-        symbol [ nameStr %tmp.117 75 55 62 ];
-        %tmp.118 = invoke %tmp.115 %tmp.116(%tmp.117);
-        bf %tmp.118 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_75_34_75_98_false;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_75_34_75_98_true:
-        symbol [ Graphics %tmp.119 75 66 74 ];
-        %tmp.119 = getm $.Toybox.Graphics;
-        symbol [ COLOR_GREEN %tmp.120 75 75 86 ];
-        %tmp.120 = getv %tmp.119 :COLOR_GREEN;
-        push %tmp.120;
-        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_75_34_75_98_end;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_75_34_75_98_false:
-        symbol [ Graphics %tmp.121 75 89 97 ];
-        %tmp.121 = getm $.Toybox.Graphics;
-        symbol [ COLOR_DK_BLUE %tmp.122 75 98 111 ];
-        %tmp.122 = getv %tmp.121 :COLOR_DK_BLUE;
-        push %tmp.122;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_75_34_75_98_end:
-        %tmp.123 = phi [%tmp.118 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_75_34_75_98_begin] [%tmp.120 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_75_34_75_98_true] [%tmp.122 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_75_34_75_98_false] [%tmp.123 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_75_34_75_98_end];
-        lputv %buttonColor.13 %tmp.123;
-        symbol [ buttonColor %buttonColor.13 75 20 31 ];
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 76 16 ]
-        %tmp.124 = self;
-        symbol [ drawButton %tmp.125 76 16 26 ];
-        %tmp.125 = getv function %tmp.124 :drawButton;
-        %tmp.126 = lgetv %dc;
-        symbol [ dc %tmp.126 76 27 29 ];
-        %tmp.127 = lgetv %buttonX.7;
-        symbol [ buttonX %tmp.127 76 31 38 ];
-        %tmp.128 = lgetv %yPos.4;
-        symbol [ yPos %tmp.128 76 40 44 ];
-        %tmp.129 = lgetv %buttonWidth.6;
-        symbol [ buttonWidth %tmp.129 76 46 57 ];
-        %tmp.130 = lgetv %buttonHeight.5;
-        symbol [ buttonHeight %tmp.130 76 59 71 ];
-        %tmp.131 = lgetv %nameStr.12;
-        symbol [ nameStr %tmp.131 76 73 80 ];
-        %tmp.132 = lgetv %buttonColor.13;
-        symbol [ buttonColor %tmp.132 76 82 93 ];
-        invoke %tmp.124 %tmp.125(%tmp.126, %tmp.127, %tmp.128, %tmp.129, %tmp.130, %tmp.131, %tmp.132);
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 77 16 ]
-        %tmp.133 = lgetv %yPos.4;
-        symbol [ yPos %tmp.133 77 16 20 ];
-        %tmp.134 = lgetv %buttonHeight.5;
-        symbol [ buttonHeight %tmp.134 77 24 36 ];
-        %tmp.135 = 10;
-        %tmp.136 = add %tmp.134 %tmp.135;
-        %tmp.137 = add %tmp.133 %tmp.136;
-        lputv %yPos.4 %tmp.137;
-        symbol [ yPos %yPos.4 77 16 20 ];
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_80_78_12_stop:
-        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_12_78_12_if_end;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_71_12_78_12_if_end:
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_74_79_8_stop:
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_8_79_8_for_incr:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 69 ]
-        %tmp.140 = lgetv %i.9;
-        symbol [ i %tmp.140 69 69 70 ];
-        %tmp.141 = add %tmp.140 1;
-        lputv %i.9 %tmp.141;
-        symbol [ i %i.9 69 69 70 ];
-        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_8_79_8_for_test;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_69_8_79_8_for_end:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 82 8 ]
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_82_8_86_8_if_stmt:
-        symbol [ activeProfile %tmp.143 82 12 25 ];
-        %tmp.143 = getv ? :activeProfile;
-        symbol [ length %tmp.144 82 26 32 ];
-        %tmp.144 = getv function %tmp.143 :length;
-        %tmp.145 = invoke %tmp.143 %tmp.144();
-        %tmp.146 = 0;
-        %tmp.147 = gt %tmp.145 %tmp.146;
-        bf %tmp.147 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_82_8_86_8_if_end;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_82_8_86_8_if_true:
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_82_40_86_8_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 83 12 ]
-        %tmp.148 = lgetv %dc;
-        symbol [ dc %tmp.148 83 12 14 ];
-        symbol [ setColor %tmp.149 83 15 23 ];
-        %tmp.149 = getv function %tmp.148 :setColor;
-        symbol [ Graphics %tmp.150 83 24 32 ];
-        %tmp.150 = getm $.Toybox.Graphics;
-        symbol [ COLOR_WHITE %tmp.151 83 33 44 ];
-        %tmp.151 = getv %tmp.150 :COLOR_WHITE;
-        symbol [ Graphics %tmp.152 83 46 54 ];
-        %tmp.152 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.153 83 55 72 ];
-        %tmp.153 = getv %tmp.152 :COLOR_TRANSPARENT;
-        invoke %tmp.148 %tmp.149(%tmp.151, %tmp.153);
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 84 12 ]
-        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_82_40_86_8_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_82_40_86_8_stop" ]
-        %profileText.14 = local;
-        symbol [ profileText %profileText.14 84 16 27 ];
-        %tmp.154 = "Profil actif: ";
-        symbol [ activeProfile %tmp.156 84 49 62 ];
-        %tmp.156 = getv ? :activeProfile;
-        %tmp.157 = add %tmp.154 %tmp.156;
-        lputv %profileText.14 %tmp.157;
-        symbol [ profileText %profileText.14 84 16 27 ];
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 85 12 ]
-        %tmp.158 = lgetv %dc;
-        symbol [ dc %tmp.158 85 12 14 ];
-        symbol [ drawText %tmp.159 85 15 23 ];
-        %tmp.159 = getv function %tmp.158 :drawText;
-        %tmp.160 = lgetv %width.2;
-        symbol [ width %tmp.160 85 24 29 ];
-        %tmp.161 = 2;
-        %tmp.162 = div %tmp.160 %tmp.161;
-        %tmp.163 = lgetv %yPos.4;
-        symbol [ yPos %tmp.163 85 33 37 ];
-        %tmp.164 = 10;
-        %tmp.165 = add %tmp.163 %tmp.164;
-        symbol [ Graphics %tmp.166 85 44 52 ];
-        %tmp.166 = getm $.Toybox.Graphics;
-        symbol [ FONT_XTINY %tmp.167 85 53 63 ];
-        %tmp.167 = getv %tmp.166 :FONT_XTINY;
-        %tmp.168 = lgetv %profileText.14;
-        symbol [ profileText %tmp.168 85 65 76 ];
-        symbol [ Graphics %tmp.169 85 78 86 ];
-        %tmp.169 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.170 85 87 106 ];
-        %tmp.170 = getv %tmp.169 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.158 %tmp.159(%tmp.162, %tmp.165, %tmp.167, %tmp.168, %tmp.170);
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_82_40_86_8_stop:
-        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_82_8_86_8_if_end;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_82_8_86_8_if_end:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 89 8 ]
-        %tmp.171 = lgetv %dc;
-        symbol [ dc %tmp.171 89 8 10 ];
-        symbol [ drawText %tmp.172 89 11 19 ];
-        %tmp.172 = getv function %tmp.171 :drawText;
-        %tmp.173 = lgetv %width.2;
-        symbol [ width %tmp.173 89 20 25 ];
-        %tmp.174 = 2;
-        %tmp.175 = div %tmp.173 %tmp.174;
-        %tmp.176 = lgetv %height.3;
-        symbol [ height %tmp.176 89 29 35 ];
-        %tmp.177 = 15;
-        %tmp.178 = sub %tmp.176 %tmp.177;
-        symbol [ Graphics %tmp.179 89 42 50 ];
-        %tmp.179 = getm $.Toybox.Graphics;
-        symbol [ FONT_XTINY %tmp.180 89 51 61 ];
-        %tmp.180 = getv %tmp.179 :FONT_XTINY;
-        %tmp.181 = "Menu pour retour";
-        symbol [ Graphics %tmp.182 89 83 91 ];
-        %tmp.182 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.183 89 92 111 ];
-        %tmp.183 = getv %tmp.182 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.171 %tmp.172(%tmp.175, %tmp.178, %tmp.180, %tmp.181, %tmp.183);
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_39_40_90_4_stop:
+        symbol [ appState %tmp.80 69 8 16 ];
+        %tmp.80 = getv ? :appState;
+        symbol [ presetCoordinatesProfile %tmp.81 69 17 41 ];
+        %tmp.81 = getv %tmp.80 :presetCoordinatesProfile;
+        symbol [ add %tmp.82 69 42 45 ];
+        %tmp.82 = getv function %tmp.81 :add;
+        %tmp.83 = newd 3;
+        %tmp.84 = "name";
+        symbol [ Constants %tmp.86 70 22 31 ];
+        %tmp.86 = getv ? :Constants;
+        symbol [ DEFAULT_OVERRIDE_PROFIL %tmp.87 70 32 55 ];
+        %tmp.87 = getv %tmp.86 :DEFAULT_OVERRIDE_PROFIL;
+        %tmp.88 = dup %tmp.83;
+        %tmp.89 = aputv %tmp.88 %tmp.84 %tmp.87;
+        %tmp.90 = "startY";
+        %tmp.91 = lgetv %yPos.5;
+        symbol [ yPos %tmp.91 71 24 28 ];
+        %tmp.92 = dup %tmp.89;
+        %tmp.93 = aputv %tmp.92 %tmp.90 %tmp.91;
+        %tmp.94 = "endY";
+        %tmp.95 = lgetv %yPos.5;
+        symbol [ yPos %tmp.95 72 22 26 ];
+        %tmp.96 = lgetv %buttonHeight.6;
+        symbol [ buttonHeight %tmp.96 72 29 41 ];
+        %tmp.97 = add %tmp.95 %tmp.96;
+        %tmp.98 = dup %tmp.93;
+        %tmp.99 = aputv %tmp.98 %tmp.94 %tmp.97;
+        invoke %tmp.81 %tmp.82(%tmp.99);
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 75 8 ]
+        %tmp.100 = lgetv %yPos.5;
+        symbol [ yPos %tmp.100 75 8 12 ];
+        %tmp.101 = lgetv %buttonHeight.6;
+        symbol [ buttonHeight %tmp.101 75 16 28 ];
+        %tmp.102 = 10;
+        %tmp.103 = add %tmp.101 %tmp.102;
+        %tmp.104 = add %tmp.100 %tmp.103;
+        lputv %yPos.5 %tmp.104;
+        symbol [ yPos %yPos.5 75 8 12 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 78 8 ]
+        for @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_8_96_8_for_test @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_8_96_8_for_incr @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_8_96_8_for_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_8_96_8_for_init:
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_8_96_8_for_begin" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_8_96_8_for_end" ]
+        %i.10 = local;
+        symbol [ i %i.10 78 17 18 ];
+        %tmp.105 = 0;
+        lputv %i.10 %tmp.105;
+        symbol [ i %i.10 78 17 18 ];
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_8_96_8_for_test:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_24_78_65_begin:
+        %tmp.106 = lgetv %i.10;
+        symbol [ i %tmp.106 78 24 25 ];
+        %tmp.107 = lgetv %tempBasals.1;
+        symbol [ tempBasals %tmp.107 78 28 38 ];
+        symbol [ size %tmp.108 78 39 43 ];
+        %tmp.108 = getv function %tmp.107 :size;
+        %tmp.109 = invoke %tmp.107 %tmp.108();
+        %tmp.110 = lt %tmp.106 %tmp.109;
+        %tmp.111 = dup %tmp.110;
+        bf %tmp.111 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_49_78_65_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_49_78_65_true:
+        %tmp.112 = lgetv %yPos.5;
+        symbol [ yPos %tmp.112 78 49 53 ];
+        %tmp.113 = lgetv %height.4;
+        symbol [ height %tmp.113 78 56 62 ];
+        %tmp.114 = 50;
+        %tmp.115 = sub %tmp.113 %tmp.114;
+        %tmp.116 = lt %tmp.112 %tmp.115;
+        %tmp.117 = and %tmp.110 %tmp.116;
+        push %tmp.117;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_49_78_65_end:
+        %tmp.118 = phi [%tmp.111 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_24_78_65_begin] [%tmp.117 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_49_78_65_true] [%tmp.118 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_49_78_65_end];
+        bf %tmp.118 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_8_96_8_for_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_8_96_8_for_begin:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_74_96_8_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 79 12 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_74_96_8_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_74_96_8_stop" ]
+        %override.11 = local;
+        symbol [ override %override.11 79 16 24 ];
+        %tmp.119 = lgetv %tempBasals.1;
+        symbol [ tempBasals %tmp.119 79 27 37 ];
+        %tmp.120 = lgetv %i.10;
+        symbol [ i %tmp.120 79 38 39 ];
+        %tmp.121 = agetv %tmp.119 %tmp.120;
+        lputv %override.11 %tmp.121;
+        symbol [ override %override.11 79 16 24 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 80 12 ]
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_12_95_12_if_stmt:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_16_80_77_begin:
+        %tmp.122 = lgetv %override.11;
+        symbol [ override %tmp.122 80 16 24 ];
+        symbol [ Lang %tmp.123 80 36 40 ];
+        %tmp.123 = getm $.Toybox.Lang;
+        symbol [ Dictionary %tmp.124 80 41 51 ];
+        %tmp.124 = getv %tmp.123 :Dictionary;
+        %tmp.125 = isa %tmp.122 %tmp.124;
+        bf %tmp.125 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_12_95_12_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_55_80_77_true:
+        %tmp.126 = lgetv %override.11;
+        symbol [ override %tmp.126 80 55 63 ];
+        %tmp.127 = as %tmp.126 { (Lang.Dictionary) };
+        symbol [ hasKey %tmp.128 80 64 70 ];
+        %tmp.128 = getv function %tmp.127 :hasKey;
+        %tmp.129 = "name";
+        %tmp.130 = invoke %tmp.127 %tmp.128(%tmp.129);
+        push %tmp.130;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_55_80_77_end:
+        %tmp.131 = phi [%tmp.125 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_16_80_77_begin] [%tmp.130 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_55_80_77_true] [%tmp.131 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_55_80_77_end];
+        bf %tmp.131 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_12_95_12_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_12_95_12_if_true:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_80_95_12_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 81 16 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_80_95_12_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_80_95_12_stop" ]
+        %name.12 = local;
+        symbol [ name %name.12 81 20 24 ];
+        %tmp.132 = lgetv %override.11;
+        symbol [ override %tmp.132 81 27 35 ];
+        %tmp.133 = as %tmp.132 { (Lang.Dictionary) };
+        symbol [ get %tmp.134 81 36 39 ];
+        %tmp.134 = getv function %tmp.133 :get;
+        %tmp.135 = "name";
+        %tmp.136 = invoke %tmp.133 %tmp.134(%tmp.135);
+        lputv %name.12 %tmp.136;
+        symbol [ name %name.12 81 20 24 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 82 16 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_80_95_12_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_80_95_12_stop" ]
+        %nameStr.13 = local;
+        symbol [ nameStr %nameStr.13 82 20 27 ];
+        %tmp.137 = lgetv %name.12;
+        symbol [ name %tmp.137 82 30 34 ];
+        symbol [ toString %tmp.138 82 35 43 ];
+        %tmp.138 = getv function %tmp.137 :toString;
+        %tmp.139 = invoke %tmp.137 %tmp.138();
+        lputv %nameStr.13 %tmp.139;
+        symbol [ nameStr %nameStr.13 82 20 27 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 84 16 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_80_95_12_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_80_95_12_stop" ]
+        %buttonColor.14 = local;
+        symbol [ buttonColor %buttonColor.14 84 20 31 ];
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_84_34_84_98_begin:
+        %tmp.140 = lgetv %activeProfile.2;
+        symbol [ activeProfile %tmp.140 84 34 47 ];
+        symbol [ equals %tmp.141 84 48 54 ];
+        %tmp.141 = getv function %tmp.140 :equals;
+        %tmp.142 = lgetv %nameStr.13;
+        symbol [ nameStr %tmp.142 84 55 62 ];
+        %tmp.143 = invoke %tmp.140 %tmp.141(%tmp.142);
+        bf %tmp.143 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_84_34_84_98_false;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_84_34_84_98_true:
+        symbol [ Graphics %tmp.144 84 66 74 ];
+        %tmp.144 = getm $.Toybox.Graphics;
+        symbol [ COLOR_GREEN %tmp.145 84 75 86 ];
+        %tmp.145 = getv %tmp.144 :COLOR_GREEN;
+        push %tmp.145;
+        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_84_34_84_98_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_84_34_84_98_false:
+        symbol [ Graphics %tmp.146 84 89 97 ];
+        %tmp.146 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_BLUE %tmp.147 84 98 111 ];
+        %tmp.147 = getv %tmp.146 :COLOR_DK_BLUE;
+        push %tmp.147;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_84_34_84_98_end:
+        %tmp.148 = phi [%tmp.143 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_84_34_84_98_begin] [%tmp.145 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_84_34_84_98_true] [%tmp.147 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_84_34_84_98_false] [%tmp.148 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_84_34_84_98_end];
+        lputv %buttonColor.14 %tmp.148;
+        symbol [ buttonColor %buttonColor.14 84 20 31 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 85 16 ]
+        %tmp.149 = self;
+        symbol [ drawButton %tmp.150 85 16 26 ];
+        %tmp.150 = getv function %tmp.149 :drawButton;
+        %tmp.151 = lgetv %dc;
+        symbol [ dc %tmp.151 85 27 29 ];
+        %tmp.152 = lgetv %buttonX.8;
+        symbol [ buttonX %tmp.152 85 31 38 ];
+        %tmp.153 = lgetv %yPos.5;
+        symbol [ yPos %tmp.153 85 40 44 ];
+        %tmp.154 = lgetv %buttonWidth.7;
+        symbol [ buttonWidth %tmp.154 85 46 57 ];
+        %tmp.155 = lgetv %buttonHeight.6;
+        symbol [ buttonHeight %tmp.155 85 59 71 ];
+        %tmp.156 = lgetv %nameStr.13;
+        symbol [ nameStr %tmp.156 85 73 80 ];
+        %tmp.157 = lgetv %buttonColor.14;
+        symbol [ buttonColor %tmp.157 85 82 93 ];
+        invoke %tmp.149 %tmp.150(%tmp.151, %tmp.152, %tmp.153, %tmp.154, %tmp.155, %tmp.156, %tmp.157);
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 88 16 ]
+        symbol [ appState %tmp.159 88 16 24 ];
+        %tmp.159 = getv ? :appState;
+        symbol [ presetCoordinatesProfile %tmp.160 88 25 49 ];
+        %tmp.160 = getv %tmp.159 :presetCoordinatesProfile;
+        symbol [ add %tmp.161 88 50 53 ];
+        %tmp.161 = getv function %tmp.160 :add;
+        %tmp.162 = newd 3;
+        %tmp.163 = "name";
+        %tmp.164 = lgetv %nameStr.13;
+        symbol [ nameStr %tmp.164 89 30 37 ];
+        %tmp.165 = dup %tmp.162;
+        %tmp.166 = aputv %tmp.165 %tmp.163 %tmp.164;
+        %tmp.167 = "startY";
+        %tmp.168 = lgetv %yPos.5;
+        symbol [ yPos %tmp.168 90 32 36 ];
+        %tmp.169 = dup %tmp.166;
+        %tmp.170 = aputv %tmp.169 %tmp.167 %tmp.168;
+        %tmp.171 = "endY";
+        %tmp.172 = lgetv %yPos.5;
+        symbol [ yPos %tmp.172 91 30 34 ];
+        %tmp.173 = lgetv %buttonHeight.6;
+        symbol [ buttonHeight %tmp.173 91 37 49 ];
+        %tmp.174 = add %tmp.172 %tmp.173;
+        %tmp.175 = dup %tmp.170;
+        %tmp.176 = aputv %tmp.175 %tmp.171 %tmp.174;
+        invoke %tmp.160 %tmp.161(%tmp.176);
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 94 16 ]
+        %tmp.177 = lgetv %yPos.5;
+        symbol [ yPos %tmp.177 94 16 20 ];
+        %tmp.178 = lgetv %buttonHeight.6;
+        symbol [ buttonHeight %tmp.178 94 24 36 ];
+        %tmp.179 = 10;
+        %tmp.180 = add %tmp.178 %tmp.179;
+        %tmp.181 = add %tmp.177 %tmp.180;
+        lputv %yPos.5 %tmp.181;
+        symbol [ yPos %yPos.5 94 16 20 ];
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_80_95_12_stop:
+        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_12_95_12_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_80_12_95_12_if_end:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_74_96_8_stop:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_8_96_8_for_incr:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 78 ]
+        %tmp.184 = lgetv %i.10;
+        symbol [ i %tmp.184 78 69 70 ];
+        %tmp.185 = add %tmp.184 1;
+        lputv %i.10 %tmp.185;
+        symbol [ i %i.10 78 69 70 ];
+        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_8_96_8_for_test;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_78_8_96_8_for_end:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 99 8 ]
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_99_8_103_8_if_stmt:
+        %tmp.186 = lgetv %activeProfile.2;
+        symbol [ activeProfile %tmp.186 99 12 25 ];
+        symbol [ length %tmp.187 99 26 32 ];
+        %tmp.187 = getv function %tmp.186 :length;
+        %tmp.188 = invoke %tmp.186 %tmp.187();
+        %tmp.189 = 0;
+        %tmp.190 = gt %tmp.188 %tmp.189;
+        bf %tmp.190 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_99_8_103_8_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_99_8_103_8_if_true:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_99_40_103_8_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 100 12 ]
+        %tmp.191 = lgetv %dc;
+        symbol [ dc %tmp.191 100 12 14 ];
+        symbol [ setColor %tmp.192 100 15 23 ];
+        %tmp.192 = getv function %tmp.191 :setColor;
+        symbol [ Graphics %tmp.193 100 24 32 ];
+        %tmp.193 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.194 100 33 44 ];
+        %tmp.194 = getv %tmp.193 :COLOR_WHITE;
+        symbol [ Graphics %tmp.195 100 46 54 ];
+        %tmp.195 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.196 100 55 72 ];
+        %tmp.196 = getv %tmp.195 :COLOR_TRANSPARENT;
+        invoke %tmp.191 %tmp.192(%tmp.194, %tmp.196);
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 101 12 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_99_40_103_8_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_99_40_103_8_stop" ]
+        %profileText.15 = local;
+        symbol [ profileText %profileText.15 101 16 27 ];
+        symbol [ WatchUi %tmp.197 101 30 37 ];
+        %tmp.197 = getm $.Toybox.WatchUi;
+        symbol [ loadResource %tmp.198 101 38 50 ];
+        %tmp.198 = getv function %tmp.197 :loadResource;
+        symbol [ Rez %tmp.200 101 51 54 ];
+        %tmp.200 = getv ? :Rez;
+        symbol [ Strings %tmp.201 101 55 62 ];
+        %tmp.201 = getv %tmp.200 :Strings;
+        symbol [ active_profile_label %tmp.202 101 63 83 ];
+        %tmp.202 = getv %tmp.201 :active_profile_label;
+        %tmp.203 = invoke %tmp.197 %tmp.198(%tmp.202);
+        %tmp.204 = ": ";
+        %tmp.205 = add %tmp.203 %tmp.204;
+        %tmp.206 = lgetv %activeProfile.2;
+        symbol [ activeProfile %tmp.206 101 94 107 ];
+        %tmp.207 = add %tmp.205 %tmp.206;
+        lputv %profileText.15 %tmp.207;
+        symbol [ profileText %profileText.15 101 16 27 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 102 12 ]
+        %tmp.208 = lgetv %dc;
+        symbol [ dc %tmp.208 102 12 14 ];
+        symbol [ drawText %tmp.209 102 15 23 ];
+        %tmp.209 = getv function %tmp.208 :drawText;
+        %tmp.210 = lgetv %width.3;
+        symbol [ width %tmp.210 102 24 29 ];
+        %tmp.211 = 2;
+        %tmp.212 = div %tmp.210 %tmp.211;
+        %tmp.213 = lgetv %yPos.5;
+        symbol [ yPos %tmp.213 102 33 37 ];
+        %tmp.214 = 10;
+        %tmp.215 = add %tmp.213 %tmp.214;
+        symbol [ Graphics %tmp.216 102 44 52 ];
+        %tmp.216 = getm $.Toybox.Graphics;
+        symbol [ FONT_XTINY %tmp.217 102 53 63 ];
+        %tmp.217 = getv %tmp.216 :FONT_XTINY;
+        %tmp.218 = lgetv %profileText.15;
+        symbol [ profileText %tmp.218 102 65 76 ];
+        symbol [ Graphics %tmp.219 102 78 86 ];
+        %tmp.219 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.220 102 87 106 ];
+        %tmp.220 = getv %tmp.219 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.208 %tmp.209(%tmp.212, %tmp.215, %tmp.217, %tmp.218, %tmp.220);
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_99_40_103_8_stop:
+        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_99_8_103_8_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_99_8_103_8_if_end:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_40_40_104_4_stop:
     }
-    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 92; @symbol_functiondef = [drawButton,92,13,23]; @symbol_param<0> = [dc,92,24,26]; @symbol_param<0>_type<0> = [Dc,92,30,32]; @symbol_param<1> = [x,92,34,35]; @symbol_param<1>_type<0> = [Lang,92,39,43]; @symbol_param<1>_type<1> = [Number,92,44,50]; @symbol_param<2> = [y,92,52,53]; @symbol_param<2>_type<0> = [Lang,92,57,61]; @symbol_param<2>_type<1> = [Number,92,62,68]; @symbol_param<3> = [width,92,70,75]; @symbol_param<3>_type<0> = [Lang,92,79,83]; @symbol_param<3>_type<1> = [Number,92,84,90]; @symbol_param<4> = [height,92,92,98]; @symbol_param<4>_type<0> = [Lang,92,102,106]; @symbol_param<4>_type<1> = [Number,92,107,113]; @symbol_param<5> = [text,92,115,119]; @symbol_param<5>_type<0> = [Lang,92,123,127]; @symbol_param<5>_type<1> = [String,92,128,134]; @symbol_param<6> = [color,92,136,141]; @symbol_param<6>_type<0> = [Lang,92,145,149]; @symbol_param<6>_type<1> = [Number,92,150,156]; ]
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 106; @symbol_functiondef = [drawButton,106,13,23]; @symbol_param<0> = [dc,106,24,26]; @symbol_param<0>_type<0> = [Dc,106,30,32]; @symbol_param<1> = [x,106,34,35]; @symbol_param<1>_type<0> = [Lang,106,39,43]; @symbol_param<1>_type<1> = [Number,106,44,50]; @symbol_param<2> = [y,106,52,53]; @symbol_param<2>_type<0> = [Lang,106,57,61]; @symbol_param<2>_type<1> = [Number,106,62,68]; @symbol_param<3> = [width,106,70,75]; @symbol_param<3>_type<0> = [Lang,106,79,83]; @symbol_param<3>_type<1> = [Number,106,84,90]; @symbol_param<4> = [height,106,92,98]; @symbol_param<4>_type<0> = [Lang,106,102,106]; @symbol_param<4>_type<1> = [Number,106,107,113]; @symbol_param<5> = [text,106,115,119]; @symbol_param<5>_type<0> = [Lang,106,123,127]; @symbol_param<5>_type<1> = [String,106,128,134]; @symbol_param<6> = [color,106,136,141]; @symbol_param<6>_type<0> = [Lang,106,145,149]; @symbol_param<6>_type<1> = [Number,106,150,156]; ]
     function drawButton(dc as Dc, x as Lang.Number, y as Lang.Number, width as Lang.Number, height as Lang.Number, text as Lang.String, color as Lang.Number) as Void {
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_92_166_103_4_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 94 8 ]
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_106_166_117_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 108 8 ]
         %tmp.1 = lgetv %dc;
-        symbol [ dc %tmp.1 94 8 10 ];
-        symbol [ setColor %tmp.2 94 11 19 ];
+        symbol [ dc %tmp.1 108 8 10 ];
+        symbol [ setColor %tmp.2 108 11 19 ];
         %tmp.2 = getv function %tmp.1 :setColor;
         %tmp.3 = lgetv %color;
-        symbol [ color %tmp.3 94 20 25 ];
-        symbol [ Graphics %tmp.4 94 27 35 ];
+        symbol [ color %tmp.3 108 20 25 ];
+        symbol [ Graphics %tmp.4 108 27 35 ];
         %tmp.4 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.5 94 36 53 ];
+        symbol [ COLOR_TRANSPARENT %tmp.5 108 36 53 ];
         %tmp.5 = getv %tmp.4 :COLOR_TRANSPARENT;
         invoke %tmp.1 %tmp.2(%tmp.3, %tmp.5);
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 95 8 ]
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 109 8 ]
         %tmp.6 = lgetv %dc;
-        symbol [ dc %tmp.6 95 8 10 ];
-        symbol [ fillRoundedRectangle %tmp.7 95 11 31 ];
+        symbol [ dc %tmp.6 109 8 10 ];
+        symbol [ fillRoundedRectangle %tmp.7 109 11 31 ];
         %tmp.7 = getv function %tmp.6 :fillRoundedRectangle;
         %tmp.8 = lgetv %x;
-        symbol [ x %tmp.8 95 32 33 ];
+        symbol [ x %tmp.8 109 32 33 ];
         %tmp.9 = lgetv %y;
-        symbol [ y %tmp.9 95 35 36 ];
+        symbol [ y %tmp.9 109 35 36 ];
         %tmp.10 = lgetv %width;
-        symbol [ width %tmp.10 95 38 43 ];
+        symbol [ width %tmp.10 109 38 43 ];
         %tmp.11 = lgetv %height;
-        symbol [ height %tmp.11 95 45 51 ];
+        symbol [ height %tmp.11 109 45 51 ];
         %tmp.12 = 5;
         invoke %tmp.6 %tmp.7(%tmp.8, %tmp.9, %tmp.10, %tmp.11, %tmp.12);
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 98 8 ]
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 112 8 ]
         %tmp.13 = lgetv %dc;
-        symbol [ dc %tmp.13 98 8 10 ];
-        symbol [ setColor %tmp.14 98 11 19 ];
+        symbol [ dc %tmp.13 112 8 10 ];
+        symbol [ setColor %tmp.14 112 11 19 ];
         %tmp.14 = getv function %tmp.13 :setColor;
-        symbol [ Graphics %tmp.15 98 20 28 ];
+        symbol [ Graphics %tmp.15 112 20 28 ];
         %tmp.15 = getm $.Toybox.Graphics;
-        symbol [ COLOR_WHITE %tmp.16 98 29 40 ];
+        symbol [ COLOR_WHITE %tmp.16 112 29 40 ];
         %tmp.16 = getv %tmp.15 :COLOR_WHITE;
-        symbol [ Graphics %tmp.17 98 42 50 ];
+        symbol [ Graphics %tmp.17 112 42 50 ];
         %tmp.17 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.18 98 51 68 ];
+        symbol [ COLOR_TRANSPARENT %tmp.18 112 51 68 ];
         %tmp.18 = getv %tmp.17 :COLOR_TRANSPARENT;
         invoke %tmp.13 %tmp.14(%tmp.16, %tmp.18);
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 99 8 ]
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 113 8 ]
         %tmp.19 = lgetv %dc;
-        symbol [ dc %tmp.19 99 8 10 ];
-        symbol [ drawRoundedRectangle %tmp.20 99 11 31 ];
+        symbol [ dc %tmp.19 113 8 10 ];
+        symbol [ drawRoundedRectangle %tmp.20 113 11 31 ];
         %tmp.20 = getv function %tmp.19 :drawRoundedRectangle;
         %tmp.21 = lgetv %x;
-        symbol [ x %tmp.21 99 32 33 ];
+        symbol [ x %tmp.21 113 32 33 ];
         %tmp.22 = lgetv %y;
-        symbol [ y %tmp.22 99 35 36 ];
+        symbol [ y %tmp.22 113 35 36 ];
         %tmp.23 = lgetv %width;
-        symbol [ width %tmp.23 99 38 43 ];
+        symbol [ width %tmp.23 113 38 43 ];
         %tmp.24 = lgetv %height;
-        symbol [ height %tmp.24 99 45 51 ];
+        symbol [ height %tmp.24 113 45 51 ];
         %tmp.25 = 5;
         invoke %tmp.19 %tmp.20(%tmp.21, %tmp.22, %tmp.23, %tmp.24, %tmp.25);
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 102 8 ]
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 116 8 ]
         %tmp.26 = lgetv %dc;
-        symbol [ dc %tmp.26 102 8 10 ];
-        symbol [ drawText %tmp.27 102 11 19 ];
+        symbol [ dc %tmp.26 116 8 10 ];
+        symbol [ drawText %tmp.27 116 11 19 ];
         %tmp.27 = getv function %tmp.26 :drawText;
         %tmp.28 = lgetv %x;
-        symbol [ x %tmp.28 102 20 21 ];
+        symbol [ x %tmp.28 116 20 21 ];
         %tmp.29 = lgetv %width;
-        symbol [ width %tmp.29 102 24 29 ];
+        symbol [ width %tmp.29 116 24 29 ];
         %tmp.30 = 2;
         %tmp.31 = div %tmp.29 %tmp.30;
         %tmp.32 = add %tmp.28 %tmp.31;
         %tmp.33 = lgetv %y;
-        symbol [ y %tmp.33 102 33 34 ];
+        symbol [ y %tmp.33 116 33 34 ];
         %tmp.34 = lgetv %height;
-        symbol [ height %tmp.34 102 37 43 ];
+        symbol [ height %tmp.34 116 37 43 ];
         %tmp.35 = 2;
         %tmp.36 = div %tmp.34 %tmp.35;
         %tmp.37 = add %tmp.33 %tmp.36;
         %tmp.38 = 8;
         %tmp.39 = sub %tmp.37 %tmp.38;
-        symbol [ Graphics %tmp.40 102 51 59 ];
+        symbol [ Graphics %tmp.40 116 51 59 ];
         %tmp.40 = getm $.Toybox.Graphics;
-        symbol [ FONT_SMALL %tmp.41 102 60 70 ];
+        symbol [ FONT_SMALL %tmp.41 116 60 70 ];
         %tmp.41 = getv %tmp.40 :FONT_SMALL;
         %tmp.42 = lgetv %text;
-        symbol [ text %tmp.42 102 72 76 ];
-        symbol [ Graphics %tmp.43 102 78 86 ];
+        symbol [ text %tmp.42 116 72 76 ];
+        symbol [ Graphics %tmp.43 116 78 86 ];
         %tmp.43 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.44 102 87 106 ];
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.44 116 87 106 ];
         %tmp.44 = getv %tmp.43 :TEXT_JUSTIFY_CENTER;
         invoke %tmp.26 %tmp.27(%tmp.32, %tmp.39, %tmp.41, %tmp.42, %tmp.44);
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_92_166_103_4_stop:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_106_166_117_4_stop:
+    }
+    //! Find preset at given Y coordinate
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 120; @symbol_functiondef = [findPresetAtY,120,13,26]; @symbol_param<0> = [tapY,120,27,31]; @symbol_param<0>_type<0> = [Lang,120,35,39]; @symbol_param<0>_type<1> = [Number,120,40,46]; @symbol_return<0> = [Lang,120,51,55]; @symbol_return<1> = [String,120,56,62]; ]
+    function findPresetAtY(tapY as Lang.Number) as Lang.String or Null {
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_120_64_133_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 121 8 ]
+        for @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_121_8_131_8_for_test @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_121_8_131_8_for_incr @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_121_8_131_8_for_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_121_8_131_8_for_init:
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_121_8_131_8_for_begin" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_121_8_131_8_for_end" ]
+        %i.1 = local;
+        symbol [ i %i.1 121 17 18 ];
+        %tmp.1 = 0;
+        lputv %i.1 %tmp.1;
+        symbol [ i %i.1 121 17 18 ];
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_121_8_131_8_for_test:
+        %tmp.2 = lgetv %i.1;
+        symbol [ i %tmp.2 121 24 25 ];
+        symbol [ appState %tmp.4 121 28 36 ];
+        %tmp.4 = getv ? :appState;
+        symbol [ presetCoordinatesProfile %tmp.5 121 37 61 ];
+        %tmp.5 = getv %tmp.4 :presetCoordinatesProfile;
+        symbol [ size %tmp.6 121 62 66 ];
+        %tmp.6 = getv function %tmp.5 :size;
+        %tmp.7 = invoke %tmp.5 %tmp.6();
+        %tmp.8 = lt %tmp.2 %tmp.7;
+        bf %tmp.8 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_121_8_131_8_for_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_121_8_131_8_for_begin:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_121_75_131_8_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 122 12 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_121_75_131_8_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_121_75_131_8_stop" ]
+        %coord.2 = local;
+        symbol [ coord %coord.2 122 16 21 ];
+        symbol [ appState %tmp.10 122 24 32 ];
+        %tmp.10 = getv ? :appState;
+        symbol [ presetCoordinatesProfile %tmp.11 122 33 57 ];
+        %tmp.11 = getv %tmp.10 :presetCoordinatesProfile;
+        %tmp.12 = lgetv %i.1;
+        symbol [ i %tmp.12 122 58 59 ];
+        %tmp.13 = agetv %tmp.11 %tmp.12;
+        lputv %coord.2 %tmp.13;
+        symbol [ coord %coord.2 122 16 21 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 123 12 ]
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_123_12_130_12_if_stmt:
+        %tmp.14 = lgetv %coord.2;
+        symbol [ coord %tmp.14 123 16 21 ];
+        symbol [ Lang %tmp.15 123 33 37 ];
+        %tmp.15 = getm $.Toybox.Lang;
+        symbol [ Dictionary %tmp.16 123 38 48 ];
+        %tmp.16 = getv %tmp.15 :Dictionary;
+        %tmp.17 = isa %tmp.14 %tmp.16;
+        bf %tmp.17 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_123_12_130_12_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_123_12_130_12_if_true:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_123_50_130_12_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 124 16 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_123_50_130_12_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_123_50_130_12_stop" ]
+        %startY.3 = local;
+        symbol [ startY %startY.3 124 20 26 ];
+        %tmp.18 = lgetv %coord.2;
+        symbol [ coord %tmp.18 124 29 34 ];
+        %tmp.19 = as %tmp.18 { (Lang.Dictionary) };
+        symbol [ get %tmp.20 124 35 38 ];
+        %tmp.20 = getv function %tmp.19 :get;
+        %tmp.21 = "startY";
+        %tmp.22 = invoke %tmp.19 %tmp.20(%tmp.21);
+        lputv %startY.3 %tmp.22;
+        symbol [ startY %startY.3 124 20 26 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 125 16 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_123_50_130_12_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_123_50_130_12_stop" ]
+        %endY.4 = local;
+        symbol [ endY %endY.4 125 20 24 ];
+        %tmp.23 = lgetv %coord.2;
+        symbol [ coord %tmp.23 125 27 32 ];
+        %tmp.24 = as %tmp.23 { (Lang.Dictionary) };
+        symbol [ get %tmp.25 125 33 36 ];
+        %tmp.25 = getv function %tmp.24 :get;
+        %tmp.26 = "endY";
+        %tmp.27 = invoke %tmp.24 %tmp.25(%tmp.26);
+        lputv %endY.4 %tmp.27;
+        symbol [ endY %endY.4 125 20 24 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 126 16 ]
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_16_129_16_if_stmt:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_20_127_46_begin:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_20_127_28_begin:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_20_126_74_begin:
+        %tmp.28 = lgetv %startY.3;
+        symbol [ startY %tmp.28 126 20 26 ];
+        symbol [ Lang %tmp.29 126 38 42 ];
+        %tmp.29 = getm $.Toybox.Lang;
+        symbol [ Number %tmp.30 126 43 49 ];
+        %tmp.30 = getv %tmp.29 :Number;
+        %tmp.31 = isa %tmp.28 %tmp.30;
+        bf %tmp.31 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_16_129_16_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_53_126_74_true:
+        %tmp.32 = lgetv %endY.4;
+        symbol [ endY %tmp.32 126 53 57 ];
+        symbol [ Lang %tmp.33 126 69 73 ];
+        %tmp.33 = getm $.Toybox.Lang;
+        symbol [ Number %tmp.34 126 74 80 ];
+        %tmp.34 = getv %tmp.33 :Number;
+        %tmp.35 = isa %tmp.32 %tmp.34;
+        push %tmp.35;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_53_126_74_end:
+        %tmp.36 = phi [%tmp.31 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_20_126_74_begin] [%tmp.35 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_53_126_74_true] [%tmp.36 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_53_126_74_end];
+        bf %tmp.36 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_16_129_16_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_127_20_127_28_true:
+        %tmp.37 = lgetv %tapY;
+        symbol [ tapY %tmp.37 127 20 24 ];
+        %tmp.38 = lgetv %startY.3;
+        symbol [ startY %tmp.38 127 28 34 ];
+        %tmp.39 = as %tmp.38 { (Lang.Number) };
+        %tmp.40 = gte %tmp.37 %tmp.39;
+        push %tmp.40;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_127_20_127_28_end:
+        %tmp.41 = phi [%tmp.36 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_20_127_28_begin] [%tmp.40 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_127_20_127_28_true] [%tmp.41 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_127_20_127_28_end];
+        bf %tmp.41 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_16_129_16_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_127_38_127_46_true:
+        %tmp.42 = lgetv %tapY;
+        symbol [ tapY %tmp.42 127 38 42 ];
+        %tmp.43 = lgetv %endY.4;
+        symbol [ endY %tmp.43 127 46 50 ];
+        %tmp.44 = as %tmp.43 { (Lang.Number) };
+        %tmp.45 = lte %tmp.42 %tmp.44;
+        push %tmp.45;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_127_38_127_46_end:
+        %tmp.46 = phi [%tmp.41 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_20_127_46_begin] [%tmp.45 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_127_38_127_46_true] [%tmp.46 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_127_38_127_46_end];
+        bf %tmp.46 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_16_129_16_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_16_129_16_if_true:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_127_52_129_16_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 128 20 ]
+        %tmp.47 = lgetv %coord.2;
+        symbol [ coord %tmp.47 128 27 32 ];
+        %tmp.48 = as %tmp.47 { (Lang.Dictionary) };
+        symbol [ get %tmp.49 128 33 36 ];
+        %tmp.49 = getv function %tmp.48 :get;
+        %tmp.50 = "name";
+        %tmp.51 = invoke %tmp.48 %tmp.49(%tmp.50);
+        ret %tmp.51;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_127_52_129_16_stop:
+        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_16_129_16_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_126_16_129_16_if_end:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_123_50_130_12_stop:
+        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_123_12_130_12_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_123_12_130_12_if_end:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_121_75_131_8_stop:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_121_8_131_8_for_incr:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 121 ]
+        %tmp.54 = lgetv %i.1;
+        symbol [ i %tmp.54 121 70 71 ];
+        %tmp.55 = add %tmp.54 1;
+        lputv %i.1 %tmp.55;
+        symbol [ i %i.1 121 70 71 ];
+        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_121_8_131_8_for_test;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_121_8_131_8_for_end:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 132 8 ]
+        %tmp.56 = null;
+        ret %tmp.56;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_120_64_133_4_stop:
     }
 }
-[ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 106; @symbol_classdef = [TempOverridesInputDelegate,106,6,32]; @symbol_extends<0> = [WatchUi,106,41,48]; @symbol_extends<1> = [InputDelegate,106,49,62]; ]
+[ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 136; @symbol_classdef = [TempOverridesInputDelegate,136,6,32]; @symbol_extends<0> = [WatchUi,136,41,48]; @symbol_extends<1> = [InputDelegate,136,49,62]; ]
 class TempOverridesInputDelegate extends WatchUi.InputDelegate {
-    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 106; ]
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 136; ]
     <init> {
     }
-    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 106; ]
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 136; ]
     static
     <init> {
     }
-    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 107; @symbol_functiondef = [initialize,107,13,23]; ]
-    function initialize() as Void {
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_107_26_109_4_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 108 8 ]
-        symbol [ InputDelegate %tmp.2 108 8 21 ];
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 137; @position = 16; @symbol_vardef = [view,137,16,20]; @symbol_type<0> = [TempOverridesView,137,24,41]; ]
+    private
+    var view as TempOverridesView;
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 139; @symbol_functiondef = [initialize,139,13,23]; @symbol_param<0> = [view,139,24,28]; @symbol_param<0>_type<0> = [TempOverridesView,139,32,49]; ]
+    function initialize(view as TempOverridesView) as Void {
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_139_51_142_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 140 8 ]
+        symbol [ InputDelegate %tmp.2 140 8 21 ];
         %tmp.2 = getv ? :InputDelegate;
-        symbol [ initialize %tmp.3 108 22 32 ];
+        symbol [ initialize %tmp.3 140 22 32 ];
         %tmp.3 = getv function %tmp.2 :initialize;
         invoke %tmp.2 %tmp.3();
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_107_26_109_4_stop:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 141 8 ]
+        symbol [ self %self 141 8 12 ];
+        %tmp.4 = lgetv %view;
+        symbol [ view %tmp.4 141 20 24 ];
+        symbol [ view ? 141 13 17 ];
+        putv self :view %tmp.4;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_139_51_142_4_stop:
     }
-    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 111; @symbol_functiondef = [onMenu,111,13,19]; @symbol_return<0> = [Lang,111,25,29]; @symbol_return<1> = [Boolean,111,30,37]; ]
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 144; @symbol_functiondef = [onMenu,144,13,19]; @symbol_return<0> = [Lang,144,25,29]; @symbol_return<1> = [Boolean,144,30,37]; ]
     function onMenu() as Lang.Boolean {
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_111_38_114_4_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 112 8 ]
-        symbol [ WatchUi %tmp.1 112 8 15 ];
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_144_38_147_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 145 8 ]
+        symbol [ WatchUi %tmp.1 145 8 15 ];
         %tmp.1 = getm $.Toybox.WatchUi;
-        symbol [ popView %tmp.2 112 16 23 ];
+        symbol [ popView %tmp.2 145 16 23 ];
         %tmp.2 = getv function %tmp.1 :popView;
-        symbol [ WatchUi %tmp.3 112 24 31 ];
+        symbol [ WatchUi %tmp.3 145 24 31 ];
         %tmp.3 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_DOWN %tmp.4 112 32 42 ];
+        symbol [ SLIDE_DOWN %tmp.4 145 32 42 ];
         %tmp.4 = getv %tmp.3 :SLIDE_DOWN;
         invoke %tmp.1 %tmp.2(%tmp.4);
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 113 8 ]
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 146 8 ]
         %tmp.5 = true;
         ret %tmp.5;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_111_38_114_4_stop:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_144_38_147_4_stop:
     }
-    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 116; @symbol_functiondef = [onBack,116,13,19]; @symbol_return<0> = [Lang,116,25,29]; @symbol_return<1> = [Boolean,116,30,37]; ]
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 149; @symbol_functiondef = [onBack,149,13,19]; @symbol_return<0> = [Lang,149,25,29]; @symbol_return<1> = [Boolean,149,30,37]; ]
     function onBack() as Lang.Boolean {
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_116_38_119_4_start:
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 117 8 ]
-        symbol [ WatchUi %tmp.1 117 8 15 ];
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_149_38_152_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 150 8 ]
+        symbol [ WatchUi %tmp.1 150 8 15 ];
         %tmp.1 = getm $.Toybox.WatchUi;
-        symbol [ popView %tmp.2 117 16 23 ];
+        symbol [ popView %tmp.2 150 16 23 ];
         %tmp.2 = getv function %tmp.1 :popView;
-        symbol [ WatchUi %tmp.3 117 24 31 ];
+        symbol [ WatchUi %tmp.3 150 24 31 ];
         %tmp.3 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_DOWN %tmp.4 117 32 42 ];
+        symbol [ SLIDE_DOWN %tmp.4 150 32 42 ];
         %tmp.4 = getv %tmp.3 :SLIDE_DOWN;
         invoke %tmp.1 %tmp.2(%tmp.4);
-[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 118 8 ]
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 151 8 ]
         %tmp.5 = true;
         ret %tmp.5;
-_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_116_38_119_4_stop:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_149_38_152_4_stop:
+    }
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 154; @symbol_functiondef = [onSelect,154,13,21]; @symbol_return<0> = [Lang,154,27,31]; @symbol_return<1> = [Boolean,154,32,39]; ]
+    function onSelect() as Lang.Boolean {
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_154_40_157_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 155 8 ]
+        %tmp.1 = self;
+        symbol [ handlePresetSelection %tmp.2 155 8 29 ];
+        %tmp.2 = getv function %tmp.1 :handlePresetSelection;
+        %tmp.3 = self;
+        symbol [ getCenterYPosition %tmp.4 155 30 48 ];
+        %tmp.4 = getv function %tmp.3 :getCenterYPosition;
+        %tmp.5 = invoke %tmp.3 %tmp.4();
+        invoke %tmp.1 %tmp.2(%tmp.5);
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 156 8 ]
+        %tmp.6 = true;
+        ret %tmp.6;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_154_40_157_4_stop:
+    }
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 159; @symbol_functiondef = [onKey,159,13,18]; @symbol_param<0> = [keyEvent,159,19,27]; @symbol_param<0>_type<0> = [WatchUi,159,31,38]; @symbol_param<0>_type<1> = [KeyEvent,159,39,47]; @symbol_return<0> = [Lang,159,52,56]; @symbol_return<1> = [Boolean,159,57,64]; ]
+    function onKey(keyEvent as WatchUi.KeyEvent) as Lang.Boolean {
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_159_65_166_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 160 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_159_65_166_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_159_65_166_4_stop" ]
+        %key.1 = local;
+        symbol [ key %key.1 160 12 15 ];
+        %tmp.1 = lgetv %keyEvent;
+        symbol [ keyEvent %tmp.1 160 18 26 ];
+        symbol [ getKey %tmp.2 160 27 33 ];
+        %tmp.2 = getv function %tmp.1 :getKey;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %key.1 %tmp.3;
+        symbol [ key %key.1 160 12 15 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 161 8 ]
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_161_8_164_8_if_stmt:
+        %tmp.4 = lgetv %key.1;
+        symbol [ key %tmp.4 161 12 15 ];
+        symbol [ WatchUi %tmp.5 161 19 26 ];
+        %tmp.5 = getm $.Toybox.WatchUi;
+        symbol [ KEY_ENTER %tmp.6 161 27 36 ];
+        %tmp.6 = getv %tmp.5 :KEY_ENTER;
+        %tmp.7 = eq %tmp.4 %tmp.6;
+        bf %tmp.7 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_161_8_164_8_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_161_8_164_8_if_true:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_161_38_164_8_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 162 12 ]
+        %tmp.8 = self;
+        symbol [ handlePresetSelection %tmp.9 162 12 33 ];
+        %tmp.9 = getv function %tmp.8 :handlePresetSelection;
+        %tmp.10 = self;
+        symbol [ getCenterYPosition %tmp.11 162 34 52 ];
+        %tmp.11 = getv function %tmp.10 :getCenterYPosition;
+        %tmp.12 = invoke %tmp.10 %tmp.11();
+        invoke %tmp.8 %tmp.9(%tmp.12);
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 163 12 ]
+        %tmp.13 = true;
+        ret %tmp.13;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_161_38_164_8_stop:
+        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_161_8_164_8_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_161_8_164_8_if_end:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 165 8 ]
+        %tmp.14 = false;
+        ret %tmp.14;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_159_65_166_4_stop:
+    }
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 168; @symbol_functiondef = [onTap,168,13,18]; @symbol_param<0> = [clickEvent,168,19,29]; @symbol_param<0>_type<0> = [WatchUi,168,33,40]; @symbol_param<0>_type<1> = [ClickEvent,168,41,51]; @symbol_return<0> = [Lang,168,56,60]; @symbol_return<1> = [Boolean,168,61,68]; ]
+    function onTap(clickEvent as WatchUi.ClickEvent) as Lang.Boolean {
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_168_69_172_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 169 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_168_69_172_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_168_69_172_4_stop" ]
+        %coordinates.1 = local;
+        symbol [ coordinates %coordinates.1 169 12 23 ];
+        %tmp.1 = lgetv %clickEvent;
+        symbol [ clickEvent %tmp.1 169 26 36 ];
+        symbol [ getCoordinates %tmp.2 169 37 51 ];
+        %tmp.2 = getv function %tmp.1 :getCoordinates;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %coordinates.1 %tmp.3;
+        symbol [ coordinates %coordinates.1 169 12 23 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 170 8 ]
+        %tmp.4 = self;
+        symbol [ handlePresetSelection %tmp.5 170 8 29 ];
+        %tmp.5 = getv function %tmp.4 :handlePresetSelection;
+        %tmp.6 = lgetv %coordinates.1;
+        symbol [ coordinates %tmp.6 170 30 41 ];
+        %tmp.7 = 1;
+        %tmp.8 = agetv %tmp.6 %tmp.7;
+        invoke %tmp.4 %tmp.5(%tmp.8);
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 171 8 ]
+        %tmp.9 = true;
+        ret %tmp.9;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_168_69_172_4_stop:
+    }
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 174; @symbol_functiondef = [handlePresetSelection,174,21,42]; @symbol_param<0> = [tapY,174,43,47]; @symbol_param<0>_type<0> = [Lang,174,51,55]; @symbol_param<0>_type<1> = [Number,174,56,62]; ]
+    private
+    function handlePresetSelection(tapY as Lang.Number) as Void {
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_174_72_191_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 175 8 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_174_72_191_4_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_174_72_191_4_stop" ]
+        %presetName.1 = local;
+        symbol [ presetName %presetName.1 175 12 22 ];
+        symbol [ view %tmp.2 175 25 29 ];
+        %tmp.2 = getv ? :view;
+        symbol [ findPresetAtY %tmp.3 175 30 43 ];
+        %tmp.3 = getv function %tmp.2 :findPresetAtY;
+        %tmp.4 = lgetv %tapY;
+        symbol [ tapY %tmp.4 175 44 48 ];
+        %tmp.5 = invoke %tmp.2 %tmp.3(%tmp.4);
+        lputv %presetName.1 %tmp.5;
+        symbol [ presetName %presetName.1 175 12 22 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 177 8 ]
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_177_8_190_8_if_stmt:
+        %tmp.6 = lgetv %presetName.1;
+        symbol [ presetName %tmp.6 177 12 22 ];
+        %tmp.7 = null;
+        %tmp.8 = ne %tmp.6 %tmp.7;
+        bf %tmp.8 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_177_8_190_8_if_else_false;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_177_8_190_8_if_true:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_177_32_188_8_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 178 12 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_177_32_188_8_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_177_32_188_8_stop" ]
+        %app.2 = local;
+        symbol [ app %app.2 178 16 19 ];
+        symbol [ Application %tmp.9 178 22 33 ];
+        %tmp.9 = getm $.Toybox.Application;
+        symbol [ getApp %tmp.10 178 34 40 ];
+        %tmp.10 = getv function %tmp.9 :getApp;
+        %tmp.11 = invoke %tmp.9 %tmp.10();
+        %tmp.12 = as %tmp.11 DiabetesFoodManagementApp;
+        symbol [ DiabetesFoodManagementApp %tmp.12 178 46 71 ];
+        lputv %app.2 %tmp.12;
+        symbol [ app %app.2 178 16 19 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 179 12 ]
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_179_12_187_12_if_stmt:
+        %tmp.13 = lgetv %app.2;
+        symbol [ app %tmp.13 179 16 19 ];
+        %tmp.14 = null;
+        %tmp.15 = ne %tmp.13 %tmp.14;
+        bf %tmp.15 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_179_12_187_12_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_179_12_187_12_if_true:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_179_29_187_12_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 180 16 ]
+        [ "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_179_29_187_12_start" "_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_179_29_187_12_stop" ]
+        %nightscoutService.3 = local;
+        symbol [ nightscoutService %nightscoutService.3 180 20 37 ];
+        %tmp.16 = lgetv %app.2;
+        symbol [ app %tmp.16 180 40 43 ];
+        %tmp.17 = as %tmp.16 { (!Null) };
+        symbol [ getNightscoutService %tmp.18 180 44 64 ];
+        %tmp.18 = getv function %tmp.17 :getNightscoutService;
+        %tmp.19 = invoke %tmp.17 %tmp.18();
+        lputv %nightscoutService.3 %tmp.19;
+        symbol [ nightscoutService %nightscoutService.3 180 20 37 ];
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 181 16 ]
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_181_16_185_16_if_stmt:
+        %tmp.20 = lgetv %presetName.1;
+        symbol [ presetName %tmp.20 181 20 30 ];
+        %tmp.21 = as %tmp.20 { (!Null) };
+        symbol [ equals %tmp.22 181 31 37 ];
+        %tmp.22 = getv function %tmp.21 :equals;
+        symbol [ Constants %tmp.24 181 38 47 ];
+        %tmp.24 = getv ? :Constants;
+        symbol [ DEFAULT_OVERRIDE_PROFIL %tmp.25 181 48 71 ];
+        %tmp.25 = getv %tmp.24 :DEFAULT_OVERRIDE_PROFIL;
+        %tmp.26 = invoke %tmp.21 %tmp.22(%tmp.25);
+        bf %tmp.26 @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_181_16_185_16_if_else_false;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_181_16_185_16_if_true:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_181_74_183_16_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 182 20 ]
+        %tmp.27 = lgetv %nightscoutService.3;
+        symbol [ nightscoutService %tmp.27 182 20 37 ];
+        symbol [ desactivePreset %tmp.28 182 38 53 ];
+        %tmp.28 = getv function %tmp.27 :desactivePreset;
+        invoke %tmp.27 %tmp.28();
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_181_74_183_16_stop:
+        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_181_16_185_16_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_181_16_185_16_if_else_false:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_183_21_185_16_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 184 20 ]
+        %tmp.29 = lgetv %nightscoutService.3;
+        symbol [ nightscoutService %tmp.29 184 20 37 ];
+        symbol [ activatePreset %tmp.30 184 38 52 ];
+        %tmp.30 = getv function %tmp.29 :activatePreset;
+        %tmp.31 = lgetv %presetName.1;
+        symbol [ presetName %tmp.31 184 53 63 ];
+        %tmp.32 = as %tmp.31 { (!Null) };
+        invoke %tmp.29 %tmp.30(%tmp.32);
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_183_21_185_16_stop:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_181_16_185_16_if_end:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 186 16 ]
+        symbol [ System %tmp.33 186 16 22 ];
+        %tmp.33 = getm $.Toybox.System;
+        symbol [ println %tmp.34 186 23 30 ];
+        %tmp.34 = getv function %tmp.33 :println;
+        %tmp.35 = "Activating preset: ";
+        %tmp.36 = lgetv %presetName.1;
+        symbol [ presetName %tmp.36 186 55 65 ];
+        %tmp.37 = as %tmp.36 { (!Null) };
+        %tmp.38 = add %tmp.35 %tmp.37;
+        invoke %tmp.33 %tmp.34(%tmp.38);
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_179_29_187_12_stop:
+        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_179_12_187_12_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_179_12_187_12_if_end:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_177_32_188_8_stop:
+        goto @_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_177_8_190_8_if_end;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_177_8_190_8_if_else_false:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_188_15_190_8_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 189 12 ]
+        symbol [ System %tmp.39 189 12 18 ];
+        %tmp.39 = getm $.Toybox.System;
+        symbol [ println %tmp.40 189 19 26 ];
+        %tmp.40 = getv function %tmp.39 :println;
+        %tmp.41 = "No preset found at Y: ";
+        %tmp.42 = lgetv %tapY;
+        symbol [ tapY %tmp.42 189 54 58 ];
+        %tmp.43 = add %tmp.41 %tmp.42;
+        invoke %tmp.39 %tmp.40(%tmp.43);
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_188_15_190_8_stop:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_177_8_190_8_if_end:
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_174_72_191_4_stop:
+    }
+    //! Get estimated center Y position for button selection
+    [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 195; @symbol_functiondef = [getCenterYPosition,195,21,39]; @symbol_return<0> = [Lang,195,45,49]; @symbol_return<1> = [Number,195,50,56]; ]
+    private
+    function getCenterYPosition() as Lang.Number {
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_195_57_197_4_start:
+[ "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc" 196 8 ]
+        %tmp.1 = 100;
+        ret %tmp.1;
+_Users_FELIX_DiabetesFoodManagement_source_TempOverridesView_mc_195_57_197_4_stop:
     }
 }
 [ @file = "/Users/FELIX/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 1; ]
