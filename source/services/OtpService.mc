@@ -20,10 +20,12 @@ class OtpService {
        return Application.Properties.getValue("otp_secret");
     }
 
-    //! Format current timestamp to ISO format
+    //! Format current timestamp to ISO format (with timezone adjustment)
     function formatCurrentTimestamp() as Lang.String {
         var now = Time.now();
-        var timeInfo = Time.Gregorian.info(now, Time.FORMAT_SHORT);
+        // Add 2 hours (7200 seconds) for timezone adjustment
+        var adjustedTime = new Time.Moment(now.value() - 7200);
+        var timeInfo = Time.Gregorian.info(adjustedTime, Time.FORMAT_SHORT);
         
         return Lang.format("$1$-$2$-$3$T$4$:$5$:$6$.000Z", [
             timeInfo.year.format("%04d"),
