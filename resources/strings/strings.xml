@@ -1,16 +1,12 @@
 <strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
     <string id="AppName">Diabetes Food Management</string>
-
-    <string id="prompt">Click the menu button</string>
-
-    <string id="menu_label_1">Item 1</string>
-    <string id="menu_label_2">Item 2</string>
     <string id="temp_overrides_label">Temp Overrides</string>
     
     <string id="nightscout_token_title">Nightscout Token</string>
     <string id="nightscout_url_title">Nightscout URL</string>
     <string id="otp_secret_title">OTP Secret</string>
-    
+    <string id="default_user_title">Default User</string>
+    <string id="default_unit_title">Default Unit</string>
     <!-- New strings for temp overrides view -->
     <string id="active_profile_label">Active profile</string>
     <string id="menu_return_instruction">Menu to return</string>

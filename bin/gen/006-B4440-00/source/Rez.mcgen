@@ -13,14 +13,10 @@ module Rez {
 
     module Layouts {
         function MainLayout(dc as Graphics.Dc) as Array<WatchUi.Drawable> {
-            var rez_cmp_local_var_dc_getWidth = dc.getWidth();
-
-            var rez_cmp_local_text_1193959466 = new WatchUi.Text({:color=>Graphics.COLOR_WHITE, :locX=>(rez_cmp_local_var_dc_getWidth * 0.5), :locY=>5, :text=>$.Rez.Strings.prompt, :justification=>Graphics.TEXT_JUSTIFY_CENTER, :font=>Graphics.FONT_MEDIUM});
-
             var rez_cmp_local_bitmap_id_monkey = new WatchUi.Bitmap({:identifier=>"id_monkey", :rezId=>$.Rez.Drawables.id_monkey, :locX=>WatchUi.LAYOUT_HALIGN_CENTER, :locY=>30});
-            rez_cmp_local_bitmap_id_monkey.setLocation(((rez_cmp_local_var_dc_getWidth - rez_cmp_local_bitmap_id_monkey.width) * 0.5), rez_cmp_local_bitmap_id_monkey.locY);
+            rez_cmp_local_bitmap_id_monkey.setLocation(((dc.getWidth() - rez_cmp_local_bitmap_id_monkey.width) * 0.5), rez_cmp_local_bitmap_id_monkey.locY);
 
-            return [rez_cmp_local_text_1193959466, rez_cmp_local_bitmap_id_monkey] as Array<WatchUi.Drawable>;
+            return [rez_cmp_local_bitmap_id_monkey] as Array<WatchUi.Drawable>;
         }
     } // Layouts
 
@@ -35,16 +31,15 @@ module Rez {
 
     module Strings {
         (:initialized) var nightscout_url_title as ResourceId;
+        (:initialized) var default_unit_title as ResourceId;
         (:initialized) var active_profile_label as ResourceId;
         (:initialized) var menu_return_instruction as ResourceId;
         (:initialized) var nightscout_token_title as ResourceId;
         (:initialized) var loading_foods as ResourceId;
         (:initialized) var check_nightscout_config as ResourceId;
-        (:initialized) var menu_label_1 as ResourceId;
         (:initialized) var otp_secret_title as ResourceId;
-        (:initialized) var menu_label_2 as ResourceId;
         (:initialized) var temp_overrides_label as ResourceId;
-        (:initialized) var prompt as ResourceId;
+        (:initialized) var default_user_title as ResourceId;
         (:initialized) var AppName as ResourceId;
     } // Strings
 

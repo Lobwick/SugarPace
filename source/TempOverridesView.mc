@@ -38,15 +38,22 @@ class TempOverridesView extends WatchUi.View {
         var tempBasals = appState.tempBasals;
         var activeProfile = appState.activeProfile;
         System.println("activeProfile: " + activeProfile);
-        // Clear the screen
-        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
+        var nightMode = System.getDeviceSettings().isNightModeEnabled;
+        if (nightMode) {
+            appState.backgroundColor = Graphics.COLOR_BLACK;
+            appState.foregroundColor = Graphics.COLOR_WHITE;
+        } else {
+            appState.backgroundColor = Graphics.COLOR_WHITE;
+            appState.foregroundColor = Graphics.COLOR_BLACK ;
+        }
+        dc.setColor(appState.backgroundColor, appState.backgroundColor);
         dc.clear();
         
         var width = dc.getWidth();
         var height = dc.getHeight();
         
         // Title
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
         dc.drawText(width/2, 10, Graphics.FONT_SMALL, WatchUi.loadResource(Rez.Strings.temp_overrides_label), Graphics.TEXT_JUSTIFY_CENTER);
         
         var yPos = 50;
@@ -93,7 +100,7 @@ class TempOverridesView extends WatchUi.View {
         
         // Afficher le profil actif
         if (activeProfile.length() > 0) {
-            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+            dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
             var profileText = WatchUi.loadResource(Rez.Strings.active_profile_label) + ": " + activeProfile;
             dc.drawText(width/2, yPos + 10, Graphics.FONT_XTINY, profileText, Graphics.TEXT_JUSTIFY_CENTER);
         }   
@@ -105,7 +112,7 @@ class TempOverridesView extends WatchUi.View {
         dc.fillRoundedRectangle(x, y, width, height, 5);
         
         // Dessiner le contour
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
         dc.drawRoundedRectangle(x, y, width, height, 5);
         
         // Dessiner le texte centré
