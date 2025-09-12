@@ -3,6 +3,7 @@ import Toybox.WatchUi;
 import Toybox.Graphics;
 
 //! Centralized state management for the application
+(:glance, :background)
 class AppState {
     
     // Glucose data

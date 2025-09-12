@@ -1,6 +1,7 @@
 import Toybox.Lang;
 
 //! Model for food item with coordinates for touch detection
+(:glance, :background)
 class FoodItem {
     
     public var name as Lang.String;

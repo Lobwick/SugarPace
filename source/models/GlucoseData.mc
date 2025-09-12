@@ -2,6 +2,7 @@ import Toybox.Lang;
 import Toybox.Time;
 
 //! Model for glucose data from Nightscout
+(:glance, :background)
 class GlucoseData {
     
     public var bloodSugarLevel as Lang.Number = 0;
