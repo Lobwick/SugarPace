@@ -259,14 +259,8 @@ class NightscoutService {
                                     var reason = override.get("reason");
                                     if (reason != null) {
                                         var reasonStr = reason.toString();
-                                        if (reasonStr.find("sport") != null) {
-                                            appState.updateActiveProfile("sport");
-                                            foundActiveOverride = true;
-                                        } else if (reasonStr.find("stop") != null) {
-                                            appState.updateActiveProfile("stop");
-                                            //TODO
-                                            foundActiveOverride = true;
-                                        }
+                                        appState.updateActiveProfile(reasonStr);
+                                         foundActiveOverride = true;
                                     }
                                 }
                             }

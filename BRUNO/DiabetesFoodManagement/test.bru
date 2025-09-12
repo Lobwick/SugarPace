@@ -4,14 +4,16 @@ meta {
   seq: 6
 }
 
-post {
-  url: https://your-nightscout.example.com/api/v2/notifications/loop?token=REDACTED_TOKEN
-  body: formUrlEncoded
+get {
+  url: https://your-nightscout.example.com/api/v1/treatments.json?token=REDACTED_TOKEN&count=5&find[eventType]=Temporary%20Override
+  body: none
   auth: none
 }
 
 query {
   token: REDACTED_TOKEN
+  count: 5
+  find[eventType]: Temporary%20Override
 }
 
 headers {
