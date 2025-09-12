@@ -4,14 +4,16 @@ meta {
   seq: 6
 }
 
-post {
-  url: https://glucosefelix.fly.dev/api/v2/notifications/loop?token=garmin-5709111d29db02b8
-  body: formUrlEncoded
+get {
+  url: https://glucosefelix.fly.dev/api/v1/treatments.json?token=garmin-5709111d29db02b8&count=5&find[eventType]=Temporary%20Override
+  body: none
   auth: none
 }
 
 query {
   token: garmin-5709111d29db02b8
+  count: 5
+  find[eventType]: Temporary%20Override
 }
 
 headers {
