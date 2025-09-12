@@ -1,0 +1,32 @@
+meta {
+  name: profile
+  type: http
+  seq: 7
+}
+
+get {
+  url: https://your-nightscout.example.com/api/v1/profile.json?token=REDACTED_TOKEN
+  body: none
+  auth: none
+}
+
+query {
+  token: REDACTED_TOKEN
+  ~count: 5
+  ~find[eventType]: Temporary%20Override
+}
+
+headers {
+  ~api-secret: REDACTED_API_SECRET_HASH
+}
+
+body:form-urlencoded {
+  enteredBy: felix
+  eventType: Remote Carbs Entry
+  otp: 100826
+  remoteCarbs: 11
+  remoteAbsorption: 1
+  notes: test
+  units: mg/dl
+  created_at: 2025-09-08T12:52:04.520Z
+}
