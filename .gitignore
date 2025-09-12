@@ -1,2 +1,9 @@
 /bin/** 
 .claude/**
+.DS_Store
+.vscode/**
+DiabetesFoodLoop-settings.json
+DiabetesFoodLoop.prg
+DiabetesFoodLoop.prg.debug.xml
+*mir/**
+gen/**
