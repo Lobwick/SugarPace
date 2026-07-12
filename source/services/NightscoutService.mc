@@ -104,10 +104,12 @@ class NightscoutService {
         );
     }
 
-    //! Fetch glucose data from Nightscout
+    //! Fetch glucose data from Nightscout: a single request returns both the
+    //! current value (most recent entry) and the ~4h history used for the
+    //! trend chart, avoiding two concurrent BLE requests.
     function fetchGlucoseData() as Void {
         
-        var url = buildUrl("/api/v1/entries.json?count=1");
+        var url = buildUrl("/api/v1/entries.json?count=48");
         
         Communications.makeWebRequest(
             url,
@@ -316,11 +318,15 @@ class NightscoutService {
         return token != null ? token.toString() : "";
     }
 
-    //! Handle glucose data response
+    //! Handle glucose data response: extracts the current value from the most
+    //! recent entry AND builds the ~4h trend history from the same response
+    //! (a single request, to avoid overloading the BLE request queue).
     function onReceiveGlucoseData(responseCode as Lang.Number, data as Lang.Dictionary?) as Void {
+        System.println("onReceiveGlucoseData responseCode=" + responseCode);
         if (responseCode == 200 && data != null && callback != null) {
             try {
                 if (data instanceof Lang.Array && data.size() > 0) {
+                    System.println("onReceiveGlucoseData entries received: " + data.size());
                     var entry = data[0];
                     if (entry instanceof Lang.Dictionary) {
                         var glucoseData = {
@@ -331,6 +337,22 @@ class NightscoutService {
                         
                         callback.invoke("glucose", glucoseData);
                     }
+
+                    var values = [];
+                    // Nightscout returns entries newest-first; reverse to chronological order
+                    for (var i = data.size() - 1; i >= 0; i--) {
+                        var historyEntry = data[i];
+                        if (historyEntry instanceof Lang.Dictionary && historyEntry.hasKey("sgv")) {
+                            var sgv = historyEntry.get("sgv");
+                            if (sgv instanceof Lang.Number) {
+                                values.add(sgv);
+                            }
+                        }
+                    }
+                    System.println("onReceiveGlucoseData history values built: " + values.size());
+                    callback.invoke("glucoseHistory", values);
+                } else {
+                    System.println("onReceiveGlucoseData data is not a non-empty Array: " + data);
                 }
             } catch (e) {
                 System.println("Error parsing glucose data: " + e.getErrorMessage());

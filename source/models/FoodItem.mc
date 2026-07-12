@@ -1,6 +1,6 @@
 import Toybox.Lang;
 
-//! Model for food item with coordinates for touch detection
+//! Model for a food item, identified in the UI by its index in the grid
 (:glance, :background)
 class FoodItem {
     
@@ -14,8 +14,6 @@ class FoodItem {
     public var fat_g as Lang.Float;
     public var protein_g as Lang.Float;
     public var energy_kj as Lang.Number;
-    public var startY as Lang.Number = 0;
-    public var endY as Lang.Number = 0;
     public var index as Lang.Number = 0;
 
     function initialize(foodData as Lang.Dictionary, itemIndex as Lang.Number) {
@@ -59,23 +57,6 @@ class FoodItem {
         if (v instanceof Lang.Number) { return v.toFloat(); }
         if (v instanceof Lang.String) { return v.toFloat(); }
         return 0.0;
-    }
-
-    //! Set display coordinates for touch detection
-    function setCoordinates(startY as Lang.Number, endY as Lang.Number) as Void {
-        self.startY = startY;
-        self.endY = endY;
-    }
-
-    //! Check if a Y coordinate falls within this food item
-    function containsY(y as Lang.Number) as Lang.Boolean {
-        return y >= startY && y <= endY;
-    }
-
-    //! Get distance from center of this food item to a Y coordinate
-    function getDistanceFromCenter(y as Lang.Number) as Lang.Number {
-        var centerY = (startY + endY) / 2;
-        return y > centerY ? y - centerY : centerY - y;
     }
 
     //! Convert to dictionary for Loop API call (only carb-entry fields)

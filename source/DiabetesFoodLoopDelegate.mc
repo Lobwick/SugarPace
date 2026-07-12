@@ -20,61 +20,33 @@ class DiabetesFoodLoopDelegate extends WatchUi.BehaviorDelegate {
         return true;
     }
 
-    function onSelect() as Boolean {
-        System.println("Select pressed - detecting food at current position");
-        
-        if (appState.foodItems.size() == 0) {
-            System.println("No foods available");
-            return false;
-        }
-        
-        // For Edge devices, try to detect food at center position
-        var centerY = getCenterYPosition();
-        System.println("Simulated tap at center Y: " + centerY);
-        
-        var foundFood = appState.findFoodItemAtY(centerY);
-        
-        if (foundFood != null && foundFood instanceof FoodItem) {
-            System.println("Select detected food: " + foundFood.name + " at index: " + foundFood.index);
-            appState.setSelectedFoodIndex(foundFood.index);
-            sendSelectedFood();
-            return true;
-        } else {
-            // Fallback: send current selected food
-            System.println("Using current selected index as fallback");
-            sendSelectedFood();
+    //! Handle a direct tap on a food tile in the grid
+    function onTap(clickEvent as WatchUi.ClickEvent) as Boolean {
+        var coordinates = clickEvent.getCoordinates();
+        var x = coordinates[0];
+        var y = coordinates[1];
+
+        var foundFood = appState.findFoodItemAtPoint(x, y);
+        if (foundFood != null) {
+            System.println("Tap detected food: " + foundFood.name);
+            sendFood(foundFood);
             return true;
         }
+
+        System.println("No food tile found at tap point: " + x + ", " + y);
+        return false;
     }
 
-    //! Send the currently selected food to Loop
-    private function sendSelectedFood() as Void {
-        var selectedFood = appState.getSelectedFoodItem();
-        
-        System.println("=== SEND SELECTED FOOD DEBUG ===");
-        System.println("Selected food: " + (selectedFood != null ? "Found" : "NULL"));
-        
-        if (selectedFood == null) {
-            System.println("No food selected");
-            return;
-        }
-        
-        System.println("Food name: " + selectedFood.name);
-        System.println("Food carbs: " + selectedFood.carbs);
-        System.println("Sending food: " + selectedFood.name + " with " + selectedFood.carbs + " carbs");
-        
+    //! Send the tapped food to Loop
+    private function sendFood(food as FoodItem) as Void {
+        System.println("Sending food: " + food.name + " with " + food.carbs + " carbs");
+
         // Create food entry data using OTP service
-        var foodEntryData = otpService.createFoodEntryData(selectedFood.toDictionary());
-        
+        var foodEntryData = otpService.createFoodEntryData(food.toDictionary());
+
         System.println("Food entry data created - notes: " + foodEntryData.get("notes"));
-        
+
         // Send via Nightscout service
         nightscoutService.sendFoodEntry(foodEntryData);
-    }
-
-    //! Get estimated center Y position for Edge devices
-    private function getCenterYPosition() as Lang.Number {
-        // For Edge 1050, approximate screen center Y
-        return 300; // Adjust this value based on your screen
     }
 }
