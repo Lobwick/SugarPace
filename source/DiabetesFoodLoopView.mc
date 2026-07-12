@@ -7,9 +7,6 @@ import Toybox.System;
 
 class DiabetesFoodLoopView extends WatchUi.View {
 
-    private var monkeyBitmap as BitmapResource?;
-    private var gelBitmap as BitmapResource?;
-    private var fruitJellyBitmap as BitmapResource?;
     private var updateTimer as Timer.Timer?;
     private var appState as AppState;
 
@@ -20,10 +17,6 @@ class DiabetesFoodLoopView extends WatchUi.View {
 
     // Load your resources here
     function onLayout(dc as Dc) as Void {
-        // Load the monkey bitmap
-        monkeyBitmap = WatchUi.loadResource(Rez.Drawables.monkey);
-        gelBitmap = WatchUi.loadResource(Rez.Drawables.gel);
-        fruitJellyBitmap = WatchUi.loadResource(Rez.Drawables.fruit_jelly);
     }
 
     // Called when this View is brought to the foreground
@@ -118,9 +111,8 @@ class DiabetesFoodLoopView extends WatchUi.View {
         var currentY = startY;
         var itemsDisplayed = 0;
         
-        // Calculate spacing based on monkey bitmap size
-        var monkeyHeight = monkeyBitmap != null ? monkeyBitmap.getHeight() : 30;
-        var spacing = monkeyHeight + 10;
+        // Fixed item height matching the 36px compiled bitmaps + padding
+        var spacing = 36 + 10;
         var maxItems = (height - startY - 20) / spacing;
         
         dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
@@ -135,7 +127,7 @@ class DiabetesFoodLoopView extends WatchUi.View {
                 
                 // Record coordinates for this food item
                 var itemStartY = currentY - 2;
-                var itemEndY = currentY + monkeyHeight + 2;
+                var itemEndY = currentY + 36 + 2;
                 var coords = {
                     "startY" => itemStartY,
                     "endY" => itemEndY,
@@ -176,77 +168,54 @@ class DiabetesFoodLoopView extends WatchUi.View {
     }
 
     function displayFoodLogo(dc as Dc, foodItem as FoodItem, currentY as Lang.Number, width as Lang.Number) as Void {
-        var subcategory = foodItem.subcategory.toLower();
-
-
-        switch (subcategory) {
-            case "gel":
-                displayGel(dc, foodItem, currentY, width);
-                break;
-            case "fruit_jelly":
-                displayFruitJelly(dc, foodItem, currentY, width);
-                break;
-            default:
-                displayMonkey(dc, foodItem, currentY, width);
-                break;
-        }
-    }
-
-    function displayGel(dc as Dc, foodItem as FoodItem, currentY as Lang.Number, width as Lang.Number) as Void {
-         if (gelBitmap != null) {
-            var gelHeight = gelBitmap.getHeight();
-
-            dc.drawBitmap(8, currentY, gelBitmap);
-            
-            // Text in vertical middle of gel, with margin to the right of image
-            var textY = currentY + (gelHeight / 2) - 8;
-            var textX = 8 + gelBitmap.getWidth() + 10;
-            dc.drawText(textX, textY, Graphics.FONT_SMALL, foodItem.name, Graphics.TEXT_JUSTIFY_LEFT);
-            
-            // Show carbs info if available
+        var bitmap = resolveBitmap(foodItem);
+        if (bitmap != null) {
+            var bitmapHeight = bitmap.getHeight();
+            dc.drawBitmap(8, currentY, bitmap);
+            var textY = currentY + (bitmapHeight / 2) - 8;
+            var textX = 8 + bitmap.getWidth() + 10;
+            var label = foodItem.brand.length() > 0
+                ? foodItem.brand + " " + foodItem.name
+                : foodItem.name;
+            dc.drawText(textX, textY, Graphics.FONT_SMALL, label, Graphics.TEXT_JUSTIFY_LEFT);
             if (foodItem.carbs > 0) {
-                var carbsText = foodItem.carbs.toString() + "g";
-                dc.drawText(width - 10, textY, Graphics.FONT_SMALL, carbsText, Graphics.TEXT_JUSTIFY_RIGHT);
+                dc.drawText(width - 10, textY, Graphics.FONT_SMALL, foodItem.carbs.toString() + "g", Graphics.TEXT_JUSTIFY_RIGHT);
             }
         }
     }
 
-    function displayFruitJelly(dc as Dc, foodItem as FoodItem, currentY as Lang.Number, width as Lang.Number) as Void {
-         if (fruitJellyBitmap != null) {
-            var fruitJellyHeight = fruitJellyBitmap.getHeight();
-
-            dc.drawBitmap(8, currentY, fruitJellyBitmap);
-
-            // Text in vertical middle of fruit jelly, with margin to the right of image
-            var textY = currentY + (fruitJellyHeight / 2) - 8;
-            var textX = 8 + fruitJellyBitmap.getWidth() + 10;
-            dc.drawText(textX, textY, Graphics.FONT_SMALL, foodItem.name, Graphics.TEXT_JUSTIFY_LEFT);
-            
-            // Show carbs info if available
-            if (foodItem.carbs > 0) {
-                var carbsText = foodItem.carbs.toString() + "g";
-                dc.drawText(width - 10, textY, Graphics.FONT_SMALL, carbsText, Graphics.TEXT_JUSTIFY_RIGHT);
-            }
+    //! Resolve the bitmap to display: brand-specific first, then category default.
+    private function resolveBitmap(foodItem as FoodItem) as BitmapResource? {
+        // Try brand-specific drawable by picture id
+        if (foodItem.picture != null) {
+            try {
+                var id = Rez.Drawables[foodItem.picture];
+                if (id != null) {
+                    return WatchUi.loadResource(id) as BitmapResource;
+                }
+            } catch (ex) { }
         }
-    }
 
-    function displayMonkey(dc as Dc, foodItem as FoodItem, currentY as Lang.Number, width as Lang.Number) as Void {
-        if (monkeyBitmap != null) {
-            var monkeyHeight = monkeyBitmap.getHeight();
-
-            dc.drawBitmap(8, currentY, monkeyBitmap);
-            
-            // Text in vertical middle of monkey, with margin to the right of image
-            var textY = currentY + (monkeyHeight / 2) - 8;
-            var textX = 8 + monkeyBitmap.getWidth() + 10;
-            dc.drawText(textX, textY, Graphics.FONT_SMALL, foodItem.name, Graphics.TEXT_JUSTIFY_LEFT);
-            
-            // Show carbs info if available
-            if (foodItem.carbs > 0) {
-                var carbsText = foodItem.carbs.toString() + "g";
-                dc.drawText(width - 10, textY, Graphics.FONT_SMALL, carbsText, Graphics.TEXT_JUSTIFY_RIGHT);
-            }
+        // Fall back to category default
+        var sub = foodItem.subcategory.toUpper();
+        var defaultId = null;
+        if (sub.equals("GEL")) {
+            defaultId = Rez.Drawables.default_gel;
+        } else if (sub.equals("JELLIES")) {
+            defaultId = Rez.Drawables.default_jellies;
+        } else if (sub.equals("BAR")) {
+            defaultId = Rez.Drawables.default_bar;
+        } else if (sub.equals("DRINKS")) {
+            defaultId = Rez.Drawables.default_drinks;
         }
+
+        if (defaultId != null) {
+            try {
+                return WatchUi.loadResource(defaultId) as BitmapResource;
+            } catch (ex) { }
+        }
+
+        return null;
     }
     //! Request data update from the app orchestrator
     function requestDataUpdate() as Void {

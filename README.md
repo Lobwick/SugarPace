@@ -1,4 +1,4 @@
-# Diabetes Food Management - Connect IQ App
+ # Diabetes Food Management - Connect IQ App
 
 Une application Connect IQ pour appareils Garmin qui permet de gérer facilement l'entrée de glucides pour les utilisateurs de pompes à insuline Loop.
 
@@ -125,6 +125,20 @@ POST /api/v2/notifications/loop?token=<token>
   "created_at": "2025-09-08T12:52:04.000Z"
 }
 ```
+
+## 🍽️ Aliments disponibles
+
+La liste des aliments proposés dans l'app est définie dans `resources/foods/foods.json`. Pour ajouter ou modifier un aliment, éditez ce fichier (voir aussi `resources/drawables/` pour les icônes associées).
+
+| Nom | Marque | Catégorie | Portion | Glucides | IG | Lipides | Protéines | Énergie |
+|---|---|---|---|---|---|---|---|---|
+| Energy Gel+ Red Fruit | Decathlon | GEL | 35 g | 30 g | 80 | 0 g | 0 g | 502 kJ |
+| Energy Gel Red Fruit -3H | Decathlon | GEL | 35 g | 30 g | 85 | 0 g | 0 g | 502 kJ |
+| 1:0.8 Gel Cola | Decathlon | GEL | 45 g | 40 g | 70 | 0 g | 0 g | 680 kJ |
+| Fruit Jelly | — | JELLIES | 44 g | 35 g | 85 | 0 g | 0 g | 598 kJ |
+| Energy Bar Dates & Nuts | — | BAR | 50 g | 31 g | 55 | 5.5 g | 2.3 g | 800 kJ |
+
+⚠️ Les valeurs d'index glycémique (IG) sont estimées lorsqu'elles ne sont pas indiquées sur l'emballage du produit.
 
 ## 🐛 Dépannage
 

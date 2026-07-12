@@ -50,7 +50,8 @@ class NightscoutService {
                 :method => Communications.HTTP_REQUEST_METHOD_POST,
                 :headers => {
                     "Content-Type" => Communications.REQUEST_CONTENT_TYPE_JSON
-                }
+                },
+                :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
             },
             self.method(:onReceivePresetActivationResponse)
         );
@@ -96,7 +97,8 @@ class NightscoutService {
                 :method => Communications.HTTP_REQUEST_METHOD_POST,
                 :headers => {
                     "Content-Type" => Communications.REQUEST_CONTENT_TYPE_JSON
-                }
+                },
+                :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
             },
             self.method(:onReceivePresetActivationResponse)
         );
@@ -117,23 +119,6 @@ class NightscoutService {
                 }
             },
             self.method(:onReceiveGlucoseData)
-        );
-    }
-
-    //! Fetch food data from Nightscout
-    function fetchFoodData() as Void {
-
-        var url = getNightscoutUrl() + "/api/v1/food.json";
-        Communications.makeWebRequest(
-            url,
-            {},
-            {
-                :method => Communications.HTTP_REQUEST_METHOD_GET,
-                :headers => {
-                    "Content-Type" => Communications.REQUEST_CONTENT_TYPE_URL_ENCODED
-                }
-            },
-            self.method(:onReceiveFoodData)
         );
     }
 
@@ -293,7 +278,7 @@ class NightscoutService {
 
     //! Send food entry to Loop via Nightscout notifications API
     function sendFoodEntry(foodData as Lang.Dictionary) as Void {
-        var url = getNightscoutUrl() + "/api/v2/notifications/loop?token=garmin-5709111d29db02b8";
+        var url = getNightscoutUrl() + "/api/v2/notifications/loop?token=" + getNightscoutToken();
         
         System.println("Sending food data: " + foodData.get("notes") + " with " + foodData.get("remoteCarbs") + " carbs, OTP: " + foodData.get("otp"));
         
@@ -304,7 +289,8 @@ class NightscoutService {
                 :method => Communications.HTTP_REQUEST_METHOD_POST,
                 :headers => {
                     "Content-Type" => Communications.REQUEST_CONTENT_TYPE_URL_ENCODED
-                }
+                },
+                :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
             },
             self.method(:onReceiveFoodEntryResponse)
         );
@@ -349,24 +335,6 @@ class NightscoutService {
             } catch (e) {
                 System.println("Error parsing glucose data: " + e.getErrorMessage());
             }
-        }
-    }
-
-    //! Handle food data response  
-    function onReceiveFoodData(responseCode as Lang.Number, data as Lang.Dictionary?) as Void {
-        if (responseCode == 200 && data != null && callback != null) {
-            try {
-                if (data instanceof Lang.Array) {
-                    System.println("=== FOODS DATA ===");
-                    System.println("Nombre d'aliments: " + data.size());
-                    
-                    callback.invoke("foods", data);
-                }
-            } catch (e) {
-                System.println("Erreur parsing foods: " + e.getErrorMessage());
-            }
-        } else {
-            System.println("Erreur récupération foods: " + responseCode);
         }
     }
 
@@ -445,7 +413,7 @@ class NightscoutService {
     }
 
     //! Handle food entry response
-    function onReceiveFoodEntryResponse(responseCode as Lang.Number, data as Lang.Dictionary?) as Void {
+    function onReceiveFoodEntryResponse(responseCode as Lang.Number, data as Lang.String?) as Void {
         System.println("Food entry response code: " + responseCode);
         if (data != null) {
             System.println("Food entry response data: " + data.toString());
@@ -466,7 +434,7 @@ class NightscoutService {
     }
 
     //! Handle preset activation response
-    function onReceivePresetActivationResponse(responseCode as Lang.Number, data as Lang.Dictionary?) as Void {
+    function onReceivePresetActivationResponse(responseCode as Lang.Number, data as Lang.String?) as Void {
         System.println("Preset activation response code: " + responseCode);
         if (data != null) {
             System.println("Preset activation response data: " + data.toString());

@@ -40,7 +40,9 @@ class AppState {
         
         for (var i = 0; i < foodsArray.size(); i++) {
             var foodData = foodsArray[i];
-            if (foodData instanceof Lang.Dictionary) {
+            if (foodData instanceof FoodItem) {
+                foodItems.add(foodData);
+            } else if (foodData instanceof Lang.Dictionary) {
                 var foodItem = new FoodItem(foodData, i);
                 foodItems.add(foodItem);
             }
