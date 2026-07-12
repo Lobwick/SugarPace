@@ -6,12 +6,22 @@ using Toybox.Graphics as Gfx;
 
 module Rez {
     module Drawables {
-        (:initialized) var monkey as ResourceId;
-        (:initialized) var gel as ResourceId;
-        (:initialized) var fruit_jelly as ResourceId;
+        (:initialized) var default_gel as ResourceId;
+        (:initialized) var default_jellies as ResourceId;
+        (:initialized) var default_bar as ResourceId;
+        (:initialized) var default_drinks as ResourceId;
+        (:initialized) var gel_decathlon_energygelplus_redfruit as ResourceId;
+        (:initialized) var gel_decathlon_energygel_redfruit_minus3h as ResourceId;
+        (:initialized) var gel_decathlon_108_cola as ResourceId;
+        (:initialized) var jelly_red_fruit as ResourceId;
+        (:initialized) var bar_energy_dates_nuts as ResourceId;
         (:initialized) var id_monkey as ResourceId;
         (:initialized) var LauncherIcon as ResourceId;
     } // Drawables
+
+    module JsonData {
+        (:initialized) var foods as ResourceId;
+    } // JsonData
 
     module Layouts {
         function MainLayout(dc as Graphics.Dc) as Array<WatchUi.Drawable> {
@@ -68,14 +78,14 @@ module Rez {
         } // prompt_loc__body_no_title
 
         module system_icon_dark__about {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__about.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__about.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
         } // system_icon_dark__about
 
         module system_icon_light__question {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__question.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__question.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -90,7 +100,7 @@ module Rez {
         } // prompt_font__title
 
         module system_icon_dark__discard {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__discard.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__discard.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -107,7 +117,7 @@ module Rez {
         } // system_color_dark__text
 
         module system_icon_destructive__discard {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_destructive__discard.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_destructive__discard.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -176,7 +186,7 @@ module Rez {
         } // system_loc__hint_action_menu
 
         module confirmation_icon__hint_confirm {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_dark__hint_completion.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_dark__hint_completion.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -216,7 +226,7 @@ module Rez {
         } // system_input__action_menu
 
         module system_icon_light__save {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__save.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__save.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -232,7 +242,7 @@ module Rez {
         } // system_loc__subwindow
 
         module system_icon_light__warning {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__warning.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__warning.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -244,7 +254,7 @@ module Rez {
         } // confirmation_color_light__body
 
         module confirmation_icon_light__hint_keep {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_light__hint_keep.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_light__hint_keep.svg";
             const disableTransparency as Boolean = false;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -302,7 +312,7 @@ module Rez {
         } // prompt_loc__body_with_title
 
         module system_icon_dark__search {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__search.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__search.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -314,14 +324,14 @@ module Rez {
         } // activity_color_light__text
 
         module confirmation_icon__hint_keep {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_dark__hint_keep.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_dark__hint_keep.svg";
             const disableTransparency as Boolean = false;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
         } // confirmation_icon__hint_keep
 
         module system_icon_dark__save {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__save.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__save.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -332,7 +342,7 @@ module Rez {
         } // system_icon_destructive__hint_button_left_middle
 
         module system_icon_light__search {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__search.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__search.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -351,7 +361,7 @@ module Rez {
         } // system_loc__hint_button_right_bottom
 
         module confirmation_icon_dark__hint_reject {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_dark__hint_reject.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_dark__hint_reject.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -363,7 +373,7 @@ module Rez {
         } // confirmation_color_dark__body
 
         module confirmation_icon_light__hint_confirm {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_light__hint_completion.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_light__hint_completion.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -375,7 +385,7 @@ module Rez {
         } // prompt_color_dark__title
 
         module system_icon_destructive__cancel {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_destructive__cancel.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_destructive__cancel.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -407,28 +417,28 @@ module Rez {
         } // system_icon_dark__hint_button_left_middle
 
         module confirmation_icon_dark__hint_keep {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_dark__hint_keep.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_dark__hint_keep.svg";
             const disableTransparency as Boolean = false;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
         } // confirmation_icon_dark__hint_keep
 
         module system_icon_light__cancel {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__cancel.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__cancel.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
         } // system_icon_light__cancel
 
         module confirmation_icon_light__hint_reject {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_light__hint_reject.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_light__hint_reject.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
         } // confirmation_icon_light__hint_reject
 
         module system_icon_light__about {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__about.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__about.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -444,7 +454,7 @@ module Rez {
         } // system_icon_dark__hint_button_right_middle
 
         module confirmation_icon__hint_reject {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_dark__hint_reject.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_dark__hint_reject.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -470,7 +480,7 @@ module Rez {
         } // confirmation_loc__hint_reject
 
         module confirmation_icon_dark__hint_delete {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_dark__hint_delete.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_dark__hint_delete.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -496,7 +506,7 @@ module Rez {
         } // system_size__menu_icon
 
         module system_icon_destructive__warning {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_destructive__warning.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_destructive__warning.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -507,7 +517,7 @@ module Rez {
         } // system_loc__hint_button_right_middle
 
         module system_icon_dark__cancel {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__cancel.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__cancel.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -528,7 +538,7 @@ module Rez {
         } // system_color_light__text
 
         module system_icon_light__check {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__check.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__check.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -542,7 +552,7 @@ module Rez {
         } // confirmation_input__reject
 
         module system_icon_light__revert {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__revert.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__revert.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -557,7 +567,7 @@ module Rez {
         } // system_icon_positive__hint_button_left_bottom
 
         module system_icon_dark__check {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__check.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__check.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -598,28 +608,28 @@ module Rez {
         } // system_icon_positive__hint_button_right_bottom
 
         module system_icon_dark__revert {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__revert.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__revert.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
         } // system_icon_dark__revert
 
         module confirmation_icon_light__hint_delete {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_light__hint_delete.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_light__hint_delete.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
         } // confirmation_icon_light__hint_delete
 
         module system_icon_dark__question {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__question.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__question.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
         } // system_icon_dark__question
 
         module system_icon_light__discard {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__discard.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_light__discard.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -636,7 +646,7 @@ module Rez {
         } // device_info
 
         module confirmation_icon_dark__hint_confirm {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_dark__hint_completion.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_dark__hint_completion.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -654,7 +664,7 @@ module Rez {
         } // prompt_size__title_icon
 
         module system_icon_dark__warning {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__warning.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_dark__warning.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -677,7 +687,7 @@ module Rez {
         } // prompt_color_dark__body
 
         module confirmation_icon__hint_delete {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_dark__hint_delete.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/confirmation_icon_dark__hint_delete.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;
@@ -693,7 +703,7 @@ module Rez {
         } // confirmation_size__body
 
         module system_icon_positive__check {
-            const filename as String = "/Users/FELIX/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_positive__check.svg";
+            const filename as String = "/Users/lobwick/Library/Application Support/Garmin/ConnectIQ/Devices/edge1050/system_icon_positive__check.svg";
             const disableTransparency as Boolean = true;
             const dithering as String = "none";
             const automaticPalette as Boolean = true;

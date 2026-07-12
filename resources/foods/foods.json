@@ -1,0 +1,67 @@
+[
+  {
+    "id": "gel_decathlon_energygelplus_redfruit_35",
+    "name": "Energy Gel+",
+    "brand": "Decathlon",
+    "picture": "gel_decathlon_energygelplus_redfruit",
+    "subcategory": "GEL",
+    "portion_g": 35,
+    "carbs_g": 30,
+    "gi": 80,
+    "fat_g": 0.0,
+    "protein_g": 0.0,
+    "energy_kj": 502
+  },
+  {
+    "id": "gel_decathlon_energygel_redfruit_minus3h_35",
+    "name": "Energy Gel Red Fruit -3H",
+    "brand": "Decathlon",
+    "picture": "gel_decathlon_energygel_redfruit_minus3h",
+    "subcategory": "GEL",
+    "portion_g": 35,
+    "carbs_g": 30,
+    "gi": 85,
+    "fat_g": 0.0,
+    "protein_g": 0.0,
+    "energy_kj": 502
+  },
+  {
+    "id": "gel_decathlon_108_cola_45",
+    "name": "1:0.8 Gel Cola",
+    "brand": "Decathlon",
+    "picture": "gel_decathlon_108_cola",
+    "subcategory": "GEL",
+    "portion_g": 45,
+    "carbs_g": 40,
+    "gi": 70,
+    "fat_g": 0.0,
+    "protein_g": 0.0,
+    "energy_kj": 680
+  },
+  {
+    "id": "jelly_red_fruit_44",
+    "name": "Fruit Jelly",
+    "brand": "",
+    "picture": "jelly_red_fruit",
+    "subcategory": "JELLIES",
+    "portion_g": 44,
+    "carbs_g": 35,
+    "gi": 85,
+    "fat_g": 0.0,
+    "protein_g": 0.0,
+    "energy_kj": 598
+  },
+  {
+    "id": "bar_energy_dates_nuts_50",
+    "name": "Energy Bar Dates & Nuts",
+    "brand": "",
+    "picture": "bar_energy_dates_nuts",
+    "subcategory": "BAR",
+    "portion_g": 50,
+    "carbs_g": 31,
+    "gi": 55,
+    "fat_g": 5.5,
+    "protein_g": 2.3,
+    "energy_kj": 800
+  }
+]

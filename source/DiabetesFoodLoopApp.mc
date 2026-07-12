@@ -49,9 +49,10 @@ class DiabetesFoodLoopApp extends Application.AppBase {
         // Initialize services only when creating main view (not for glance)
         initializeServices();
         
-        // Fetch initial data after services are initialized
+        // Fetch live glucose data from Nightscout
         nightscoutService.fetchGlucoseData();
-        nightscoutService.fetchFoodData();
+        // Load static food list from embedded JSON resource
+        appState.updateFoodItems(FoodDatabase.loadAll());
         
         mainView = new DiabetesFoodLoopView(appState);
         mainDelegate = new DiabetesFoodLoopDelegate(appState, nightscoutService, otpService);

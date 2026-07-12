@@ -40,7 +40,7 @@ class OtpService {
     //! Create food entry data structure for Loop API
     function createFoodEntryData(foodItem as Lang.Dictionary) as Lang.Dictionary {
         var foodName = foodItem.hasKey("name") ? foodItem.get("name").toString() : "Unknown food";
-        var carbs = foodItem.hasKey("carbs") ? foodItem.get("carbs") : 0;
+        var carbs = foodItem.hasKey("carbs_g") ? foodItem.get("carbs_g") : 0;
         var default_user =  Application.Properties.getValue("default_user");
         var default_unit =  Application.Properties.getValue("default_unit");
 
