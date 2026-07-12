@@ -38,14 +38,9 @@ class TempOverridesView extends WatchUi.View {
         var tempBasals = appState.tempBasals;
         var activeProfile = appState.activeProfile;
         System.println("activeProfile: " + activeProfile);
-        var nightMode = System.getDeviceSettings().isNightModeEnabled;
-        if (nightMode) {
-            appState.backgroundColor = Graphics.COLOR_BLACK;
-            appState.foregroundColor = Graphics.COLOR_WHITE;
-        } else {
-            appState.backgroundColor = Graphics.COLOR_WHITE;
-            appState.foregroundColor = Graphics.COLOR_BLACK ;
-        }
+        // Dark theme is always used, to match the app's design
+        appState.backgroundColor = Graphics.COLOR_BLACK;
+        appState.foregroundColor = Graphics.COLOR_WHITE;
         dc.setColor(appState.backgroundColor, appState.backgroundColor);
         dc.clear();
         

@@ -1,13 +1,13 @@
 <drawables xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
     <bitmap id="LauncherIcon" filename="logo.png" dithering="none" />
 
-    <!-- Default bitmaps per category — images must be pre-sized to 36x36 before commit -->
+    <!-- Default bitmaps per category — images must be pre-sized to 84x84 before commit -->
     <bitmap id="default_gel"     filename="categories/default_gel.png"     />
     <bitmap id="default_jellies" filename="categories/default_jellies.png"  />
     <bitmap id="default_bar"     filename="categories/default_bar.png"      />
     <bitmap id="default_drinks"  filename="categories/default_drinks.png"   />
 
-    <!-- Brand-specific bitmaps — add new entries here via PR (36x36 PNG required) -->
+    <!-- Brand-specific bitmaps — add new entries here via PR (84x84 PNG required) -->
     <bitmap id="gel_decathlon_energygelplus_redfruit" filename="brands/gel_decathlon_energygelplus_redfruit.png" />
     <bitmap id="gel_decathlon_energygel_redfruit_minus3h" filename="brands/gel_decathlon_energygel_redfruit_minus3h.png" />
     <bitmap id="gel_decathlon_108_cola" filename="brands/gel_decathlon_108_cola.png" />

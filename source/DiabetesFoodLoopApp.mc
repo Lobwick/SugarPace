@@ -49,7 +49,7 @@ class DiabetesFoodLoopApp extends Application.AppBase {
         // Initialize services only when creating main view (not for glance)
         initializeServices();
         
-        // Fetch live glucose data from Nightscout
+        // Fetch live glucose data (current value + ~4h trend history) from Nightscout
         nightscoutService.fetchGlucoseData();
         // Load static food list from embedded JSON resource
         appState.updateFoodItems(FoodDatabase.loadAll());
@@ -74,6 +74,10 @@ class DiabetesFoodLoopApp extends Application.AppBase {
                 } catch (ex) {
                     // Ignore storage errors
                 }
+            }
+        } else if (type.equals("glucoseHistory")) {
+            if (data instanceof Lang.Array) {
+                appState.updateGlucoseHistory(data);
             }
         } else if (type.equals("foods")) {
             if (data instanceof Lang.Array) {

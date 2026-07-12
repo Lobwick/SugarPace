@@ -1,6 +1,7 @@
 import Toybox.Lang;
 import Toybox.WatchUi;
 import Toybox.Graphics;
+import Toybox.System;
 
 //! Centralized state management for the application
 (:glance, :background)
@@ -8,10 +9,16 @@ class AppState {
     
     // Glucose data
     public var glucoseData as GlucoseData;
+    // Recent glucose readings (chronological, oldest first) used for the trend chart.
+    // Each entry is a Lang.Number (sgv value in mg/dl).
+    public var glucoseHistory as Lang.Array = [];
     
     // Food data
     public var foodItems as Lang.Array = [];
     public var selectedFoodIndex as Lang.Number = -1;
+    // Tile coordinates for the 2-column food grid, used for touch hit-testing.
+    // Each entry: { "x0"=>, "y0"=>, "x1"=>, "y1"=>, "index"=> }
+    public var foodGridCoordinates as Lang.Array = [];
     
     // Profile data
     public var tempBasals as Lang.Array = [];
@@ -31,6 +38,13 @@ class AppState {
     //! Update glucose data and request UI refresh
     function updateGlucoseData(data as Lang.Dictionary) as Void {
         glucoseData.update(data);
+        WatchUi.requestUpdate();
+    }
+
+    //! Update recent glucose history (list of Lang.Number sgv values, oldest first)
+    function updateGlucoseHistory(history as Lang.Array) as Void {
+        System.println("AppState.updateGlucoseHistory: " + history.size() + " points");
+        glucoseHistory = history;
         WatchUi.requestUpdate();
     }
 
@@ -108,47 +122,34 @@ class AppState {
         return null;
     }
 
-    //! Find food item at given Y coordinate
-    function findFoodItemAtY(y as Lang.Number) as FoodItem? {
-        var closestItem = null;
-        var closestDistance = 999999;
-        
-        for (var i = 0; i < foodItems.size(); i++) {
-            var foodItem = foodItems[i];
-            if (foodItem instanceof FoodItem) {
-                // Check for exact match first
-                if (foodItem.containsY(y)) {
-                    return foodItem;
-                }
-                
-                // Track closest item as fallback
-                var distance = foodItem.getDistanceFromCenter(y);
-                if (distance < closestDistance) {
-                    closestDistance = distance;
-                    closestItem = foodItem;
-                }
-            }
-        }
-        
-        return closestItem;
+    //! Update food grid tile coordinates (2-column layout) after rendering
+    function updateFoodGridCoordinates(coordinates as Lang.Array) as Void {
+        foodGridCoordinates = coordinates;
     }
 
-    //! Update food item coordinates after rendering
-    function updateFoodCoordinates(coordinates as Lang.Array) as Void {
-        for (var i = 0; i < coordinates.size() && i < foodItems.size(); i++) {
-            var coords = coordinates[i];
-            var foodItem = foodItems[i];
-            
-            if (coords instanceof Lang.Dictionary && foodItem instanceof FoodItem) {
-                var startY = coords.get("startY");
-                var endY = coords.get("endY");
-                
-                if (startY != null && endY != null && 
-                    startY instanceof Lang.Number && endY instanceof Lang.Number) {
-                    foodItem.setCoordinates(startY, endY);
+    //! Find the food item whose grid tile contains the given tap point
+    function findFoodItemAtPoint(x as Lang.Number, y as Lang.Number) as FoodItem? {
+        for (var i = 0; i < foodGridCoordinates.size(); i++) {
+            var coords = foodGridCoordinates[i];
+            if (coords instanceof Lang.Dictionary) {
+                var x0 = coords.get("x0");
+                var y0 = coords.get("y0");
+                var x1 = coords.get("x1");
+                var y1 = coords.get("y1");
+                var index = coords.get("index");
+                if (x0 instanceof Lang.Number && y0 instanceof Lang.Number &&
+                    x1 instanceof Lang.Number && y1 instanceof Lang.Number &&
+                    index instanceof Lang.Number &&
+                    x >= x0 && x <= x1 && y >= y0 && y <= y1 &&
+                    index >= 0 && index < foodItems.size()) {
+                    var item = foodItems[index];
+                    if (item instanceof FoodItem) {
+                        return item;
+                    }
                 }
             }
         }
+        return null;
     }
 
     //! Set loading state
