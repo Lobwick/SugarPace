@@ -33,7 +33,20 @@ class DiabetesFoodLoopDelegate extends WatchUi.BehaviorDelegate {
             return true;
         }
 
-        System.println("No food tile found at tap point: " + x + ", " + y);
+        // Chart area tap: cycle the visible timeline window (4h -> 2h -> 1h -> 30m)
+        if (appState.isPointInRegion(appState.chartRegion, x, y)) {
+            appState.cycleChartWindow();
+            System.println("Tap detected on chart, window now: " + appState.chartWindowMinutes + " min");
+            return true;
+        }
+
+        // Header area tap (glucose value + profile + trend info)
+        if (appState.isPointInRegion(appState.headerRegion, x, y)) {
+            System.println("Tap detected on header at: " + x + ", " + y);
+            return true;
+        }
+
+        System.println("No tap target found at point: " + x + ", " + y);
         return false;
     }
 
