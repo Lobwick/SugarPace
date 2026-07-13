@@ -3,7 +3,6 @@ import Toybox.Application;
 import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;
-import Toybox.Time;
 
 //! Service responsible for all Nightscout API communications
 class NightscoutService {
@@ -13,6 +12,13 @@ class NightscoutService {
 
     private var appState as AppState;
 
+    // Serialized request queue: the device's BLE bridge is unreliable under
+    // concurrent web requests (they can crash the app), so only ONE request is
+    // ever in flight. Others wait here and are dispatched as each completes.
+    private var requestQueue as Lang.Array = [];
+    private var requestInFlight as Lang.Boolean = false;
+    private var currentResponder as Method?;
+
     function initialize(appState as AppState) {
         self.appState = appState;
     }
@@ -20,6 +26,41 @@ class NightscoutService {
     //! Set callback for receiving data updates
     function setCallback(callback as Method) as Void {
         self.callback = callback;
+    }
+
+    //! Enqueue a web request; it runs when no other request is in flight.
+    private function enqueue(url as Lang.String, params as Lang.Dictionary, options as Lang.Dictionary, responder as Method) as Void {
+        requestQueue.add({ "url" => url, "params" => params, "options" => options, "responder" => responder });
+        dispatchNext();
+    }
+
+    //! Dispatch the next queued request if the bridge is free.
+    private function dispatchNext() as Void {
+        if (requestInFlight || requestQueue.size() == 0) {
+            return;
+        }
+        var req = requestQueue[0];
+        requestQueue = requestQueue.slice(1, null);
+        requestInFlight = true;
+        currentResponder = req.get("responder") as Method;
+        Communications.makeWebRequest(
+            req.get("url"),
+            req.get("params"),
+            req.get("options"),
+            self.method(:onRequestComplete)
+        );
+    }
+
+    //! Single completion hook: forwards to the request's own responder, then
+    //! frees the bridge and dispatches the next queued request.
+    function onRequestComplete(responseCode as Lang.Number, data as Lang.Dictionary?) as Void {
+        var responder = currentResponder;
+        requestInFlight = false;
+        currentResponder = null;
+        if (responder != null) {
+            responder.invoke(responseCode, data);
+        }
+        dispatchNext();
     }
 
 
@@ -43,7 +84,7 @@ class NightscoutService {
         };
         profileToActivate = presetName;
         var treatmentUrl = baseUrl + "/api/v2/notifications/loop?token=" + token;
-        Communications.makeWebRequest(
+        enqueue(
             treatmentUrl,
             treatmentData,
             {
@@ -57,22 +98,7 @@ class NightscoutService {
         );
     }
 
-    //! Format current timestamp to ISO format for treatments
-    private function formatCurrentTimestamp() as Lang.String {
-        var now = Time.now();
-        var timeInfo = Time.Gregorian.info(now, Time.FORMAT_SHORT);
-        
-        return Lang.format("$1$-$2$-$3$T$4$:$5$:$6$.000Z", [
-            timeInfo.year.format("%04d"),
-            timeInfo.month.format("%02d"),
-            timeInfo.day.format("%02d"),
-            timeInfo.hour.format("%02d"),
-            timeInfo.min.format("%02d"),
-            timeInfo.sec.format("%02d")
-        ]);
-    }
-
-    function desactivePreset() as Void {
+    function deactivatePreset() as Void {
         var baseUrl = getNightscoutUrl();
         var token = getNightscoutToken();
         
@@ -90,7 +116,7 @@ class NightscoutService {
         profileToActivate = Constants.DEFAULT_OVERRIDE_PROFIL;
 
         var treatmentUrl = baseUrl + "/api/v2/notifications/loop?token=" + token;
-        Communications.makeWebRequest(
+        enqueue(
             treatmentUrl,
             treatmentData,
             {
@@ -110,8 +136,8 @@ class NightscoutService {
     function fetchGlucoseData() as Void {
         
         var url = buildUrl("/api/v1/entries.json?count=48");
-        
-        Communications.makeWebRequest(
+
+        enqueue(
             url,
             {},
             {
@@ -131,8 +157,11 @@ class NightscoutService {
 
 
 
+        // Two requests: the profile list (available presets) and the recent
+        // overrides (which one is active). Both go through the serialized queue,
+        // so they never hit the BLE bridge concurrently.
         var profileUrl = baseUrl + "/api/v1/profile.json?token=" + token;
-        Communications.makeWebRequest(
+        enqueue(
             profileUrl,
             {},
             {
@@ -144,9 +173,8 @@ class NightscoutService {
             method(:onReceiveTempBasalData)
         );
 
-        // Ensuite récupérer les overrides récents pour déterminer l'actif
         var overrideUrl = baseUrl + "/api/v1/treatments.json?find[eventType]=Temporary%20Override&count=5&token=" + token;
-        Communications.makeWebRequest(
+        enqueue(
             overrideUrl,
             {},
             {
@@ -159,63 +187,42 @@ class NightscoutService {
         );
     }
 
+    //! Parse the profile list into the available override presets. Note: this
+    //! response does NOT set the active profile — that is owned solely by
+    //! onReceiveActiveOverride, so the two concurrent responses can't race.
      function onReceiveTempBasalData(responseCode as Lang.Number, data as Lang.Dictionary?) as Void {
+        var presets = [];
         if (responseCode == 200 && data != null) {
             try {
                 if (data instanceof Lang.Array && data.size() > 0) {
-                    // Récupérer le premier élément
                     var firstProfile = data[0];
-                    if (firstProfile instanceof Lang.Dictionary) {
-                        // Récupérer le profil actif
-                        if (firstProfile.hasKey("defaultProfile")) {
-                            var defaultProfile = firstProfile.get("defaultProfile");
-                            if (defaultProfile != null) {
-                                appState.activeProfile = defaultProfile.toString();
-                            }
-                        }
-                        
-                        // Récupérer les overrides
-                        if (firstProfile.hasKey("loopSettings")) {
-                            var loopSettings = firstProfile.get("loopSettings");
-                            if (loopSettings instanceof Lang.Dictionary && loopSettings.hasKey("overridePresets")) {
-                                var overridePresets = loopSettings.get("overridePresets");
-                                if (overridePresets instanceof Lang.Array) {
-                                    var profiles = [];
-                                    for (var i = 0; i < overridePresets.size(); i++) {
-                                        var presetData = overridePresets[i];
-                                        if (presetData instanceof Lang.Dictionary && presetData.hasKey("name")) {
-                                            var presetName = presetData.get("name");
-                                            var entry = {
-                                                "name" => presetName,
-                                                "data" => presetData
-                                            };
-                                            profiles.add(entry);
-                                        }
+                    if (firstProfile instanceof Lang.Dictionary && firstProfile.hasKey("loopSettings")) {
+                        var loopSettings = firstProfile.get("loopSettings");
+                        if (loopSettings instanceof Lang.Dictionary && loopSettings.hasKey("overridePresets")) {
+                            var overridePresets = loopSettings.get("overridePresets");
+                            if (overridePresets instanceof Lang.Array) {
+                                for (var i = 0; i < overridePresets.size(); i++) {
+                                    var presetData = overridePresets[i];
+                                    if (presetData instanceof Lang.Dictionary && presetData.hasKey("name")) {
+                                        presets.add({
+                                            "name" => presetData.get("name"),
+                                            "data" => presetData
+                                        });
                                     }
-                                    appState.tempBasals = profiles;
                                 }
                             }
                         }
                     }
                 }
             } catch (e) {
-                // En cas d'erreur, utiliser des données de fallback
-                appState.tempBasals = [];
+                presets = [];
             }
-        } else {
-            // Si pas de réponse, utiliser des données de fallback
-            appState.tempBasals = [];
         }
-        
-        // Notify callback with temp basals data
+
+        appState.overridePresets = presets;
         if (callback != null) {
-            callback.invoke("tempBasals", {
-                "activeProfile" => appState.activeProfile,
-                "profiles" => appState.tempBasals
-            });
+            callback.invoke("overridePresets", presets);
         }
-        
-        // Forcer la mise à jour de l'affichage
         WatchUi.requestUpdate();
     }
 
@@ -283,8 +290,8 @@ class NightscoutService {
         var url = getNightscoutUrl() + "/api/v2/notifications/loop?token=" + getNightscoutToken();
         
         System.println("Sending food data: " + foodData.get("notes") + " with " + foodData.get("remoteCarbs") + " carbs, OTP: " + foodData.get("otp"));
-        
-        Communications.makeWebRequest(
+
+        enqueue(
             url,
             foodData,
             {
@@ -356,80 +363,6 @@ class NightscoutService {
                 }
             } catch (e) {
                 System.println("Error parsing glucose data: " + e.getErrorMessage());
-            }
-        }
-    }
-
-    //! Handle available profiles response (from treatments/overrides)
-    function onReceiveAvailableProfiles(responseCode as Lang.Number, data as Lang.Dictionary?) as Void {
-        System.println("Received available profiles response code: " + responseCode);
-        if (responseCode == 200 && data != null && callback != null) {
-            try {
-                var activeProfile = Constants.DEFAULT_OVERRIDE_PROFIL;
-
-                if (data instanceof Lang.Array) {
-                    // Find the first active override (without duration or with durationType = "indefinite")
-                    for (var i = 0; i < data.size(); i++) {
-                        var override = data[i];
-                        if (override instanceof Lang.Dictionary) {
-                            
-                            if (override.hasKey("reason")) {
-                                var reason = override.get("reason");
-                                if (reason != null) {
-                                    var reasonStr = reason.toString();
-                                    activeProfile = reasonStr;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                callback.invoke("activeProfile", activeProfile);
-                
-            } catch (e) {
-                callback.invoke("activeProfile", "Erreur");
-            }
-        }
-    }
-
-    //! Handle active profile response (from profile endpoint)
-    function onReceiveActiveProfile(responseCode as Lang.Number, data as Lang.Dictionary?) as Void {
-        if (responseCode == 200 && data != null && callback != null) {
-            try {
-                var activeProfile = Constants.DEFAULT_OVERRIDE_PROFIL;
-                
-                if (data instanceof Lang.Array) {
-                    // Find the first active override (without duration or with durationType = "indefinite")
-                    for (var i = 0; i < data.size(); i++) {
-                        var override = data[i];
-                        if (override instanceof Lang.Dictionary) {
-                            var isActive = false;
-                            if (override.hasKey("durationType")) {
-                                var durationType = override.get("durationType");
-                                if (durationType != null && durationType.toString().equals("indefinite")) {
-                                    isActive = true;
-                                }
-                            } else if (!override.hasKey("duration") || override.get("duration") == null) {
-                                isActive = true;
-                            }
-                            
-                            if (isActive && override.hasKey("reason")) {
-                                var reason = override.get("reason");
-                                if (reason != null) {
-                                    var reasonStr = reason.toString();
-                                    activeProfile = reasonStr;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                callback.invoke("activeProfile", activeProfile);
-                
-            } catch (e) {
-                callback.invoke("activeProfile", "Erreur");
             }
         }
     }

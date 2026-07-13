@@ -26,8 +26,11 @@ class AppState {
     // Visible trend-chart window in minutes; cycles 4h -> 2h -> 1h -> 30m on tap.
     public var chartWindowMinutes as Lang.Number = 240;
     
-    // Profile data
-    public var tempBasals as Lang.Array = [];
+    // Profile data. overridePresets = the list of Loop override presets (name +
+    // data). activeProfile = which one is currently active on Nightscout; it has
+    // a single source of truth (the treatments/override response), never the
+    // profile-list response, to avoid a race between the two.
+    public var overridePresets as Lang.Array = [];
     public var activeProfile as Lang.String = "";
     public var presetCoordinatesProfile as Lang.Array = [];
     // UI state
@@ -72,21 +75,10 @@ class AppState {
         WatchUi.requestUpdate();
     }
 
-    //! Update temp basals and active profile
-    function updateTempBasals(data as Lang.Dictionary) as Void {
-        if (data.hasKey("profiles")) {
-            var profiles = data.get("profiles");
-            if (profiles instanceof Lang.Array) {
-                tempBasals = profiles;
-            }
-        }
-        
-        if (data.hasKey("activeProfile")) {
-            var profile = data.get("activeProfile");
-            if (profile != null && profile instanceof Lang.String) {
-                activeProfile = profile;
-            }
-        }
+    //! Update the list of available override presets (not the active profile —
+    //! that has its own single source of truth via updateActiveProfile).
+    function updateOverridePresets(presets as Lang.Array) as Void {
+        overridePresets = presets;
         WatchUi.requestUpdate();
     }
 

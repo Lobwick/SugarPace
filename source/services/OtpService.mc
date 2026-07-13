@@ -15,18 +15,18 @@ class OtpService {
         return Otp.generateTotpSha1(secret);
     }
 
-    //! Get OTP secret from properties with fallback
+    //! Get OTP secret from properties (empty string when not configured)
     function getOtpSecret() as Lang.String {
-       return Application.Properties.getValue("otp_secret");
+        var secret = Application.Properties.getValue("otp_secret");
+        return secret != null ? secret.toString() : "";
     }
 
-    //! Format current timestamp to ISO format (with timezone adjustment)
+    //! Format the current time as an ISO-8601 UTC timestamp (…Z). Uses real UTC
+    //! (utcInfo), so it is correct in every timezone and DST period — the app
+    //! previously hard-coded a +2h offset that only held for UTC+2 in summer.
     function formatCurrentTimestamp() as Lang.String {
-        var now = Time.now();
-        // Add 2 hours (7200 seconds) for timezone adjustment
-        var adjustedTime = new Time.Moment(now.value() - 7200);
-        var timeInfo = Time.Gregorian.info(adjustedTime, Time.FORMAT_SHORT);
-        
+        var timeInfo = Time.Gregorian.utcInfo(Time.now(), Time.FORMAT_SHORT);
+
         return Lang.format("$1$-$2$-$3$T$4$:$5$:$6$.000Z", [
             timeInfo.year.format("%04d"),
             timeInfo.month.format("%02d"),

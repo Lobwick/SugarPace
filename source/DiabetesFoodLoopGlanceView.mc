@@ -1,6 +1,7 @@
 import Toybox.WatchUi;
 import Toybox.Graphics;
 import Toybox.Lang;
+import Toybox.Application;
 
 (:glance)
 function getDiabetesFoodLoopGlanceView() as [WatchUi.GlanceView] {
@@ -20,8 +21,17 @@ class DiabetesFoodLoopGlanceView extends WatchUi.GlanceView {
         var justification = Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER;
         var width = dc.getWidth();
         var height = dc.getHeight();
-        
-        // Simple "Open" text centered in the glance
-        dc.drawText(width / 2, height / 2, Graphics.FONT_MEDIUM, "Open", justification);
+
+        // Show the last known glucose (cached by the main app), fall back to a
+        // prompt if we've never fetched one yet.
+        var text = "Ouvrir";
+        var data = Application.Storage.getValue("last_glucose_data");
+        if (data instanceof Lang.Dictionary && data.hasKey("bloodSugar")) {
+            var sgv = data.get("bloodSugar");
+            if (sgv != null && sgv instanceof Lang.Number && sgv > 0) {
+                text = sgv.toString() + " mg/dl";
+            }
+        }
+        dc.drawText(width / 2, height / 2, Graphics.FONT_MEDIUM, text, justification);
     }
 }

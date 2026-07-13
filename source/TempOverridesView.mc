@@ -8,10 +8,43 @@ import Toybox.Timer;
 
 class TempOverridesView extends WatchUi.View {
     private var appState as AppState;
+    // Row highlighted for physical-button selection (touch uses coordinates).
+    private var focusedIndex as Lang.Number = 0;
 
     function initialize(appState as AppState) {
         View.initialize();
         self.appState = appState;
+    }
+
+    //! Move the button-selection focus, wrapping around the row list.
+    function focusNext() as Void {
+        var count = appState.presetCoordinatesProfile.size();
+        if (count > 0) {
+            focusedIndex = (focusedIndex + 1) % count;
+            WatchUi.requestUpdate();
+        }
+    }
+
+    function focusPrevious() as Void {
+        var count = appState.presetCoordinatesProfile.size();
+        if (count > 0) {
+            focusedIndex = (focusedIndex - 1 + count) % count;
+            WatchUi.requestUpdate();
+        }
+    }
+
+    //! Name of the currently focused row (for physical-button activation).
+    function getFocusedName() as Lang.String? {
+        if (focusedIndex >= 0 && focusedIndex < appState.presetCoordinatesProfile.size()) {
+            var coord = appState.presetCoordinatesProfile[focusedIndex];
+            if (coord instanceof Lang.Dictionary) {
+                var name = coord.get("name");
+                if (name != null) {
+                    return name.toString();
+                }
+            }
+        }
+        return null;
     }
 
     function onShow() as Void {
@@ -34,7 +67,7 @@ class TempOverridesView extends WatchUi.View {
     }
 
     function onUpdate(dc as Dc) as Void {
-        var tempBasals = appState.tempBasals;
+        var overridePresets = appState.overridePresets;
         var activeProfile = appState.activeProfile;
 
         // Dark theme is always used, to match the app's design
@@ -59,37 +92,54 @@ class TempOverridesView extends WatchUi.View {
 
         // Réinitialiser les coordonnées
         appState.presetCoordinatesProfile = [];
+        var rowIndex = 0;
 
         // Default row (always present)
-        drawProfileRow(dc, yPos, width, rowHeight, Constants.DEFAULT_OVERRIDE_PROFIL, activeProfile.equals(Constants.DEFAULT_OVERRIDE_PROFIL));
+        drawProfileRow(dc, yPos, width, rowHeight, Constants.DEFAULT_OVERRIDE_PROFIL, activeProfile.equals(Constants.DEFAULT_OVERRIDE_PROFIL), rowIndex == focusedIndex);
         appState.presetCoordinatesProfile.add({
             "name" => Constants.DEFAULT_OVERRIDE_PROFIL,
             "startY" => yPos,
             "endY" => yPos + rowHeight
         });
         yPos += rowHeight;
+        rowIndex += 1;
 
         // One row per preset
-        for (var i = 0; i < tempBasals.size() && yPos < height - rowHeight; i++) {
-            var override = tempBasals[i];
+        for (var i = 0; i < overridePresets.size() && yPos < height - rowHeight; i++) {
+            var override = overridePresets[i];
             if (override instanceof Lang.Dictionary && override.hasKey("name")) {
                 var nameStr = override.get("name").toString();
-                drawProfileRow(dc, yPos, width, rowHeight, nameStr, activeProfile.equals(nameStr));
+                drawProfileRow(dc, yPos, width, rowHeight, nameStr, activeProfile.equals(nameStr), rowIndex == focusedIndex);
                 appState.presetCoordinatesProfile.add({
                     "name" => nameStr,
                     "startY" => yPos,
                     "endY" => yPos + rowHeight
                 });
                 yPos += rowHeight;
+                rowIndex += 1;
             }
+        }
+
+        // Keep the focus in range if the preset list shrank
+        if (focusedIndex >= rowIndex && rowIndex > 0) {
+            focusedIndex = rowIndex - 1;
         }
     }
 
     //! Draw one full-width list row, Garmin Edge style: left-aligned label, a
     //! thin separator underneath, and — when active — a green left accent bar,
     //! green label and a checkmark on the right. No boxes, no neon fills.
-    function drawProfileRow(dc as Dc, y as Lang.Number, width as Lang.Number, height as Lang.Number, text as Lang.String, isActive as Lang.Boolean) as Void {
+    function drawProfileRow(dc as Dc, y as Lang.Number, width as Lang.Number, height as Lang.Number, text as Lang.String, isActive as Lang.Boolean, isFocused as Lang.Boolean) as Void {
         var padLeft = 20;
+
+        // Focused (button navigation): subtle inset outline, distinct from the
+        // green "active" styling.
+        if (isFocused) {
+            dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+            dc.setPenWidth(2);
+            dc.drawRectangle(2, y + 2, width - 4, height - 4);
+            dc.setPenWidth(1);
+        }
 
         // Active: green accent bar down the left edge
         if (isActive) {
@@ -154,14 +204,20 @@ class TempOverridesInputDelegate extends WatchUi.InputDelegate {
     }
 
     function onSelect() as Lang.Boolean {
-        handlePresetSelection(getCenterYPosition());
+        activatePreset(view.getFocusedName());
         return true;
     }
 
     function onKey(keyEvent as WatchUi.KeyEvent) as Lang.Boolean {
         var key = keyEvent.getKey();
         if (key == WatchUi.KEY_ENTER) {
-            handlePresetSelection(getCenterYPosition());
+            activatePreset(view.getFocusedName());
+            return true;
+        } else if (key == WatchUi.KEY_DOWN) {
+            view.focusNext();
+            return true;
+        } else if (key == WatchUi.KEY_UP) {
+            view.focusPrevious();
             return true;
         }
         return false;
@@ -169,32 +225,25 @@ class TempOverridesInputDelegate extends WatchUi.InputDelegate {
 
     function onTap(clickEvent as WatchUi.ClickEvent) as Lang.Boolean {
         var coordinates = clickEvent.getCoordinates();
-        handlePresetSelection(coordinates[1]); // Y coordinate
+        activatePreset(view.findPresetAtY(coordinates[1])); // Y coordinate
         return true;
     }
 
-    private function handlePresetSelection(tapY as Lang.Number) as Void {
-        var presetName = view.findPresetAtY(tapY);
-        
-        if (presetName != null) {
-            var app = Application.getApp() as DiabetesFoodLoopApp;
-            if (app != null) {
-                var nightscoutService = app.getNightscoutService();
-                if (presetName.equals(Constants.DEFAULT_OVERRIDE_PROFIL)) {
-                    nightscoutService.desactivePreset();
-                }else{
-                    nightscoutService.activatePreset(presetName);
-                }
-                System.println("Activating preset: " + presetName);
-            }
-        } else {
-            System.println("No preset found at Y: " + tapY);
+    //! Activate (or, for Default, cancel) the named override preset.
+    private function activatePreset(presetName as Lang.String?) as Void {
+        if (presetName == null) {
+            System.println("No preset selected");
+            return;
         }
-    }
-
-
-    //! Get estimated center Y position for button selection
-    private function getCenterYPosition() as Lang.Number {
-        return 100; // Default center position when no tap coordinates
+        var app = Application.getApp() as DiabetesFoodLoopApp;
+        if (app != null) {
+            var nightscoutService = app.getNightscoutService();
+            if (presetName.equals(Constants.DEFAULT_OVERRIDE_PROFIL)) {
+                nightscoutService.deactivatePreset();
+            } else {
+                nightscoutService.activatePreset(presetName);
+            }
+            System.println("Activating preset: " + presetName);
+        }
     }
 }
