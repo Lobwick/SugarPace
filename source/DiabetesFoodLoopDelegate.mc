@@ -20,6 +20,32 @@ class DiabetesFoodLoopDelegate extends WatchUi.BehaviorDelegate {
         return true;
     }
 
+    //! Vertical swipe scrolls the page so foods below the fold are reachable.
+    function onSwipe(swipeEvent as WatchUi.SwipeEvent) as Boolean {
+        var dir = swipeEvent.getDirection();
+        if (dir == WatchUi.SWIPE_UP) {
+            appState.scrollBy(Layout.SCROLL_STEP);
+            return true;
+        } else if (dir == WatchUi.SWIPE_DOWN) {
+            appState.scrollBy(-Layout.SCROLL_STEP);
+            return true;
+        }
+        return false;
+    }
+
+    //! Physical up/down keys also scroll (touch is the primary path).
+    function onKey(keyEvent as WatchUi.KeyEvent) as Boolean {
+        var key = keyEvent.getKey();
+        if (key == WatchUi.KEY_DOWN) {
+            appState.scrollBy(Layout.SCROLL_STEP);
+            return true;
+        } else if (key == WatchUi.KEY_UP) {
+            appState.scrollBy(-Layout.SCROLL_STEP);
+            return true;
+        }
+        return false;
+    }
+
     //! Handle a direct tap on a food tile in the grid
     function onTap(clickEvent as WatchUi.ClickEvent) as Boolean {
         var coordinates = clickEvent.getCoordinates();
