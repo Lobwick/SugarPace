@@ -1,0 +1,12 @@
+name: PR
+
+# On every pull request to main: compile all devices + run the unit tests.
+# No artifacts, no release — just a green/red gate.
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+    secrets: inherit

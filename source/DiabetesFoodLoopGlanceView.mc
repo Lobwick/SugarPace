@@ -26,10 +26,12 @@ class DiabetesFoodLoopGlanceView extends WatchUi.GlanceView {
         // prompt if we've never fetched one yet.
         var text = "Ouvrir";
         var data = Application.Storage.getValue("last_glucose_data");
+        var default_unit = Application.Properties.getValue("default_unit").toString();
+
         if (data instanceof Lang.Dictionary && data.hasKey("bloodSugar")) {
             var sgv = data.get("bloodSugar");
             if (sgv != null && sgv instanceof Lang.Number && sgv > 0) {
-                text = sgv.toString() + " mg/dl";
+                text = sgv.toString() + " " + default_unit;
             }
         }
         dc.drawText(width / 2, height / 2, Graphics.FONT_MEDIUM, text, justification);

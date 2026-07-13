@@ -1,0 +1,56 @@
+name: Main
+
+# On every push to main:
+#   1. compile all devices + compile unit tests (reusable ci workflow),
+#   2. if the app version in manifest.xml has no matching git tag yet, cut a
+#      GitHub Release (tag v<version>) with auto-generated notes + the per-device
+#      .prg files built in step 1.
+on:
+  push:
+    branches: [main]
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+    secrets: inherit
+
+  release:
+    needs: ci
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # needed to create tags/releases
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history so existing tags are visible
+
+      - name: Download built .prg files
+        uses: actions/download-artifact@v4
+        with:
+          pattern: prg-*
+          path: dist
+          merge-multiple: true
+
+      - name: Read app version
+        id: ver
+        run: |
+          set -euo pipefail
+          VERSION=$(grep '<iq:application' manifest.xml | grep -oE 'version="[0-9][0-9.]*"' | head -1 | sed -E 's/version="([0-9.]+)"/\1/')
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "App version: $VERSION"
+
+      - name: Release on version bump
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.ver.outputs.version }}
+        run: |
+          set -euo pipefail
+          if git rev-parse "v$VERSION" >/dev/null 2>&1; then
+            echo "Tag v$VERSION already exists — no version bump, skipping release."
+          else
+            echo "New version v$VERSION — creating release."
+            gh release create "v$VERSION" \
+              dist/*.prg \
+              --title "v$VERSION" \
+              --generate-notes
+          fi

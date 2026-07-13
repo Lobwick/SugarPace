@@ -1,0 +1,80 @@
+name: Build & Test
+
+# Reusable pipeline: compile the app for every target device and compile the
+# unit-test binary, using the Dockerized ConnectIQ build action (the image
+# bundles the SDK + device profiles, so no SDK/device setup is needed here).
+# Called by both pr.yml and main.yml.
+on:
+  workflow_call: {}
+
+# Pin to the action tag matching the desired SDK version.
+env:
+  CIQ_ACTION: blackshadev/garmin-connectiq-build-action@9.1.1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        device: [edge840, edge850, edge1040, edge1050]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Provide developer key
+        env:
+          KEY_B64: ${{ secrets.DEVELOPER_KEY_BASE64 }}
+        run: |
+          set -euo pipefail
+          if [ -n "${KEY_B64:-}" ]; then
+            echo "$KEY_B64" | base64 -d > developer_key
+          else
+            # Throwaway key: fine for build/test (identity only matters for the store)
+            openssl genrsa -out dk.pem 4096
+            openssl pkcs8 -topk8 -inform PEM -outform DER -in dk.pem -out developer_key -nocrypt
+          fi
+
+      - name: Build ${{ matrix.device }}
+        uses: blackshadev/garmin-connectiq-build-action@9.1.1
+        with:
+          developerKey: ./developer_key
+          projectJungle: ./monkey.jungle
+          typeCheck: "1" # 0=off 1=gradual 2=informative 3=strict
+          device: ${{ matrix.device }}
+          outputPath: ./out/${{ matrix.device }}.prg
+
+      - name: Upload ${{ matrix.device }} build
+        uses: actions/upload-artifact@v4
+        with:
+          name: prg-${{ matrix.device }}
+          path: ./out/${{ matrix.device }}.prg
+
+  test-compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Provide developer key
+        env:
+          KEY_B64: ${{ secrets.DEVELOPER_KEY_BASE64 }}
+        run: |
+          set -euo pipefail
+          if [ -n "${KEY_B64:-}" ]; then
+            echo "$KEY_B64" | base64 -d > developer_key
+          else
+            openssl genrsa -out dk.pem 4096
+            openssl pkcs8 -topk8 -inform PEM -outform DER -in dk.pem -out developer_key -nocrypt
+          fi
+
+      # Compiles the (:test) sources with --unit-test so broken test code fails
+      # the build. NB: this Docker action builds only — it does not run the
+      # simulator, so test *execution* stays local (`monkeydo <prg> <dev> -t`).
+      - name: Compile unit tests
+        uses: blackshadev/garmin-connectiq-build-action@9.1.1
+        with:
+          developerKey: ./developer_key
+          projectJungle: ./monkey.jungle
+          typeCheck: "1"
+          device: edge1050
+          outputPath: ./out/test.prg
+          extraArgs: "--unit-test"

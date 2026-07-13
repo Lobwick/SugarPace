@@ -15,22 +15,12 @@ module Rez {
         (:initialized) var gel_decathlon_108_cola as ResourceId;
         (:initialized) var jelly_red_fruit as ResourceId;
         (:initialized) var bar_energy_dates_nuts as ResourceId;
-        (:initialized) var id_monkey as ResourceId;
         (:initialized) var LauncherIcon as ResourceId;
     } // Drawables
 
     module JsonData {
         (:initialized) var foods as ResourceId;
     } // JsonData
-
-    module Layouts {
-        function MainLayout(dc as Graphics.Dc) as Array<WatchUi.Drawable> {
-            var rez_cmp_local_bitmap_id_monkey = new WatchUi.Bitmap({:identifier=>"id_monkey", :rezId=>$.Rez.Drawables.id_monkey, :locX=>WatchUi.LAYOUT_HALIGN_CENTER, :locY=>30});
-            rez_cmp_local_bitmap_id_monkey.setLocation(((dc.getWidth() - rez_cmp_local_bitmap_id_monkey.width) * 0.5), rez_cmp_local_bitmap_id_monkey.locY);
-
-            return [rez_cmp_local_bitmap_id_monkey] as Array<WatchUi.Drawable>;
-        }
-    } // Layouts
 
     module Menus {
         class MainMenu extends WatchUi.Menu {
@@ -44,8 +34,6 @@ module Rez {
     module Strings {
         (:initialized) var nightscout_url_title as ResourceId;
         (:initialized) var default_unit_title as ResourceId;
-        (:initialized) var active_profile_label as ResourceId;
-        (:initialized) var menu_return_instruction as ResourceId;
         (:initialized) var nightscout_token_title as ResourceId;
         (:initialized) var loading_foods as ResourceId;
         (:initialized) var check_nightscout_config as ResourceId;
