@@ -43,6 +43,17 @@ class DiabetesFoodLoopApp extends Application.AppBase {
     function onStop(state as Dictionary?) as Void {
     }
 
+    // Called when the user changes app settings in Garmin Connect. Re-fetch so
+    // a new URL/token/unit takes effect immediately instead of at the next tick.
+    (:typecheck([disableBackgroundCheck, disableGlanceCheck]))
+    function onSettingsChanged() as Void {
+        if (nightscoutService != null) {
+            nightscoutService.fetchGlucoseData();
+            nightscoutService.fetchTempBasalData();
+        }
+        WatchUi.requestUpdate();
+    }
+
     // Return the initial view of your widget here - only for non-glance context
     (:typecheck([disableBackgroundCheck, disableGlanceCheck]))
     function getInitialView() as [Views] or [Views, InputDelegates] {
@@ -83,9 +94,9 @@ class DiabetesFoodLoopApp extends Application.AppBase {
             if (data instanceof Lang.Array) {
                 appState.updateFoodItems(data);
             }
-        } else if (type.equals("tempBasals")) {
-            if (data instanceof Lang.Dictionary) {
-                appState.updateTempBasals(data);
+        } else if (type.equals("overridePresets")) {
+            if (data instanceof Lang.Array) {
+                appState.updateOverridePresets(data);
             }
         } else if (type.equals("activeProfile")) {
             if (data instanceof Lang.String) {

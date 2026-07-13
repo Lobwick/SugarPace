@@ -1,121 +1,138 @@
- # Diabetes Food Management - Connect IQ App
+# Diabetes Food Management — Connect IQ App
 
-Une application Connect IQ pour appareils Garmin qui permet de gérer facilement l'entrée de glucides pour les utilisateurs de pompes à insuline Loop.
+**Français** · [English](README.en.md)
 
-## 🚀 Fonctionnalités
+Application Connect IQ pour appareils Garmin qui permet, depuis la montre/le compteur, de suivre sa glycémie (via Nightscout) et d'envoyer des entrées de glucides à Loop en un tap — pratique pendant l'effort pour resucrer sans sortir son téléphone.
 
-### Affichage Principal
-- **Glycémie en temps réel** : Affichage de la glycémie actuelle depuis Nightscout
-- **Tendance** : Flèche de direction et taux de variation
-- **Horodatage** : Temps depuis la dernière mise à jour
-- **Liste des aliments** : Affichage des aliments disponibles avec leurs glucides
+---
 
-### Navigation et Sélection
-- **Navigation** : Utilisez les boutons Page Précédente/Suivante ou les touches directionnelles
-- **Sélection visuelle** : L'aliment sélectionné est mis en surbrillance
-- **Envoi direct** : Appuyez sur Select/Enter pour envoyer l'aliment à Loop
+# 1. Utilisation
 
-### Intégration Loop
-- **Génération OTP** : Code TOTP généré automatiquement pour l'authentification
-- **API Nightscout** : Envoi sécurisé des données de glucides via l'API notifications/loop
-- **Métadonnées complètes** : Nom de l'aliment, quantité de glucides, timestamp ISO
+## Écran principal
 
-## 📱 Compatibilité
+L'écran principal se lit de haut en bas :
 
-Testé sur :
-- **Garmin Edge 1050**
-- Autres appareils Connect IQ compatibles
+- **Glycémie actuelle** en grand, colorée selon la zone (vert = dans la cible, orange = proche des limites, rouge = hors limites), suivie de l'unité et de la **flèche de tendance** (`↑↑`, `↑`, `↗`, `→`, `↘`, `↓`, `↓↓`).
+- **Profil Nightscout actif** (pastille + nom) au centre de l'en-tête.
+- **Fraîcheur** de la donnée à droite (ex. `2m ago`).
+- **Graphe de tendance** en barres sur les dernières heures.
+- **Grille d'aliments** (icône + nom) en bas.
 
-## 🔧 Installation
+## Interactions tactiles
 
-1. Compilez l'application avec Connect IQ SDK
-2. Installez le fichier `.prg` sur votre appareil Garmin
-3. Configurez les paramètres dans l'application Garmin Connect
+| Zone touchée | Action |
+|---|---|
+| **Une vignette d'aliment** | Envoie cet aliment (ses glucides) à Loop, avec un code OTP généré à la volée |
+| **Le graphe** | Change la fenêtre de temps affichée : 4h → 2h → 1h → 30min → 4h. L'échelle verticale s'adapte au min/max de la fenêtre |
+| **L'en-tête** (glycémie / profil) | Ouvre l'écran de sélection de **profil temporaire** |
+| **Menu** (bouton physique / `⋮`) | Ouvre aussi la sélection de profils temporaires |
 
-## ⚙️ Configuration
+## Sélection de profil temporaire
 
-### Paramètres requis dans l'app Garmin Connect :
-- **Nightscout URL** : URL de votre instance Nightscout (ex: `https://votre-nightscout.herokuapp.com`)
-- **Nightscout Token** : Token d'authentification pour votre Nightscout
-- **Secret OTP** : Clé secrète TOTP pour l'authentification Loop (voir section ci-dessous)
+L'écran liste les profils/overrides disponibles sur Nightscout. Le profil **actif** est repéré par une barre verte et une coche. Toucher un profil l'active ; toucher **Default** annule l'override temporaire en cours.
 
-### Récupération du Secret OTP
+## Réglages (Garmin Connect / Connect IQ)
 
-Le secret OTP est nécessaire pour l'authentification avec Loop. Voici comment l'obtenir :
+Configurables depuis l'app Garmin Connect (Mobile) ou Connect IQ (Express) :
 
-#### Étape 1 : Localiser le QR Code
-1. Dans votre application Loop, allez dans les paramètres de sécurité
-2. Trouvez le QR code pour l'authentification à deux facteurs (2FA)
-3. Ce QR code contient le secret OTP nécessaire
+- **Nightscout URL** — URL de votre instance (ex. `https://mon-nightscout.example.com`)
+- **Nightscout Token** — token d'authentification Nightscout
+- **Secret OTP** — clé TOTP pour Loop (voir § 2)
+- **Default User** — nom associé aux entrées envoyées
+- **Default Unit** — unité affichée (`mg/dl` ou `mmol`)
+- **Colorer les barres selon la zone glycémique** — si activé, chaque barre du graphe prend la couleur de sa zone ; sinon les barres restent grises (défaut)
 
-#### Étape 2 : Extraire le Secret du QR Code
-1. **Capture d'écran** : Prenez une capture d'écran du QR code affiché dans Loop
-2. **Outil d'extraction** : Utilisez l'outil en ligne [2FA QR Code Extractor](https://stefansundin.github.io/2fa-qr/)
-3. **Upload** : Téléchargez votre capture d'écran sur cet outil
-4. **Récupération** : L'outil va extraire le secret (une chaîne comme `MNWUPWJFCJRJJ4WSBPC27HJ5CZUM6YKK`)
+> Prérequis Loop : votre Loop doit accepter les entrées distantes (Remote Carbs) via l'API Nightscout `notifications/loop`.
 
-#### Étape 3 : Configuration
-1. Copiez le secret extrait
-2. Dans l'app Garmin Connect, collez ce secret dans le champ "Secret OTP"
-3. Sauvegardez la configuration
+---
 
-⚠️ **Important** : Gardez ce secret confidentiel et ne le partagez jamais.
+# 2. Génération du code OTP (secret TOTP)
 
-### Configuration Loop
-Assurez-vous que votre Loop est configuré pour accepter les entrées distantes via l'API Nightscout.
+Le **secret OTP** est indispensable pour que Loop accepte les commandes distantes. Il se récupère **une seule fois** depuis le QR code 2FA de Loop, puis se colle dans les réglages de l'app.
 
-## 🎮 Utilisation
+### Étape 1 — Localiser le QR code dans Loop
+1. Dans l'app **Loop**, ouvrez les réglages de sécurité / services distants.
+2. Affichez le **QR code d'authentification à deux facteurs (2FA)** : il encode le secret OTP.
 
-### Navigation
-1. **Page Suivante** : Naviguer vers l'aliment suivant
-2. **Page Précédente** : Naviguer vers l'aliment précédent  
-3. **Select/Enter** : Sélectionner et envoyer l'aliment en surbrillance
+### Étape 2 — Extraire le secret du QR code
+1. Prenez une **capture d'écran** du QR code.
+2. Ouvrez l'outil en ligne [2FA QR Code Extractor](https://stefansundin.github.io/2fa-qr/).
+3. Chargez la capture d'écran.
+4. L'outil renvoie le **secret** (chaîne du type `MNWUPWJFCJRJJ4WSBPC27HJ5CZUM6YKK`).
 
-### Menu
-- **Menu** : Accès aux Temp Overrides (profils temporaires)
+### Étape 3 — Configurer l'app
+1. Copiez le secret extrait.
+2. Dans Garmin Connect → réglages de l'app → collez-le dans **Secret OTP**.
+3. Sauvegardez.
 
-### Logs de Débogage
-Les logs système affichent :
-- Coordonnées des aliments affichés
-- Navigation entre les aliments
-- Génération OTP et envoi des données
-- Réponses de l'API Nightscout
+Au moment d'envoyer un aliment, l'app génère un code TOTP à 6 chiffres (renouvelé toutes les 30 s) à partir de ce secret.
 
-## 🔒 Sécurité
+⚠️ **Gardez ce secret confidentiel.** L'heure de la montre doit être synchronisée, sinon les codes seront rejetés.
 
-- **Authentification TOTP** : Code à usage unique généré toutes les 30 secondes
-- **Transmission chiffrée** : Communications HTTPS avec Nightscout
-- **Token d'authentification** : Accès sécurisé aux API Nightscout
+---
 
-## 🛠️ Structure du Code
+# 3. Pour les développeurs
 
-### Fichiers principaux
-- `DiabetesFoodManagementApp.mc` : Application principale et logique de démarrage
-- `DiabetesFoodManagementView.mc` : Interface utilisateur et affichage
-- `DiabetesFoodManagementDelegate.mc` : Gestion des événements et navigation
-- `DiabetesFoodManagementMenuDelegate.mc` : Gestion du menu
+## Compilation
 
-### Modules OTP
-- `otp/Otp.mc` : Génération des codes TOTP
-- `otp/Hmac.mc` : Implémentation HMAC-SHA1
-- `otp/Sha1.mc` : Algorithme SHA1
-- `otp/Convert.mc` : Utilitaires de conversion
+Projet Monkey C standard (Connect IQ SDK). Point d'entrée du build : `monkey.jungle` → `manifest.xml`.
 
-### Ressources
-- `resources/menus/menu.xml` : Définition des menus
-- `resources/strings/strings.xml` : Textes de l'interface
+```bash
+# Build pour un device (ex. edge1050), signé avec votre clé développeur
+monkeyc -f monkey.jungle -d edge1050 -o bin/DiabetesFoodManagement.prg -y developer_key
 
-## 📊 API Nightscout
+# Lancer dans le simulateur
+connectiq                 # démarre le simulateur
+monkeydo bin/DiabetesFoodManagement.prg edge1050
+```
 
-### Endpoint utilisé
+> ⚠️ Le type-checker peut atteindre un `OutOfMemoryError` sur de l'arithmétique avec des `Number?` nullables. Garder les accumulateurs numériques non-null (pattern `seen`/drapeau) plutôt que des sentinelles `null`.
+
+## Architecture
+
+Séparation vues / état / services :
+
+**App & UI**
+- `source/DiabetesFoodLoopApp.mc` — cycle de vie, initialisation des services, callbacks
+- `source/DiabetesFoodLoopView.mc` — écran principal (en-tête glycémie, graphe, grille d'aliments)
+- `source/DiabetesFoodLoopDelegate.mc` — gestion des taps (aliment / graphe / en-tête)
+- `source/DiabetesFoodLoopMenuDelegate.mc` — menu
+- `source/TempOverridesView.mc` — écran de sélection de profil + son input delegate
+- `source/DiabetesFoodLoopGlanceView.mc` — vue « glance »
+
+**État (models)**
+- `source/models/AppState.mc` — état centralisé (glycémie, historique, aliments, profil, régions tactiles, fenêtre du graphe)
+- `source/models/GlucoseData.mc` — donnée glycémie (valeur, tendance, zones de couleur)
+- `source/models/FoodItem.mc`, `source/models/FoodDatabase.mc` — aliments
+
+**Services**
+- `source/services/NightscoutService.mc` — requêtes Nightscout (glycémie, profils, envoi de glucides). Les requêtes BLE sont volontairement **non concurrentes** (glycémie courante + historique fusionnés en une seule requête ; fetch profil décalé) pour éviter les crashs.
+- `source/services/OtpService.mc` — construction des données d'entrée + code OTP
+
+**OTP**
+- `source/otp/Otp.mc` — génération TOTP
+- `source/otp/Hmac.mc` — HMAC-SHA1
+- `source/otp/Sha1.mc` — SHA1
+- `source/otp/Convert.mc` — utilitaires (Base32, etc.)
+
+**Ressources**
+- `resources/settings/settings.xml` + `resources/properties/properties.xml` — réglages configurables
+- `resources/strings/` (+ `strings-fre/`) — libellés (EN / FR)
+- `resources/menus/menu.xml` — menus
+- `resources/foods/foods.json` — liste des aliments (les données ; `foods.xml` n'est que la déclaration de ressource)
+- `resources/drawables/` — icônes des aliments
+
+## API Nightscout
+
+**Envoi de glucides** (avec OTP) :
+
 ```
 POST /api/v2/notifications/loop?token=<token>
 ```
 
-### Données envoyées
 ```json
 {
-  "enteredBy": "felix",
+  "enteredBy": "Default User",
   "eventType": "Remote Carbs Entry",
   "otp": "123456",
   "remoteCarbs": 15,
@@ -126,9 +143,11 @@ POST /api/v2/notifications/loop?token=<token>
 }
 ```
 
-## 🍽️ Aliments disponibles
+**Autres appels** : lecture des entrées glycémie (`/api/v1/entries.json?count=48`), lecture des profils (`/api/v1/profile.json`), overrides (`/api/v1/treatments.json`), activation/annulation d'override (`/api/v2/notifications/loop`).
 
-La liste des aliments proposés dans l'app est définie dans `resources/foods/foods.json`. Pour ajouter ou modifier un aliment, éditez ce fichier (voir aussi `resources/drawables/` pour les icônes associées).
+## Aliments
+
+La liste est définie dans `resources/foods/foods.json`. Pour ajouter/modifier un aliment, éditez ce fichier (et `resources/drawables/` pour l'icône).
 
 | Nom | Marque | Catégorie | Portion | Glucides | IG | Lipides | Protéines | Énergie |
 |---|---|---|---|---|---|---|---|---|
@@ -138,42 +157,26 @@ La liste des aliments proposés dans l'app est définie dans `resources/foods/fo
 | Fruit Jelly | — | JELLIES | 44 g | 35 g | 85 | 0 g | 0 g | 598 kJ |
 | Energy Bar Dates & Nuts | — | BAR | 50 g | 31 g | 55 | 5.5 g | 2.3 g | 800 kJ |
 
-⚠️ Les valeurs d'index glycémique (IG) sont estimées lorsqu'elles ne sont pas indiquées sur l'emballage du produit.
+⚠️ Les valeurs d'index glycémique (IG) sont estimées lorsqu'elles ne figurent pas sur l'emballage.
 
-## 🐛 Dépannage
+## Compatibilité
 
-### Problèmes courants
-- **Pas de données d'aliments** : Vérifiez la connexion Nightscout et l'URL
-- **OTP invalide** : Vérifiez que le secret OTP est correct et que l'heure est synchronisée
-- **Navigation ne fonctionne pas** : Utilisez les boutons Page Précédente/Suivante sur Edge 1050
+Testé sur **Garmin Edge 1050**. Devices ciblés : Edge 540/550/840/850/1040/1050 (voir `manifest.xml`).
 
-### Logs utiles
-Consultez les logs système pour :
-- Erreurs de réseau
-- Codes de réponse HTTP
-- Coordonnées des aliments
-- Valeurs OTP générées
+## Dépannage
 
-## 🆘 Support et Contributions
+- **Pas de données** : vérifier l'URL et le token Nightscout.
+- **OTP invalide** : vérifier le secret OTP et la synchro de l'heure de la montre.
+- **Crash à l'ouverture** : symptôme classique de requêtes BLE concurrentes — garder les fetch réseau non simultanés.
 
-### Signaler un Bug ou Demander une Fonctionnalité
-Pour toute question, bug ou demande de nouvelle fonctionnalité, vous pouvez :
+## Sécurité
 
-- **GitHub Issues** : Créer une issue sur le repository GitHub du projet
-- **Email** : Contacter directement [felix.moulin@decathlon.com](mailto:felix.moulin@decathlon.com)
-
-Merci de fournir les détails suivants :
-- Modèle d'appareil Garmin
-- Version de l'application
-- Description du problème ou de la fonctionnalité souhaitée
-- Logs système si applicable
+- Code **TOTP** à usage unique (30 s) généré sur l'appareil.
+- Communications **HTTPS** avec Nightscout, accès par token.
 
 ---
 
-## 📝 Notes de Développement
+## Support & contributions
 
-ajouter l'aide pour recuperer le secret OTP https://stefansundin.github.io/2fa-qr/
-
-ajouter la clef dans les properties et pas en dur 
-
-ajouter le sizing dynamic pour pouvoir ajouter plus d'element 
+- **GitHub Issues** pour bugs et demandes de fonctionnalités.
+- Merci d'indiquer : modèle Garmin, version de l'app, description du problème, logs système si possible.

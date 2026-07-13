@@ -30,15 +30,13 @@ class DiabetesFoodLoopView extends WatchUi.View {
         updateTimer = new Timer.Timer();
         updateTimer.start(method(:requestDataUpdate), 300000, true);
 
-        // Load the active Nightscout profile shortly AFTER show, staggered so
-        // it doesn't run concurrently with the startup glucose request.
-        // Concurrent BLE requests crash the app, which is also why the current
-        // value + trend history are fetched in a single request.
-        var profileTimer = new Timer.Timer();
-        profileTimer.start(method(:fetchProfile), 2500, false);
+        // Load the active Nightscout profile. Safe to call alongside the startup
+        // glucose fetch: NightscoutService serializes all requests, so nothing
+        // hits the BLE bridge concurrently.
+        fetchProfile();
     }
 
-    //! Fetch the active Nightscout profile (staggered, one-shot)
+    //! Fetch the active Nightscout profile and available presets
     function fetchProfile() as Void {
         var app = Application.getApp() as DiabetesFoodLoopApp;
         if (app != null) {
@@ -306,7 +304,7 @@ class DiabetesFoodLoopView extends WatchUi.View {
         var gap = 10;
         var columns = 2;
         var cellWidth = (width - margin * 2 - gap) / columns;
-        var cellHeight = 118;
+        var cellHeight = 210;
 
         var coordinates = [];
 
@@ -354,35 +352,52 @@ class DiabetesFoodLoopView extends WatchUi.View {
 
     //! Resolve the bitmap to display: brand-specific first, then category default.
     private function resolveBitmap(foodItem as FoodItem) as BitmapResource? {
-        // Try brand-specific drawable by picture id
-        if (foodItem.picture != null) {
+        // Brand-specific drawable by picture id. NB: Rez.Drawables can't be
+        // indexed by a runtime string in Monkey C (it silently fails), so map
+        // the id to its compile-time symbol explicitly.
+        var id = brandDrawableId(foodItem.picture);
+        if (id == null) {
+            id = defaultDrawableId(foodItem.subcategory);
+        }
+        if (id != null) {
             try {
-                var id = Rez.Drawables[foodItem.picture];
-                if (id != null) {
-                    return WatchUi.loadResource(id) as BitmapResource;
-                }
+                return WatchUi.loadResource(id) as BitmapResource;
             } catch (ex) { }
         }
+        return null;
+    }
 
-        // Fall back to category default
-        var sub = foodItem.subcategory.toUpper();
-        var defaultId = null;
+    //! Map a brand picture id (from foods.json) to its drawable resource.
+    private function brandDrawableId(picture as Lang.String?) as Lang.ResourceId? {
+        if (picture == null) {
+            return null;
+        }
+        if (picture.equals("gel_decathlon_energygelplus_redfruit")) {
+            return Rez.Drawables.gel_decathlon_energygelplus_redfruit;
+        } else if (picture.equals("gel_decathlon_energygel_redfruit_minus3h")) {
+            return Rez.Drawables.gel_decathlon_energygel_redfruit_minus3h;
+        } else if (picture.equals("gel_decathlon_108_cola")) {
+            return Rez.Drawables.gel_decathlon_108_cola;
+        } else if (picture.equals("jelly_red_fruit")) {
+            return Rez.Drawables.jelly_red_fruit;
+        } else if (picture.equals("bar_energy_dates_nuts")) {
+            return Rez.Drawables.bar_energy_dates_nuts;
+        }
+        return null;
+    }
+
+    //! Category fallback drawable when a food has no (known) brand picture.
+    private function defaultDrawableId(subcategory as Lang.String) as Lang.ResourceId? {
+        var sub = subcategory.toUpper();
         if (sub.equals("GEL")) {
-            defaultId = Rez.Drawables.default_gel;
+            return Rez.Drawables.default_gel;
         } else if (sub.equals("JELLIES")) {
-            defaultId = Rez.Drawables.default_jellies;
+            return Rez.Drawables.default_jellies;
         } else if (sub.equals("BAR")) {
-            defaultId = Rez.Drawables.default_bar;
+            return Rez.Drawables.default_bar;
         } else if (sub.equals("DRINKS")) {
-            defaultId = Rez.Drawables.default_drinks;
+            return Rez.Drawables.default_drinks;
         }
-
-        if (defaultId != null) {
-            try {
-                return WatchUi.loadResource(defaultId) as BitmapResource;
-            } catch (ex) { }
-        }
-
         return null;
     }
     //! Request data update from the app orchestrator
@@ -392,12 +407,9 @@ class DiabetesFoodLoopView extends WatchUi.View {
         if (app != null) {
             var nightscoutService = app.getNightscoutService();
             if (nightscoutService != null) {
+                // Both queued and serialized by NightscoutService
                 nightscoutService.fetchGlucoseData();
-                // Refresh the profile too, but staggered so it never runs
-                // concurrently with the glucose request (concurrent BLE
-                // requests crash the app).
-                var profileTimer = new Timer.Timer();
-                profileTimer.start(method(:fetchProfile), 2500, false);
+                nightscoutService.fetchTempBasalData();
             }
         }
     }
