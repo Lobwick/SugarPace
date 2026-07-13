@@ -281,7 +281,7 @@
         <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/DiabetesFoodLoopApp.mc" id="49" lineNum="148" parent="globals" pc="268439436" symbol="getApp"/>
         <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/DiabetesFoodLoopApp.mc" id="49" lineNum="149" parent="globals" pc="268439446" symbol="getApp"/>
         <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/otp/Convert.mc" id="50" lineNum="23" parent="globals/Convert" pc="268439457" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/bin/gen/006-B3843-00/source/Rez.mcgen" id="51" lineNum="7" parent="globals/Rez" pc="268439476" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="51" lineNum="7" parent="globals/Rez" pc="268439476" symbol="&lt;init&gt;"/>
         <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/DiabetesFoodLoopMenuDelegate.mc" id="52" lineNum="6" parent="globals/DiabetesFoodLoopMenuDelegate" pc="268439496" symbol="&lt;init&gt;"/>
         <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/DiabetesFoodLoopDelegate.mc" id="53" lineNum="5" parent="globals/DiabetesFoodLoopDelegate" pc="268439508" symbol="&lt;init&gt;"/>
         <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" id="54" lineNum="188" parent="globals/TempOverridesInputDelegate" pc="268439520" symbol="&lt;init&gt;"/>
@@ -984,322 +984,307 @@
         <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="125" lineNum="289" parent="globals/NightscoutService" pc="268449751" symbol="sendFoodEntry"/>
         <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="125" lineNum="290" parent="globals/NightscoutService" pc="268449754" symbol="sendFoodEntry"/>
         <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="125" lineNum="292" parent="globals/NightscoutService" pc="268449775" symbol="sendFoodEntry"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="125" lineNum="293" parent="globals/NightscoutService" pc="268449850" symbol="sendFoodEntry"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="125" lineNum="294" parent="globals/NightscoutService" pc="268449851" symbol="sendFoodEntry"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="126" lineNum="317" parent="globals/NightscoutService" pc="268449910" symbol="&lt;globals/NightscoutService/&lt;&gt;getNightscoutUrl&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="126" lineNum="318" parent="globals/NightscoutService" pc="268449913" symbol="&lt;globals/NightscoutService/&lt;&gt;getNightscoutUrl&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="126" lineNum="319" parent="globals/NightscoutService" pc="268449932" symbol="&lt;globals/NightscoutService/&lt;&gt;getNightscoutUrl&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="229" parent="globals/NightscoutService" pc="268449955" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="230" parent="globals/NightscoutService" pc="268449958" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="232" parent="globals/NightscoutService" pc="268449973" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="234" parent="globals/NightscoutService" pc="268449988" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="236" parent="globals/NightscoutService" pc="268449991" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="237" parent="globals/NightscoutService" pc="268450017" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="238" parent="globals/NightscoutService" pc="268450024" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="241" parent="globals/NightscoutService" pc="268450039" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="242" parent="globals/NightscoutService" pc="268450042" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="243" parent="globals/NightscoutService" pc="268450060" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="244" parent="globals/NightscoutService" pc="268450077" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="245" parent="globals/NightscoutService" pc="268450107" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="247" parent="globals/NightscoutService" pc="268450116" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="248" parent="globals/NightscoutService" pc="268450154" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="251" parent="globals/NightscoutService" pc="268450160" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="252" parent="globals/NightscoutService" pc="268450165" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="253" parent="globals/NightscoutService" pc="268450183" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="254" parent="globals/NightscoutService" pc="268450200" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="255" parent="globals/NightscoutService" pc="268450206" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="256" parent="globals/NightscoutService" pc="268450216" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="257" parent="globals/NightscoutService" pc="268450232" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="264" parent="globals/NightscoutService" pc="268450257" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="265" parent="globals/NightscoutService" pc="268450263" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="268" parent="globals/NightscoutService" pc="268450288" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="270" parent="globals/NightscoutService" pc="268450313" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="271" parent="globals/NightscoutService" pc="268450317" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="274" parent="globals/NightscoutService" pc="268450351" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="278" parent="globals/NightscoutService" pc="268450370" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="279" parent="globals/NightscoutService" pc="268450379" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="283" parent="globals/NightscoutService" pc="268450411" symbol="onReceiveActiveOverride"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="128" lineNum="309" parent="globals/NightscoutService" pc="268450423" symbol="&lt;globals/NightscoutService/&lt;&gt;buildUrl&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="128" lineNum="310" parent="globals/NightscoutService" pc="268450426" symbol="&lt;globals/NightscoutService/&lt;&gt;buildUrl&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="128" lineNum="311" parent="globals/NightscoutService" pc="268450434" symbol="&lt;globals/NightscoutService/&lt;&gt;buildUrl&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="128" lineNum="313" parent="globals/NightscoutService" pc="268450442" symbol="&lt;globals/NightscoutService/&lt;&gt;buildUrl&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="129" lineNum="154" parent="globals/NightscoutService" pc="268450457" symbol="fetchTempBasalData"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="129" lineNum="155" parent="globals/NightscoutService" pc="268450460" symbol="fetchTempBasalData"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="129" lineNum="156" parent="globals/NightscoutService" pc="268450468" symbol="fetchTempBasalData"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="129" lineNum="163" parent="globals/NightscoutService" pc="268450476" symbol="fetchTempBasalData"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="129" lineNum="164" parent="globals/NightscoutService" pc="268450489" symbol="fetchTempBasalData"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="129" lineNum="176" parent="globals/NightscoutService" pc="268450539" symbol="fetchTempBasalData"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="129" lineNum="177" parent="globals/NightscoutService" pc="268450552" symbol="fetchTempBasalData"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="130" lineNum="22" parent="globals/NightscoutService" pc="268450603" symbol="initialize"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="130" lineNum="23" parent="globals/NightscoutService" pc="268450605" symbol="initialize"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="131" lineNum="38" parent="globals/NightscoutService" pc="268450615" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="131" lineNum="39" parent="globals/NightscoutService" pc="268450618" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="131" lineNum="40" parent="globals/NightscoutService" pc="268450642" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="131" lineNum="42" parent="globals/NightscoutService" pc="268450646" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="131" lineNum="43" parent="globals/NightscoutService" pc="268450655" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="131" lineNum="44" parent="globals/NightscoutService" pc="268450678" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="131" lineNum="45" parent="globals/NightscoutService" pc="268450686" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="131" lineNum="46" parent="globals/NightscoutService" pc="268450707" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="101" parent="globals/NightscoutService" pc="268450776" symbol="deactivatePreset"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="102" parent="globals/NightscoutService" pc="268450779" symbol="deactivatePreset"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="103" parent="globals/NightscoutService" pc="268450787" symbol="deactivatePreset"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="105" parent="globals/NightscoutService" pc="268450795" symbol="deactivatePreset"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="106" parent="globals/NightscoutService" pc="268450819" symbol="deactivatePreset"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="107" parent="globals/NightscoutService" pc="268450837" symbol="deactivatePreset"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="112" parent="globals/NightscoutService" pc="268450841" symbol="deactivatePreset"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="116" parent="globals/NightscoutService" pc="268450848" symbol="deactivatePreset"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="118" parent="globals/NightscoutService" pc="268450860" symbol="deactivatePreset"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="119" parent="globals/NightscoutService" pc="268450873" symbol="deactivatePreset"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/bin/gen/006-B3843-00/source/Rez.mcgen" id="133" lineNum="27" parent="globals/Rez/Layouts" pc="268450932" symbol="MainLayout"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/bin/gen/006-B3843-00/source/Rez.mcgen" id="133" lineNum="28" parent="globals/Rez/Layouts" pc="268450943" symbol="MainLayout"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/bin/gen/006-B3843-00/source/Rez.mcgen" id="133" lineNum="29" parent="globals/Rez/Layouts" pc="268451027" symbol="MainLayout"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/bin/gen/006-B3843-00/source/Rez.mcgen" id="133" lineNum="31" parent="globals/Rez/Layouts" pc="268451063" symbol="MainLayout"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/bin/gen/006-B3843-00/source/Rez.mcgen" id="134" lineNum="36" parent="globals/Rez/Menus/MainMenu" pc="268451073" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/bin/gen/006-B3843-00/source/Rez.mcgen" id="135" lineNum="37" parent="globals/Rez/Menus/MainMenu" pc="268451085" symbol="initialize"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/bin/gen/006-B3843-00/source/Rez.mcgen" id="135" lineNum="38" parent="globals/Rez/Menus/MainMenu" pc="268451087" symbol="initialize"/>
-        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/bin/gen/006-B3843-00/source/Rez.mcgen" id="135" lineNum="39" parent="globals/Rez/Menus/MainMenu" pc="268451099" symbol="initialize"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="125" lineNum="294" parent="globals/NightscoutService" pc="268449850" symbol="sendFoodEntry"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="126" lineNum="317" parent="globals/NightscoutService" pc="268449909" symbol="&lt;globals/NightscoutService/&lt;&gt;getNightscoutUrl&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="126" lineNum="318" parent="globals/NightscoutService" pc="268449912" symbol="&lt;globals/NightscoutService/&lt;&gt;getNightscoutUrl&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="126" lineNum="319" parent="globals/NightscoutService" pc="268449931" symbol="&lt;globals/NightscoutService/&lt;&gt;getNightscoutUrl&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="229" parent="globals/NightscoutService" pc="268449954" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="230" parent="globals/NightscoutService" pc="268449957" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="232" parent="globals/NightscoutService" pc="268449972" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="234" parent="globals/NightscoutService" pc="268449987" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="236" parent="globals/NightscoutService" pc="268449990" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="237" parent="globals/NightscoutService" pc="268450016" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="238" parent="globals/NightscoutService" pc="268450023" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="241" parent="globals/NightscoutService" pc="268450038" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="242" parent="globals/NightscoutService" pc="268450041" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="243" parent="globals/NightscoutService" pc="268450059" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="244" parent="globals/NightscoutService" pc="268450076" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="245" parent="globals/NightscoutService" pc="268450106" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="247" parent="globals/NightscoutService" pc="268450115" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="248" parent="globals/NightscoutService" pc="268450153" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="251" parent="globals/NightscoutService" pc="268450159" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="252" parent="globals/NightscoutService" pc="268450164" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="253" parent="globals/NightscoutService" pc="268450182" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="254" parent="globals/NightscoutService" pc="268450199" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="255" parent="globals/NightscoutService" pc="268450205" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="256" parent="globals/NightscoutService" pc="268450215" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="257" parent="globals/NightscoutService" pc="268450231" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="264" parent="globals/NightscoutService" pc="268450256" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="265" parent="globals/NightscoutService" pc="268450262" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="268" parent="globals/NightscoutService" pc="268450287" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="270" parent="globals/NightscoutService" pc="268450312" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="271" parent="globals/NightscoutService" pc="268450316" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="274" parent="globals/NightscoutService" pc="268450350" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="278" parent="globals/NightscoutService" pc="268450369" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="279" parent="globals/NightscoutService" pc="268450378" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="127" lineNum="283" parent="globals/NightscoutService" pc="268450410" symbol="onReceiveActiveOverride"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="128" lineNum="309" parent="globals/NightscoutService" pc="268450422" symbol="&lt;globals/NightscoutService/&lt;&gt;buildUrl&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="128" lineNum="310" parent="globals/NightscoutService" pc="268450425" symbol="&lt;globals/NightscoutService/&lt;&gt;buildUrl&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="128" lineNum="311" parent="globals/NightscoutService" pc="268450433" symbol="&lt;globals/NightscoutService/&lt;&gt;buildUrl&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="128" lineNum="313" parent="globals/NightscoutService" pc="268450441" symbol="&lt;globals/NightscoutService/&lt;&gt;buildUrl&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="129" lineNum="154" parent="globals/NightscoutService" pc="268450456" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="129" lineNum="155" parent="globals/NightscoutService" pc="268450459" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="129" lineNum="156" parent="globals/NightscoutService" pc="268450467" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="129" lineNum="163" parent="globals/NightscoutService" pc="268450475" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="129" lineNum="164" parent="globals/NightscoutService" pc="268450488" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="129" lineNum="176" parent="globals/NightscoutService" pc="268450538" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="129" lineNum="177" parent="globals/NightscoutService" pc="268450551" symbol="fetchTempBasalData"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="130" lineNum="22" parent="globals/NightscoutService" pc="268450602" symbol="initialize"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="130" lineNum="23" parent="globals/NightscoutService" pc="268450604" symbol="initialize"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="131" lineNum="38" parent="globals/NightscoutService" pc="268450614" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="131" lineNum="39" parent="globals/NightscoutService" pc="268450617" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="131" lineNum="40" parent="globals/NightscoutService" pc="268450641" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="131" lineNum="42" parent="globals/NightscoutService" pc="268450645" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="131" lineNum="43" parent="globals/NightscoutService" pc="268450654" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="131" lineNum="44" parent="globals/NightscoutService" pc="268450677" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="131" lineNum="45" parent="globals/NightscoutService" pc="268450685" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="131" lineNum="46" parent="globals/NightscoutService" pc="268450706" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="101" parent="globals/NightscoutService" pc="268450775" symbol="deactivatePreset"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="102" parent="globals/NightscoutService" pc="268450778" symbol="deactivatePreset"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="103" parent="globals/NightscoutService" pc="268450786" symbol="deactivatePreset"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="105" parent="globals/NightscoutService" pc="268450794" symbol="deactivatePreset"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="106" parent="globals/NightscoutService" pc="268450818" symbol="deactivatePreset"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="107" parent="globals/NightscoutService" pc="268450836" symbol="deactivatePreset"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="112" parent="globals/NightscoutService" pc="268450840" symbol="deactivatePreset"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="116" parent="globals/NightscoutService" pc="268450847" symbol="deactivatePreset"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="118" parent="globals/NightscoutService" pc="268450859" symbol="deactivatePreset"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/source/services/NightscoutService.mc" id="132" lineNum="119" parent="globals/NightscoutService" pc="268450872" symbol="deactivatePreset"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="133" lineNum="26" parent="globals/Rez/Menus/MainMenu" pc="268450931" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="134" lineNum="27" parent="globals/Rez/Menus/MainMenu" pc="268450943" symbol="initialize"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="134" lineNum="28" parent="globals/Rez/Menus/MainMenu" pc="268450945" symbol="initialize"/>
+        <entry filename="/Users/lobwick/workspaces/DiabetesFoodManagement/bin/gen/006-B4440-00/source/Rez.mcgen" id="134" lineNum="29" parent="globals/Rez/Menus/MainMenu" pc="268450957" symbol="initialize"/>
     </pcToLineNum>
     <symbolTable>
-        <entry id="137" method="true" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;defaultDrawableId&gt;"/>
-        <entry id="167" method="true" symbol="sendFoodEntry"/>
+        <entry id="135" method="true" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;defaultDrawableId&gt;"/>
+        <entry id="165" method="true" symbol="sendFoodEntry"/>
         <entry id="8388639" module="true" symbol="Graphics"/>
-        <entry id="18" module="true" symbol="Convert"/>
-        <entry id="142" method="true" symbol="getSelectedFoodIndex"/>
+        <entry id="17" module="true" symbol="Convert"/>
+        <entry id="140" method="true" symbol="getSelectedFoodIndex"/>
         <entry id="6" module="true" symbol="globals/Hmac"/>
-        <entry field="true" id="172" symbol="default_drinks"/>
-        <entry id="84" method="true" symbol="updateChartRegion"/>
-        <entry id="30" module="true" symbol="Otp"/>
-        <entry field="true" id="190" symbol="nightscout_token_title"/>
-        <entry field="true" id="104" symbol="&lt;globals/TempOverridesView/&lt;&gt;focusedIndex&gt;"/>
-        <entry id="144" method="true" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;resolveBitmap&gt;"/>
-        <entry id="37" method="true" symbol="&lt;globals/FoodItem/&lt;&gt;_toInt&gt;"/>
+        <entry field="true" id="170" symbol="default_drinks"/>
+        <entry id="83" method="true" symbol="updateChartRegion"/>
+        <entry id="29" module="true" symbol="Otp"/>
+        <entry field="true" id="184" symbol="nightscout_token_title"/>
+        <entry field="true" id="103" symbol="&lt;globals/TempOverridesView/&lt;&gt;focusedIndex&gt;"/>
+        <entry id="142" method="true" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;resolveBitmap&gt;"/>
+        <entry id="36" method="true" symbol="&lt;globals/FoodItem/&lt;&gt;_toInt&gt;"/>
         <entry id="8392171" method="true" symbol="rotate"/>
         <entry id="8388632" method="true" symbol="&lt;init&gt;"/>
-        <entry id="13" module="true" symbol="globals/Rez/Menus"/>
-        <entry field="true" id="47" symbol="subcategory"/>
-        <entry id="138" method="true" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;drawFoodGrid&gt;"/>
-        <entry id="111" method="true" symbol="base32decode2HexString"/>
-        <entry id="81" method="true" symbol="setLoading"/>
-        <entry id="78" method="true" symbol="scrollBy"/>
-        <entry id="123" method="true" symbol="generateHotpSha1"/>
-        <entry id="180" method="true" symbol="MainLayout"/>
-        <entry field="true" id="193" symbol="temp_overrides_label"/>
-        <entry id="20" object="true" symbol="DiabetesFoodLoopDelegate"/>
-        <entry field="true" id="183" symbol="active_profile_label"/>
-        <entry field="true" id="56" symbol="&lt;globals/DiabetesFoodLoopApp/&lt;&gt;mainView&gt;"/>
+        <entry id="12" module="true" symbol="globals/Rez/Menus"/>
+        <entry field="true" id="46" symbol="subcategory"/>
+        <entry id="136" method="true" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;drawFoodGrid&gt;"/>
+        <entry id="110" method="true" symbol="base32decode2HexString"/>
+        <entry id="80" method="true" symbol="setLoading"/>
+        <entry id="77" method="true" symbol="scrollBy"/>
+        <entry id="121" method="true" symbol="generateHotpSha1"/>
+        <entry field="true" id="187" symbol="temp_overrides_label"/>
+        <entry id="19" object="true" symbol="DiabetesFoodLoopDelegate"/>
+        <entry field="true" id="55" symbol="&lt;globals/DiabetesFoodLoopApp/&lt;&gt;mainView&gt;"/>
         <entry id="8389683" method="true" symbol="onSettingsChanged"/>
-        <entry id="35" method="true" symbol="getDiabetesFoodLoopGlanceView"/>
-        <entry field="true" id="96" symbol="lastUpdateTime"/>
-        <entry id="160" method="true" symbol="onReceiveGlucoseData"/>
-        <entry id="88" method="true" symbol="updateGlucoseHistory"/>
-        <entry field="true" id="192" symbol="otp_secret_title"/>
-        <entry id="118" method="true" symbol="getOtpSecret"/>
-        <entry id="48" method="true" symbol="toDictionary"/>
-        <entry field="true" id="191" symbol="nightscout_url_title"/>
-        <entry id="87" method="true" symbol="updateGlucoseData"/>
-        <entry field="true" id="68" symbol="glucoseData"/>
-        <entry field="true" id="175" symbol="gel_decathlon_108_cola"/>
-        <entry id="54" method="true" symbol="&lt;globals/DiabetesFoodLoopApp/&lt;&gt;initializeServices&gt;"/>
+        <entry id="34" method="true" symbol="getDiabetesFoodLoopGlanceView"/>
+        <entry field="true" id="95" symbol="lastUpdateTime"/>
+        <entry id="158" method="true" symbol="onReceiveGlucoseData"/>
+        <entry id="87" method="true" symbol="updateGlucoseHistory"/>
+        <entry field="true" id="186" symbol="otp_secret_title"/>
+        <entry id="117" method="true" symbol="getOtpSecret"/>
+        <entry id="47" method="true" symbol="toDictionary"/>
+        <entry field="true" id="185" symbol="nightscout_url_title"/>
+        <entry id="86" method="true" symbol="updateGlucoseData"/>
+        <entry field="true" id="67" symbol="glucoseData"/>
+        <entry field="true" id="173" symbol="gel_decathlon_108_cola"/>
+        <entry id="53" method="true" symbol="&lt;globals/DiabetesFoodLoopApp/&lt;&gt;initializeServices&gt;"/>
         <entry field="true" id="8388611" module="true" symbol="Toybox"/>
-        <entry field="true" id="57" symbol="&lt;globals/DiabetesFoodLoopApp/&lt;&gt;nightscoutService&gt;"/>
-        <entry field="true" id="165" symbol="&lt;globals/NightscoutService/&lt;&gt;requestInFlight&gt;"/>
-        <entry field="true" id="99" symbol="&lt;globals/TempOverridesView/&lt;&gt;appState&gt;"/>
-        <entry id="112" method="true" symbol="byteArrayToHexString"/>
-        <entry id="93" method="true" symbol="getDirectionArrow"/>
-        <entry field="true" id="184" symbol="chart_color_by_zone_title"/>
-        <entry field="true" id="179" symbol="jelly_red_fruit"/>
-        <entry field="true" id="170" symbol="bar_energy_dates_nuts"/>
-        <entry id="126" method="true" symbol="showTempOverrides"/>
-        <entry id="26" object="true" symbol="GlucoseData"/>
-        <entry id="36" method="true" symbol="&lt;globals/FoodItem/&lt;&gt;_toFloat&gt;"/>
-        <entry field="true" id="73" symbol="maxScroll"/>
-        <entry id="74" method="true" symbol="navigateDown"/>
-        <entry field="true" id="182" symbol="AppName"/>
-        <entry id="27" module="true" symbol="Hmac"/>
-        <entry field="true" id="176" symbol="gel_decathlon_energygel_redfruit_minus3h"/>
-        <entry id="14" module="true" symbol="globals/Rez/Strings"/>
+        <entry field="true" id="56" symbol="&lt;globals/DiabetesFoodLoopApp/&lt;&gt;nightscoutService&gt;"/>
+        <entry field="true" id="163" symbol="&lt;globals/NightscoutService/&lt;&gt;requestInFlight&gt;"/>
+        <entry field="true" id="98" symbol="&lt;globals/TempOverridesView/&lt;&gt;appState&gt;"/>
+        <entry id="111" method="true" symbol="byteArrayToHexString"/>
+        <entry id="92" method="true" symbol="getDirectionArrow"/>
+        <entry field="true" id="179" symbol="chart_color_by_zone_title"/>
+        <entry field="true" id="176" symbol="jelly_red_fruit"/>
+        <entry field="true" id="168" symbol="bar_energy_dates_nuts"/>
+        <entry id="124" method="true" symbol="showTempOverrides"/>
+        <entry id="25" object="true" symbol="GlucoseData"/>
+        <entry id="35" method="true" symbol="&lt;globals/FoodItem/&lt;&gt;_toFloat&gt;"/>
+        <entry field="true" id="72" symbol="maxScroll"/>
+        <entry id="73" method="true" symbol="navigateDown"/>
+        <entry field="true" id="178" symbol="AppName"/>
+        <entry id="26" module="true" symbol="Hmac"/>
+        <entry field="true" id="174" symbol="gel_decathlon_energygel_redfruit_minus3h"/>
+        <entry id="13" module="true" symbol="globals/Rez/Strings"/>
         <entry id="8389594" symbol="headers"/>
         <entry id="8389080" method="true" symbol="onMenu"/>
-        <entry id="143" method="true" symbol="requestDataUpdate"/>
-        <entry id="106" method="true" symbol="updateData"/>
-        <entry id="8389345" symbol="rezId"/>
-        <entry field="true" id="171" symbol="default_bar"/>
+        <entry id="141" method="true" symbol="requestDataUpdate"/>
+        <entry id="105" method="true" symbol="updateData"/>
+        <entry field="true" id="169" symbol="default_bar"/>
         <entry id="2" module="true" symbol="globals/Constants"/>
         <entry id="8388648" module="true" symbol="WatchUi"/>
-        <entry id="157" method="true" symbol="&lt;globals/NightscoutService/&lt;&gt;getNightscoutUrl&gt;"/>
-        <entry id="103" method="true" symbol="focusPrevious"/>
+        <entry id="155" method="true" symbol="&lt;globals/NightscoutService/&lt;&gt;getNightscoutUrl&gt;"/>
+        <entry id="102" method="true" symbol="focusPrevious"/>
         <entry id="8389081" method="true" symbol="onBack"/>
-        <entry id="146" method="true" symbol="activatePreset"/>
-        <entry field="true" id="125" symbol="&lt;globals/DiabetesFoodLoopMenuDelegate/&lt;&gt;appState&gt;"/>
+        <entry id="144" method="true" symbol="activatePreset"/>
+        <entry field="true" id="123" symbol="&lt;globals/DiabetesFoodLoopMenuDelegate/&lt;&gt;appState&gt;"/>
         <entry id="9" module="true" symbol="globals/Rez"/>
-        <entry field="true" id="178" symbol="id_monkey"/>
-        <entry id="64" method="true" symbol="findFoodItemAtPoint"/>
-        <entry id="151" method="true" symbol="deactivatePreset"/>
-        <entry id="50" method="true" symbol="getAppState"/>
-        <entry id="134" method="true" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;agoLabel&gt;"/>
-        <entry id="132" method="true" symbol="&lt;globals/TempOverridesInputDelegate/&lt;&gt;activatePreset&gt;"/>
-        <entry field="true" id="188" symbol="loading_foods"/>
-        <entry id="115" method="true" symbol="createFoodEntryData"/>
-        <entry id="139" method="true" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;drawGlucoseCard&gt;"/>
-        <entry id="82" method="true" symbol="setSelectedFoodIndex"/>
-        <entry field="true" id="130" symbol="&lt;globals/DiabetesFoodLoopDelegate/&lt;&gt;otpService&gt;"/>
-        <entry field="true" id="38" symbol="brand"/>
+        <entry id="63" method="true" symbol="findFoodItemAtPoint"/>
+        <entry id="149" method="true" symbol="deactivatePreset"/>
+        <entry id="49" method="true" symbol="getAppState"/>
+        <entry id="132" method="true" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;agoLabel&gt;"/>
+        <entry id="130" method="true" symbol="&lt;globals/TempOverridesInputDelegate/&lt;&gt;activatePreset&gt;"/>
+        <entry field="true" id="183" symbol="loading_foods"/>
+        <entry id="114" method="true" symbol="createFoodEntryData"/>
+        <entry id="137" method="true" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;drawGlucoseCard&gt;"/>
+        <entry id="81" method="true" symbol="setSelectedFoodIndex"/>
+        <entry field="true" id="128" symbol="&lt;globals/DiabetesFoodLoopDelegate/&lt;&gt;otpService&gt;"/>
+        <entry field="true" id="37" symbol="brand"/>
         <entry id="8389124" method="true" symbol="onUpdate"/>
-        <entry field="true" id="8389065" symbol="locY"/>
-        <entry field="true" id="8389064" symbol="locX"/>
-        <entry id="101" method="true" symbol="findPresetAtY"/>
-        <entry field="true" id="186" symbol="default_unit_title"/>
-        <entry id="67" method="true" symbol="getSelectedFoodItem"/>
-        <entry id="17" module="true" symbol="Constants"/>
-        <entry id="83" method="true" symbol="updateActiveProfile"/>
-        <entry id="148" method="true" symbol="&lt;globals/NightscoutService/&lt;&gt;buildUrl&gt;"/>
-        <entry id="114" method="true" symbol="authenticateWithSha1"/>
-        <entry field="true" id="97" symbol="trendRate"/>
-        <entry id="153" method="true" symbol="&lt;globals/NightscoutService/&lt;&gt;enqueue&gt;"/>
-        <entry id="24" object="true" symbol="FoodDatabase"/>
-        <entry field="true" id="174" symbol="default_jellies"/>
+        <entry id="100" method="true" symbol="findPresetAtY"/>
+        <entry field="true" id="181" symbol="default_unit_title"/>
+        <entry id="66" method="true" symbol="getSelectedFoodItem"/>
+        <entry id="16" module="true" symbol="Constants"/>
+        <entry id="82" method="true" symbol="updateActiveProfile"/>
+        <entry id="146" method="true" symbol="&lt;globals/NightscoutService/&lt;&gt;buildUrl&gt;"/>
+        <entry id="113" method="true" symbol="authenticateWithSha1"/>
+        <entry field="true" id="96" symbol="trendRate"/>
+        <entry id="151" method="true" symbol="&lt;globals/NightscoutService/&lt;&gt;enqueue&gt;"/>
+        <entry id="23" object="true" symbol="FoodDatabase"/>
+        <entry field="true" id="172" symbol="default_jellies"/>
         <entry id="8388771" module="true" object="true" symbol="Drawables"/>
-        <entry id="120" module="true" symbol="Menus"/>
+        <entry id="118" module="true" symbol="Menus"/>
         <entry id="8389275" method="true" symbol="getApp"/>
-        <entry field="true" id="80" symbol="selectedFoodIndex"/>
-        <entry field="true" id="194" symbol="foods"/>
-        <entry id="12" module="true" symbol="globals/Rez/Layouts"/>
+        <entry field="true" id="79" symbol="selectedFoodIndex"/>
+        <entry field="true" id="188" symbol="foods"/>
         <entry field="true" id="8389742" symbol="foregroundColor"/>
-        <entry id="136" method="true" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;brandDrawableId&gt;"/>
+        <entry id="134" method="true" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;brandDrawableId&gt;"/>
         <entry id="8389122" method="true" symbol="onLayout"/>
-        <entry id="117" method="true" symbol="generateOtp"/>
-        <entry id="92" method="true" symbol="getCurrentZoneColor"/>
-        <entry field="true" id="45" symbol="portion_g"/>
-        <entry field="true" id="8389063" symbol="identifier"/>
-        <entry field="true" id="76" symbol="overridePresets"/>
-        <entry id="90" method="true" symbol="updateOverridePresets"/>
-        <entry id="95" method="true" symbol="getTrendLabel"/>
-        <entry field="true" id="42" symbol="gi"/>
-        <entry field="true" id="164" symbol="&lt;globals/NightscoutService/&lt;&gt;profileToActivate&gt;"/>
-        <entry id="161" method="true" symbol="onReceivePresetActivationResponse"/>
-        <entry id="28" module="true" symbol="Layout"/>
+        <entry id="116" method="true" symbol="generateOtp"/>
+        <entry id="91" method="true" symbol="getCurrentZoneColor"/>
+        <entry field="true" id="44" symbol="portion_g"/>
+        <entry field="true" id="75" symbol="overridePresets"/>
+        <entry id="89" method="true" symbol="updateOverridePresets"/>
+        <entry id="94" method="true" symbol="getTrendLabel"/>
+        <entry field="true" id="41" symbol="gi"/>
+        <entry field="true" id="162" symbol="&lt;globals/NightscoutService/&lt;&gt;profileToActivate&gt;"/>
+        <entry id="159" method="true" symbol="onReceivePresetActivationResponse"/>
+        <entry id="27" module="true" symbol="Layout"/>
         <entry id="8389098" method="true" symbol="onTap"/>
-        <entry id="15" module="true" symbol="globals/Sha1"/>
-        <entry id="31" object="true" symbol="OtpService"/>
-        <entry id="53" method="true" symbol="getNightscoutService"/>
-        <entry id="22" object="true" symbol="DiabetesFoodLoopMenuDelegate"/>
-        <entry field="true" id="173" symbol="default_gel"/>
-        <entry field="true" id="62" symbol="chartWindowMinutes"/>
-        <entry id="21" object="true" symbol="DiabetesFoodLoopGlanceView"/>
-        <entry id="51" method="true" symbol="getFoodsList"/>
+        <entry id="14" module="true" symbol="globals/Sha1"/>
+        <entry id="30" object="true" symbol="OtpService"/>
+        <entry id="52" method="true" symbol="getNightscoutService"/>
+        <entry id="21" object="true" symbol="DiabetesFoodLoopMenuDelegate"/>
+        <entry field="true" id="171" symbol="default_gel"/>
+        <entry field="true" id="61" symbol="chartWindowMinutes"/>
+        <entry id="20" object="true" symbol="DiabetesFoodLoopGlanceView"/>
+        <entry id="50" method="true" symbol="getFoodsList"/>
         <entry id="11" module="true" symbol="globals/Rez/JsonData"/>
-        <entry field="true" id="49" symbol="&lt;globals/DiabetesFoodLoopApp/&lt;&gt;appState&gt;"/>
-        <entry field="true" id="133" symbol="&lt;globals/TempOverridesInputDelegate/&lt;&gt;view&gt;"/>
+        <entry field="true" id="48" symbol="&lt;globals/DiabetesFoodLoopApp/&lt;&gt;appState&gt;"/>
+        <entry field="true" id="131" symbol="&lt;globals/TempOverridesInputDelegate/&lt;&gt;view&gt;"/>
         <entry id="8388637" module="true" symbol="Communications"/>
-        <entry field="true" id="44" symbol="picture"/>
-        <entry field="true" id="147" symbol="&lt;globals/NightscoutService/&lt;&gt;appState&gt;"/>
+        <entry field="true" id="43" symbol="picture"/>
+        <entry field="true" id="145" symbol="&lt;globals/NightscoutService/&lt;&gt;appState&gt;"/>
         <entry id="4" module="true" symbol="globals/FoodDatabase/&lt;statics&gt;"/>
         <entry id="10" module="true" symbol="globals/Rez/Drawables"/>
-        <entry id="25" object="true" symbol="FoodItem"/>
-        <entry id="122" symbol="DIGITS_POWER"/>
-        <entry field="true" id="60" symbol="activeProfile"/>
-        <entry field="true" id="41" symbol="fat_g"/>
-        <entry id="131" method="true" symbol="&lt;globals/DiabetesFoodLoopDelegate/&lt;&gt;sendFood&gt;"/>
-        <entry id="85" method="true" symbol="updateFoodGridCoordinates"/>
-        <entry id="181" object="true" symbol="MainMenu"/>
+        <entry id="24" object="true" symbol="FoodItem"/>
+        <entry id="120" symbol="DIGITS_POWER"/>
+        <entry field="true" id="59" symbol="activeProfile"/>
+        <entry field="true" id="40" symbol="fat_g"/>
+        <entry id="129" method="true" symbol="&lt;globals/DiabetesFoodLoopDelegate/&lt;&gt;sendFood&gt;"/>
+        <entry id="84" method="true" symbol="updateFoodGridCoordinates"/>
+        <entry id="177" object="true" symbol="MainMenu"/>
         <entry id="8389844" symbol="responseType"/>
-        <entry id="100" method="true" symbol="drawProfileRow"/>
+        <entry id="99" method="true" symbol="drawProfileRow"/>
         <entry id="3" module="true" symbol="globals/Convert"/>
-        <entry id="109" method="true" symbol="encode"/>
-        <entry id="159" method="true" symbol="onReceiveFoodEntryResponse"/>
-        <entry id="34" object="true" symbol="TempOverridesView"/>
-        <entry id="52" method="true" symbol="getMainView"/>
+        <entry id="108" method="true" symbol="encode"/>
+        <entry id="157" method="true" symbol="onReceiveFoodEntryResponse"/>
+        <entry id="33" object="true" symbol="TempOverridesView"/>
+        <entry id="51" method="true" symbol="getMainView"/>
         <entry id="8388786" method="true" symbol="method"/>
-        <entry id="63" method="true" symbol="cycleChartWindow"/>
+        <entry id="62" method="true" symbol="cycleChartWindow"/>
         <entry id="8388644" module="true" symbol="System"/>
-        <entry id="58" method="true" symbol="onServiceCallback"/>
+        <entry id="57" method="true" symbol="onServiceCallback"/>
         <entry id="8389619" method="true" symbol="onSelect"/>
-        <entry field="true" id="59" symbol="&lt;globals/DiabetesFoodLoopApp/&lt;&gt;otpService&gt;"/>
+        <entry field="true" id="58" symbol="&lt;globals/DiabetesFoodLoopApp/&lt;&gt;otpService&gt;"/>
         <entry id="8388645" module="true" symbol="Time"/>
         <entry id="8388769" module="true" object="true" symbol="Rez"/>
-        <entry id="195" symbol="temp_overrides"/>
-        <entry id="29" object="true" symbol="NightscoutService"/>
-        <entry field="true" id="70" symbol="headerRegion"/>
-        <entry id="140" method="true" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;drawGlucoseChart&gt;"/>
+        <entry id="189" symbol="temp_overrides"/>
+        <entry id="28" object="true" symbol="NightscoutService"/>
+        <entry field="true" id="69" symbol="headerRegion"/>
+        <entry id="138" method="true" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;drawGlucoseChart&gt;"/>
         <entry id="8388640" module="true" symbol="Lang"/>
         <entry id="8390088" module="true" object="true" symbol="JsonData"/>
-        <entry field="true" id="169" symbol="LauncherIcon"/>
+        <entry field="true" id="167" symbol="LauncherIcon"/>
         <entry id="8388610" symbol="statics"/>
         <entry id="8389123" method="true" symbol="onShow"/>
-        <entry field="true" id="166" symbol="&lt;globals/NightscoutService/&lt;&gt;requestQueue&gt;"/>
-        <entry id="32" module="true" symbol="Sha1"/>
-        <entry id="98" method="true" symbol="getZoneColor"/>
-        <entry id="86" method="true" symbol="updateFoodItems"/>
-        <entry id="105" method="true" symbol="getFocusedName"/>
+        <entry field="true" id="164" symbol="&lt;globals/NightscoutService/&lt;&gt;requestQueue&gt;"/>
+        <entry id="31" module="true" symbol="Sha1"/>
+        <entry id="97" method="true" symbol="getZoneColor"/>
+        <entry id="85" method="true" symbol="updateFoodItems"/>
+        <entry id="104" method="true" symbol="getFocusedName"/>
         <entry id="8" module="true" symbol="globals/Otp"/>
-        <entry id="129" method="true" symbol="&lt;globals/DiabetesFoodLoopDelegate/&lt;&gt;openProfileSelection&gt;"/>
-        <entry field="true" id="185" symbol="check_nightscout_config"/>
-        <entry id="163" method="true" symbol="onRequestComplete"/>
-        <entry field="true" id="110" symbol="BASE32"/>
+        <entry id="127" method="true" symbol="&lt;globals/DiabetesFoodLoopDelegate/&lt;&gt;openProfileSelection&gt;"/>
+        <entry field="true" id="180" symbol="check_nightscout_config"/>
+        <entry id="161" method="true" symbol="onRequestComplete"/>
+        <entry field="true" id="109" symbol="BASE32"/>
         <entry id="8389350" module="true" symbol="globals"/>
         <entry id="8388770" module="true" object="true" symbol="Strings"/>
-        <entry id="89" method="true" symbol="updateHeaderRegion"/>
-        <entry id="94" method="true" symbol="getTimeSinceUpdate"/>
+        <entry id="88" method="true" symbol="updateHeaderRegion"/>
+        <entry id="93" method="true" symbol="getTimeSinceUpdate"/>
         <entry id="8388702" method="true" symbol="initialize"/>
-        <entry field="true" id="40" symbol="energy_kj"/>
-        <entry field="true" id="135" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;appState&gt;"/>
+        <entry field="true" id="39" symbol="energy_kj"/>
+        <entry field="true" id="133" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;appState&gt;"/>
         <entry id="8389279" method="true" symbol="onStart"/>
-        <entry id="113" method="true" symbol="hexStringToByteArray"/>
+        <entry id="112" method="true" symbol="hexStringToByteArray"/>
         <entry field="true" id="8388892" symbol="name"/>
-        <entry field="true" id="55" symbol="&lt;globals/DiabetesFoodLoopApp/&lt;&gt;mainDelegate&gt;"/>
-        <entry field="true" id="66" symbol="foodItems"/>
-        <entry field="true" id="150" symbol="&lt;globals/NightscoutService/&lt;&gt;currentResponder&gt;"/>
-        <entry id="155" method="true" symbol="fetchTempBasalData"/>
-        <entry field="true" id="61" symbol="chartRegion"/>
-        <entry id="162" method="true" symbol="onReceiveTempBasalData"/>
-        <entry id="19" object="true" symbol="DiabetesFoodLoopApp"/>
-        <entry field="true" id="127" symbol="&lt;globals/DiabetesFoodLoopDelegate/&lt;&gt;appState&gt;"/>
+        <entry field="true" id="54" symbol="&lt;globals/DiabetesFoodLoopApp/&lt;&gt;mainDelegate&gt;"/>
+        <entry field="true" id="65" symbol="foodItems"/>
+        <entry field="true" id="148" symbol="&lt;globals/NightscoutService/&lt;&gt;currentResponder&gt;"/>
+        <entry id="153" method="true" symbol="fetchTempBasalData"/>
+        <entry field="true" id="60" symbol="chartRegion"/>
+        <entry id="160" method="true" symbol="onReceiveTempBasalData"/>
+        <entry id="18" object="true" symbol="DiabetesFoodLoopApp"/>
+        <entry field="true" id="125" symbol="&lt;globals/DiabetesFoodLoopDelegate/&lt;&gt;appState&gt;"/>
         <entry id="8389280" method="true" symbol="getInitialView"/>
         <entry id="8389281" method="true" symbol="onStop"/>
         <entry id="5" module="true" symbol="globals/GlucoseData/&lt;statics&gt;"/>
         <entry id="8389109" method="true" symbol="onMenuItem"/>
-        <entry id="16" object="true" symbol="AppState"/>
-        <entry id="33" object="true" symbol="TempOverridesInputDelegate"/>
-        <entry field="true" id="71" symbol="isLoading"/>
-        <entry id="102" method="true" symbol="focusNext"/>
-        <entry id="154" method="true" symbol="fetchGlucoseData"/>
+        <entry id="15" object="true" symbol="AppState"/>
+        <entry id="32" object="true" symbol="TempOverridesInputDelegate"/>
+        <entry field="true" id="70" symbol="isLoading"/>
+        <entry id="101" method="true" symbol="focusNext"/>
+        <entry id="152" method="true" symbol="fetchGlucoseData"/>
         <entry id="7" module="true" symbol="globals/Layout"/>
-        <entry id="124" method="true" symbol="generateTotpSha1"/>
-        <entry field="true" id="145" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;updateTimer&gt;"/>
+        <entry id="122" method="true" symbol="generateTotpSha1"/>
+        <entry field="true" id="143" symbol="&lt;globals/DiabetesFoodLoopView/&lt;&gt;updateTimer&gt;"/>
         <entry id="8389097" method="true" symbol="onKey"/>
-        <entry field="true" id="39" symbol="carbs"/>
-        <entry field="true" id="189" symbol="menu_return_instruction"/>
-        <entry field="true" id="69" symbol="glucoseHistory"/>
-        <entry field="true" id="177" symbol="gel_decathlon_energygelplus_redfruit"/>
+        <entry field="true" id="38" symbol="carbs"/>
+        <entry field="true" id="68" symbol="glucoseHistory"/>
+        <entry field="true" id="175" symbol="gel_decathlon_energygelplus_redfruit"/>
         <entry id="8388646" module="true" object="true" symbol="Timer"/>
-        <entry id="119" module="true" symbol="Layouts"/>
-        <entry id="168" method="true" symbol="setCallback"/>
-        <entry field="true" id="91" symbol="bloodSugarLevel"/>
-        <entry id="152" method="true" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
-        <entry id="72" method="true" symbol="isPointInRegion"/>
-        <entry field="true" id="46" symbol="protein_g"/>
-        <entry id="156" method="true" symbol="&lt;globals/NightscoutService/&lt;&gt;getNightscoutToken&gt;"/>
+        <entry id="166" method="true" symbol="setCallback"/>
+        <entry field="true" id="90" symbol="bloodSugarLevel"/>
+        <entry id="150" method="true" symbol="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;"/>
+        <entry id="71" method="true" symbol="isPointInRegion"/>
+        <entry field="true" id="45" symbol="protein_g"/>
+        <entry id="154" method="true" symbol="&lt;globals/NightscoutService/&lt;&gt;getNightscoutToken&gt;"/>
         <entry field="true" id="8389743" symbol="backgroundColor"/>
         <entry id="8391457" method="true" symbol="getGlanceView"/>
         <entry id="8389125" method="true" symbol="onHide"/>
         <entry field="true" id="8392203" symbol="direction"/>
-        <entry field="true" id="128" symbol="&lt;globals/DiabetesFoodLoopDelegate/&lt;&gt;nightscoutService&gt;"/>
-        <entry id="23" object="true" symbol="DiabetesFoodLoopView"/>
+        <entry field="true" id="126" symbol="&lt;globals/DiabetesFoodLoopDelegate/&lt;&gt;nightscoutService&gt;"/>
+        <entry id="22" object="true" symbol="DiabetesFoodLoopView"/>
         <entry id="8390514" method="true" symbol="update"/>
-        <entry id="121" method="true" symbol="loadAll"/>
-        <entry field="true" id="77" symbol="presetCoordinatesProfile"/>
-        <entry id="116" method="true" symbol="formatCurrentTimestamp"/>
-        <entry field="true" id="149" symbol="&lt;globals/NightscoutService/&lt;&gt;callback&gt;"/>
-        <entry field="true" id="43" symbol="index"/>
+        <entry id="119" method="true" symbol="loadAll"/>
+        <entry field="true" id="76" symbol="presetCoordinatesProfile"/>
+        <entry id="115" method="true" symbol="formatCurrentTimestamp"/>
+        <entry field="true" id="147" symbol="&lt;globals/NightscoutService/&lt;&gt;callback&gt;"/>
+        <entry field="true" id="42" symbol="index"/>
         <entry id="8388635" module="true" symbol="Application"/>
-        <entry id="141" method="true" symbol="fetchProfile"/>
-        <entry id="75" method="true" symbol="navigateUp"/>
-        <entry field="true" id="79" symbol="scrollOffset"/>
-        <entry field="true" id="187" symbol="default_user_title"/>
-        <entry id="108" symbol="K"/>
-        <entry id="107" symbol="H"/>
-        <entry field="true" id="65" symbol="foodGridCoordinates"/>
-        <entry id="158" method="true" symbol="onReceiveActiveOverride"/>
+        <entry id="139" method="true" symbol="fetchProfile"/>
+        <entry id="74" method="true" symbol="navigateUp"/>
+        <entry field="true" id="78" symbol="scrollOffset"/>
+        <entry field="true" id="182" symbol="default_user_title"/>
+        <entry id="107" symbol="K"/>
+        <entry id="106" symbol="H"/>
+        <entry field="true" id="64" symbol="foodGridCoordinates"/>
+        <entry id="156" method="true" symbol="onReceiveActiveOverride"/>
         <entry id="8389101" method="true" symbol="onSwipe"/>
     </symbolTable>
     <localVars>
@@ -1680,36 +1665,34 @@
         <entry arg="true" endPc="268449681" name="data" stackId="2" startPc="268449624"/>
         <entry endPc="268449680" name="responder" stackId="3" startPc="268449627"/>
         <entry endPc="268449749" name="url" stackId="1" startPc="268449685"/>
-        <entry arg="true" endPc="268449909" name="foodData" stackId="1" startPc="268449751"/>
-        <entry endPc="268449908" name="url" stackId="2" startPc="268449754"/>
-        <entry endPc="268449954" name="url" stackId="1" startPc="268449913"/>
-        <entry arg="true" endPc="268450422" name="responseCode" stackId="1" startPc="268449955"/>
-        <entry arg="true" endPc="268450422" name="data" stackId="2" startPc="268449955"/>
-        <entry endPc="268450284" name="foundActiveOverride" stackId="3" startPc="268449988"/>
-        <entry endPc="268450256" name="i" stackId="4" startPc="268450017"/>
-        <entry endPc="268450246" name="override" stackId="5" startPc="268450017"/>
-        <entry endPc="268450243" name="isActive" stackId="6" startPc="268450039"/>
-        <entry endPc="268450112" name="durationType" stackId="7" startPc="268450060"/>
-        <entry endPc="268450237" name="reason" stackId="8" startPc="268450183"/>
-        <entry endPc="268450234" name="reasonStr" stackId="9" startPc="268450206"/>
-        <entry endPc="268450342" name="e" stackId="10" startPc="268450313"/>
-        <entry arg="true" endPc="268450456" name="endpoint" stackId="1" startPc="268450423"/>
-        <entry endPc="268450456" name="baseUrl" stackId="2" startPc="268450426"/>
-        <entry endPc="268450456" name="token" stackId="3" startPc="268450426"/>
-        <entry endPc="268450601" name="baseUrl" stackId="1" startPc="268450460"/>
-        <entry endPc="268450601" name="token" stackId="2" startPc="268450460"/>
-        <entry endPc="268450601" name="profileUrl" stackId="3" startPc="268450460"/>
-        <entry endPc="268450601" name="overrideUrl" stackId="4" startPc="268450460"/>
-        <entry arg="true" endPc="268450614" name="appState" stackId="1" startPc="268450603"/>
-        <entry endPc="268450774" name="req" stackId="1" startPc="268450618"/>
-        <entry endPc="268450930" name="baseUrl" stackId="1" startPc="268450779"/>
-        <entry endPc="268450930" name="token" stackId="2" startPc="268450779"/>
-        <entry endPc="268450930" name="treatmentData" stackId="3" startPc="268450779"/>
-        <entry endPc="268450930" name="treatmentUrl" stackId="4" startPc="268450779"/>
-        <entry arg="true" endPc="268451072" name="dc" stackId="1" startPc="268450932"/>
-        <entry endPc="268451072" name="rez_cmp_local_bitmap_id_monkey" stackId="2" startPc="268450943"/>
+        <entry arg="true" endPc="268449908" name="foodData" stackId="1" startPc="268449751"/>
+        <entry endPc="268449907" name="url" stackId="2" startPc="268449754"/>
+        <entry endPc="268449953" name="url" stackId="1" startPc="268449912"/>
+        <entry arg="true" endPc="268450421" name="responseCode" stackId="1" startPc="268449954"/>
+        <entry arg="true" endPc="268450421" name="data" stackId="2" startPc="268449954"/>
+        <entry endPc="268450283" name="foundActiveOverride" stackId="3" startPc="268449987"/>
+        <entry endPc="268450255" name="i" stackId="4" startPc="268450016"/>
+        <entry endPc="268450245" name="override" stackId="5" startPc="268450016"/>
+        <entry endPc="268450242" name="isActive" stackId="6" startPc="268450038"/>
+        <entry endPc="268450111" name="durationType" stackId="7" startPc="268450059"/>
+        <entry endPc="268450236" name="reason" stackId="8" startPc="268450182"/>
+        <entry endPc="268450233" name="reasonStr" stackId="9" startPc="268450205"/>
+        <entry endPc="268450341" name="e" stackId="10" startPc="268450312"/>
+        <entry arg="true" endPc="268450455" name="endpoint" stackId="1" startPc="268450422"/>
+        <entry endPc="268450455" name="baseUrl" stackId="2" startPc="268450425"/>
+        <entry endPc="268450455" name="token" stackId="3" startPc="268450425"/>
+        <entry endPc="268450600" name="baseUrl" stackId="1" startPc="268450459"/>
+        <entry endPc="268450600" name="token" stackId="2" startPc="268450459"/>
+        <entry endPc="268450600" name="profileUrl" stackId="3" startPc="268450459"/>
+        <entry endPc="268450600" name="overrideUrl" stackId="4" startPc="268450459"/>
+        <entry arg="true" endPc="268450613" name="appState" stackId="1" startPc="268450602"/>
+        <entry endPc="268450773" name="req" stackId="1" startPc="268450617"/>
+        <entry endPc="268450929" name="baseUrl" stackId="1" startPc="268450778"/>
+        <entry endPc="268450929" name="token" stackId="2" startPc="268450778"/>
+        <entry endPc="268450929" name="treatmentData" stackId="3" startPc="268450778"/>
+        <entry endPc="268450929" name="treatmentUrl" stackId="4" startPc="268450778"/>
     </localVars>
-    <deviceInfo deviceVersion="e6263c2a80ff43933f83afa71f1f6645dc2cb4a3" partNumber="006-B3843-00"/>
+    <deviceInfo deviceVersion="e02a7e45dcb3b04416e97564c803bfcbf2dc3524" partNumber="006-B4440-00"/>
     <annotations>
         <annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="gel_decathlon_energygelplus_redfruit"/>
         <annotationEntry annotation="background" class="FoodItem" module="globals" symbol="carbs"/>
@@ -1807,7 +1790,6 @@
         <annotationEntry annotation="background" class="DiabetesFoodLoopApp" module="globals" symbol="initialize"/>
         <annotationEntry annotation="glance" class="DiabetesFoodLoopApp" module="globals" symbol="initialize"/>
         <annotationEntry annotation="typecheck" class="DiabetesFoodLoopApp" module="globals" symbol="initialize"/>
-        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="active_profile_label"/>
         <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="nightscout_token_title"/>
         <annotationEntry annotation="background" class="AppState" module="globals" symbol="headerRegion"/>
         <annotationEntry annotation="glance" class="AppState" module="globals" symbol="headerRegion"/>
@@ -1856,7 +1838,6 @@
         <annotationEntry annotation="glance" class="FoodItem" module="globals" symbol="brand"/>
         <annotationEntry annotation="background" class="AppState" module="globals" symbol="chartRegion"/>
         <annotationEntry annotation="glance" class="AppState" module="globals" symbol="chartRegion"/>
-        <annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="id_monkey"/>
         <annotationEntry annotation="background" class="FoodItem" module="globals" symbol="gi"/>
         <annotationEntry annotation="glance" class="FoodItem" module="globals" symbol="gi"/>
         <annotationEntry annotation="background" class="GlucoseData" module="globals" symbol="getDirectionArrow"/>
@@ -1893,7 +1874,6 @@
         <annotationEntry annotation="glance" class="DiabetesFoodLoopApp" module="globals" symbol="otpService"/>
         <annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="default_bar"/>
         <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="otp_secret_title"/>
-        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="menu_return_instruction"/>
         <annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="default_jellies"/>
         <annotationEntry annotation="background" class="DiabetesFoodLoopApp" module="globals" symbol="getNightscoutService"/>
         <annotationEntry annotation="glance" class="DiabetesFoodLoopApp" module="globals" symbol="getNightscoutService"/>
@@ -1911,35 +1891,34 @@
         <annotationEntry annotation="glance" class="AppState" module="globals" symbol="foregroundColor"/>
     </annotations>
     <dataEntryOffsetMappings>
-        <dataEntry label="globals" offset="148" parentId="" symbolId="globals" type="module"/>
-        <dataEntry label="globals/FoodItem" offset="377" parentId="globals" symbolId="FoodItem" type="class"/>
-        <dataEntry label="globals/DiabetesFoodLoopApp" offset="547" parentId="globals" symbolId="DiabetesFoodLoopApp" type="class"/>
-        <dataEntry label="globals/AppState" offset="735" parentId="globals" symbolId="AppState" type="class"/>
-        <dataEntry label="globals/GlucoseData" offset="1076" parentId="globals" symbolId="GlucoseData" type="class"/>
-        <dataEntry label="globals/GlucoseData/&lt;statics&gt;" offset="1205" parentId="GlucoseData" symbolId="&lt;statics&gt;" type="module"/>
-        <dataEntry label="globals/DiabetesFoodLoopGlanceView" offset="1792" parentId="globals" symbolId="DiabetesFoodLoopGlanceView" type="class"/>
-        <dataEntry label="globals/TempOverridesView" offset="1865" parentId="globals" symbolId="TempOverridesView" type="class"/>
-        <dataEntry label="globals/Sha1" offset="1999" parentId="globals" symbolId="Sha1" type="module"/>
-        <dataEntry label="globals/Convert" offset="2061" parentId="globals" symbolId="Convert" type="module"/>
-        <dataEntry label="globals/Hmac" offset="2123" parentId="globals" symbolId="Hmac" type="module"/>
-        <dataEntry label="globals/OtpService" offset="2158" parentId="globals" symbolId="OtpService" type="class"/>
-        <dataEntry label="globals/Rez" offset="2238" parentId="globals" symbolId="Rez" type="module"/>
-        <dataEntry label="globals/Constants" offset="2309" parentId="globals" symbolId="Constants" type="module"/>
-        <dataEntry label="globals/FoodDatabase" offset="2335" parentId="globals" symbolId="FoodDatabase" type="class"/>
-        <dataEntry label="globals/FoodDatabase/&lt;statics&gt;" offset="2383" parentId="FoodDatabase" symbolId="&lt;statics&gt;" type="module"/>
-        <dataEntry label="globals/Otp" offset="2414" parentId="globals" symbolId="Otp" type="module"/>
-        <dataEntry label="globals/DiabetesFoodLoopMenuDelegate" offset="2467" parentId="globals" symbolId="DiabetesFoodLoopMenuDelegate" type="class"/>
-        <dataEntry label="globals/DiabetesFoodLoopDelegate" offset="2538" parentId="globals" symbolId="DiabetesFoodLoopDelegate" type="class"/>
-        <dataEntry label="globals/TempOverridesInputDelegate" offset="2663" parentId="globals" symbolId="TempOverridesInputDelegate" type="class"/>
-        <dataEntry label="globals/DiabetesFoodLoopView" offset="2770" parentId="globals" symbolId="DiabetesFoodLoopView" type="class"/>
-        <dataEntry label="globals/Layout" offset="2976" parentId="globals" symbolId="Layout" type="module"/>
-        <dataEntry label="globals/NightscoutService" offset="3002" parentId="globals" symbolId="NightscoutService" type="class"/>
-        <dataEntry label="globals/Rez/Drawables" offset="3253" parentId="Rez" symbolId="Drawables" type="module"/>
-        <dataEntry label="globals/Rez/Layouts" offset="3378" parentId="Rez" symbolId="Layouts" type="module"/>
-        <dataEntry label="globals/Rez/Menus" offset="3413" parentId="Rez" symbolId="Menus" type="module"/>
-        <dataEntry label="globals/Rez/Strings" offset="3448" parentId="Rez" symbolId="Strings" type="module"/>
-        <dataEntry label="globals/Rez/JsonData" offset="3582" parentId="Rez" symbolId="JsonData" type="module"/>
-        <dataEntry label="globals/Rez/Menus/MainMenu" offset="3617" parentId="Menus" symbolId="MainMenu" type="class"/>
+        <dataEntry label="globals" offset="139" parentId="" symbolId="globals" type="module"/>
+        <dataEntry label="globals/FoodItem" offset="368" parentId="globals" symbolId="FoodItem" type="class"/>
+        <dataEntry label="globals/DiabetesFoodLoopApp" offset="538" parentId="globals" symbolId="DiabetesFoodLoopApp" type="class"/>
+        <dataEntry label="globals/AppState" offset="726" parentId="globals" symbolId="AppState" type="class"/>
+        <dataEntry label="globals/GlucoseData" offset="1067" parentId="globals" symbolId="GlucoseData" type="class"/>
+        <dataEntry label="globals/GlucoseData/&lt;statics&gt;" offset="1196" parentId="GlucoseData" symbolId="&lt;statics&gt;" type="module"/>
+        <dataEntry label="globals/DiabetesFoodLoopGlanceView" offset="1783" parentId="globals" symbolId="DiabetesFoodLoopGlanceView" type="class"/>
+        <dataEntry label="globals/TempOverridesView" offset="1856" parentId="globals" symbolId="TempOverridesView" type="class"/>
+        <dataEntry label="globals/Sha1" offset="1990" parentId="globals" symbolId="Sha1" type="module"/>
+        <dataEntry label="globals/Convert" offset="2052" parentId="globals" symbolId="Convert" type="module"/>
+        <dataEntry label="globals/Hmac" offset="2114" parentId="globals" symbolId="Hmac" type="module"/>
+        <dataEntry label="globals/OtpService" offset="2149" parentId="globals" symbolId="OtpService" type="class"/>
+        <dataEntry label="globals/Rez" offset="2229" parentId="globals" symbolId="Rez" type="module"/>
+        <dataEntry label="globals/Constants" offset="2291" parentId="globals" symbolId="Constants" type="module"/>
+        <dataEntry label="globals/FoodDatabase" offset="2317" parentId="globals" symbolId="FoodDatabase" type="class"/>
+        <dataEntry label="globals/FoodDatabase/&lt;statics&gt;" offset="2365" parentId="FoodDatabase" symbolId="&lt;statics&gt;" type="module"/>
+        <dataEntry label="globals/Otp" offset="2396" parentId="globals" symbolId="Otp" type="module"/>
+        <dataEntry label="globals/DiabetesFoodLoopMenuDelegate" offset="2449" parentId="globals" symbolId="DiabetesFoodLoopMenuDelegate" type="class"/>
+        <dataEntry label="globals/DiabetesFoodLoopDelegate" offset="2520" parentId="globals" symbolId="DiabetesFoodLoopDelegate" type="class"/>
+        <dataEntry label="globals/TempOverridesInputDelegate" offset="2645" parentId="globals" symbolId="TempOverridesInputDelegate" type="class"/>
+        <dataEntry label="globals/DiabetesFoodLoopView" offset="2752" parentId="globals" symbolId="DiabetesFoodLoopView" type="class"/>
+        <dataEntry label="globals/Layout" offset="2958" parentId="globals" symbolId="Layout" type="module"/>
+        <dataEntry label="globals/NightscoutService" offset="2984" parentId="globals" symbolId="NightscoutService" type="class"/>
+        <dataEntry label="globals/Rez/Drawables" offset="3235" parentId="Rez" symbolId="Drawables" type="module"/>
+        <dataEntry label="globals/Rez/Menus" offset="3351" parentId="Rez" symbolId="Menus" type="module"/>
+        <dataEntry label="globals/Rez/Strings" offset="3386" parentId="Rez" symbolId="Strings" type="module"/>
+        <dataEntry label="globals/Rez/JsonData" offset="3502" parentId="Rez" symbolId="JsonData" type="module"/>
+        <dataEntry label="globals/Rez/Menus/MainMenu" offset="3537" parentId="Menus" symbolId="MainMenu" type="class"/>
     </dataEntryOffsetMappings>
     <functions>
         <functionEntry accessMode="public" name="&lt;init&gt;" parent="FoodItem">
@@ -2336,9 +2315,6 @@
         <functionEntry accessMode="public" name="&lt;init&gt;" parent="Drawables">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" name="&lt;init&gt;" parent="Layouts">
-            <documentation/>
-        </functionEntry>
         <functionEntry accessMode="public" name="&lt;init&gt;" parent="Menus">
             <documentation/>
         </functionEntry>
@@ -2605,53 +2581,49 @@
                 <![CDATA[<div class="description"> Fetch glucose data from Nightscout: a single request returns both the<br/> current value (most recent entry) and the ~4h history used for the<br/> trend chart, avoiding two concurrent BLE requests.<br/></div>]]>
             </documentation>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268449909" name="sendFoodEntry" parent="NightscoutService" startPc="268449751">
+        <functionEntry accessMode="public" endPc="268449908" name="sendFoodEntry" parent="NightscoutService" startPc="268449751">
             <param id="foodData"/>
             <documentation>
                 <![CDATA[<div class="description"> Send food entry to Loop via Nightscout notifications API<br/></div>]]>
             </documentation>
         </functionEntry>
-        <functionEntry accessMode="private" endPc="268449954" name="&lt;globals/NightscoutService/&lt;&gt;getNightscoutUrl&gt;" parent="NightscoutService" startPc="268449910">
+        <functionEntry accessMode="private" endPc="268449953" name="&lt;globals/NightscoutService/&lt;&gt;getNightscoutUrl&gt;" parent="NightscoutService" startPc="268449909">
             <documentation>
                 <![CDATA[<div class="description"> Get Nightscout URL from properties<br/></div>]]>
             </documentation>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268450422" name="onReceiveActiveOverride" parent="NightscoutService" startPc="268449955">
+        <functionEntry accessMode="public" endPc="268450421" name="onReceiveActiveOverride" parent="NightscoutService" startPc="268449954">
             <param id="responseCode"/>
             <param id="data"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="private" endPc="268450456" name="&lt;globals/NightscoutService/&lt;&gt;buildUrl&gt;" parent="NightscoutService" startPc="268450423">
+        <functionEntry accessMode="private" endPc="268450455" name="&lt;globals/NightscoutService/&lt;&gt;buildUrl&gt;" parent="NightscoutService" startPc="268450422">
             <param id="endpoint"/>
             <documentation>
                 <![CDATA[<div class="description"> Build URL with base Nightscout URL and token<br/></div>]]>
             </documentation>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268450602" name="fetchTempBasalData" parent="NightscoutService" startPc="268450457">
+        <functionEntry accessMode="public" endPc="268450601" name="fetchTempBasalData" parent="NightscoutService" startPc="268450456">
             <documentation>
                 <![CDATA[<div class="description"> Fetch temp basal data and active profile<br/></div>]]>
             </documentation>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268450614" name="initialize" parent="NightscoutService" startPc="268450603">
+        <functionEntry accessMode="public" endPc="268450613" name="initialize" parent="NightscoutService" startPc="268450602">
             <param id="appState"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="private" endPc="268450775" name="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;" parent="NightscoutService" startPc="268450615">
+        <functionEntry accessMode="private" endPc="268450774" name="&lt;globals/NightscoutService/&lt;&gt;dispatchNext&gt;" parent="NightscoutService" startPc="268450614">
             <documentation>
                 <![CDATA[<div class="description"> Dispatch the next queued request if the bridge is free.<br/></div>]]>
             </documentation>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268450931" name="deactivatePreset" parent="NightscoutService" startPc="268450776">
+        <functionEntry accessMode="public" endPc="268450930" name="deactivatePreset" parent="NightscoutService" startPc="268450775">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268451072" name="MainLayout" parent="Layouts" startPc="268450932">
-            <param id="dc"/>
+        <functionEntry accessMode="public" endPc="268450942" name="&lt;init&gt;" parent="MainMenu" startPc="268450931">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268451084" name="&lt;init&gt;" parent="MainMenu" startPc="268451073">
-            <documentation/>
-        </functionEntry>
-        <functionEntry accessMode="public" endPc="268451144" name="initialize" parent="MainMenu" startPc="268451085">
+        <functionEntry accessMode="public" endPc="268451002" name="initialize" parent="MainMenu" startPc="268450943">
             <documentation/>
         </functionEntry>
     </functions>

@@ -95,16 +95,14 @@
     "valyrian" : {
       "nightscout_url_title" : "URL Nightscout",
       "default_unit_title" : "Unité par défaut",
-      "menu_return_instruction" : "Menu pour retour",
-      "otp_secret_title" : "Secret OTP",
-      "temp_overrides_label" : "Profils Temporaires",
-      "AppName" : "Gestion Diabète Aliments",
-      "active_profile_label" : "Profil actif",
       "nightscout_token_title" : "Token Nightscout",
       "loading_foods" : "Chargement aliments...",
       "check_nightscout_config" : "Vérifiez votre configuration Nightscout",
       "chart_color_by_zone_title" : "Colorer les barres selon la zone glycémique",
-      "default_user_title" : "Utilisateur par défaut"
+      "otp_secret_title" : "Secret OTP",
+      "temp_overrides_label" : "Profils Temporaires",
+      "default_user_title" : "Utilisateur par défaut",
+      "AppName" : "Gestion Diabète Aliments"
     }
   }
 }

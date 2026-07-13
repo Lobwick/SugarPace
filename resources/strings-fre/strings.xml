@@ -8,9 +8,6 @@
     <string id="default_user_title">Utilisateur par défaut</string>
     <string id="default_unit_title">Unité par défaut</string>
     <string id="chart_color_by_zone_title">Colorer les barres selon la zone glycémique</string>
-    <!-- New strings for temp overrides view -->
-    <string id="active_profile_label">Profil actif</string>
-    <string id="menu_return_instruction">Menu pour retour</string>
     <string id="loading_foods">Chargement aliments...</string>
     <string id="check_nightscout_config">Vérifiez votre configuration Nightscout</string>
 </strings>

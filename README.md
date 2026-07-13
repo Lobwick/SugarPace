@@ -88,6 +88,40 @@ monkeydo bin/DiabetesFoodManagement.prg edge1050
 
 > ⚠️ Le type-checker peut atteindre un `OutOfMemoryError` sur de l'arithmétique avec des `Number?` nullables. Garder les accumulateurs numériques non-null (pattern `seen`/drapeau) plutôt que des sentinelles `null`.
 
+## Tests unitaires
+
+Tests annotés `(:test)` dans `source/tests/` (crypto OTP avec vecteurs RFC, zones glycémiques, flèches, parsing FoodItem). Ils sont exclus du build normal.
+
+```bash
+# Compiler la cible de test puis l'exécuter dans le simulateur
+monkeyc -f monkey.jungle -d edge1050 -o build/test.prg -y developer_key --unit-test
+connectiq &
+monkeydo build/test.prg edge1050 -t
+```
+
+## Intégration continue (GitHub Actions)
+
+Trois workflows dans `.github/workflows/`, basés sur l'action Docker
+[`blackshadev/garmin-connectiq-build-action`](https://github.com/blackshadev/garmin-connectiq-build-action) (image qui embarque le SDK + les profils device, donc aucun setup SDK à faire) :
+- **`ci.yml`** : pipeline réutilisable — compile les 4 devices (matrice) + compile la cible `--unit-test`.
+- **`pr.yml`** (pull request → main) : appelle `ci.yml`. Gate vert/rouge.
+- **`main.yml`** (push sur main) : appelle `ci.yml`, puis **crée une release** `v<version>` (notes auto-générées + les `.prg` par device) **quand la version de `manifest.xml` change** (tag inexistant).
+
+**Prérequis** (Settings → Secrets → Actions) — un seul, optionnel :
+
+| Type | Nom | Contenu |
+|---|---|---|
+| Secret (opt.) | `DEVELOPER_KEY_BASE64` | `base64` de ta `developer_key`. Sinon une clé jetable est générée (OK pour build/tests ; le paquet store se signe avec ta vraie clé). |
+
+```bash
+# Générer la valeur du secret depuis ta clé
+base64 -i developer_key | pbcopy   # macOS
+```
+
+**Cut a release** : bump `version="X.Y.Z"` de `<iq:application>` dans `manifest.xml`, merge sur `main` → release `vX.Y.Z` créée automatiquement.
+
+> ⚠️ Cette action Docker **compile** seulement (pas de simulateur). Les tests unitaires sont donc **compilés** en CI (le code de test cassé fait échouer le build), mais leur **exécution** reste locale : `monkeydo build/test.prg edge1050 -t`. La version de l'action (`@9.1.1`) fixe la version du SDK utilisée.
+
 ## Architecture
 
 Séparation vues / état / services :
