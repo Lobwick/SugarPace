@@ -32,7 +32,7 @@
   }, {
     "key" : "otp_secret",
     "valueType" : "string",
-    "defaultValue" : "MNWUPWJFCJRJJ4WSBPC27HJ5CZUM6YKK",
+    "defaultValue" : "TDWVBUNPSA3DYZSHTR7IYJ2QX4SGT6YW",
     "configTitle" : "otp_secret_title",
     "configPrompt" : null,
     "configType" : "alphaNumeric",
@@ -74,21 +74,37 @@
     "configMin" : null,
     "configMax" : null,
     "configMaxLength" : null
+  }, {
+    "key" : "chart_color_by_zone",
+    "valueType" : "boolean",
+    "defaultValue" : false,
+    "configTitle" : "chart_color_by_zone_title",
+    "configPrompt" : null,
+    "configType" : "boolean",
+    "configError" : null,
+    "configHelpUrl" : null,
+    "configReadonly" : false,
+    "configRequired" : false,
+    "configOptions" : null,
+    "configMin" : null,
+    "configMax" : null,
+    "configMaxLength" : null
   } ],
   "supportsLiveValidation" : false,
   "languages" : {
     "valyrian" : {
       "nightscout_url_title" : "URL Nightscout",
       "default_unit_title" : "Unité par défaut",
-      "active_profile_label" : "Profil actif",
       "menu_return_instruction" : "Menu pour retour",
+      "otp_secret_title" : "Secret OTP",
+      "temp_overrides_label" : "Profils Temporaires",
+      "AppName" : "Gestion Diabète Aliments",
+      "active_profile_label" : "Profil actif",
       "nightscout_token_title" : "Token Nightscout",
       "loading_foods" : "Chargement aliments...",
       "check_nightscout_config" : "Vérifiez votre configuration Nightscout",
-      "otp_secret_title" : "Secret OTP",
-      "temp_overrides_label" : "Profils Temporaires",
-      "default_user_title" : "Utilisateur par défaut",
-      "AppName" : "Gestion Diabète Aliments"
+      "chart_color_by_zone_title" : "Colorer les barres selon la zone glycémique",
+      "default_user_title" : "Utilisateur par défaut"
     }
   }
 }

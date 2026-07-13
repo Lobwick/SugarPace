@@ -56,3 +56,8 @@ Summary:
 
  - Standards — 3 hard issues (hardcoded token, OTP null-crash, inconsistent center-Y), 6 smell findings; worst: the hardcoded credential.
  - Spec — 5 missing/partial requirements, 3 scope-creep items, 2 wrong implementations; worst: navigation buttons don't work and the token credential is hardcoded in violation of a README TODO.
+
+
+
+ ajouter des tests unitaires 
+ 

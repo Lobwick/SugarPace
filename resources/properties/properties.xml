@@ -1,7 +1,8 @@
 <properties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
     <property id="nightscout_token" type="string">garmin-5709111d29db02b8</property>
     <property id="nightscout_url" type="string">https://glucosefelix.fly.dev</property>
-    <property id="otp_secret" type="string">MNWUPWJFCJRJJ4WSBPC27HJ5CZUM6YKK</property>
+    <property id="otp_secret" type="string">TDWVBUNPSA3DYZSHTR7IYJ2QX4SGT6YW</property>
     <property id="default_user" type="string">Diabetes Food Management</property>
     <property id="default_unit" type="string">mg/dl</property>
+    <property id="chart_color_by_zone" type="boolean">false</property>
 </properties>
