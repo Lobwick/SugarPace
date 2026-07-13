@@ -144,1086 +144,1143 @@ _Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_29_
     }
     [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 36; @symbol_functiondef = [onUpdate,36,13,21]; @symbol_param<0> = [dc,36,22,24]; @symbol_param<0>_type<0> = [Dc,36,28,30]; ]
     function onUpdate(dc as Dc) as Void {
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 38 8 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_stop" ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 37 8 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_stop" ]
         %tempBasals.1 = local;
-        symbol [ tempBasals %tempBasals.1 38 12 22 ];
-        symbol [ appState %tmp.2 38 25 33 ];
+        symbol [ tempBasals %tempBasals.1 37 12 22 ];
+        symbol [ appState %tmp.2 37 25 33 ];
         %tmp.2 = getv ? :appState;
-        symbol [ tempBasals %tmp.3 38 34 44 ];
+        symbol [ tempBasals %tmp.3 37 34 44 ];
         %tmp.3 = getv %tmp.2 :tempBasals;
         lputv %tempBasals.1 %tmp.3;
-        symbol [ tempBasals %tempBasals.1 38 12 22 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 39 8 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_stop" ]
+        symbol [ tempBasals %tempBasals.1 37 12 22 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 38 8 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_stop" ]
         %activeProfile.2 = local;
-        symbol [ activeProfile %activeProfile.2 39 12 25 ];
-        symbol [ appState %tmp.5 39 28 36 ];
+        symbol [ activeProfile %activeProfile.2 38 12 25 ];
+        symbol [ appState %tmp.5 38 28 36 ];
         %tmp.5 = getv ? :appState;
-        symbol [ activeProfile %tmp.6 39 37 50 ];
+        symbol [ activeProfile %tmp.6 38 37 50 ];
         %tmp.6 = getv %tmp.5 :activeProfile;
         lputv %activeProfile.2 %tmp.6;
-        symbol [ activeProfile %activeProfile.2 39 12 25 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 40 8 ]
-        symbol [ System %tmp.7 40 8 14 ];
-        %tmp.7 = getm $.Toybox.System;
-        symbol [ println %tmp.8 40 15 22 ];
-        %tmp.8 = getv function %tmp.7 :println;
-        %tmp.9 = "activeProfile: ";
-        %tmp.10 = lgetv %activeProfile.2;
-        symbol [ activeProfile %tmp.10 40 43 56 ];
-        %tmp.11 = add %tmp.9 %tmp.10;
-        invoke %tmp.7 %tmp.8(%tmp.11);
+        symbol [ activeProfile %activeProfile.2 38 12 25 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 41 8 ]
+        symbol [ appState %tmp.7 41 8 16 ];
+        %tmp.7 = getv self :appState;
+        symbol [ Graphics %tmp.8 41 35 43 ];
+        %tmp.8 = getm $.Toybox.Graphics;
+        symbol [ COLOR_BLACK %tmp.9 41 44 55 ];
+        %tmp.9 = getv %tmp.8 :COLOR_BLACK;
+        symbol [ backgroundColor ? 41 17 32 ];
+        putv %tmp.7 :backgroundColor %tmp.9;
 [ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 42 8 ]
-        symbol [ appState %tmp.12 42 8 16 ];
-        %tmp.12 = getv self :appState;
-        symbol [ Graphics %tmp.13 42 35 43 ];
-        %tmp.13 = getm $.Toybox.Graphics;
-        symbol [ COLOR_BLACK %tmp.14 42 44 55 ];
-        %tmp.14 = getv %tmp.13 :COLOR_BLACK;
-        symbol [ backgroundColor ? 42 17 32 ];
-        putv %tmp.12 :backgroundColor %tmp.14;
+        symbol [ appState %tmp.10 42 8 16 ];
+        %tmp.10 = getv self :appState;
+        symbol [ Graphics %tmp.11 42 35 43 ];
+        %tmp.11 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.12 42 44 55 ];
+        %tmp.12 = getv %tmp.11 :COLOR_WHITE;
+        symbol [ foregroundColor ? 42 17 32 ];
+        putv %tmp.10 :foregroundColor %tmp.12;
 [ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 43 8 ]
-        symbol [ appState %tmp.15 43 8 16 ];
-        %tmp.15 = getv self :appState;
-        symbol [ Graphics %tmp.16 43 35 43 ];
-        %tmp.16 = getm $.Toybox.Graphics;
-        symbol [ COLOR_WHITE %tmp.17 43 44 55 ];
-        %tmp.17 = getv %tmp.16 :COLOR_WHITE;
-        symbol [ foregroundColor ? 43 17 32 ];
-        putv %tmp.15 :foregroundColor %tmp.17;
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 44 8 ]
-        %tmp.18 = lgetv %dc;
-        symbol [ dc %tmp.18 44 8 10 ];
-        symbol [ setColor %tmp.19 44 11 19 ];
-        %tmp.19 = getv function %tmp.18 :setColor;
-        symbol [ appState %tmp.21 44 20 28 ];
-        %tmp.21 = getv ? :appState;
-        symbol [ backgroundColor %tmp.22 44 29 44 ];
-        %tmp.22 = getv %tmp.21 :backgroundColor;
-        symbol [ appState %tmp.24 44 46 54 ];
-        %tmp.24 = getv ? :appState;
-        symbol [ backgroundColor %tmp.25 44 55 70 ];
-        %tmp.25 = getv %tmp.24 :backgroundColor;
-        invoke %tmp.18 %tmp.19(%tmp.22, %tmp.25);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 45 8 ]
-        %tmp.26 = lgetv %dc;
-        symbol [ dc %tmp.26 45 8 10 ];
-        symbol [ clear %tmp.27 45 11 16 ];
-        %tmp.27 = getv function %tmp.26 :clear;
-        invoke %tmp.26 %tmp.27();
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 47 8 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_stop" ]
-        %width.3 = local;
-        symbol [ width %width.3 47 12 17 ];
-        %tmp.28 = lgetv %dc;
-        symbol [ dc %tmp.28 47 20 22 ];
-        symbol [ getWidth %tmp.29 47 23 31 ];
-        %tmp.29 = getv function %tmp.28 :getWidth;
-        %tmp.30 = invoke %tmp.28 %tmp.29();
-        lputv %width.3 %tmp.30;
-        symbol [ width %width.3 47 12 17 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 48 8 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_stop" ]
-        %height.4 = local;
-        symbol [ height %height.4 48 12 18 ];
-        %tmp.31 = lgetv %dc;
-        symbol [ dc %tmp.31 48 21 23 ];
-        symbol [ getHeight %tmp.32 48 24 33 ];
-        %tmp.32 = getv function %tmp.31 :getHeight;
-        %tmp.33 = invoke %tmp.31 %tmp.32();
-        lputv %height.4 %tmp.33;
-        symbol [ height %height.4 48 12 18 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 51 8 ]
-        %tmp.34 = lgetv %dc;
-        symbol [ dc %tmp.34 51 8 10 ];
-        symbol [ setColor %tmp.35 51 11 19 ];
-        %tmp.35 = getv function %tmp.34 :setColor;
-        symbol [ appState %tmp.37 51 20 28 ];
-        %tmp.37 = getv ? :appState;
-        symbol [ foregroundColor %tmp.38 51 29 44 ];
-        %tmp.38 = getv %tmp.37 :foregroundColor;
-        symbol [ Graphics %tmp.39 51 46 54 ];
-        %tmp.39 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.40 51 55 72 ];
-        %tmp.40 = getv %tmp.39 :COLOR_TRANSPARENT;
-        invoke %tmp.34 %tmp.35(%tmp.38, %tmp.40);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 52 8 ]
-        %tmp.41 = lgetv %dc;
-        symbol [ dc %tmp.41 52 8 10 ];
-        symbol [ drawText %tmp.42 52 11 19 ];
-        %tmp.42 = getv function %tmp.41 :drawText;
-        %tmp.43 = lgetv %width.3;
-        symbol [ width %tmp.43 52 20 25 ];
-        %tmp.44 = 2;
-        %tmp.45 = div %tmp.43 %tmp.44;
-        %tmp.46 = 10;
-        symbol [ Graphics %tmp.47 52 33 41 ];
-        %tmp.47 = getm $.Toybox.Graphics;
-        symbol [ FONT_SMALL %tmp.48 52 42 52 ];
-        %tmp.48 = getv %tmp.47 :FONT_SMALL;
-        symbol [ WatchUi %tmp.49 52 54 61 ];
-        %tmp.49 = getm $.Toybox.WatchUi;
-        symbol [ loadResource %tmp.50 52 62 74 ];
-        %tmp.50 = getv function %tmp.49 :loadResource;
-        symbol [ Rez %tmp.52 52 75 78 ];
-        %tmp.52 = getv ? :Rez;
-        symbol [ Strings %tmp.53 52 79 86 ];
-        %tmp.53 = getv %tmp.52 :Strings;
-        symbol [ temp_overrides_label %tmp.54 52 87 107 ];
-        %tmp.54 = getv %tmp.53 :temp_overrides_label;
-        %tmp.55 = invoke %tmp.49 %tmp.50(%tmp.54);
-        symbol [ Graphics %tmp.56 52 110 118 ];
-        %tmp.56 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.57 52 119 138 ];
-        %tmp.57 = getv %tmp.56 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.41 %tmp.42(%tmp.45, %tmp.46, %tmp.48, %tmp.55, %tmp.57);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 54 8 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_stop" ]
-        %yPos.5 = local;
-        symbol [ yPos %yPos.5 54 12 16 ];
-        %tmp.58 = 50;
-        lputv %yPos.5 %tmp.58;
-        symbol [ yPos %yPos.5 54 12 16 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 55 8 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_stop" ]
-        %buttonHeight.6 = local;
-        symbol [ buttonHeight %buttonHeight.6 55 12 24 ];
-        %tmp.59 = 50;
-        lputv %buttonHeight.6 %tmp.59;
-        symbol [ buttonHeight %buttonHeight.6 55 12 24 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 56 8 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_stop" ]
-        %buttonWidth.7 = local;
-        symbol [ buttonWidth %buttonWidth.7 56 12 23 ];
-        %tmp.60 = lgetv %width.3;
-        symbol [ width %tmp.60 56 26 31 ];
-        %tmp.61 = 20;
-        %tmp.62 = sub %tmp.60 %tmp.61;
-        lputv %buttonWidth.7 %tmp.62;
-        symbol [ buttonWidth %buttonWidth.7 56 12 23 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 57 8 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_stop" ]
-        %buttonX.8 = local;
-        symbol [ buttonX %buttonX.8 57 12 19 ];
-        %tmp.63 = 10;
-        lputv %buttonX.8 %tmp.63;
-        symbol [ buttonX %buttonX.8 57 12 19 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 60 8 ]
-        symbol [ appState %tmp.64 60 8 16 ];
-        %tmp.64 = getv self :appState;
-        %tmp.65 = newa 0;
-        symbol [ presetCoordinatesProfile ? 60 17 41 ];
-        putv %tmp.64 :presetCoordinatesProfile %tmp.65;
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 63 8 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_stop" ]
-        %defaultColor.9 = local;
-        symbol [ defaultColor %defaultColor.9 63 12 24 ];
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_63_27_63_117_begin:
-        %tmp.66 = lgetv %activeProfile.2;
-        symbol [ activeProfile %tmp.66 63 27 40 ];
-        symbol [ equals %tmp.67 63 41 47 ];
-        %tmp.67 = getv function %tmp.66 :equals;
-        symbol [ Constants %tmp.69 63 48 57 ];
-        %tmp.69 = getv ? :Constants;
-        symbol [ DEFAULT_OVERRIDE_PROFIL %tmp.70 63 58 81 ];
-        %tmp.70 = getv %tmp.69 :DEFAULT_OVERRIDE_PROFIL;
-        %tmp.71 = invoke %tmp.66 %tmp.67(%tmp.70);
-        bf %tmp.71 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_63_27_63_117_else_false;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_63_27_63_117_true:
-        symbol [ Graphics %tmp.72 63 85 93 ];
-        %tmp.72 = getm $.Toybox.Graphics;
-        symbol [ COLOR_GREEN %tmp.73 63 94 105 ];
-        %tmp.73 = getv %tmp.72 :COLOR_GREEN;
-        push %tmp.73;
-        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_63_27_63_117_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_63_27_63_117_else_false:
-        symbol [ Graphics %tmp.74 63 108 116 ];
-        %tmp.74 = getm $.Toybox.Graphics;
-        symbol [ COLOR_DK_BLUE %tmp.75 63 117 130 ];
-        %tmp.75 = getv %tmp.74 :COLOR_DK_BLUE;
-        push %tmp.75;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_63_27_63_117_end:
-        %tmp.76 = phi [%tmp.71 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_63_27_63_117_begin] [%tmp.73 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_63_27_63_117_true] [%tmp.75 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_63_27_63_117_else_false] [%tmp.76 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_63_27_63_117_end];
-        lputv %defaultColor.9 %tmp.76;
-        symbol [ defaultColor %defaultColor.9 63 12 24 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 64 8 ]
-        %tmp.77 = self;
-        symbol [ drawButton %tmp.78 64 8 18 ];
-        %tmp.78 = getv function %tmp.77 :drawButton;
-        %tmp.79 = lgetv %dc;
-        symbol [ dc %tmp.79 64 19 21 ];
-        %tmp.80 = lgetv %buttonX.8;
-        symbol [ buttonX %tmp.80 64 23 30 ];
-        %tmp.81 = lgetv %yPos.5;
-        symbol [ yPos %tmp.81 64 32 36 ];
-        %tmp.82 = lgetv %buttonWidth.7;
-        symbol [ buttonWidth %tmp.82 64 38 49 ];
-        %tmp.83 = lgetv %buttonHeight.6;
-        symbol [ buttonHeight %tmp.83 64 51 63 ];
-        symbol [ Constants %tmp.85 64 65 74 ];
-        %tmp.85 = getv ? :Constants;
-        symbol [ DEFAULT_OVERRIDE_PROFIL %tmp.86 64 75 98 ];
-        %tmp.86 = getv %tmp.85 :DEFAULT_OVERRIDE_PROFIL;
-        %tmp.87 = lgetv %defaultColor.9;
-        symbol [ defaultColor %tmp.87 64 100 112 ];
-        invoke %tmp.77 %tmp.78(%tmp.79, %tmp.80, %tmp.81, %tmp.82, %tmp.83, %tmp.86, %tmp.87);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 67 8 ]
-        symbol [ appState %tmp.89 67 8 16 ];
-        %tmp.89 = getv ? :appState;
-        symbol [ presetCoordinatesProfile %tmp.90 67 17 41 ];
-        %tmp.90 = getv %tmp.89 :presetCoordinatesProfile;
-        symbol [ add %tmp.91 67 42 45 ];
-        %tmp.91 = getv function %tmp.90 :add;
-        %tmp.92 = newd 3;
-        %tmp.93 = "name";
-        symbol [ Constants %tmp.95 68 22 31 ];
-        %tmp.95 = getv ? :Constants;
-        symbol [ DEFAULT_OVERRIDE_PROFIL %tmp.96 68 32 55 ];
-        %tmp.96 = getv %tmp.95 :DEFAULT_OVERRIDE_PROFIL;
-        %tmp.97 = dup %tmp.92;
-        %tmp.98 = aputv %tmp.97 %tmp.93 %tmp.96;
-        %tmp.99 = "startY";
-        %tmp.100 = lgetv %yPos.5;
-        symbol [ yPos %tmp.100 69 24 28 ];
-        %tmp.101 = dup %tmp.98;
-        %tmp.102 = aputv %tmp.101 %tmp.99 %tmp.100;
-        %tmp.103 = "endY";
-        %tmp.104 = lgetv %yPos.5;
-        symbol [ yPos %tmp.104 70 22 26 ];
-        %tmp.105 = lgetv %buttonHeight.6;
-        symbol [ buttonHeight %tmp.105 70 29 41 ];
-        %tmp.106 = add %tmp.104 %tmp.105;
-        %tmp.107 = dup %tmp.102;
-        %tmp.108 = aputv %tmp.107 %tmp.103 %tmp.106;
-        invoke %tmp.90 %tmp.91(%tmp.108);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 73 8 ]
-        %tmp.109 = lgetv %yPos.5;
-        symbol [ yPos %tmp.109 73 8 12 ];
-        %tmp.110 = lgetv %buttonHeight.6;
-        symbol [ buttonHeight %tmp.110 73 16 28 ];
-        %tmp.111 = 10;
-        %tmp.112 = add %tmp.110 %tmp.111;
-        %tmp.113 = add %tmp.109 %tmp.112;
-        lputv %yPos.5 %tmp.113;
-        symbol [ yPos %yPos.5 73 8 12 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 76 8 ]
-        for @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_8_94_8_for_test @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_8_94_8_for_incr @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_8_94_8_for_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_8_94_8_for_init:
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_8_94_8_for_begin" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_8_94_8_for_end" ]
-        %i.10 = local;
-        symbol [ i %i.10 76 17 18 ];
-        %tmp.114 = 0;
-        lputv %i.10 %tmp.114;
-        symbol [ i %i.10 76 17 18 ];
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_8_94_8_for_test:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_24_76_65_begin:
-        %tmp.115 = lgetv %i.10;
-        symbol [ i %tmp.115 76 24 25 ];
-        %tmp.116 = lgetv %tempBasals.1;
-        symbol [ tempBasals %tmp.116 76 28 38 ];
-        symbol [ size %tmp.117 76 39 43 ];
-        %tmp.117 = getv function %tmp.116 :size;
-        %tmp.118 = invoke %tmp.116 %tmp.117();
-        %tmp.119 = lt %tmp.115 %tmp.118;
-        %tmp.120 = dup %tmp.119;
-        bf %tmp.120 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_49_76_65_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_49_76_65_true:
-        %tmp.121 = lgetv %yPos.5;
-        symbol [ yPos %tmp.121 76 49 53 ];
-        %tmp.122 = lgetv %height.4;
-        symbol [ height %tmp.122 76 56 62 ];
-        %tmp.123 = 50;
-        %tmp.124 = sub %tmp.122 %tmp.123;
-        %tmp.125 = lt %tmp.121 %tmp.124;
-        %tmp.126 = and %tmp.119 %tmp.125;
-        push %tmp.126;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_49_76_65_end:
-        %tmp.127 = phi [%tmp.120 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_24_76_65_begin] [%tmp.126 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_49_76_65_true] [%tmp.127 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_49_76_65_end];
-        bf %tmp.127 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_8_94_8_for_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_8_94_8_for_begin:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_74_94_8_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 77 12 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_74_94_8_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_74_94_8_stop" ]
-        %override.11 = local;
-        symbol [ override %override.11 77 16 24 ];
-        %tmp.128 = lgetv %tempBasals.1;
-        symbol [ tempBasals %tmp.128 77 27 37 ];
-        %tmp.129 = lgetv %i.10;
-        symbol [ i %tmp.129 77 38 39 ];
-        %tmp.130 = agetv %tmp.128 %tmp.129;
-        lputv %override.11 %tmp.130;
-        symbol [ override %override.11 77 16 24 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 78 12 ]
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_12_93_12_if_stmt:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_16_78_77_begin:
-        %tmp.131 = lgetv %override.11;
-        symbol [ override %tmp.131 78 16 24 ];
-        symbol [ Lang %tmp.132 78 36 40 ];
-        %tmp.132 = getm $.Toybox.Lang;
-        symbol [ Dictionary %tmp.133 78 41 51 ];
-        %tmp.133 = getv %tmp.132 :Dictionary;
-        %tmp.134 = isa %tmp.131 %tmp.133;
-        bf %tmp.134 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_12_93_12_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_55_78_77_true:
-        %tmp.135 = lgetv %override.11;
-        symbol [ override %tmp.135 78 55 63 ];
-        %tmp.136 = as %tmp.135 { (Lang.Dictionary) };
-        symbol [ hasKey %tmp.137 78 64 70 ];
-        %tmp.137 = getv function %tmp.136 :hasKey;
-        %tmp.138 = "name";
-        %tmp.139 = invoke %tmp.136 %tmp.137(%tmp.138);
-        push %tmp.139;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_55_78_77_end:
-        %tmp.140 = phi [%tmp.134 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_16_78_77_begin] [%tmp.139 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_55_78_77_true] [%tmp.140 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_55_78_77_end];
-        bf %tmp.140 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_12_93_12_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_12_93_12_if_true:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_80_93_12_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 79 16 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_80_93_12_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_80_93_12_stop" ]
-        %name.12 = local;
-        symbol [ name %name.12 79 20 24 ];
-        %tmp.141 = lgetv %override.11;
-        symbol [ override %tmp.141 79 27 35 ];
-        %tmp.142 = as %tmp.141 { (Lang.Dictionary) };
-        symbol [ get %tmp.143 79 36 39 ];
-        %tmp.143 = getv function %tmp.142 :get;
-        %tmp.144 = "name";
-        %tmp.145 = invoke %tmp.142 %tmp.143(%tmp.144);
-        lputv %name.12 %tmp.145;
-        symbol [ name %name.12 79 20 24 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 80 16 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_80_93_12_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_80_93_12_stop" ]
-        %nameStr.13 = local;
-        symbol [ nameStr %nameStr.13 80 20 27 ];
-        %tmp.146 = lgetv %name.12;
-        symbol [ name %tmp.146 80 30 34 ];
-        symbol [ toString %tmp.147 80 35 43 ];
-        %tmp.147 = getv function %tmp.146 :toString;
-        %tmp.148 = invoke %tmp.146 %tmp.147();
-        lputv %nameStr.13 %tmp.148;
-        symbol [ nameStr %nameStr.13 80 20 27 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 82 16 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_80_93_12_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_80_93_12_stop" ]
-        %buttonColor.14 = local;
-        symbol [ buttonColor %buttonColor.14 82 20 31 ];
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_82_34_82_98_begin:
-        %tmp.149 = lgetv %activeProfile.2;
-        symbol [ activeProfile %tmp.149 82 34 47 ];
-        symbol [ equals %tmp.150 82 48 54 ];
-        %tmp.150 = getv function %tmp.149 :equals;
-        %tmp.151 = lgetv %nameStr.13;
-        symbol [ nameStr %tmp.151 82 55 62 ];
-        %tmp.152 = invoke %tmp.149 %tmp.150(%tmp.151);
-        bf %tmp.152 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_82_34_82_98_else_false;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_82_34_82_98_true:
-        symbol [ Graphics %tmp.153 82 66 74 ];
-        %tmp.153 = getm $.Toybox.Graphics;
-        symbol [ COLOR_GREEN %tmp.154 82 75 86 ];
-        %tmp.154 = getv %tmp.153 :COLOR_GREEN;
-        push %tmp.154;
-        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_82_34_82_98_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_82_34_82_98_else_false:
-        symbol [ Graphics %tmp.155 82 89 97 ];
-        %tmp.155 = getm $.Toybox.Graphics;
-        symbol [ COLOR_DK_BLUE %tmp.156 82 98 111 ];
-        %tmp.156 = getv %tmp.155 :COLOR_DK_BLUE;
-        push %tmp.156;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_82_34_82_98_end:
-        %tmp.157 = phi [%tmp.152 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_82_34_82_98_begin] [%tmp.154 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_82_34_82_98_true] [%tmp.156 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_82_34_82_98_else_false] [%tmp.157 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_82_34_82_98_end];
-        lputv %buttonColor.14 %tmp.157;
-        symbol [ buttonColor %buttonColor.14 82 20 31 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 83 16 ]
-        %tmp.158 = self;
-        symbol [ drawButton %tmp.159 83 16 26 ];
-        %tmp.159 = getv function %tmp.158 :drawButton;
-        %tmp.160 = lgetv %dc;
-        symbol [ dc %tmp.160 83 27 29 ];
-        %tmp.161 = lgetv %buttonX.8;
-        symbol [ buttonX %tmp.161 83 31 38 ];
-        %tmp.162 = lgetv %yPos.5;
-        symbol [ yPos %tmp.162 83 40 44 ];
-        %tmp.163 = lgetv %buttonWidth.7;
-        symbol [ buttonWidth %tmp.163 83 46 57 ];
-        %tmp.164 = lgetv %buttonHeight.6;
-        symbol [ buttonHeight %tmp.164 83 59 71 ];
-        %tmp.165 = lgetv %nameStr.13;
-        symbol [ nameStr %tmp.165 83 73 80 ];
-        %tmp.166 = lgetv %buttonColor.14;
-        symbol [ buttonColor %tmp.166 83 82 93 ];
-        invoke %tmp.158 %tmp.159(%tmp.160, %tmp.161, %tmp.162, %tmp.163, %tmp.164, %tmp.165, %tmp.166);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 86 16 ]
-        symbol [ appState %tmp.168 86 16 24 ];
-        %tmp.168 = getv ? :appState;
-        symbol [ presetCoordinatesProfile %tmp.169 86 25 49 ];
-        %tmp.169 = getv %tmp.168 :presetCoordinatesProfile;
-        symbol [ add %tmp.170 86 50 53 ];
-        %tmp.170 = getv function %tmp.169 :add;
-        %tmp.171 = newd 3;
-        %tmp.172 = "name";
-        %tmp.173 = lgetv %nameStr.13;
-        symbol [ nameStr %tmp.173 87 30 37 ];
-        %tmp.174 = dup %tmp.171;
-        %tmp.175 = aputv %tmp.174 %tmp.172 %tmp.173;
-        %tmp.176 = "startY";
-        %tmp.177 = lgetv %yPos.5;
-        symbol [ yPos %tmp.177 88 32 36 ];
-        %tmp.178 = dup %tmp.175;
-        %tmp.179 = aputv %tmp.178 %tmp.176 %tmp.177;
-        %tmp.180 = "endY";
-        %tmp.181 = lgetv %yPos.5;
-        symbol [ yPos %tmp.181 89 30 34 ];
-        %tmp.182 = lgetv %buttonHeight.6;
-        symbol [ buttonHeight %tmp.182 89 37 49 ];
-        %tmp.183 = add %tmp.181 %tmp.182;
-        %tmp.184 = dup %tmp.179;
-        %tmp.185 = aputv %tmp.184 %tmp.180 %tmp.183;
-        invoke %tmp.169 %tmp.170(%tmp.185);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 92 16 ]
-        %tmp.186 = lgetv %yPos.5;
-        symbol [ yPos %tmp.186 92 16 20 ];
-        %tmp.187 = lgetv %buttonHeight.6;
-        symbol [ buttonHeight %tmp.187 92 24 36 ];
-        %tmp.188 = 10;
-        %tmp.189 = add %tmp.187 %tmp.188;
-        %tmp.190 = add %tmp.186 %tmp.189;
-        lputv %yPos.5 %tmp.190;
-        symbol [ yPos %yPos.5 92 16 20 ];
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_80_93_12_stop:
-        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_12_93_12_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_78_12_93_12_if_end:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_74_94_8_stop:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_8_94_8_for_incr:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 76 ]
-        %tmp.193 = lgetv %i.10;
-        symbol [ i %tmp.193 76 69 70 ];
-        %tmp.194 = add %tmp.193 1;
-        lputv %i.10 %tmp.194;
-        symbol [ i %i.10 76 69 70 ];
-        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_8_94_8_for_test;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_76_8_94_8_for_end:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 97 8 ]
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_97_8_101_8_if_stmt:
-        %tmp.195 = lgetv %activeProfile.2;
-        symbol [ activeProfile %tmp.195 97 12 25 ];
-        symbol [ length %tmp.196 97 26 32 ];
-        %tmp.196 = getv function %tmp.195 :length;
-        %tmp.197 = invoke %tmp.195 %tmp.196();
-        %tmp.198 = 0;
-        %tmp.199 = gt %tmp.197 %tmp.198;
-        bf %tmp.199 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_97_8_101_8_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_97_8_101_8_if_true:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_97_40_101_8_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 98 12 ]
-        %tmp.200 = lgetv %dc;
-        symbol [ dc %tmp.200 98 12 14 ];
-        symbol [ setColor %tmp.201 98 15 23 ];
-        %tmp.201 = getv function %tmp.200 :setColor;
-        symbol [ appState %tmp.203 98 24 32 ];
-        %tmp.203 = getv ? :appState;
-        symbol [ foregroundColor %tmp.204 98 33 48 ];
-        %tmp.204 = getv %tmp.203 :foregroundColor;
-        symbol [ Graphics %tmp.205 98 50 58 ];
-        %tmp.205 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.206 98 59 76 ];
-        %tmp.206 = getv %tmp.205 :COLOR_TRANSPARENT;
-        invoke %tmp.200 %tmp.201(%tmp.204, %tmp.206);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 99 12 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_97_40_101_8_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_97_40_101_8_stop" ]
-        %profileText.15 = local;
-        symbol [ profileText %profileText.15 99 16 27 ];
-        symbol [ WatchUi %tmp.207 99 30 37 ];
-        %tmp.207 = getm $.Toybox.WatchUi;
-        symbol [ loadResource %tmp.208 99 38 50 ];
-        %tmp.208 = getv function %tmp.207 :loadResource;
-        symbol [ Rez %tmp.210 99 51 54 ];
-        %tmp.210 = getv ? :Rez;
-        symbol [ Strings %tmp.211 99 55 62 ];
-        %tmp.211 = getv %tmp.210 :Strings;
-        symbol [ active_profile_label %tmp.212 99 63 83 ];
-        %tmp.212 = getv %tmp.211 :active_profile_label;
-        %tmp.213 = invoke %tmp.207 %tmp.208(%tmp.212);
-        %tmp.214 = ": ";
-        %tmp.215 = add %tmp.213 %tmp.214;
-        %tmp.216 = lgetv %activeProfile.2;
-        symbol [ activeProfile %tmp.216 99 94 107 ];
-        %tmp.217 = add %tmp.215 %tmp.216;
-        lputv %profileText.15 %tmp.217;
-        symbol [ profileText %profileText.15 99 16 27 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 100 12 ]
-        %tmp.218 = lgetv %dc;
-        symbol [ dc %tmp.218 100 12 14 ];
-        symbol [ drawText %tmp.219 100 15 23 ];
-        %tmp.219 = getv function %tmp.218 :drawText;
-        %tmp.220 = lgetv %width.3;
-        symbol [ width %tmp.220 100 24 29 ];
-        %tmp.221 = 2;
-        %tmp.222 = div %tmp.220 %tmp.221;
-        %tmp.223 = lgetv %yPos.5;
-        symbol [ yPos %tmp.223 100 33 37 ];
-        %tmp.224 = 10;
-        %tmp.225 = add %tmp.223 %tmp.224;
-        symbol [ Graphics %tmp.226 100 44 52 ];
-        %tmp.226 = getm $.Toybox.Graphics;
-        symbol [ FONT_XTINY %tmp.227 100 53 63 ];
-        %tmp.227 = getv %tmp.226 :FONT_XTINY;
-        %tmp.228 = lgetv %profileText.15;
-        symbol [ profileText %tmp.228 100 65 76 ];
-        symbol [ Graphics %tmp.229 100 78 86 ];
-        %tmp.229 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.230 100 87 106 ];
-        %tmp.230 = getv %tmp.229 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.218 %tmp.219(%tmp.222, %tmp.225, %tmp.227, %tmp.228, %tmp.230);
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_97_40_101_8_stop:
-        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_97_8_101_8_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_97_8_101_8_if_end:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_102_4_stop:
-    }
-    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 104; @symbol_functiondef = [drawButton,104,13,23]; @symbol_param<0> = [dc,104,24,26]; @symbol_param<0>_type<0> = [Dc,104,30,32]; @symbol_param<1> = [x,104,34,35]; @symbol_param<1>_type<0> = [Lang,104,39,43]; @symbol_param<1>_type<1> = [Number,104,44,50]; @symbol_param<2> = [y,104,52,53]; @symbol_param<2>_type<0> = [Lang,104,57,61]; @symbol_param<2>_type<1> = [Number,104,62,68]; @symbol_param<3> = [width,104,70,75]; @symbol_param<3>_type<0> = [Lang,104,79,83]; @symbol_param<3>_type<1> = [Number,104,84,90]; @symbol_param<4> = [height,104,92,98]; @symbol_param<4>_type<0> = [Lang,104,102,106]; @symbol_param<4>_type<1> = [Number,104,107,113]; @symbol_param<5> = [text,104,115,119]; @symbol_param<5>_type<0> = [Lang,104,123,127]; @symbol_param<5>_type<1> = [String,104,128,134]; @symbol_param<6> = [color,104,136,141]; @symbol_param<6>_type<0> = [Lang,104,145,149]; @symbol_param<6>_type<1> = [Number,104,150,156]; ]
-    function drawButton(dc as Dc, x as Lang.Number, y as Lang.Number, width as Lang.Number, height as Lang.Number, text as Lang.String, color as Lang.Number) as Void {
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_104_166_115_4_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 106 8 ]
-        %tmp.1 = lgetv %dc;
-        symbol [ dc %tmp.1 106 8 10 ];
-        symbol [ setColor %tmp.2 106 11 19 ];
-        %tmp.2 = getv function %tmp.1 :setColor;
-        %tmp.3 = lgetv %color;
-        symbol [ color %tmp.3 106 20 25 ];
-        symbol [ Graphics %tmp.4 106 27 35 ];
-        %tmp.4 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.5 106 36 53 ];
-        %tmp.5 = getv %tmp.4 :COLOR_TRANSPARENT;
-        invoke %tmp.1 %tmp.2(%tmp.3, %tmp.5);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 107 8 ]
-        %tmp.6 = lgetv %dc;
-        symbol [ dc %tmp.6 107 8 10 ];
-        symbol [ fillRoundedRectangle %tmp.7 107 11 31 ];
-        %tmp.7 = getv function %tmp.6 :fillRoundedRectangle;
-        %tmp.8 = lgetv %x;
-        symbol [ x %tmp.8 107 32 33 ];
-        %tmp.9 = lgetv %y;
-        symbol [ y %tmp.9 107 35 36 ];
-        %tmp.10 = lgetv %width;
-        symbol [ width %tmp.10 107 38 43 ];
-        %tmp.11 = lgetv %height;
-        symbol [ height %tmp.11 107 45 51 ];
-        %tmp.12 = 5;
-        invoke %tmp.6 %tmp.7(%tmp.8, %tmp.9, %tmp.10, %tmp.11, %tmp.12);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 110 8 ]
         %tmp.13 = lgetv %dc;
-        symbol [ dc %tmp.13 110 8 10 ];
-        symbol [ setColor %tmp.14 110 11 19 ];
+        symbol [ dc %tmp.13 43 8 10 ];
+        symbol [ setColor %tmp.14 43 11 19 ];
         %tmp.14 = getv function %tmp.13 :setColor;
-        symbol [ appState %tmp.16 110 20 28 ];
-        %tmp.16 = getv ? :appState;
-        symbol [ foregroundColor %tmp.17 110 29 44 ];
-        %tmp.17 = getv %tmp.16 :foregroundColor;
-        symbol [ Graphics %tmp.18 110 46 54 ];
-        %tmp.18 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.19 110 55 72 ];
-        %tmp.19 = getv %tmp.18 :COLOR_TRANSPARENT;
-        invoke %tmp.13 %tmp.14(%tmp.17, %tmp.19);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 111 8 ]
+        symbol [ Graphics %tmp.15 43 20 28 ];
+        %tmp.15 = getm $.Toybox.Graphics;
+        symbol [ COLOR_BLACK %tmp.16 43 29 40 ];
+        %tmp.16 = getv %tmp.15 :COLOR_BLACK;
+        symbol [ Graphics %tmp.17 43 42 50 ];
+        %tmp.17 = getm $.Toybox.Graphics;
+        symbol [ COLOR_BLACK %tmp.18 43 51 62 ];
+        %tmp.18 = getv %tmp.17 :COLOR_BLACK;
+        invoke %tmp.13 %tmp.14(%tmp.16, %tmp.18);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 44 8 ]
+        %tmp.19 = lgetv %dc;
+        symbol [ dc %tmp.19 44 8 10 ];
+        symbol [ clear %tmp.20 44 11 16 ];
+        %tmp.20 = getv function %tmp.19 :clear;
+        invoke %tmp.19 %tmp.20();
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 46 8 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_stop" ]
+        %width.3 = local;
+        symbol [ width %width.3 46 12 17 ];
+        %tmp.21 = lgetv %dc;
+        symbol [ dc %tmp.21 46 20 22 ];
+        symbol [ getWidth %tmp.22 46 23 31 ];
+        %tmp.22 = getv function %tmp.21 :getWidth;
+        %tmp.23 = invoke %tmp.21 %tmp.22();
+        lputv %width.3 %tmp.23;
+        symbol [ width %width.3 46 12 17 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 47 8 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_stop" ]
+        %height.4 = local;
+        symbol [ height %height.4 47 12 18 ];
+        %tmp.24 = lgetv %dc;
+        symbol [ dc %tmp.24 47 21 23 ];
+        symbol [ getHeight %tmp.25 47 24 33 ];
+        %tmp.25 = getv function %tmp.24 :getHeight;
+        %tmp.26 = invoke %tmp.24 %tmp.25();
+        lputv %height.4 %tmp.26;
+        symbol [ height %height.4 47 12 18 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 50 8 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_stop" ]
+        %titleY.5 = local;
+        symbol [ titleY %titleY.5 50 12 18 ];
+        %tmp.27 = 14;
+        lputv %titleY.5 %tmp.27;
+        symbol [ titleY %titleY.5 50 12 18 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 51 8 ]
+        %tmp.28 = lgetv %dc;
+        symbol [ dc %tmp.28 51 8 10 ];
+        symbol [ setColor %tmp.29 51 11 19 ];
+        %tmp.29 = getv function %tmp.28 :setColor;
+        symbol [ Graphics %tmp.30 51 20 28 ];
+        %tmp.30 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.31 51 29 40 ];
+        %tmp.31 = getv %tmp.30 :COLOR_WHITE;
+        symbol [ Graphics %tmp.32 51 42 50 ];
+        %tmp.32 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.33 51 51 68 ];
+        %tmp.33 = getv %tmp.32 :COLOR_TRANSPARENT;
+        invoke %tmp.28 %tmp.29(%tmp.31, %tmp.33);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 52 8 ]
+        %tmp.34 = lgetv %dc;
+        symbol [ dc %tmp.34 52 8 10 ];
+        symbol [ drawText %tmp.35 52 11 19 ];
+        %tmp.35 = getv function %tmp.34 :drawText;
+        %tmp.36 = lgetv %width.3;
+        symbol [ width %tmp.36 52 20 25 ];
+        %tmp.37 = 2;
+        %tmp.38 = div %tmp.36 %tmp.37;
+        %tmp.39 = lgetv %titleY.5;
+        symbol [ titleY %tmp.39 52 31 37 ];
+        symbol [ Graphics %tmp.40 52 39 47 ];
+        %tmp.40 = getm $.Toybox.Graphics;
+        symbol [ FONT_SMALL %tmp.41 52 48 58 ];
+        %tmp.41 = getv %tmp.40 :FONT_SMALL;
+        symbol [ WatchUi %tmp.42 52 60 67 ];
+        %tmp.42 = getm $.Toybox.WatchUi;
+        symbol [ loadResource %tmp.43 52 68 80 ];
+        %tmp.43 = getv function %tmp.42 :loadResource;
+        symbol [ Rez %tmp.45 52 81 84 ];
+        %tmp.45 = getv ? :Rez;
+        symbol [ Strings %tmp.46 52 85 92 ];
+        %tmp.46 = getv %tmp.45 :Strings;
+        symbol [ temp_overrides_label %tmp.47 52 93 113 ];
+        %tmp.47 = getv %tmp.46 :temp_overrides_label;
+        %tmp.48 = invoke %tmp.42 %tmp.43(%tmp.47);
+        symbol [ Graphics %tmp.49 52 116 124 ];
+        %tmp.49 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.50 52 125 144 ];
+        %tmp.50 = getv %tmp.49 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.34 %tmp.35(%tmp.38, %tmp.39, %tmp.41, %tmp.48, %tmp.50);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 53 8 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_stop" ]
+        %dividerY.6 = local;
+        symbol [ dividerY %dividerY.6 53 12 20 ];
+        %tmp.51 = lgetv %titleY.5;
+        symbol [ titleY %tmp.51 53 23 29 ];
+        %tmp.52 = lgetv %dc;
+        symbol [ dc %tmp.52 53 32 34 ];
+        symbol [ getFontHeight %tmp.53 53 35 48 ];
+        %tmp.53 = getv function %tmp.52 :getFontHeight;
+        symbol [ Graphics %tmp.54 53 49 57 ];
+        %tmp.54 = getm $.Toybox.Graphics;
+        symbol [ FONT_SMALL %tmp.55 53 58 68 ];
+        %tmp.55 = getv %tmp.54 :FONT_SMALL;
+        %tmp.56 = invoke %tmp.52 %tmp.53(%tmp.55);
+        %tmp.57 = add %tmp.51 %tmp.56;
+        %tmp.58 = 8;
+        %tmp.59 = add %tmp.57 %tmp.58;
+        lputv %dividerY.6 %tmp.59;
+        symbol [ dividerY %dividerY.6 53 12 20 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 54 8 ]
+        %tmp.60 = lgetv %dc;
+        symbol [ dc %tmp.60 54 8 10 ];
+        symbol [ setColor %tmp.61 54 11 19 ];
+        %tmp.61 = getv function %tmp.60 :setColor;
+        symbol [ Graphics %tmp.62 54 20 28 ];
+        %tmp.62 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_GRAY %tmp.63 54 29 42 ];
+        %tmp.63 = getv %tmp.62 :COLOR_DK_GRAY;
+        symbol [ Graphics %tmp.64 54 44 52 ];
+        %tmp.64 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.65 54 53 70 ];
+        %tmp.65 = getv %tmp.64 :COLOR_TRANSPARENT;
+        invoke %tmp.60 %tmp.61(%tmp.63, %tmp.65);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 55 8 ]
+        %tmp.66 = lgetv %dc;
+        symbol [ dc %tmp.66 55 8 10 ];
+        symbol [ drawLine %tmp.67 55 11 19 ];
+        %tmp.67 = getv function %tmp.66 :drawLine;
+        %tmp.68 = 0;
+        %tmp.69 = lgetv %dividerY.6;
+        symbol [ dividerY %tmp.69 55 23 31 ];
+        %tmp.70 = lgetv %width.3;
+        symbol [ width %tmp.70 55 33 38 ];
+        %tmp.71 = lgetv %dividerY.6;
+        symbol [ dividerY %tmp.71 55 40 48 ];
+        invoke %tmp.66 %tmp.67(%tmp.68, %tmp.69, %tmp.70, %tmp.71);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 57 8 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_stop" ]
+        %rowHeight.7 = local;
+        symbol [ rowHeight %rowHeight.7 57 12 21 ];
+        %tmp.72 = 54;
+        lputv %rowHeight.7 %tmp.72;
+        symbol [ rowHeight %rowHeight.7 57 12 21 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 58 8 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_stop" ]
+        %yPos.8 = local;
+        symbol [ yPos %yPos.8 58 12 16 ];
+        %tmp.73 = lgetv %dividerY.6;
+        symbol [ dividerY %tmp.73 58 19 27 ];
+        %tmp.74 = 1;
+        %tmp.75 = add %tmp.73 %tmp.74;
+        lputv %yPos.8 %tmp.75;
+        symbol [ yPos %yPos.8 58 12 16 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 61 8 ]
+        symbol [ appState %tmp.76 61 8 16 ];
+        %tmp.76 = getv self :appState;
+        %tmp.77 = newa 0;
+        symbol [ presetCoordinatesProfile ? 61 17 41 ];
+        putv %tmp.76 :presetCoordinatesProfile %tmp.77;
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 64 8 ]
+        %tmp.78 = self;
+        symbol [ drawProfileRow %tmp.79 64 8 22 ];
+        %tmp.79 = getv function %tmp.78 :drawProfileRow;
+        %tmp.80 = lgetv %dc;
+        symbol [ dc %tmp.80 64 23 25 ];
+        %tmp.81 = lgetv %yPos.8;
+        symbol [ yPos %tmp.81 64 27 31 ];
+        %tmp.82 = lgetv %width.3;
+        symbol [ width %tmp.82 64 33 38 ];
+        %tmp.83 = lgetv %rowHeight.7;
+        symbol [ rowHeight %tmp.83 64 40 49 ];
+        symbol [ Constants %tmp.85 64 51 60 ];
+        %tmp.85 = getv ? :Constants;
+        symbol [ DEFAULT_OVERRIDE_PROFIL %tmp.86 64 61 84 ];
+        %tmp.86 = getv %tmp.85 :DEFAULT_OVERRIDE_PROFIL;
+        %tmp.87 = lgetv %activeProfile.2;
+        symbol [ activeProfile %tmp.87 64 86 99 ];
+        symbol [ equals %tmp.88 64 100 106 ];
+        %tmp.88 = getv function %tmp.87 :equals;
+        symbol [ Constants %tmp.90 64 107 116 ];
+        %tmp.90 = getv ? :Constants;
+        symbol [ DEFAULT_OVERRIDE_PROFIL %tmp.91 64 117 140 ];
+        %tmp.91 = getv %tmp.90 :DEFAULT_OVERRIDE_PROFIL;
+        %tmp.92 = invoke %tmp.87 %tmp.88(%tmp.91);
+        invoke %tmp.78 %tmp.79(%tmp.80, %tmp.81, %tmp.82, %tmp.83, %tmp.86, %tmp.92);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 65 8 ]
+        symbol [ appState %tmp.94 65 8 16 ];
+        %tmp.94 = getv ? :appState;
+        symbol [ presetCoordinatesProfile %tmp.95 65 17 41 ];
+        %tmp.95 = getv %tmp.94 :presetCoordinatesProfile;
+        symbol [ add %tmp.96 65 42 45 ];
+        %tmp.96 = getv function %tmp.95 :add;
+        %tmp.97 = newd 3;
+        %tmp.98 = "name";
+        symbol [ Constants %tmp.100 66 22 31 ];
+        %tmp.100 = getv ? :Constants;
+        symbol [ DEFAULT_OVERRIDE_PROFIL %tmp.101 66 32 55 ];
+        %tmp.101 = getv %tmp.100 :DEFAULT_OVERRIDE_PROFIL;
+        %tmp.102 = dup %tmp.97;
+        %tmp.103 = aputv %tmp.102 %tmp.98 %tmp.101;
+        %tmp.104 = "startY";
+        %tmp.105 = lgetv %yPos.8;
+        symbol [ yPos %tmp.105 67 24 28 ];
+        %tmp.106 = dup %tmp.103;
+        %tmp.107 = aputv %tmp.106 %tmp.104 %tmp.105;
+        %tmp.108 = "endY";
+        %tmp.109 = lgetv %yPos.8;
+        symbol [ yPos %tmp.109 68 22 26 ];
+        %tmp.110 = lgetv %rowHeight.7;
+        symbol [ rowHeight %tmp.110 68 29 38 ];
+        %tmp.111 = add %tmp.109 %tmp.110;
+        %tmp.112 = dup %tmp.107;
+        %tmp.113 = aputv %tmp.112 %tmp.108 %tmp.111;
+        invoke %tmp.95 %tmp.96(%tmp.113);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 70 8 ]
+        %tmp.114 = lgetv %yPos.8;
+        symbol [ yPos %tmp.114 70 8 12 ];
+        %tmp.115 = lgetv %rowHeight.7;
+        symbol [ rowHeight %tmp.115 70 16 25 ];
+        %tmp.116 = add %tmp.114 %tmp.115;
+        lputv %yPos.8 %tmp.116;
+        symbol [ yPos %yPos.8 70 8 12 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 73 8 ]
+        for @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_8_85_8_for_test @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_8_85_8_for_incr @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_8_85_8_for_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_8_85_8_for_init:
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_8_85_8_for_begin" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_8_85_8_for_end" ]
+        %i.9 = local;
+        symbol [ i %i.9 73 17 18 ];
+        %tmp.117 = 0;
+        lputv %i.9 %tmp.117;
+        symbol [ i %i.9 73 17 18 ];
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_8_85_8_for_test:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_24_73_65_begin:
+        %tmp.118 = lgetv %i.9;
+        symbol [ i %tmp.118 73 24 25 ];
+        %tmp.119 = lgetv %tempBasals.1;
+        symbol [ tempBasals %tmp.119 73 28 38 ];
+        symbol [ size %tmp.120 73 39 43 ];
+        %tmp.120 = getv function %tmp.119 :size;
+        %tmp.121 = invoke %tmp.119 %tmp.120();
+        %tmp.122 = lt %tmp.118 %tmp.121;
+        %tmp.123 = dup %tmp.122;
+        bf %tmp.123 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_49_73_65_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_49_73_65_true:
+        %tmp.124 = lgetv %yPos.8;
+        symbol [ yPos %tmp.124 73 49 53 ];
+        %tmp.125 = lgetv %height.4;
+        symbol [ height %tmp.125 73 56 62 ];
+        %tmp.126 = lgetv %rowHeight.7;
+        symbol [ rowHeight %tmp.126 73 65 74 ];
+        %tmp.127 = sub %tmp.125 %tmp.126;
+        %tmp.128 = lt %tmp.124 %tmp.127;
+        %tmp.129 = and %tmp.122 %tmp.128;
+        push %tmp.129;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_49_73_65_end:
+        %tmp.130 = phi [%tmp.123 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_24_73_65_begin] [%tmp.129 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_49_73_65_true] [%tmp.130 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_49_73_65_end];
+        bf %tmp.130 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_8_85_8_for_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_8_85_8_for_begin:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_81_85_8_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 74 12 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_81_85_8_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_81_85_8_stop" ]
+        %override.10 = local;
+        symbol [ override %override.10 74 16 24 ];
+        %tmp.131 = lgetv %tempBasals.1;
+        symbol [ tempBasals %tmp.131 74 27 37 ];
+        %tmp.132 = lgetv %i.9;
+        symbol [ i %tmp.132 74 38 39 ];
+        %tmp.133 = agetv %tmp.131 %tmp.132;
+        lputv %override.10 %tmp.133;
+        symbol [ override %override.10 74 16 24 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 75 12 ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_75_12_84_12_if_stmt:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_75_16_75_77_begin:
+        %tmp.134 = lgetv %override.10;
+        symbol [ override %tmp.134 75 16 24 ];
+        symbol [ Lang %tmp.135 75 36 40 ];
+        %tmp.135 = getm $.Toybox.Lang;
+        symbol [ Dictionary %tmp.136 75 41 51 ];
+        %tmp.136 = getv %tmp.135 :Dictionary;
+        %tmp.137 = isa %tmp.134 %tmp.136;
+        bf %tmp.137 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_75_12_84_12_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_75_55_75_77_true:
+        %tmp.138 = lgetv %override.10;
+        symbol [ override %tmp.138 75 55 63 ];
+        %tmp.139 = as %tmp.138 { (Lang.Dictionary) };
+        symbol [ hasKey %tmp.140 75 64 70 ];
+        %tmp.140 = getv function %tmp.139 :hasKey;
+        %tmp.141 = "name";
+        %tmp.142 = invoke %tmp.139 %tmp.140(%tmp.141);
+        push %tmp.142;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_75_55_75_77_end:
+        %tmp.143 = phi [%tmp.137 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_75_16_75_77_begin] [%tmp.142 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_75_55_75_77_true] [%tmp.143 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_75_55_75_77_end];
+        bf %tmp.143 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_75_12_84_12_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_75_12_84_12_if_true:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_75_80_84_12_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 76 16 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_75_80_84_12_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_75_80_84_12_stop" ]
+        %nameStr.11 = local;
+        symbol [ nameStr %nameStr.11 76 20 27 ];
+        %tmp.144 = lgetv %override.10;
+        symbol [ override %tmp.144 76 30 38 ];
+        %tmp.145 = as %tmp.144 { (Lang.Dictionary) };
+        symbol [ get %tmp.146 76 39 42 ];
+        %tmp.146 = getv function %tmp.145 :get;
+        %tmp.147 = "name";
+        %tmp.148 = invoke %tmp.145 %tmp.146(%tmp.147);
+        symbol [ toString %tmp.149 76 51 59 ];
+        %tmp.149 = getv function %tmp.148 :toString;
+        %tmp.150 = invoke %tmp.148 %tmp.149();
+        lputv %nameStr.11 %tmp.150;
+        symbol [ nameStr %nameStr.11 76 20 27 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 77 16 ]
+        %tmp.151 = self;
+        symbol [ drawProfileRow %tmp.152 77 16 30 ];
+        %tmp.152 = getv function %tmp.151 :drawProfileRow;
+        %tmp.153 = lgetv %dc;
+        symbol [ dc %tmp.153 77 31 33 ];
+        %tmp.154 = lgetv %yPos.8;
+        symbol [ yPos %tmp.154 77 35 39 ];
+        %tmp.155 = lgetv %width.3;
+        symbol [ width %tmp.155 77 41 46 ];
+        %tmp.156 = lgetv %rowHeight.7;
+        symbol [ rowHeight %tmp.156 77 48 57 ];
+        %tmp.157 = lgetv %nameStr.11;
+        symbol [ nameStr %tmp.157 77 59 66 ];
+        %tmp.158 = lgetv %activeProfile.2;
+        symbol [ activeProfile %tmp.158 77 68 81 ];
+        symbol [ equals %tmp.159 77 82 88 ];
+        %tmp.159 = getv function %tmp.158 :equals;
+        %tmp.160 = lgetv %nameStr.11;
+        symbol [ nameStr %tmp.160 77 89 96 ];
+        %tmp.161 = invoke %tmp.158 %tmp.159(%tmp.160);
+        invoke %tmp.151 %tmp.152(%tmp.153, %tmp.154, %tmp.155, %tmp.156, %tmp.157, %tmp.161);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 78 16 ]
+        symbol [ appState %tmp.163 78 16 24 ];
+        %tmp.163 = getv ? :appState;
+        symbol [ presetCoordinatesProfile %tmp.164 78 25 49 ];
+        %tmp.164 = getv %tmp.163 :presetCoordinatesProfile;
+        symbol [ add %tmp.165 78 50 53 ];
+        %tmp.165 = getv function %tmp.164 :add;
+        %tmp.166 = newd 3;
+        %tmp.167 = "name";
+        %tmp.168 = lgetv %nameStr.11;
+        symbol [ nameStr %tmp.168 79 30 37 ];
+        %tmp.169 = dup %tmp.166;
+        %tmp.170 = aputv %tmp.169 %tmp.167 %tmp.168;
+        %tmp.171 = "startY";
+        %tmp.172 = lgetv %yPos.8;
+        symbol [ yPos %tmp.172 80 32 36 ];
+        %tmp.173 = dup %tmp.170;
+        %tmp.174 = aputv %tmp.173 %tmp.171 %tmp.172;
+        %tmp.175 = "endY";
+        %tmp.176 = lgetv %yPos.8;
+        symbol [ yPos %tmp.176 81 30 34 ];
+        %tmp.177 = lgetv %rowHeight.7;
+        symbol [ rowHeight %tmp.177 81 37 46 ];
+        %tmp.178 = add %tmp.176 %tmp.177;
+        %tmp.179 = dup %tmp.174;
+        %tmp.180 = aputv %tmp.179 %tmp.175 %tmp.178;
+        invoke %tmp.164 %tmp.165(%tmp.180);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 83 16 ]
+        %tmp.181 = lgetv %yPos.8;
+        symbol [ yPos %tmp.181 83 16 20 ];
+        %tmp.182 = lgetv %rowHeight.7;
+        symbol [ rowHeight %tmp.182 83 24 33 ];
+        %tmp.183 = add %tmp.181 %tmp.182;
+        lputv %yPos.8 %tmp.183;
+        symbol [ yPos %yPos.8 83 16 20 ];
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_75_80_84_12_stop:
+        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_75_12_84_12_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_75_12_84_12_if_end:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_81_85_8_stop:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_8_85_8_for_incr:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 73 ]
+        %tmp.186 = lgetv %i.9;
+        symbol [ i %tmp.186 73 76 77 ];
+        %tmp.187 = add %tmp.186 1;
+        lputv %i.9 %tmp.187;
+        symbol [ i %i.9 73 76 77 ];
+        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_8_85_8_for_test;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_73_8_85_8_for_end:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_36_40_86_4_stop:
+    }
+    //! Draw one full-width list row, Garmin Edge style: left-aligned label, a
+    //! thin separator underneath, and — when active — a green left accent bar,
+    //! green label and a checkmark on the right. No boxes, no neon fills.
+    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 91; @symbol_functiondef = [drawProfileRow,91,13,27]; @symbol_param<0> = [dc,91,28,30]; @symbol_param<0>_type<0> = [Dc,91,34,36]; @symbol_param<1> = [y,91,38,39]; @symbol_param<1>_type<0> = [Lang,91,43,47]; @symbol_param<1>_type<1> = [Number,91,48,54]; @symbol_param<2> = [width,91,56,61]; @symbol_param<2>_type<0> = [Lang,91,65,69]; @symbol_param<2>_type<1> = [Number,91,70,76]; @symbol_param<3> = [height,91,78,84]; @symbol_param<3>_type<0> = [Lang,91,88,92]; @symbol_param<3>_type<1> = [Number,91,93,99]; @symbol_param<4> = [text,91,101,105]; @symbol_param<4>_type<0> = [Lang,91,109,113]; @symbol_param<4>_type<1> = [String,91,114,120]; @symbol_param<5> = [isActive,91,122,130]; @symbol_param<5>_type<0> = [Lang,91,134,138]; @symbol_param<5>_type<1> = [Boolean,91,139,146]; ]
+    function drawProfileRow(dc as Dc, y as Lang.Number, width as Lang.Number, height as Lang.Number, text as Lang.String, isActive as Lang.Boolean) as Void {
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_91_156_119_4_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 92 8 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_91_156_119_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_91_156_119_4_stop" ]
+        %padLeft.1 = local;
+        symbol [ padLeft %padLeft.1 92 12 19 ];
+        %tmp.1 = 20;
+        lputv %padLeft.1 %tmp.1;
+        symbol [ padLeft %padLeft.1 92 12 19 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 95 8 ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_95_8_98_8_if_stmt:
+        %tmp.2 = lgetv %isActive;
+        symbol [ isActive %tmp.2 95 12 20 ];
+        bf %tmp.2 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_95_8_98_8_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_95_8_98_8_if_true:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_95_22_98_8_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 96 12 ]
+        %tmp.3 = lgetv %dc;
+        symbol [ dc %tmp.3 96 12 14 ];
+        symbol [ setColor %tmp.4 96 15 23 ];
+        %tmp.4 = getv function %tmp.3 :setColor;
+        symbol [ Graphics %tmp.5 96 24 32 ];
+        %tmp.5 = getm $.Toybox.Graphics;
+        symbol [ COLOR_GREEN %tmp.6 96 33 44 ];
+        %tmp.6 = getv %tmp.5 :COLOR_GREEN;
+        symbol [ Graphics %tmp.7 96 46 54 ];
+        %tmp.7 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.8 96 55 72 ];
+        %tmp.8 = getv %tmp.7 :COLOR_TRANSPARENT;
+        invoke %tmp.3 %tmp.4(%tmp.6, %tmp.8);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 97 12 ]
+        %tmp.9 = lgetv %dc;
+        symbol [ dc %tmp.9 97 12 14 ];
+        symbol [ fillRectangle %tmp.10 97 15 28 ];
+        %tmp.10 = getv function %tmp.9 :fillRectangle;
+        %tmp.11 = 0;
+        %tmp.12 = lgetv %y;
+        symbol [ y %tmp.12 97 32 33 ];
+        %tmp.13 = 5;
+        %tmp.14 = lgetv %height;
+        symbol [ height %tmp.14 97 38 44 ];
+        invoke %tmp.9 %tmp.10(%tmp.11, %tmp.12, %tmp.13, %tmp.14);
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_95_22_98_8_stop:
+        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_95_8_98_8_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_95_8_98_8_if_end:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 101 8 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_91_156_119_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_91_156_119_4_stop" ]
+        %fh.2 = local;
+        symbol [ fh %fh.2 101 12 14 ];
+        %tmp.15 = lgetv %dc;
+        symbol [ dc %tmp.15 101 17 19 ];
+        symbol [ getFontHeight %tmp.16 101 20 33 ];
+        %tmp.16 = getv function %tmp.15 :getFontHeight;
+        symbol [ Graphics %tmp.17 101 34 42 ];
+        %tmp.17 = getm $.Toybox.Graphics;
+        symbol [ FONT_SMALL %tmp.18 101 43 53 ];
+        %tmp.18 = getv %tmp.17 :FONT_SMALL;
+        %tmp.19 = invoke %tmp.15 %tmp.16(%tmp.18);
+        lputv %fh.2 %tmp.19;
+        symbol [ fh %fh.2 101 12 14 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 102 8 ]
         %tmp.20 = lgetv %dc;
-        symbol [ dc %tmp.20 111 8 10 ];
-        symbol [ drawRoundedRectangle %tmp.21 111 11 31 ];
-        %tmp.21 = getv function %tmp.20 :drawRoundedRectangle;
-        %tmp.22 = lgetv %x;
-        symbol [ x %tmp.22 111 32 33 ];
-        %tmp.23 = lgetv %y;
-        symbol [ y %tmp.23 111 35 36 ];
-        %tmp.24 = lgetv %width;
-        symbol [ width %tmp.24 111 38 43 ];
-        %tmp.25 = lgetv %height;
-        symbol [ height %tmp.25 111 45 51 ];
-        %tmp.26 = 5;
-        invoke %tmp.20 %tmp.21(%tmp.22, %tmp.23, %tmp.24, %tmp.25, %tmp.26);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 114 8 ]
-        %tmp.27 = lgetv %dc;
-        symbol [ dc %tmp.27 114 8 10 ];
-        symbol [ drawText %tmp.28 114 11 19 ];
-        %tmp.28 = getv function %tmp.27 :drawText;
-        %tmp.29 = lgetv %x;
-        symbol [ x %tmp.29 114 20 21 ];
-        %tmp.30 = lgetv %width;
-        symbol [ width %tmp.30 114 24 29 ];
-        %tmp.31 = 2;
-        %tmp.32 = div %tmp.30 %tmp.31;
-        %tmp.33 = add %tmp.29 %tmp.32;
-        %tmp.34 = lgetv %y;
-        symbol [ y %tmp.34 114 33 34 ];
-        %tmp.35 = lgetv %height;
-        symbol [ height %tmp.35 114 37 43 ];
-        %tmp.36 = 2;
-        %tmp.37 = div %tmp.35 %tmp.36;
-        %tmp.38 = add %tmp.34 %tmp.37;
-        %tmp.39 = 8;
-        %tmp.40 = sub %tmp.38 %tmp.39;
-        symbol [ Graphics %tmp.41 114 51 59 ];
-        %tmp.41 = getm $.Toybox.Graphics;
-        symbol [ FONT_SMALL %tmp.42 114 60 70 ];
-        %tmp.42 = getv %tmp.41 :FONT_SMALL;
-        %tmp.43 = lgetv %text;
-        symbol [ text %tmp.43 114 72 76 ];
-        symbol [ Graphics %tmp.44 114 78 86 ];
-        %tmp.44 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.45 114 87 106 ];
-        %tmp.45 = getv %tmp.44 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.27 %tmp.28(%tmp.33, %tmp.40, %tmp.42, %tmp.43, %tmp.45);
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_104_166_115_4_stop:
+        symbol [ dc %tmp.20 102 8 10 ];
+        symbol [ setColor %tmp.21 102 11 19 ];
+        %tmp.21 = getv function %tmp.20 :setColor;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_102_20_102_63_begin:
+        %tmp.22 = lgetv %isActive;
+        symbol [ isActive %tmp.22 102 20 28 ];
+        bf %tmp.22 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_102_20_102_63_else_false;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_102_20_102_63_true:
+        symbol [ Graphics %tmp.23 102 31 39 ];
+        %tmp.23 = getm $.Toybox.Graphics;
+        symbol [ COLOR_GREEN %tmp.24 102 40 51 ];
+        %tmp.24 = getv %tmp.23 :COLOR_GREEN;
+        push %tmp.24;
+        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_102_20_102_63_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_102_20_102_63_else_false:
+        symbol [ Graphics %tmp.25 102 54 62 ];
+        %tmp.25 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.26 102 63 74 ];
+        %tmp.26 = getv %tmp.25 :COLOR_WHITE;
+        push %tmp.26;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_102_20_102_63_end:
+        %tmp.27 = phi [%tmp.22 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_102_20_102_63_begin] [%tmp.24 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_102_20_102_63_true] [%tmp.26 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_102_20_102_63_else_false] [%tmp.27 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_102_20_102_63_end];
+        symbol [ Graphics %tmp.28 102 76 84 ];
+        %tmp.28 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.29 102 85 102 ];
+        %tmp.29 = getv %tmp.28 :COLOR_TRANSPARENT;
+        invoke %tmp.20 %tmp.21(%tmp.27, %tmp.29);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 103 8 ]
+        %tmp.30 = lgetv %dc;
+        symbol [ dc %tmp.30 103 8 10 ];
+        symbol [ drawText %tmp.31 103 11 19 ];
+        %tmp.31 = getv function %tmp.30 :drawText;
+        %tmp.32 = lgetv %padLeft.1;
+        symbol [ padLeft %tmp.32 103 20 27 ];
+        %tmp.33 = lgetv %y;
+        symbol [ y %tmp.33 103 29 30 ];
+        %tmp.34 = lgetv %height;
+        symbol [ height %tmp.34 103 34 40 ];
+        %tmp.35 = lgetv %fh.2;
+        symbol [ fh %tmp.35 103 43 45 ];
+        %tmp.36 = sub %tmp.34 %tmp.35;
+        %tmp.37 = 2;
+        %tmp.38 = div %tmp.36 %tmp.37;
+        %tmp.39 = add %tmp.33 %tmp.38;
+        symbol [ Graphics %tmp.40 103 52 60 ];
+        %tmp.40 = getm $.Toybox.Graphics;
+        symbol [ FONT_SMALL %tmp.41 103 61 71 ];
+        %tmp.41 = getv %tmp.40 :FONT_SMALL;
+        %tmp.42 = lgetv %text;
+        symbol [ text %tmp.42 103 73 77 ];
+        symbol [ Graphics %tmp.43 103 79 87 ];
+        %tmp.43 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_LEFT %tmp.44 103 88 105 ];
+        %tmp.44 = getv %tmp.43 :TEXT_JUSTIFY_LEFT;
+        invoke %tmp.30 %tmp.31(%tmp.32, %tmp.39, %tmp.41, %tmp.42, %tmp.44);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 106 8 ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_106_8_114_8_if_stmt:
+        %tmp.45 = lgetv %isActive;
+        symbol [ isActive %tmp.45 106 12 20 ];
+        bf %tmp.45 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_106_8_114_8_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_106_8_114_8_if_true:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_106_22_114_8_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 107 12 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_106_22_114_8_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_106_22_114_8_stop" ]
+        %cy.3 = local;
+        symbol [ cy %cy.3 107 16 18 ];
+        %tmp.46 = lgetv %y;
+        symbol [ y %tmp.46 107 21 22 ];
+        %tmp.47 = lgetv %height;
+        symbol [ height %tmp.47 107 25 31 ];
+        %tmp.48 = 2;
+        %tmp.49 = div %tmp.47 %tmp.48;
+        %tmp.50 = add %tmp.46 %tmp.49;
+        lputv %cy.3 %tmp.50;
+        symbol [ cy %cy.3 107 16 18 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 108 12 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_106_22_114_8_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_106_22_114_8_stop" ]
+        %cx.4 = local;
+        symbol [ cx %cx.4 108 16 18 ];
+        %tmp.51 = lgetv %width;
+        symbol [ width %tmp.51 108 21 26 ];
+        %tmp.52 = 40;
+        %tmp.53 = sub %tmp.51 %tmp.52;
+        lputv %cx.4 %tmp.53;
+        symbol [ cx %cx.4 108 16 18 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 109 12 ]
+        %tmp.54 = lgetv %dc;
+        symbol [ dc %tmp.54 109 12 14 ];
+        symbol [ setColor %tmp.55 109 15 23 ];
+        %tmp.55 = getv function %tmp.54 :setColor;
+        symbol [ Graphics %tmp.56 109 24 32 ];
+        %tmp.56 = getm $.Toybox.Graphics;
+        symbol [ COLOR_GREEN %tmp.57 109 33 44 ];
+        %tmp.57 = getv %tmp.56 :COLOR_GREEN;
+        symbol [ Graphics %tmp.58 109 46 54 ];
+        %tmp.58 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.59 109 55 72 ];
+        %tmp.59 = getv %tmp.58 :COLOR_TRANSPARENT;
+        invoke %tmp.54 %tmp.55(%tmp.57, %tmp.59);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 110 12 ]
+        %tmp.60 = lgetv %dc;
+        symbol [ dc %tmp.60 110 12 14 ];
+        symbol [ setPenWidth %tmp.61 110 15 26 ];
+        %tmp.61 = getv function %tmp.60 :setPenWidth;
+        %tmp.62 = 3;
+        invoke %tmp.60 %tmp.61(%tmp.62);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 111 12 ]
+        %tmp.63 = lgetv %dc;
+        symbol [ dc %tmp.63 111 12 14 ];
+        symbol [ drawLine %tmp.64 111 15 23 ];
+        %tmp.64 = getv function %tmp.63 :drawLine;
+        %tmp.65 = lgetv %cx.4;
+        symbol [ cx %tmp.65 111 24 26 ];
+        %tmp.66 = lgetv %cy.3;
+        symbol [ cy %tmp.66 111 28 30 ];
+        %tmp.67 = 1;
+        %tmp.68 = add %tmp.66 %tmp.67;
+        %tmp.69 = lgetv %cx.4;
+        symbol [ cx %tmp.69 111 36 38 ];
+        %tmp.70 = 6;
+        %tmp.71 = add %tmp.69 %tmp.70;
+        %tmp.72 = lgetv %cy.3;
+        symbol [ cy %tmp.72 111 44 46 ];
+        %tmp.73 = 8;
+        %tmp.74 = add %tmp.72 %tmp.73;
+        invoke %tmp.63 %tmp.64(%tmp.65, %tmp.68, %tmp.71, %tmp.74);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 112 12 ]
+        %tmp.75 = lgetv %dc;
+        symbol [ dc %tmp.75 112 12 14 ];
+        symbol [ drawLine %tmp.76 112 15 23 ];
+        %tmp.76 = getv function %tmp.75 :drawLine;
+        %tmp.77 = lgetv %cx.4;
+        symbol [ cx %tmp.77 112 24 26 ];
+        %tmp.78 = 6;
+        %tmp.79 = add %tmp.77 %tmp.78;
+        %tmp.80 = lgetv %cy.3;
+        symbol [ cy %tmp.80 112 32 34 ];
+        %tmp.81 = 8;
+        %tmp.82 = add %tmp.80 %tmp.81;
+        %tmp.83 = lgetv %cx.4;
+        symbol [ cx %tmp.83 112 40 42 ];
+        %tmp.84 = 18;
+        %tmp.85 = add %tmp.83 %tmp.84;
+        %tmp.86 = lgetv %cy.3;
+        symbol [ cy %tmp.86 112 49 51 ];
+        %tmp.87 = 8;
+        %tmp.88 = sub %tmp.86 %tmp.87;
+        invoke %tmp.75 %tmp.76(%tmp.79, %tmp.82, %tmp.85, %tmp.88);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 113 12 ]
+        %tmp.89 = lgetv %dc;
+        symbol [ dc %tmp.89 113 12 14 ];
+        symbol [ setPenWidth %tmp.90 113 15 26 ];
+        %tmp.90 = getv function %tmp.89 :setPenWidth;
+        %tmp.91 = 1;
+        invoke %tmp.89 %tmp.90(%tmp.91);
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_106_22_114_8_stop:
+        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_106_8_114_8_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_106_8_114_8_if_end:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 117 8 ]
+        %tmp.92 = lgetv %dc;
+        symbol [ dc %tmp.92 117 8 10 ];
+        symbol [ setColor %tmp.93 117 11 19 ];
+        %tmp.93 = getv function %tmp.92 :setColor;
+        symbol [ Graphics %tmp.94 117 20 28 ];
+        %tmp.94 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_GRAY %tmp.95 117 29 42 ];
+        %tmp.95 = getv %tmp.94 :COLOR_DK_GRAY;
+        symbol [ Graphics %tmp.96 117 44 52 ];
+        %tmp.96 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.97 117 53 70 ];
+        %tmp.97 = getv %tmp.96 :COLOR_TRANSPARENT;
+        invoke %tmp.92 %tmp.93(%tmp.95, %tmp.97);
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 118 8 ]
+        %tmp.98 = lgetv %dc;
+        symbol [ dc %tmp.98 118 8 10 ];
+        symbol [ drawLine %tmp.99 118 11 19 ];
+        %tmp.99 = getv function %tmp.98 :drawLine;
+        %tmp.100 = 0;
+        %tmp.101 = lgetv %y;
+        symbol [ y %tmp.101 118 23 24 ];
+        %tmp.102 = lgetv %height;
+        symbol [ height %tmp.102 118 27 33 ];
+        %tmp.103 = add %tmp.101 %tmp.102;
+        %tmp.104 = lgetv %width;
+        symbol [ width %tmp.104 118 35 40 ];
+        %tmp.105 = lgetv %y;
+        symbol [ y %tmp.105 118 42 43 ];
+        %tmp.106 = lgetv %height;
+        symbol [ height %tmp.106 118 46 52 ];
+        %tmp.107 = add %tmp.105 %tmp.106;
+        invoke %tmp.98 %tmp.99(%tmp.100, %tmp.103, %tmp.104, %tmp.107);
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_91_156_119_4_stop:
     }
     //! Find preset at given Y coordinate
-    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 118; @symbol_functiondef = [findPresetAtY,118,13,26]; @symbol_param<0> = [tapY,118,27,31]; @symbol_param<0>_type<0> = [Lang,118,35,39]; @symbol_param<0>_type<1> = [Number,118,40,46]; @symbol_return<0> = [Lang,118,51,55]; @symbol_return<1> = [String,118,56,62]; ]
+    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 122; @symbol_functiondef = [findPresetAtY,122,13,26]; @symbol_param<0> = [tapY,122,27,31]; @symbol_param<0>_type<0> = [Lang,122,35,39]; @symbol_param<0>_type<1> = [Number,122,40,46]; @symbol_return<0> = [Lang,122,51,55]; @symbol_return<1> = [String,122,56,62]; ]
     function findPresetAtY(tapY as Lang.Number) as Lang.String or Null {
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_118_64_131_4_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 119 8 ]
-        for @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_119_8_129_8_for_test @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_119_8_129_8_for_incr @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_119_8_129_8_for_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_119_8_129_8_for_init:
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_119_8_129_8_for_begin" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_119_8_129_8_for_end" ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_122_64_135_4_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 123 8 ]
+        for @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_123_8_133_8_for_test @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_123_8_133_8_for_incr @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_123_8_133_8_for_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_123_8_133_8_for_init:
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_123_8_133_8_for_begin" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_123_8_133_8_for_end" ]
         %i.1 = local;
-        symbol [ i %i.1 119 17 18 ];
+        symbol [ i %i.1 123 17 18 ];
         %tmp.1 = 0;
         lputv %i.1 %tmp.1;
-        symbol [ i %i.1 119 17 18 ];
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_119_8_129_8_for_test:
+        symbol [ i %i.1 123 17 18 ];
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_123_8_133_8_for_test:
         %tmp.2 = lgetv %i.1;
-        symbol [ i %tmp.2 119 24 25 ];
-        symbol [ appState %tmp.4 119 28 36 ];
+        symbol [ i %tmp.2 123 24 25 ];
+        symbol [ appState %tmp.4 123 28 36 ];
         %tmp.4 = getv ? :appState;
-        symbol [ presetCoordinatesProfile %tmp.5 119 37 61 ];
+        symbol [ presetCoordinatesProfile %tmp.5 123 37 61 ];
         %tmp.5 = getv %tmp.4 :presetCoordinatesProfile;
-        symbol [ size %tmp.6 119 62 66 ];
+        symbol [ size %tmp.6 123 62 66 ];
         %tmp.6 = getv function %tmp.5 :size;
         %tmp.7 = invoke %tmp.5 %tmp.6();
         %tmp.8 = lt %tmp.2 %tmp.7;
-        bf %tmp.8 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_119_8_129_8_for_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_119_8_129_8_for_begin:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_119_75_129_8_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 120 12 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_119_75_129_8_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_119_75_129_8_stop" ]
+        bf %tmp.8 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_123_8_133_8_for_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_123_8_133_8_for_begin:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_123_75_133_8_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 124 12 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_123_75_133_8_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_123_75_133_8_stop" ]
         %coord.2 = local;
-        symbol [ coord %coord.2 120 16 21 ];
-        symbol [ appState %tmp.10 120 24 32 ];
+        symbol [ coord %coord.2 124 16 21 ];
+        symbol [ appState %tmp.10 124 24 32 ];
         %tmp.10 = getv ? :appState;
-        symbol [ presetCoordinatesProfile %tmp.11 120 33 57 ];
+        symbol [ presetCoordinatesProfile %tmp.11 124 33 57 ];
         %tmp.11 = getv %tmp.10 :presetCoordinatesProfile;
         %tmp.12 = lgetv %i.1;
-        symbol [ i %tmp.12 120 58 59 ];
+        symbol [ i %tmp.12 124 58 59 ];
         %tmp.13 = agetv %tmp.11 %tmp.12;
         lputv %coord.2 %tmp.13;
-        symbol [ coord %coord.2 120 16 21 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 121 12 ]
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_121_12_128_12_if_stmt:
+        symbol [ coord %coord.2 124 16 21 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 125 12 ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_12_132_12_if_stmt:
         %tmp.14 = lgetv %coord.2;
-        symbol [ coord %tmp.14 121 16 21 ];
-        symbol [ Lang %tmp.15 121 33 37 ];
+        symbol [ coord %tmp.14 125 16 21 ];
+        symbol [ Lang %tmp.15 125 33 37 ];
         %tmp.15 = getm $.Toybox.Lang;
-        symbol [ Dictionary %tmp.16 121 38 48 ];
+        symbol [ Dictionary %tmp.16 125 38 48 ];
         %tmp.16 = getv %tmp.15 :Dictionary;
         %tmp.17 = isa %tmp.14 %tmp.16;
-        bf %tmp.17 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_121_12_128_12_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_121_12_128_12_if_true:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_121_50_128_12_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 122 16 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_121_50_128_12_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_121_50_128_12_stop" ]
+        bf %tmp.17 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_12_132_12_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_12_132_12_if_true:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_50_132_12_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 126 16 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_50_132_12_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_50_132_12_stop" ]
         %startY.3 = local;
-        symbol [ startY %startY.3 122 20 26 ];
+        symbol [ startY %startY.3 126 20 26 ];
         %tmp.18 = lgetv %coord.2;
-        symbol [ coord %tmp.18 122 29 34 ];
+        symbol [ coord %tmp.18 126 29 34 ];
         %tmp.19 = as %tmp.18 { (Lang.Dictionary) };
-        symbol [ get %tmp.20 122 35 38 ];
+        symbol [ get %tmp.20 126 35 38 ];
         %tmp.20 = getv function %tmp.19 :get;
         %tmp.21 = "startY";
         %tmp.22 = invoke %tmp.19 %tmp.20(%tmp.21);
         lputv %startY.3 %tmp.22;
-        symbol [ startY %startY.3 122 20 26 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 123 16 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_121_50_128_12_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_121_50_128_12_stop" ]
+        symbol [ startY %startY.3 126 20 26 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 127 16 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_50_132_12_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_50_132_12_stop" ]
         %endY.4 = local;
-        symbol [ endY %endY.4 123 20 24 ];
+        symbol [ endY %endY.4 127 20 24 ];
         %tmp.23 = lgetv %coord.2;
-        symbol [ coord %tmp.23 123 27 32 ];
+        symbol [ coord %tmp.23 127 27 32 ];
         %tmp.24 = as %tmp.23 { (Lang.Dictionary) };
-        symbol [ get %tmp.25 123 33 36 ];
+        symbol [ get %tmp.25 127 33 36 ];
         %tmp.25 = getv function %tmp.24 :get;
         %tmp.26 = "endY";
         %tmp.27 = invoke %tmp.24 %tmp.25(%tmp.26);
         lputv %endY.4 %tmp.27;
-        symbol [ endY %endY.4 123 20 24 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 124 16 ]
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_16_127_16_if_stmt:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_20_125_46_begin:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_20_125_28_begin:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_20_124_74_begin:
+        symbol [ endY %endY.4 127 20 24 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 128 16 ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_16_131_16_if_stmt:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_20_129_46_begin:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_20_129_28_begin:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_20_128_74_begin:
         %tmp.28 = lgetv %startY.3;
-        symbol [ startY %tmp.28 124 20 26 ];
-        symbol [ Lang %tmp.29 124 38 42 ];
+        symbol [ startY %tmp.28 128 20 26 ];
+        symbol [ Lang %tmp.29 128 38 42 ];
         %tmp.29 = getm $.Toybox.Lang;
-        symbol [ Number %tmp.30 124 43 49 ];
+        symbol [ Number %tmp.30 128 43 49 ];
         %tmp.30 = getv %tmp.29 :Number;
         %tmp.31 = isa %tmp.28 %tmp.30;
-        bf %tmp.31 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_16_127_16_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_53_124_74_true:
+        bf %tmp.31 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_16_131_16_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_53_128_74_true:
         %tmp.32 = lgetv %endY.4;
-        symbol [ endY %tmp.32 124 53 57 ];
-        symbol [ Lang %tmp.33 124 69 73 ];
+        symbol [ endY %tmp.32 128 53 57 ];
+        symbol [ Lang %tmp.33 128 69 73 ];
         %tmp.33 = getm $.Toybox.Lang;
-        symbol [ Number %tmp.34 124 74 80 ];
+        symbol [ Number %tmp.34 128 74 80 ];
         %tmp.34 = getv %tmp.33 :Number;
         %tmp.35 = isa %tmp.32 %tmp.34;
         push %tmp.35;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_53_124_74_end:
-        %tmp.36 = phi [%tmp.31 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_20_124_74_begin] [%tmp.35 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_53_124_74_true] [%tmp.36 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_53_124_74_end];
-        bf %tmp.36 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_16_127_16_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_20_125_28_true:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_53_128_74_end:
+        %tmp.36 = phi [%tmp.31 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_20_128_74_begin] [%tmp.35 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_53_128_74_true] [%tmp.36 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_53_128_74_end];
+        bf %tmp.36 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_16_131_16_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_129_20_129_28_true:
         %tmp.37 = lgetv %tapY;
-        symbol [ tapY %tmp.37 125 20 24 ];
+        symbol [ tapY %tmp.37 129 20 24 ];
         %tmp.38 = lgetv %startY.3;
-        symbol [ startY %tmp.38 125 28 34 ];
+        symbol [ startY %tmp.38 129 28 34 ];
         %tmp.39 = as %tmp.38 { (Lang.Number) };
         %tmp.40 = gte %tmp.37 %tmp.39;
         push %tmp.40;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_20_125_28_end:
-        %tmp.41 = phi [%tmp.36 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_20_125_28_begin] [%tmp.40 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_20_125_28_true] [%tmp.41 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_20_125_28_end];
-        bf %tmp.41 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_16_127_16_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_38_125_46_true:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_129_20_129_28_end:
+        %tmp.41 = phi [%tmp.36 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_20_129_28_begin] [%tmp.40 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_129_20_129_28_true] [%tmp.41 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_129_20_129_28_end];
+        bf %tmp.41 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_16_131_16_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_129_38_129_46_true:
         %tmp.42 = lgetv %tapY;
-        symbol [ tapY %tmp.42 125 38 42 ];
+        symbol [ tapY %tmp.42 129 38 42 ];
         %tmp.43 = lgetv %endY.4;
-        symbol [ endY %tmp.43 125 46 50 ];
+        symbol [ endY %tmp.43 129 46 50 ];
         %tmp.44 = as %tmp.43 { (Lang.Number) };
         %tmp.45 = lte %tmp.42 %tmp.44;
         push %tmp.45;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_38_125_46_end:
-        %tmp.46 = phi [%tmp.41 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_20_125_46_begin] [%tmp.45 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_38_125_46_true] [%tmp.46 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_38_125_46_end];
-        bf %tmp.46 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_16_127_16_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_16_127_16_if_true:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_52_127_16_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 126 20 ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_129_38_129_46_end:
+        %tmp.46 = phi [%tmp.41 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_20_129_46_begin] [%tmp.45 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_129_38_129_46_true] [%tmp.46 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_129_38_129_46_end];
+        bf %tmp.46 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_16_131_16_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_16_131_16_if_true:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_129_52_131_16_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 130 20 ]
         %tmp.47 = lgetv %coord.2;
-        symbol [ coord %tmp.47 126 27 32 ];
+        symbol [ coord %tmp.47 130 27 32 ];
         %tmp.48 = as %tmp.47 { (Lang.Dictionary) };
-        symbol [ get %tmp.49 126 33 36 ];
+        symbol [ get %tmp.49 130 33 36 ];
         %tmp.49 = getv function %tmp.48 :get;
         %tmp.50 = "name";
         %tmp.51 = invoke %tmp.48 %tmp.49(%tmp.50);
         ret %tmp.51;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_52_127_16_stop:
-        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_16_127_16_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_124_16_127_16_if_end:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_121_50_128_12_stop:
-        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_121_12_128_12_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_121_12_128_12_if_end:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_119_75_129_8_stop:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_119_8_129_8_for_incr:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 119 ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_129_52_131_16_stop:
+        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_16_131_16_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_128_16_131_16_if_end:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_50_132_12_stop:
+        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_12_132_12_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_125_12_132_12_if_end:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_123_75_133_8_stop:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_123_8_133_8_for_incr:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 123 ]
         %tmp.54 = lgetv %i.1;
-        symbol [ i %tmp.54 119 70 71 ];
+        symbol [ i %tmp.54 123 70 71 ];
         %tmp.55 = add %tmp.54 1;
         lputv %i.1 %tmp.55;
-        symbol [ i %i.1 119 70 71 ];
-        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_119_8_129_8_for_test;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_119_8_129_8_for_end:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 130 8 ]
+        symbol [ i %i.1 123 70 71 ];
+        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_123_8_133_8_for_test;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_123_8_133_8_for_end:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 134 8 ]
         %tmp.56 = null;
         ret %tmp.56;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_118_64_131_4_stop:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_122_64_135_4_stop:
     }
 }
-[ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 134; @symbol_classdef = [TempOverridesInputDelegate,134,6,32]; @symbol_extends<0> = [WatchUi,134,41,48]; @symbol_extends<1> = [InputDelegate,134,49,62]; ]
+[ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 138; @symbol_classdef = [TempOverridesInputDelegate,138,6,32]; @symbol_extends<0> = [WatchUi,138,41,48]; @symbol_extends<1> = [InputDelegate,138,49,62]; ]
 class TempOverridesInputDelegate extends WatchUi.InputDelegate {
-    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 134; ]
+    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 138; ]
     <init> {
     }
-    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 134; ]
+    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 138; ]
     static
     <init> {
     }
-    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 135; @position = 16; @symbol_vardef = [view,135,16,20]; @symbol_type<0> = [TempOverridesView,135,24,41]; ]
+    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 139; @position = 16; @symbol_vardef = [view,139,16,20]; @symbol_type<0> = [TempOverridesView,139,24,41]; ]
     private
     var view as TempOverridesView;
-    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 137; @symbol_functiondef = [initialize,137,13,23]; @symbol_param<0> = [view,137,24,28]; @symbol_param<0>_type<0> = [TempOverridesView,137,32,49]; ]
+    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 141; @symbol_functiondef = [initialize,141,13,23]; @symbol_param<0> = [view,141,24,28]; @symbol_param<0>_type<0> = [TempOverridesView,141,32,49]; ]
     function initialize(view as TempOverridesView) as Void {
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_137_51_140_4_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 138 8 ]
-        symbol [ InputDelegate %tmp.2 138 8 21 ];
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_141_51_144_4_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 142 8 ]
+        symbol [ InputDelegate %tmp.2 142 8 21 ];
         %tmp.2 = getv ? :InputDelegate;
-        symbol [ initialize %tmp.3 138 22 32 ];
+        symbol [ initialize %tmp.3 142 22 32 ];
         %tmp.3 = getv function %tmp.2 :initialize;
         invoke %tmp.2 %tmp.3();
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 139 8 ]
-        symbol [ self %self 139 8 12 ];
-        %tmp.4 = lgetv %view;
-        symbol [ view %tmp.4 139 20 24 ];
-        symbol [ view ? 139 13 17 ];
-        putv self :view %tmp.4;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_137_51_140_4_stop:
-    }
-    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 142; @symbol_functiondef = [onMenu,142,13,19]; @symbol_return<0> = [Lang,142,25,29]; @symbol_return<1> = [Boolean,142,30,37]; ]
-    function onMenu() as Lang.Boolean {
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_142_38_145_4_start:
 [ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 143 8 ]
-        symbol [ WatchUi %tmp.1 143 8 15 ];
+        symbol [ self %self 143 8 12 ];
+        %tmp.4 = lgetv %view;
+        symbol [ view %tmp.4 143 20 24 ];
+        symbol [ view ? 143 13 17 ];
+        putv self :view %tmp.4;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_141_51_144_4_stop:
+    }
+    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 146; @symbol_functiondef = [onMenu,146,13,19]; @symbol_return<0> = [Lang,146,25,29]; @symbol_return<1> = [Boolean,146,30,37]; ]
+    function onMenu() as Lang.Boolean {
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_146_38_149_4_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 147 8 ]
+        symbol [ WatchUi %tmp.1 147 8 15 ];
         %tmp.1 = getm $.Toybox.WatchUi;
-        symbol [ popView %tmp.2 143 16 23 ];
+        symbol [ popView %tmp.2 147 16 23 ];
         %tmp.2 = getv function %tmp.1 :popView;
-        symbol [ WatchUi %tmp.3 143 24 31 ];
+        symbol [ WatchUi %tmp.3 147 24 31 ];
         %tmp.3 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_DOWN %tmp.4 143 32 42 ];
+        symbol [ SLIDE_DOWN %tmp.4 147 32 42 ];
         %tmp.4 = getv %tmp.3 :SLIDE_DOWN;
         invoke %tmp.1 %tmp.2(%tmp.4);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 144 8 ]
-        %tmp.5 = true;
-        ret %tmp.5;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_142_38_145_4_stop:
-    }
-    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 147; @symbol_functiondef = [onBack,147,13,19]; @symbol_return<0> = [Lang,147,25,29]; @symbol_return<1> = [Boolean,147,30,37]; ]
-    function onBack() as Lang.Boolean {
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_147_38_150_4_start:
 [ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 148 8 ]
-        symbol [ WatchUi %tmp.1 148 8 15 ];
-        %tmp.1 = getm $.Toybox.WatchUi;
-        symbol [ popView %tmp.2 148 16 23 ];
-        %tmp.2 = getv function %tmp.1 :popView;
-        symbol [ WatchUi %tmp.3 148 24 31 ];
-        %tmp.3 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_DOWN %tmp.4 148 32 42 ];
-        %tmp.4 = getv %tmp.3 :SLIDE_DOWN;
-        invoke %tmp.1 %tmp.2(%tmp.4);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 149 8 ]
         %tmp.5 = true;
         ret %tmp.5;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_147_38_150_4_stop:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_146_38_149_4_stop:
     }
-    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 152; @symbol_functiondef = [onSelect,152,13,21]; @symbol_return<0> = [Lang,152,27,31]; @symbol_return<1> = [Boolean,152,32,39]; ]
-    function onSelect() as Lang.Boolean {
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_152_40_155_4_start:
+    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 151; @symbol_functiondef = [onBack,151,13,19]; @symbol_return<0> = [Lang,151,25,29]; @symbol_return<1> = [Boolean,151,30,37]; ]
+    function onBack() as Lang.Boolean {
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_151_38_154_4_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 152 8 ]
+        symbol [ WatchUi %tmp.1 152 8 15 ];
+        %tmp.1 = getm $.Toybox.WatchUi;
+        symbol [ popView %tmp.2 152 16 23 ];
+        %tmp.2 = getv function %tmp.1 :popView;
+        symbol [ WatchUi %tmp.3 152 24 31 ];
+        %tmp.3 = getm $.Toybox.WatchUi;
+        symbol [ SLIDE_DOWN %tmp.4 152 32 42 ];
+        %tmp.4 = getv %tmp.3 :SLIDE_DOWN;
+        invoke %tmp.1 %tmp.2(%tmp.4);
 [ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 153 8 ]
+        %tmp.5 = true;
+        ret %tmp.5;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_151_38_154_4_stop:
+    }
+    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 156; @symbol_functiondef = [onSelect,156,13,21]; @symbol_return<0> = [Lang,156,27,31]; @symbol_return<1> = [Boolean,156,32,39]; ]
+    function onSelect() as Lang.Boolean {
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_156_40_159_4_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 157 8 ]
         %tmp.1 = self;
-        symbol [ handlePresetSelection %tmp.2 153 8 29 ];
+        symbol [ handlePresetSelection %tmp.2 157 8 29 ];
         %tmp.2 = getv function %tmp.1 :handlePresetSelection;
         %tmp.3 = self;
-        symbol [ getCenterYPosition %tmp.4 153 30 48 ];
+        symbol [ getCenterYPosition %tmp.4 157 30 48 ];
         %tmp.4 = getv function %tmp.3 :getCenterYPosition;
         %tmp.5 = invoke %tmp.3 %tmp.4();
         invoke %tmp.1 %tmp.2(%tmp.5);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 154 8 ]
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 158 8 ]
         %tmp.6 = true;
         ret %tmp.6;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_152_40_155_4_stop:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_156_40_159_4_stop:
     }
-    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 157; @symbol_functiondef = [onKey,157,13,18]; @symbol_param<0> = [keyEvent,157,19,27]; @symbol_param<0>_type<0> = [WatchUi,157,31,38]; @symbol_param<0>_type<1> = [KeyEvent,157,39,47]; @symbol_return<0> = [Lang,157,52,56]; @symbol_return<1> = [Boolean,157,57,64]; ]
+    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 161; @symbol_functiondef = [onKey,161,13,18]; @symbol_param<0> = [keyEvent,161,19,27]; @symbol_param<0>_type<0> = [WatchUi,161,31,38]; @symbol_param<0>_type<1> = [KeyEvent,161,39,47]; @symbol_return<0> = [Lang,161,52,56]; @symbol_return<1> = [Boolean,161,57,64]; ]
     function onKey(keyEvent as WatchUi.KeyEvent) as Lang.Boolean {
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_157_65_164_4_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 158 8 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_157_65_164_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_157_65_164_4_stop" ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_161_65_168_4_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 162 8 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_161_65_168_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_161_65_168_4_stop" ]
         %key.1 = local;
-        symbol [ key %key.1 158 12 15 ];
+        symbol [ key %key.1 162 12 15 ];
         %tmp.1 = lgetv %keyEvent;
-        symbol [ keyEvent %tmp.1 158 18 26 ];
-        symbol [ getKey %tmp.2 158 27 33 ];
+        symbol [ keyEvent %tmp.1 162 18 26 ];
+        symbol [ getKey %tmp.2 162 27 33 ];
         %tmp.2 = getv function %tmp.1 :getKey;
         %tmp.3 = invoke %tmp.1 %tmp.2();
         lputv %key.1 %tmp.3;
-        symbol [ key %key.1 158 12 15 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 159 8 ]
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_159_8_162_8_if_stmt:
+        symbol [ key %key.1 162 12 15 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 163 8 ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_163_8_166_8_if_stmt:
         %tmp.4 = lgetv %key.1;
-        symbol [ key %tmp.4 159 12 15 ];
-        symbol [ WatchUi %tmp.5 159 19 26 ];
+        symbol [ key %tmp.4 163 12 15 ];
+        symbol [ WatchUi %tmp.5 163 19 26 ];
         %tmp.5 = getm $.Toybox.WatchUi;
-        symbol [ KEY_ENTER %tmp.6 159 27 36 ];
+        symbol [ KEY_ENTER %tmp.6 163 27 36 ];
         %tmp.6 = getv %tmp.5 :KEY_ENTER;
         %tmp.7 = eq %tmp.4 %tmp.6;
-        bf %tmp.7 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_159_8_162_8_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_159_8_162_8_if_true:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_159_38_162_8_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 160 12 ]
+        bf %tmp.7 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_163_8_166_8_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_163_8_166_8_if_true:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_163_38_166_8_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 164 12 ]
         %tmp.8 = self;
-        symbol [ handlePresetSelection %tmp.9 160 12 33 ];
+        symbol [ handlePresetSelection %tmp.9 164 12 33 ];
         %tmp.9 = getv function %tmp.8 :handlePresetSelection;
         %tmp.10 = self;
-        symbol [ getCenterYPosition %tmp.11 160 34 52 ];
+        symbol [ getCenterYPosition %tmp.11 164 34 52 ];
         %tmp.11 = getv function %tmp.10 :getCenterYPosition;
         %tmp.12 = invoke %tmp.10 %tmp.11();
         invoke %tmp.8 %tmp.9(%tmp.12);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 161 12 ]
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 165 12 ]
         %tmp.13 = true;
         ret %tmp.13;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_159_38_162_8_stop:
-        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_159_8_162_8_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_159_8_162_8_if_end:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 163 8 ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_163_38_166_8_stop:
+        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_163_8_166_8_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_163_8_166_8_if_end:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 167 8 ]
         %tmp.14 = false;
         ret %tmp.14;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_157_65_164_4_stop:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_161_65_168_4_stop:
     }
-    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 166; @symbol_functiondef = [onTap,166,13,18]; @symbol_param<0> = [clickEvent,166,19,29]; @symbol_param<0>_type<0> = [WatchUi,166,33,40]; @symbol_param<0>_type<1> = [ClickEvent,166,41,51]; @symbol_return<0> = [Lang,166,56,60]; @symbol_return<1> = [Boolean,166,61,68]; ]
+    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 170; @symbol_functiondef = [onTap,170,13,18]; @symbol_param<0> = [clickEvent,170,19,29]; @symbol_param<0>_type<0> = [WatchUi,170,33,40]; @symbol_param<0>_type<1> = [ClickEvent,170,41,51]; @symbol_return<0> = [Lang,170,56,60]; @symbol_return<1> = [Boolean,170,61,68]; ]
     function onTap(clickEvent as WatchUi.ClickEvent) as Lang.Boolean {
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_166_69_170_4_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 167 8 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_166_69_170_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_166_69_170_4_stop" ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_170_69_174_4_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 171 8 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_170_69_174_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_170_69_174_4_stop" ]
         %coordinates.1 = local;
-        symbol [ coordinates %coordinates.1 167 12 23 ];
+        symbol [ coordinates %coordinates.1 171 12 23 ];
         %tmp.1 = lgetv %clickEvent;
-        symbol [ clickEvent %tmp.1 167 26 36 ];
-        symbol [ getCoordinates %tmp.2 167 37 51 ];
+        symbol [ clickEvent %tmp.1 171 26 36 ];
+        symbol [ getCoordinates %tmp.2 171 37 51 ];
         %tmp.2 = getv function %tmp.1 :getCoordinates;
         %tmp.3 = invoke %tmp.1 %tmp.2();
         lputv %coordinates.1 %tmp.3;
-        symbol [ coordinates %coordinates.1 167 12 23 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 168 8 ]
+        symbol [ coordinates %coordinates.1 171 12 23 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 172 8 ]
         %tmp.4 = self;
-        symbol [ handlePresetSelection %tmp.5 168 8 29 ];
+        symbol [ handlePresetSelection %tmp.5 172 8 29 ];
         %tmp.5 = getv function %tmp.4 :handlePresetSelection;
         %tmp.6 = lgetv %coordinates.1;
-        symbol [ coordinates %tmp.6 168 30 41 ];
+        symbol [ coordinates %tmp.6 172 30 41 ];
         %tmp.7 = 1;
         %tmp.8 = agetv %tmp.6 %tmp.7;
         invoke %tmp.4 %tmp.5(%tmp.8);
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 169 8 ]
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 173 8 ]
         %tmp.9 = true;
         ret %tmp.9;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_166_69_170_4_stop:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_170_69_174_4_stop:
     }
-    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 172; @symbol_functiondef = [handlePresetSelection,172,21,42]; @symbol_param<0> = [tapY,172,43,47]; @symbol_param<0>_type<0> = [Lang,172,51,55]; @symbol_param<0>_type<1> = [Number,172,56,62]; ]
+    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 176; @symbol_functiondef = [handlePresetSelection,176,21,42]; @symbol_param<0> = [tapY,176,43,47]; @symbol_param<0>_type<0> = [Lang,176,51,55]; @symbol_param<0>_type<1> = [Number,176,56,62]; ]
     private
     function handlePresetSelection(tapY as Lang.Number) as Void {
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_172_72_189_4_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 173 8 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_172_72_189_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_172_72_189_4_stop" ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_176_72_193_4_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 177 8 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_176_72_193_4_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_176_72_193_4_stop" ]
         %presetName.1 = local;
-        symbol [ presetName %presetName.1 173 12 22 ];
-        symbol [ view %tmp.2 173 25 29 ];
+        symbol [ presetName %presetName.1 177 12 22 ];
+        symbol [ view %tmp.2 177 25 29 ];
         %tmp.2 = getv ? :view;
-        symbol [ findPresetAtY %tmp.3 173 30 43 ];
+        symbol [ findPresetAtY %tmp.3 177 30 43 ];
         %tmp.3 = getv function %tmp.2 :findPresetAtY;
         %tmp.4 = lgetv %tapY;
-        symbol [ tapY %tmp.4 173 44 48 ];
+        symbol [ tapY %tmp.4 177 44 48 ];
         %tmp.5 = invoke %tmp.2 %tmp.3(%tmp.4);
         lputv %presetName.1 %tmp.5;
-        symbol [ presetName %presetName.1 173 12 22 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 175 8 ]
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_175_8_188_8_if_stmt:
+        symbol [ presetName %presetName.1 177 12 22 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 179 8 ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_8_192_8_if_stmt:
         %tmp.6 = lgetv %presetName.1;
-        symbol [ presetName %tmp.6 175 12 22 ];
+        symbol [ presetName %tmp.6 179 12 22 ];
         %tmp.7 = null;
         %tmp.8 = ne %tmp.6 %tmp.7;
-        bf %tmp.8 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_175_8_188_8_if_else_false;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_175_8_188_8_if_true:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_175_32_186_8_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 176 12 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_175_32_186_8_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_175_32_186_8_stop" ]
+        bf %tmp.8 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_8_192_8_if_else_false;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_8_192_8_if_true:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_32_190_8_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 180 12 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_32_190_8_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_32_190_8_stop" ]
         %app.2 = local;
-        symbol [ app %app.2 176 16 19 ];
-        symbol [ Application %tmp.9 176 22 33 ];
+        symbol [ app %app.2 180 16 19 ];
+        symbol [ Application %tmp.9 180 22 33 ];
         %tmp.9 = getm $.Toybox.Application;
-        symbol [ getApp %tmp.10 176 34 40 ];
+        symbol [ getApp %tmp.10 180 34 40 ];
         %tmp.10 = getv function %tmp.9 :getApp;
         %tmp.11 = invoke %tmp.9 %tmp.10();
         %tmp.12 = as %tmp.11 DiabetesFoodLoopApp;
-        symbol [ DiabetesFoodLoopApp %tmp.12 176 46 65 ];
+        symbol [ DiabetesFoodLoopApp %tmp.12 180 46 65 ];
         lputv %app.2 %tmp.12;
-        symbol [ app %app.2 176 16 19 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 177 12 ]
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_177_12_185_12_if_stmt:
+        symbol [ app %app.2 180 16 19 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 181 12 ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_181_12_189_12_if_stmt:
         %tmp.13 = lgetv %app.2;
-        symbol [ app %tmp.13 177 16 19 ];
+        symbol [ app %tmp.13 181 16 19 ];
         %tmp.14 = null;
         %tmp.15 = ne %tmp.13 %tmp.14;
-        bf %tmp.15 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_177_12_185_12_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_177_12_185_12_if_true:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_177_29_185_12_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 178 16 ]
-        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_177_29_185_12_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_177_29_185_12_stop" ]
+        bf %tmp.15 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_181_12_189_12_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_181_12_189_12_if_true:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_181_29_189_12_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 182 16 ]
+        [ "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_181_29_189_12_start" "_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_181_29_189_12_stop" ]
         %nightscoutService.3 = local;
-        symbol [ nightscoutService %nightscoutService.3 178 20 37 ];
+        symbol [ nightscoutService %nightscoutService.3 182 20 37 ];
         %tmp.16 = lgetv %app.2;
-        symbol [ app %tmp.16 178 40 43 ];
+        symbol [ app %tmp.16 182 40 43 ];
         %tmp.17 = as %tmp.16 { (!Null) };
-        symbol [ getNightscoutService %tmp.18 178 44 64 ];
+        symbol [ getNightscoutService %tmp.18 182 44 64 ];
         %tmp.18 = getv function %tmp.17 :getNightscoutService;
         %tmp.19 = invoke %tmp.17 %tmp.18();
         lputv %nightscoutService.3 %tmp.19;
-        symbol [ nightscoutService %nightscoutService.3 178 20 37 ];
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 179 16 ]
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_16_183_16_if_stmt:
+        symbol [ nightscoutService %nightscoutService.3 182 20 37 ];
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 183 16 ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_183_16_187_16_if_stmt:
         %tmp.20 = lgetv %presetName.1;
-        symbol [ presetName %tmp.20 179 20 30 ];
+        symbol [ presetName %tmp.20 183 20 30 ];
         %tmp.21 = as %tmp.20 { (!Null) };
-        symbol [ equals %tmp.22 179 31 37 ];
+        symbol [ equals %tmp.22 183 31 37 ];
         %tmp.22 = getv function %tmp.21 :equals;
-        symbol [ Constants %tmp.24 179 38 47 ];
+        symbol [ Constants %tmp.24 183 38 47 ];
         %tmp.24 = getv ? :Constants;
-        symbol [ DEFAULT_OVERRIDE_PROFIL %tmp.25 179 48 71 ];
+        symbol [ DEFAULT_OVERRIDE_PROFIL %tmp.25 183 48 71 ];
         %tmp.25 = getv %tmp.24 :DEFAULT_OVERRIDE_PROFIL;
         %tmp.26 = invoke %tmp.21 %tmp.22(%tmp.25);
-        bf %tmp.26 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_16_183_16_if_else_false;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_16_183_16_if_true:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_74_181_16_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 180 20 ]
+        bf %tmp.26 @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_183_16_187_16_if_else_false;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_183_16_187_16_if_true:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_183_74_185_16_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 184 20 ]
         %tmp.27 = lgetv %nightscoutService.3;
-        symbol [ nightscoutService %tmp.27 180 20 37 ];
-        symbol [ desactivePreset %tmp.28 180 38 53 ];
+        symbol [ nightscoutService %tmp.27 184 20 37 ];
+        symbol [ desactivePreset %tmp.28 184 38 53 ];
         %tmp.28 = getv function %tmp.27 :desactivePreset;
         invoke %tmp.27 %tmp.28();
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_74_181_16_stop:
-        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_16_183_16_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_16_183_16_if_else_false:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_181_21_183_16_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 182 20 ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_183_74_185_16_stop:
+        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_183_16_187_16_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_183_16_187_16_if_else_false:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_185_21_187_16_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 186 20 ]
         %tmp.29 = lgetv %nightscoutService.3;
-        symbol [ nightscoutService %tmp.29 182 20 37 ];
-        symbol [ activatePreset %tmp.30 182 38 52 ];
+        symbol [ nightscoutService %tmp.29 186 20 37 ];
+        symbol [ activatePreset %tmp.30 186 38 52 ];
         %tmp.30 = getv function %tmp.29 :activatePreset;
         %tmp.31 = lgetv %presetName.1;
-        symbol [ presetName %tmp.31 182 53 63 ];
+        symbol [ presetName %tmp.31 186 53 63 ];
         %tmp.32 = as %tmp.31 { (!Null) };
         invoke %tmp.29 %tmp.30(%tmp.32);
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_181_21_183_16_stop:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_16_183_16_if_end:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 184 16 ]
-        symbol [ System %tmp.33 184 16 22 ];
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_185_21_187_16_stop:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_183_16_187_16_if_end:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 188 16 ]
+        symbol [ System %tmp.33 188 16 22 ];
         %tmp.33 = getm $.Toybox.System;
-        symbol [ println %tmp.34 184 23 30 ];
+        symbol [ println %tmp.34 188 23 30 ];
         %tmp.34 = getv function %tmp.33 :println;
         %tmp.35 = "Activating preset: ";
         %tmp.36 = lgetv %presetName.1;
-        symbol [ presetName %tmp.36 184 55 65 ];
+        symbol [ presetName %tmp.36 188 55 65 ];
         %tmp.37 = as %tmp.36 { (!Null) };
         %tmp.38 = add %tmp.35 %tmp.37;
         invoke %tmp.33 %tmp.34(%tmp.38);
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_177_29_185_12_stop:
-        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_177_12_185_12_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_177_12_185_12_if_end:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_175_32_186_8_stop:
-        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_175_8_188_8_if_end;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_175_8_188_8_if_else_false:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_186_15_188_8_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 187 12 ]
-        symbol [ System %tmp.39 187 12 18 ];
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_181_29_189_12_stop:
+        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_181_12_189_12_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_181_12_189_12_if_end:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_32_190_8_stop:
+        goto @_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_8_192_8_if_end;
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_8_192_8_if_else_false:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_190_15_192_8_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 191 12 ]
+        symbol [ System %tmp.39 191 12 18 ];
         %tmp.39 = getm $.Toybox.System;
-        symbol [ println %tmp.40 187 19 26 ];
+        symbol [ println %tmp.40 191 19 26 ];
         %tmp.40 = getv function %tmp.39 :println;
         %tmp.41 = "No preset found at Y: ";
         %tmp.42 = lgetv %tapY;
-        symbol [ tapY %tmp.42 187 54 58 ];
+        symbol [ tapY %tmp.42 191 54 58 ];
         %tmp.43 = add %tmp.41 %tmp.42;
         invoke %tmp.39 %tmp.40(%tmp.43);
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_186_15_188_8_stop:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_175_8_188_8_if_end:
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_172_72_189_4_stop:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_190_15_192_8_stop:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_179_8_192_8_if_end:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_176_72_193_4_stop:
     }
     //! Get estimated center Y position for button selection
-    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 193; @symbol_functiondef = [getCenterYPosition,193,21,39]; @symbol_return<0> = [Lang,193,45,49]; @symbol_return<1> = [Number,193,50,56]; ]
+    [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 197; @symbol_functiondef = [getCenterYPosition,197,21,39]; @symbol_return<0> = [Lang,197,45,49]; @symbol_return<1> = [Number,197,50,56]; ]
     private
     function getCenterYPosition() as Lang.Number {
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_193_57_195_4_start:
-[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 194 8 ]
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_197_57_199_4_start:
+[ "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc" 198 8 ]
         %tmp.1 = 100;
         ret %tmp.1;
-_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_193_57_195_4_stop:
+_Users_lobwick_workspaces_DiabetesFoodManagement_source_TempOverridesView_mc_197_57_199_4_stop:
     }
 }
 [ @file = "/Users/lobwick/workspaces/DiabetesFoodManagement/source/TempOverridesView.mc"; @line = 1; ]

@@ -14,4 +14,7 @@
      <setting propertyKey="@Properties.default_unit" title="@Strings.default_unit_title">
         <settingConfig type="alphaNumeric" required="false" />
     </setting>
+    <setting propertyKey="@Properties.chart_color_by_zone" title="@Strings.chart_color_by_zone_title">
+        <settingConfig type="boolean" />
+    </setting>
 </settings>

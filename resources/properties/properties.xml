@@ -4,4 +4,5 @@
     <property id="otp_secret" type="string">REDACTED_OTP_SECRET</property>
     <property id="default_user" type="string">Diabetes Food Management</property>
     <property id="default_unit" type="string">mg/dl</property>
+    <property id="chart_color_by_zone" type="boolean">false</property>
 </properties>

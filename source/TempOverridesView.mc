@@ -34,84 +34,88 @@ class TempOverridesView extends WatchUi.View {
     }
 
     function onUpdate(dc as Dc) as Void {
-        // Récupérer les données à chaque mise à jour
         var tempBasals = appState.tempBasals;
         var activeProfile = appState.activeProfile;
-        System.println("activeProfile: " + activeProfile);
+
         // Dark theme is always used, to match the app's design
         appState.backgroundColor = Graphics.COLOR_BLACK;
         appState.foregroundColor = Graphics.COLOR_WHITE;
-        dc.setColor(appState.backgroundColor, appState.backgroundColor);
+        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
         dc.clear();
-        
+
         var width = dc.getWidth();
         var height = dc.getHeight();
-        
-        // Title
-        dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(width/2, 10, Graphics.FONT_SMALL, WatchUi.loadResource(Rez.Strings.temp_overrides_label), Graphics.TEXT_JUSTIFY_CENTER);
-        
-        var yPos = 50;
-        var buttonHeight = 50;
-        var buttonWidth = width - 20;
-        var buttonX = 10;
-        
+
+        // Title, centered, with a thin divider underneath — native list header
+        var titleY = 14;
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(width / 2, titleY, Graphics.FONT_SMALL, WatchUi.loadResource(Rez.Strings.temp_overrides_label), Graphics.TEXT_JUSTIFY_CENTER);
+        var dividerY = titleY + dc.getFontHeight(Graphics.FONT_SMALL) + 8;
+        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.drawLine(0, dividerY, width, dividerY);
+
+        var rowHeight = 54;
+        var yPos = dividerY + 1;
+
         // Réinitialiser les coordonnées
         appState.presetCoordinatesProfile = [];
-        
-        // Bouton "Default" (toujours présent)
-        var defaultColor = activeProfile.equals(Constants.DEFAULT_OVERRIDE_PROFIL) ? Graphics.COLOR_GREEN : Graphics.COLOR_DK_BLUE;
-        drawButton(dc, buttonX, yPos, buttonWidth, buttonHeight, Constants.DEFAULT_OVERRIDE_PROFIL, defaultColor);
-        
-        // Enregistrer les coordonnées du bouton Default
+
+        // Default row (always present)
+        drawProfileRow(dc, yPos, width, rowHeight, Constants.DEFAULT_OVERRIDE_PROFIL, activeProfile.equals(Constants.DEFAULT_OVERRIDE_PROFIL));
         appState.presetCoordinatesProfile.add({
             "name" => Constants.DEFAULT_OVERRIDE_PROFIL,
             "startY" => yPos,
-            "endY" => yPos + buttonHeight
+            "endY" => yPos + rowHeight
         });
-        
-        yPos += buttonHeight + 10;
-        
-        // Boutons pour chaque preset
-        for (var i = 0; i < tempBasals.size() && yPos < height - 50; i++) {
+        yPos += rowHeight;
+
+        // One row per preset
+        for (var i = 0; i < tempBasals.size() && yPos < height - rowHeight; i++) {
             var override = tempBasals[i];
             if (override instanceof Lang.Dictionary && override.hasKey("name")) {
-                var name = override.get("name");
-                var nameStr = name.toString();
-                // Mettre en vert si c'est l'override actif
-                var buttonColor = activeProfile.equals(nameStr) ? Graphics.COLOR_GREEN : Graphics.COLOR_DK_BLUE;
-                drawButton(dc, buttonX, yPos, buttonWidth, buttonHeight, nameStr, buttonColor);
-                
-                // Enregistrer les coordonnées de ce preset
+                var nameStr = override.get("name").toString();
+                drawProfileRow(dc, yPos, width, rowHeight, nameStr, activeProfile.equals(nameStr));
                 appState.presetCoordinatesProfile.add({
                     "name" => nameStr,
                     "startY" => yPos,
-                    "endY" => yPos + buttonHeight
+                    "endY" => yPos + rowHeight
                 });
-                
-                yPos += buttonHeight + 10;
+                yPos += rowHeight;
             }
         }
-        
-        // Afficher le profil actif
-        if (activeProfile.length() > 0) {
-            dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
-            var profileText = WatchUi.loadResource(Rez.Strings.active_profile_label) + ": " + activeProfile;
-            dc.drawText(width/2, yPos + 10, Graphics.FONT_XTINY, profileText, Graphics.TEXT_JUSTIFY_CENTER);
-        }   
     }
-    
-    function drawButton(dc as Dc, x as Lang.Number, y as Lang.Number, width as Lang.Number, height as Lang.Number, text as Lang.String, color as Lang.Number) as Void {
-        // Dessiner le fond du bouton
-        dc.setColor(color, Graphics.COLOR_TRANSPARENT);
-        dc.fillRoundedRectangle(x, y, width, height, 5);
-        
-        // Dessiner le contour
-        dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
-        dc.drawRoundedRectangle(x, y, width, height, 5);
-                                        
-        // Dessiner le texte centré
-        dc.drawText(x + width/2, y + height/2 - 8, Graphics.FONT_SMALL, text, Graphics.TEXT_JUSTIFY_CENTER);
+
+    //! Draw one full-width list row, Garmin Edge style: left-aligned label, a
+    //! thin separator underneath, and — when active — a green left accent bar,
+    //! green label and a checkmark on the right. No boxes, no neon fills.
+    function drawProfileRow(dc as Dc, y as Lang.Number, width as Lang.Number, height as Lang.Number, text as Lang.String, isActive as Lang.Boolean) as Void {
+        var padLeft = 20;
+
+        // Active: green accent bar down the left edge
+        if (isActive) {
+            dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
+            dc.fillRectangle(0, y, 5, height);
+        }
+
+        // Label, left-aligned and vertically centered
+        var fh = dc.getFontHeight(Graphics.FONT_SMALL);
+        dc.setColor(isActive ? Graphics.COLOR_GREEN : Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(padLeft, y + (height - fh) / 2, Graphics.FONT_SMALL, text, Graphics.TEXT_JUSTIFY_LEFT);
+
+        // Active: checkmark on the right (drawn from lines, glyph-free)
+        if (isActive) {
+            var cy = y + height / 2;
+            var cx = width - 40;
+            dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
+            dc.setPenWidth(3);
+            dc.drawLine(cx, cy + 1, cx + 6, cy + 8);
+            dc.drawLine(cx + 6, cy + 8, cx + 18, cy - 8);
+            dc.setPenWidth(1);
+        }
+
+        // Bottom separator line
+        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.drawLine(0, y + height, width, y + height);
     }
 
     //! Find preset at given Y coordinate

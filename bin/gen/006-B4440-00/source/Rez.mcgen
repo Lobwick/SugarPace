@@ -49,6 +49,7 @@ module Rez {
         (:initialized) var nightscout_token_title as ResourceId;
         (:initialized) var loading_foods as ResourceId;
         (:initialized) var check_nightscout_config as ResourceId;
+        (:initialized) var chart_color_by_zone_title as ResourceId;
         (:initialized) var otp_secret_title as ResourceId;
         (:initialized) var temp_overrides_label as ResourceId;
         (:initialized) var default_user_title as ResourceId;

@@ -26,8 +26,20 @@ class DiabetesFoodLoopView extends WatchUi.View {
 
     // Called when this View is brought to the foreground
     function onShow() as Void {
-        // Glucose is fetched by the app orchestrator at start; also load the
-        // active Nightscout profile so its chip shows on this view immediately.
+        // Update every 5 minutes
+        updateTimer = new Timer.Timer();
+        updateTimer.start(method(:requestDataUpdate), 300000, true);
+
+        // Load the active Nightscout profile shortly AFTER show, staggered so
+        // it doesn't run concurrently with the startup glucose request.
+        // Concurrent BLE requests crash the app, which is also why the current
+        // value + trend history are fetched in a single request.
+        var profileTimer = new Timer.Timer();
+        profileTimer.start(method(:fetchProfile), 2500, false);
+    }
+
+    //! Fetch the active Nightscout profile (staggered, one-shot)
+    function fetchProfile() as Void {
         var app = Application.getApp() as DiabetesFoodLoopApp;
         if (app != null) {
             var nightscoutService = app.getNightscoutService();
@@ -35,10 +47,6 @@ class DiabetesFoodLoopView extends WatchUi.View {
                 nightscoutService.fetchTempBasalData();
             }
         }
-
-        // Update every 5 minutes
-        updateTimer = new Timer.Timer();
-        updateTimer.start(method(:requestDataUpdate), 300000, true);
     }
 
     // Update the view
@@ -104,45 +112,39 @@ class DiabetesFoodLoopView extends WatchUi.View {
             leftContentRight = arrowX + dc.getTextWidthInPixels(appState.glucoseData.getDirectionArrow(), Graphics.FONT_SMALL);
         }
 
-        // Right-hand info column: freshness then range label, dimmed and
-        // right-aligned, vertically centered against the big number.
-        var rowGap = 4;
-        var columnHeight = unitHeight + rowGap + unitHeight;
-        var colTop = valueY + (numberHeight - columnHeight) / 2;
+        // Right-hand info column: just the freshness, dimmed and right-aligned,
+        // vertically centered against the big number. (The window/range is
+        // already labelled under the chart, so no "LAST 4H" here.)
+        var colTop = valueY + (numberHeight - unitHeight) / 2;
         if (colTop < valueY) { colTop = valueY; }
 
         var freshnessText = bloodSugar > 0 ? appState.glucoseData.getTimeSinceUpdate() + " ago" : "";
-        var rightColWidth = dc.getTextWidthInPixels("LAST 4H", Graphics.FONT_XTINY);
-        var freshnessWidth = dc.getTextWidthInPixels(freshnessText, Graphics.FONT_XTINY);
-        if (freshnessWidth > rightColWidth) { rightColWidth = freshnessWidth; }
+        var rightColWidth = dc.getTextWidthInPixels(freshnessText, Graphics.FONT_XTINY);
         var rightColLeft = width - margin - rightColWidth;
 
-        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
         if (bloodSugar > 0) {
+            dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
             dc.drawText(width - margin, colTop, Graphics.FONT_XTINY, freshnessText, Graphics.TEXT_JUSTIFY_RIGHT);
         }
-        // Range label reflects the selected window; sits last so it's closest
-        // to the chart it labels.
-        dc.drawText(width - margin, colTop + unitHeight + rowGap, Graphics.FONT_XTINY, "LAST " + chartWindowShortLabel(), Graphics.TEXT_JUSTIFY_RIGHT);
 
-        // Active Nightscout profile, shown as a chip centered in the gap
-        // between the number and the right-hand column.
+        // Active Nightscout profile: a small accent dot + name, flat and
+        // centered in the gap between the number and the right-hand column.
         var activeProfile = appState.activeProfile;
         if (activeProfile != null && activeProfile.length() > 0) {
-            var chipPad = 8;
-            var chipH = unitHeight + 6;
-            var chipTextW = dc.getTextWidthInPixels(activeProfile, Graphics.FONT_XTINY);
-            var chipW = chipTextW + chipPad * 2;
-            var gapLeft = leftContentRight + 8;
-            var gapRight = rightColLeft - 8;
+            var dotRadius = 4;
+            var dotGap = 7;
+            var profileTextW = dc.getTextWidthInPixels(activeProfile, Graphics.FONT_XTINY);
+            var blockW = dotRadius * 2 + dotGap + profileTextW;
+            var gapLeft = leftContentRight + 10;
+            var gapRight = rightColLeft - 10;
             // Only draw if there is enough room so it never collides
-            if (gapRight - gapLeft >= chipW) {
-                var chipX = (gapLeft + gapRight) / 2 - chipW / 2;
-                var chipY = valueY + (numberHeight - chipH) / 2;
-                dc.setColor(Graphics.COLOR_DK_BLUE, Graphics.COLOR_TRANSPARENT);
-                dc.fillRoundedRectangle(chipX, chipY, chipW, chipH, 6);
+            if (gapRight - gapLeft >= blockW) {
+                var blockLeft = (gapLeft + gapRight) / 2 - blockW / 2;
+                var centerY = valueY + numberHeight / 2;
+                dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
+                dc.fillCircle(blockLeft + dotRadius, centerY, dotRadius);
                 dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-                dc.drawText(chipX + chipW / 2, chipY + 2, Graphics.FONT_XTINY, activeProfile, Graphics.TEXT_JUSTIFY_CENTER);
+                dc.drawText(blockLeft + dotRadius * 2 + dotGap, centerY - unitHeight / 2, Graphics.FONT_XTINY, activeProfile, Graphics.TEXT_JUSTIFY_LEFT);
             }
         }
 
@@ -238,6 +240,13 @@ class DiabetesFoodLoopView extends WatchUi.View {
         }
         var step = slot + gap;
 
+        // Optional: color each bar by its glucose zone instead of neutral gray
+        var colorByZone = false;
+        var pref = Application.Properties.getValue("chart_color_by_zone");
+        if (pref instanceof Lang.Boolean) {
+            colorByZone = pref;
+        }
+
         for (var i = 0; i < barCount; i++) {
             var value = history[startIdx + i];
             if (!(value instanceof Lang.Number)) {
@@ -260,8 +269,9 @@ class DiabetesFoodLoopView extends WatchUi.View {
             }
             var barY = y1 - barHeight;
 
-            // Neutral gray bars: only the trend badge carries the zone color
-            dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+            // Gray by default; colored by glucose zone when the preference is on
+            var barColor = colorByZone ? GlucoseData.getZoneColor(value) : Graphics.COLOR_LT_GRAY;
+            dc.setColor(barColor, Graphics.COLOR_TRANSPARENT);
             dc.fillRectangle(barX, barY, w, barHeight);
         }
 
@@ -271,15 +281,6 @@ class DiabetesFoodLoopView extends WatchUi.View {
         dc.drawText(x0, y1 + 4, Graphics.FONT_XTINY, agoLabel(windowMinutes), Graphics.TEXT_JUSTIFY_LEFT);
         dc.drawText(x0 + chartWidth / 2, y1 + 4, Graphics.FONT_XTINY, agoLabel(windowMinutes / 2), Graphics.TEXT_JUSTIFY_CENTER);
         dc.drawText(x1, y1 + 4, Graphics.FONT_XTINY, "Now", Graphics.TEXT_JUSTIFY_RIGHT);
-    }
-
-    //! Short window label for the header, e.g. "4H", "30M"
-    private function chartWindowShortLabel() as Lang.String {
-        var m = appState.chartWindowMinutes;
-        if (m >= 60) {
-            return (m / 60) + "H";
-        }
-        return m + "M";
     }
 
     //! "N ago" axis label for a given number of minutes, e.g. "2h ago", "30m ago"
@@ -392,8 +393,11 @@ class DiabetesFoodLoopView extends WatchUi.View {
             var nightscoutService = app.getNightscoutService();
             if (nightscoutService != null) {
                 nightscoutService.fetchGlucoseData();
-                // Keep the active profile chip current alongside the glucose data
-                nightscoutService.fetchTempBasalData();
+                // Refresh the profile too, but staggered so it never runs
+                // concurrently with the glucose request (concurrent BLE
+                // requests crash the app).
+                var profileTimer = new Timer.Timer();
+                profileTimer.start(method(:fetchProfile), 2500, false);
             }
         }
     }

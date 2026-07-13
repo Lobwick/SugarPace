@@ -40,14 +40,25 @@ class DiabetesFoodLoopDelegate extends WatchUi.BehaviorDelegate {
             return true;
         }
 
-        // Header area tap (glucose value + profile + trend info)
+        // Header area tap (glucose value + profile + trend info): open the
+        // profile / temp-override selection so it can be changed directly.
         if (appState.isPointInRegion(appState.headerRegion, x, y)) {
-            System.println("Tap detected on header at: " + x + ", " + y);
+            System.println("Tap detected on header, opening profile selection");
+            openProfileSelection();
             return true;
         }
 
         System.println("No tap target found at point: " + x + ", " + y);
         return false;
+    }
+
+    //! Open the profile / temp-override selection view
+    private function openProfileSelection() as Void {
+        // Refresh profiles/active override before showing, like the menu path
+        nightscoutService.fetchTempBasalData();
+
+        var tempOverridesView = new TempOverridesView(appState);
+        WatchUi.pushView(tempOverridesView, new TempOverridesInputDelegate(tempOverridesView), WatchUi.SLIDE_UP);
     }
 
     //! Send the tapped food to Loop
