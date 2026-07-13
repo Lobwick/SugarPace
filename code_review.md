@@ -59,5 +59,15 @@ Summary:
 
 
 
- ajouter des tests unitaires 
- regarder si dans ressources tout est utile 
+ - ajouter des tests unitaires 
+ - regarder si dans ressources tout est utile 
+ - passer en variable les chiffre en dur dans les view pour plus de compréhension 
+- rejeux en cas d'interruption pour envoyer les carbs 
+
+ TODO : 
+<iq:product id="edge1040"/>
+<iq:product id="edge1050"/>
+<iq:product id="edge540"/>
+<iq:product id="edge550"/>
+<iq:product id="edge840"/>
+<iq:product id="edge850"/>

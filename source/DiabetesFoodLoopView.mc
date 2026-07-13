@@ -8,10 +8,6 @@ import Toybox.Application;
 
 class DiabetesFoodLoopView extends WatchUi.View {
 
-    // CGM readings arrive roughly every 5 minutes; used to map a time window
-    // (minutes) to a number of history points to show.
-    private const MIN_PER_POINT = 5;
-
     private var updateTimer as Timer.Timer?;
     private var appState as AppState;
 
@@ -26,9 +22,9 @@ class DiabetesFoodLoopView extends WatchUi.View {
 
     // Called when this View is brought to the foreground
     function onShow() as Void {
-        // Update every 5 minutes
+        // Refresh on the CGM cadence
         updateTimer = new Timer.Timer();
-        updateTimer.start(method(:requestDataUpdate), 300000, true);
+        updateTimer.start(method(:requestDataUpdate), Layout.REFRESH_INTERVAL_MS, true);
 
         // Load the active Nightscout profile. Safe to call alongside the startup
         // glucose fetch: NightscoutService serializes all requests, so nothing
@@ -57,9 +53,38 @@ class DiabetesFoodLoopView extends WatchUi.View {
         
         var width = dc.getWidth();
         var height = dc.getHeight();
-        
-        var cardBottom = drawGlucoseCard(dc, width);
-        drawFoodGrid(dc, width, height, cardBottom + 16);
+        var scroll = appState.scrollOffset;
+
+        // Two scroll modes:
+        //  - Tall screens (1040/1050/850/550): header + chart stay pinned; only
+        //    the food grid scrolls inside its clipped viewport below.
+        //  - Short screens (540/840): too little room for that, so the WHOLE page
+        //    scrolls (chart included) and the grid can use the full height.
+        var wholePage = height < Layout.COMPACT_HEIGHT_THRESHOLD;
+
+        var cardTop = wholePage ? Layout.CARD_TOP - scroll : Layout.CARD_TOP;
+        var cardBottom = drawGlucoseCard(dc, width, height, cardTop);
+        var gridTop = cardBottom + Layout.CARD_GRID_GAP;
+
+        var maxScroll;
+        if (wholePage) {
+            // Grid drawn at its shifted position; nothing pinned, no clip, no
+            // extra internal scroll. Cells stay full size (no viewport cap).
+            var gridContentH = drawFoodGrid(dc, width, gridTop, height, 0, 0, 0);
+            var contentBottom = gridTop + gridContentH + scroll; // absolute
+            maxScroll = contentBottom - height + Layout.CARD_BOTTOM_PAD;
+        } else {
+            // Grid scrolls within a fixed, clipped viewport below the pinned card.
+            var viewportHeight = height - gridTop;
+            var gridContentH = drawFoodGrid(dc, width, gridTop, height, scroll, gridTop, viewportHeight);
+            maxScroll = gridContentH - viewportHeight;
+        }
+
+        if (maxScroll < 0) { maxScroll = 0; }
+        appState.maxScroll = maxScroll;
+        if (appState.scrollOffset > maxScroll) {
+            appState.scrollOffset = maxScroll;
+        }
     }
 
     // Called when this View is removed from the screen
@@ -72,11 +97,8 @@ class DiabetesFoodLoopView extends WatchUi.View {
 
     //! Draw the glucose card: current value, freshness, trend badge and the
     //! last ~4h trend chart. Returns the Y coordinate where the card ends.
-    private function drawGlucoseCard(dc as Dc, width as Lang.Number) as Lang.Number {
-        var margin = 8;
-        var cardTop = 6;
-        var cardHeight = 224;
-        var cardBottom = cardTop + cardHeight;
+    private function drawGlucoseCard(dc as Dc, width as Lang.Number, height as Lang.Number, cardTop as Lang.Number) as Lang.Number {
+        var margin = Layout.CARD_MARGIN;
 
         var bloodSugar = appState.glucoseData.bloodSugarLevel;
         var default_unit = Application.Properties.getValue("default_unit").toString();
@@ -85,26 +107,32 @@ class DiabetesFoodLoopView extends WatchUi.View {
         var innerX = margin;
         var valueY = cardTop;
 
+        // Short screens (Edge 540/840) get a smaller number + shorter chart so
+        // the food grid isn't squeezed to a single cramped row.
+        var compact = height < Layout.COMPACT_HEIGHT_THRESHOLD;
+        var numberFont = compact ? Graphics.FONT_NUMBER_MILD : Graphics.FONT_NUMBER_MEDIUM;
+        var chartPct = compact ? Layout.CHART_HEIGHT_PCT_COMPACT : Layout.CHART_HEIGHT_PCT;
+
         // Big current value, colored by glucose zone so the number itself
         // signals the state at a glance.
-        var numberHeight = dc.getFontHeight(Graphics.FONT_NUMBER_MEDIUM);
+        var numberHeight = dc.getFontHeight(numberFont);
         var unitHeight = dc.getFontHeight(Graphics.FONT_XTINY);
         var zoneColor = bloodSugar > 0 ? GlucoseData.getZoneColor(bloodSugar) : appState.foregroundColor;
         dc.setColor(zoneColor, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(innerX, valueY, Graphics.FONT_NUMBER_MEDIUM, bloodSugarText, Graphics.TEXT_JUSTIFY_LEFT);
+        dc.drawText(innerX, valueY, numberFont, bloodSugarText, Graphics.TEXT_JUSTIFY_LEFT);
 
         // Unit sits to the right of the number, aligned near its baseline
-        var valueWidth = dc.getTextWidthInPixels(bloodSugarText, Graphics.FONT_NUMBER_MEDIUM);
-        var unitX = innerX + valueWidth + 8;
+        var valueWidth = dc.getTextWidthInPixels(bloodSugarText, numberFont);
+        var unitX = innerX + valueWidth + Layout.VALUE_UNIT_GAP;
         dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(unitX, valueY + numberHeight - unitHeight - 6, Graphics.FONT_XTINY, default_unit, Graphics.TEXT_JUSTIFY_LEFT);
+        dc.drawText(unitX, valueY + numberHeight - unitHeight - Layout.UNIT_BASELINE_LIFT, Graphics.FONT_XTINY, default_unit, Graphics.TEXT_JUSTIFY_LEFT);
 
         // Direction arrow right after the unit, in the zone color
         var unitWidth = dc.getTextWidthInPixels(default_unit, Graphics.FONT_XTINY);
         var leftContentRight = unitX + unitWidth;
         if (bloodSugar > 0) {
             var arrowHeight = dc.getFontHeight(Graphics.FONT_SMALL);
-            var arrowX = unitX + unitWidth + 8;
+            var arrowX = unitX + unitWidth + Layout.VALUE_UNIT_GAP;
             dc.setColor(zoneColor, Graphics.COLOR_TRANSPARENT);
             dc.drawText(arrowX, valueY + (numberHeight - arrowHeight) / 2, Graphics.FONT_SMALL, appState.glucoseData.getDirectionArrow(), Graphics.TEXT_JUSTIFY_LEFT);
             leftContentRight = arrowX + dc.getTextWidthInPixels(appState.glucoseData.getDirectionArrow(), Graphics.FONT_SMALL);
@@ -129,12 +157,12 @@ class DiabetesFoodLoopView extends WatchUi.View {
         // centered in the gap between the number and the right-hand column.
         var activeProfile = appState.activeProfile;
         if (activeProfile != null && activeProfile.length() > 0) {
-            var dotRadius = 4;
-            var dotGap = 7;
+            var dotRadius = Layout.PROFILE_DOT_RADIUS;
+            var dotGap = Layout.PROFILE_DOT_GAP;
             var profileTextW = dc.getTextWidthInPixels(activeProfile, Graphics.FONT_XTINY);
             var blockW = dotRadius * 2 + dotGap + profileTextW;
-            var gapLeft = leftContentRight + 10;
-            var gapRight = rightColLeft - 10;
+            var gapLeft = leftContentRight + Layout.PROFILE_SIDE_GAP;
+            var gapRight = rightColLeft - Layout.PROFILE_SIDE_GAP;
             // Only draw if there is enough room so it never collides
             if (gapRight - gapLeft >= blockW) {
                 var blockLeft = (gapLeft + gapRight) / 2 - blockW / 2;
@@ -146,15 +174,20 @@ class DiabetesFoodLoopView extends WatchUi.View {
             }
         }
 
-        // Trend chart: occupies the rest of the card space, no tile/border around it
-        var chartTop = valueY + numberHeight + 12;
-        var chartBottom = cardBottom - 16;
+        // Trend chart below the header. Its height is a fraction of the screen
+        // so it scales; the card then sizes itself to fit number + chart + axis
+        // labels (no fixed card height that would overflow small screens).
+        var chartTop = valueY + numberHeight + Layout.HEADER_CHART_GAP;
+        var chartHeight = (height * chartPct).toNumber();
+        var chartBottom = chartTop + chartHeight;
         drawGlucoseChart(dc, innerX, chartTop, width - margin, chartBottom);
+
+        var cardBottom = chartBottom + Layout.CHART_AXIS_GAP + unitHeight + Layout.CARD_BOTTOM_PAD;
 
         // No data placeholder
         if (bloodSugar == 0) {
             dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(width / 2, chartTop + 20, Graphics.FONT_XTINY, WatchUi.loadResource(Rez.Strings.check_nightscout_config), Graphics.TEXT_JUSTIFY_CENTER);
+            dc.drawText(width / 2, chartTop + Layout.NODATA_TEXT_OFFSET, Graphics.FONT_XTINY, WatchUi.loadResource(Rez.Strings.check_nightscout_config), Graphics.TEXT_JUSTIFY_CENTER);
         }
 
         // Record tap regions for hit-testing: header (value + info block) above,
@@ -175,7 +208,7 @@ class DiabetesFoodLoopView extends WatchUi.View {
         // Only show the most recent window (readings are ~5 min apart), so the
         // chart zooms in as the user cycles 4h -> 2h -> 1h -> 30m on tap.
         var fullSize = history.size();
-        var pointsPerWindow = appState.chartWindowMinutes / MIN_PER_POINT;
+        var pointsPerWindow = appState.chartWindowMinutes / Layout.MIN_PER_POINT;
         var startIdx = fullSize - pointsPerWindow;
         if (startIdx < 0) { startIdx = 0; }
 
@@ -210,16 +243,15 @@ class DiabetesFoodLoopView extends WatchUi.View {
         // (the 4h maximum) reaches near the top of the chart and no vertical
         // space is wasted above the curve. Only the bottom is padded/extended.
         var span = dataMax - dataMin;
-        var topHeadroom = (span * 0.12).toNumber();
-        if (topHeadroom < 4) { topHeadroom = 4; }
+        var topHeadroom = (span * Layout.CHART_TOP_HEADROOM_PCT).toNumber();
+        if (topHeadroom < Layout.CHART_BAR_MIN_H) { topHeadroom = Layout.CHART_BAR_MIN_H; }
         var vMax = dataMax + topHeadroom;
-        var vMin = dataMin - (span * 0.25).toNumber();
+        var vMin = dataMin - (span * Layout.CHART_BOTTOM_PAD_PCT).toNumber();
 
         // Keep a minimum range so a flat "stable" line isn't amplified into
         // noise; extend downward only, leaving the peak pinned near the top.
-        var minRange = 50;
-        if (vMax - vMin < minRange) {
-            vMin = vMax - minRange;
+        if (vMax - vMin < Layout.CHART_MIN_RANGE) {
+            vMin = vMax - Layout.CHART_MIN_RANGE;
         }
         if (vMin < 0) { vMin = 0; }
 
@@ -227,7 +259,7 @@ class DiabetesFoodLoopView extends WatchUi.View {
         var chartWidth = x1 - x0;
 
         var barCount = fullSize - startIdx;
-        var gap = barCount > 1 ? 3 : 0;
+        var gap = barCount > 1 ? Layout.CHART_BAR_GAP : 0;
 
         // Lay the bars out in float space and round each edge, so cumulative
         // rounding never leaves a gap at the right edge: the last bar's right
@@ -255,8 +287,8 @@ class DiabetesFoodLoopView extends WatchUi.View {
             if (clamped > vMax) { clamped = vMax; }
             var ratio = (clamped - vMin).toFloat() / (vMax - vMin);
             var barHeight = (ratio * chartHeight).toNumber();
-            if (barHeight < 2) {
-                barHeight = 2;
+            if (barHeight < Layout.CHART_BAR_MIN_H) {
+                barHeight = Layout.CHART_BAR_MIN_H;
             }
 
             var barX = (x0 + i * step).toNumber();
@@ -275,10 +307,11 @@ class DiabetesFoodLoopView extends WatchUi.View {
 
         // Axis labels, dimmed to sit quietly under the bars; reflect the window
         var windowMinutes = appState.chartWindowMinutes;
+        var labelY = y1 + Layout.CHART_AXIS_GAP;
         dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(x0, y1 + 4, Graphics.FONT_XTINY, agoLabel(windowMinutes), Graphics.TEXT_JUSTIFY_LEFT);
-        dc.drawText(x0 + chartWidth / 2, y1 + 4, Graphics.FONT_XTINY, agoLabel(windowMinutes / 2), Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(x1, y1 + 4, Graphics.FONT_XTINY, "Now", Graphics.TEXT_JUSTIFY_RIGHT);
+        dc.drawText(x0, labelY, Graphics.FONT_XTINY, agoLabel(windowMinutes), Graphics.TEXT_JUSTIFY_LEFT);
+        dc.drawText(x0 + chartWidth / 2, labelY, Graphics.FONT_XTINY, agoLabel(windowMinutes / 2), Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(x1, labelY, Graphics.FONT_XTINY, "Now", Graphics.TEXT_JUSTIFY_RIGHT);
     }
 
     //! "N ago" axis label for a given number of minutes, e.g. "2h ago", "30m ago"
@@ -289,24 +322,43 @@ class DiabetesFoodLoopView extends WatchUi.View {
         return minutes + "m ago";
     }
 
-    //! Draw the scrollable 2-column grid of food products (icon + name + carbs)
-    private function drawFoodGrid(dc as Dc, width as Lang.Number, height as Lang.Number, startY as Lang.Number) as Void {
+    //! Draw the 2-column food grid. `scroll` hides that many px of content above
+    //! `gridTop`. `clipTop` is the top of the clip/tap region (== gridTop when a
+    //! fixed header is pinned above, 0 when the whole page scrolls). `capViewport`
+    //! caps the cell height so one full tile fits a fixed viewport (0 = no cap,
+    //! used in whole-page mode). Returns the total pixel height of the content.
+    private function drawFoodGrid(dc as Dc, width as Lang.Number, gridTop as Lang.Number, height as Lang.Number, scroll as Lang.Number, clipTop as Lang.Number, capViewport as Lang.Number) as Lang.Number {
         dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
 
         if (appState.foodItems.size() == 0) {
-            dc.drawText(width / 2, startY + 20, Graphics.FONT_SMALL, WatchUi.loadResource(Rez.Strings.loading_foods), Graphics.TEXT_JUSTIFY_CENTER);
-            dc.drawText(width / 2, startY + 50, Graphics.FONT_XTINY, WatchUi.loadResource(Rez.Strings.check_nightscout_config), Graphics.TEXT_JUSTIFY_CENTER);
+            dc.drawText(width / 2, gridTop + Layout.GRID_EMPTY_TITLE_OFFSET, Graphics.FONT_SMALL, WatchUi.loadResource(Rez.Strings.loading_foods), Graphics.TEXT_JUSTIFY_CENTER);
+            dc.drawText(width / 2, gridTop + Layout.GRID_EMPTY_SUBTITLE_OFFSET, Graphics.FONT_XTINY, WatchUi.loadResource(Rez.Strings.check_nightscout_config), Graphics.TEXT_JUSTIFY_CENTER);
             appState.updateFoodGridCoordinates([]);
-            return;
+            return 0;
         }
 
-        var margin = 12;
-        var gap = 10;
-        var columns = 2;
+        var margin = Layout.GRID_MARGIN;
+        var gap = Layout.GRID_GAP;
+        var columns = Layout.GRID_COLUMNS;
         var cellWidth = (width - margin * 2 - gap) / columns;
-        var cellHeight = 210;
+        var nameBand = Layout.GRID_NAME_BAND; // space reserved at the bottom for the product name
+
+        // Cell height: preferred size, but capped so one full tile fits a fixed
+        // viewport (pinned-header mode), never below the image+name floor.
+        var cellHeight = Layout.GRID_CELL_HEIGHT;
+        if (capViewport > 0 && cellHeight > capViewport - gap) {
+            cellHeight = capViewport - gap;
+        }
+        if (cellHeight < Layout.GRID_CELL_MIN_HEIGHT) {
+            cellHeight = Layout.GRID_CELL_MIN_HEIGHT;
+        }
 
         var coordinates = [];
+        var rowCount = 0;
+
+        // Clip to the grid region so scrolled rows don't paint over a pinned
+        // header (in whole-page mode clipTop is 0, i.e. the full screen).
+        dc.setClip(0, clipTop, width, height - clipTop);
 
         for (var i = 0; i < appState.foodItems.size(); i++) {
             var foodItem = appState.foodItems[i];
@@ -316,13 +368,29 @@ class DiabetesFoodLoopView extends WatchUi.View {
 
             var col = i % columns;
             var row = i / columns;
+            rowCount = row + 1;
             var x0 = margin + col * (cellWidth + gap);
-            var y0 = startY + row * (cellHeight + gap);
+            var y0 = gridTop + row * (cellHeight + gap) - scroll; // on-screen y
+            var y1 = y0 + cellHeight;
 
-            // Stop drawing once we run past the bottom of the screen; the
-            // remaining items are reachable by scrolling in a future iteration.
-            if (y0 + cellHeight > height - 4) {
-                break;
+            // Record the tap region clamped to the visible band, so a partially
+            // scrolled tile is tappable on its visible part and a tile hidden
+            // under a pinned header can't be tapped.
+            var cy0 = y0 < clipTop ? clipTop : y0;
+            var cy1 = y1 > height ? height : y1;
+            if (cy1 > cy0) {
+                coordinates.add({
+                    "x0" => x0,
+                    "y0" => cy0,
+                    "x1" => x0 + cellWidth,
+                    "y1" => cy1,
+                    "index" => i
+                });
+            }
+
+            // Skip painting rows entirely outside the visible band.
+            if (y1 < clipTop || y0 > height) {
+                continue;
             }
 
             dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
@@ -330,24 +398,21 @@ class DiabetesFoodLoopView extends WatchUi.View {
 
             var bitmap = resolveBitmap(foodItem);
             if (bitmap != null) {
+                // Center the image in the area above the name band
+                var areaTop = y0 + Layout.GRID_IMAGE_TOP_PAD;
+                var areaHeight = cellHeight - nameBand - Layout.GRID_IMAGE_TOP_PAD;
                 var bx = x0 + (cellWidth - bitmap.getWidth()) / 2;
-                var by = y0 + 8;
+                var by = areaTop + (areaHeight - bitmap.getHeight()) / 2;
                 dc.drawBitmap(bx, by, bitmap);
             }
 
             dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(x0 + cellWidth / 2, y0 + cellHeight - 24, Graphics.FONT_XTINY, foodItem.name, Graphics.TEXT_JUSTIFY_CENTER);
-
-            coordinates.add({
-                "x0" => x0,
-                "y0" => y0,
-                "x1" => x0 + cellWidth,
-                "y1" => y0 + cellHeight,
-                "index" => i
-            });
+            dc.drawText(x0 + cellWidth / 2, y0 + cellHeight - Layout.GRID_NAME_LIFT, Graphics.FONT_XTINY, foodItem.name, Graphics.TEXT_JUSTIFY_CENTER);
         }
 
+        dc.clearClip();
         appState.updateFoodGridCoordinates(coordinates);
+        return rowCount * (cellHeight + gap);
     }
 
     //! Resolve the bitmap to display: brand-specific first, then category default.

@@ -25,6 +25,10 @@ class AppState {
     public var chartRegion as Lang.Dictionary? = null;
     // Visible trend-chart window in minutes; cycles 4h -> 2h -> 1h -> 30m on tap.
     public var chartWindowMinutes as Lang.Number = 240;
+    // Vertical scroll of the whole page (px). maxScroll is recomputed by the
+    // view each render from the actual content height.
+    public var scrollOffset as Lang.Number = 0;
+    public var maxScroll as Lang.Number = 0;
     
     // Profile data. overridePresets = the list of Loop override presets (name +
     // data). activeProfile = which one is currently active on Nightscout; it has
@@ -128,6 +132,14 @@ class AppState {
     //! Record the header tap region after rendering
     function updateHeaderRegion(x0 as Lang.Number, y0 as Lang.Number, x1 as Lang.Number, y1 as Lang.Number) as Void {
         headerRegion = { "x0" => x0, "y0" => y0, "x1" => x1, "y1" => y1 };
+    }
+
+    //! Scroll the page by delta px, clamped to the content bounds.
+    function scrollBy(delta as Lang.Number) as Void {
+        scrollOffset += delta;
+        if (scrollOffset < 0) { scrollOffset = 0; }
+        if (scrollOffset > maxScroll) { scrollOffset = maxScroll; }
+        WatchUi.requestUpdate();
     }
 
     //! Cycle the trend-chart window: 4h -> 2h -> 1h -> 30m -> 4h
