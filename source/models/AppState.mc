@@ -19,6 +19,12 @@ class AppState {
     // Tile coordinates for the 2-column food grid, used for touch hit-testing.
     // Each entry: { "x0"=>, "y0"=>, "x1"=>, "y1"=>, "index"=> }
     public var foodGridCoordinates as Lang.Array = [];
+    // Tap regions for the glucose card, as { "x0"=>, "y0"=>, "x1"=>, "y1"=> }
+    // or null before the first render. Used for touch hit-testing.
+    public var headerRegion as Lang.Dictionary? = null;
+    public var chartRegion as Lang.Dictionary? = null;
+    // Visible trend-chart window in minutes; cycles 4h -> 2h -> 1h -> 30m on tap.
+    public var chartWindowMinutes as Lang.Number = 240;
     
     // Profile data
     public var tempBasals as Lang.Array = [];
@@ -125,6 +131,52 @@ class AppState {
     //! Update food grid tile coordinates (2-column layout) after rendering
     function updateFoodGridCoordinates(coordinates as Lang.Array) as Void {
         foodGridCoordinates = coordinates;
+    }
+
+    //! Record the header tap region after rendering
+    function updateHeaderRegion(x0 as Lang.Number, y0 as Lang.Number, x1 as Lang.Number, y1 as Lang.Number) as Void {
+        headerRegion = { "x0" => x0, "y0" => y0, "x1" => x1, "y1" => y1 };
+    }
+
+    //! Cycle the trend-chart window: 4h -> 2h -> 1h -> 30m -> 4h
+    function cycleChartWindow() as Void {
+        if (chartWindowMinutes == 240) {
+            chartWindowMinutes = 120;
+        } else if (chartWindowMinutes == 120) {
+            chartWindowMinutes = 60;
+        } else if (chartWindowMinutes == 60) {
+            chartWindowMinutes = 30;
+        } else {
+            chartWindowMinutes = 240;
+        }
+        WatchUi.requestUpdate();
+    }
+
+    //! Record the chart tap region after rendering
+    function updateChartRegion(x0 as Lang.Number, y0 as Lang.Number, x1 as Lang.Number, y1 as Lang.Number) as Void {
+        chartRegion = { "x0" => x0, "y0" => y0, "x1" => x1, "y1" => y1 };
+    }
+
+    //! True if (x,y) falls inside the given { x0,y0,x1,y1 } region
+    function isPointInRegion(region as Lang.Dictionary?, x as Lang.Number, y as Lang.Number) as Lang.Boolean {
+        if (region == null) {
+            return false;
+        }
+        var x0 = region.get("x0");
+        var y0 = region.get("y0");
+        var x1 = region.get("x1");
+        var y1 = region.get("y1");
+        if (!(x0 instanceof Lang.Number) || !(y0 instanceof Lang.Number) ||
+            !(x1 instanceof Lang.Number) || !(y1 instanceof Lang.Number)) {
+            return false;
+        }
+        if (x < x0 || x > x1) {
+            return false;
+        }
+        if (y < y0 || y > y1) {
+            return false;
+        }
+        return true;
     }
 
     //! Find the food item whose grid tile contains the given tap point
