@@ -15,11 +15,6 @@ class SugarPaceDelegate extends WatchUi.BehaviorDelegate {
         self.otpService = otpService;
     }
 
-    function onMenu() as Boolean {
-        WatchUi.pushView(new Rez.Menus.MainMenu(), new SugarPaceMenuDelegate(appState), WatchUi.SLIDE_UP);
-        return true;
-    }
-
     //! Vertical swipe scrolls the page so foods below the fold are reachable.
     function onSwipe(swipeEvent as WatchUi.SwipeEvent) as Boolean {
         var dir = swipeEvent.getDirection();
@@ -80,7 +75,7 @@ class SugarPaceDelegate extends WatchUi.BehaviorDelegate {
 
     //! Open the profile / temp-override selection view
     private function openProfileSelection() as Void {
-        // Refresh profiles/active override before showing, like the menu path
+        // Refresh profiles/active override before showing
         nightscoutService.fetchTempBasalData();
 
         var tempOverridesView = new TempOverridesView(appState);

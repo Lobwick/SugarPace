@@ -1,6 +1,6 @@
 # SugarPace — Connect IQ App
 
-**Français** · [English](README.en.md)
+**Français** · [English](README.md)
 
 > *Ton sucre, ton rythme.*
 
@@ -27,7 +27,6 @@ L'écran principal se lit de haut en bas :
 | **Une vignette d'aliment** | Envoie cet aliment (ses glucides) à Loop, avec un code OTP généré à la volée |
 | **Le graphe** | Change la fenêtre de temps affichée : 4h → 2h → 1h → 30min → 4h. L'échelle verticale s'adapte au min/max de la fenêtre |
 | **L'en-tête** (glycémie / profil) | Ouvre l'écran de sélection de **profil temporaire** |
-| **Menu** (bouton physique / `⋮`) | Ouvre aussi la sélection de profils temporaires |
 
 ## Sélection de profil temporaire
 
@@ -132,7 +131,6 @@ Séparation vues / état / services :
 - `source/SugarPaceApp.mc` — cycle de vie, initialisation des services, callbacks
 - `source/SugarPaceView.mc` — écran principal (en-tête glycémie, graphe, grille d'aliments)
 - `source/SugarPaceDelegate.mc` — gestion des taps (aliment / graphe / en-tête)
-- `source/SugarPaceMenuDelegate.mc` — menu
 - `source/TempOverridesView.mc` — écran de sélection de profil + son input delegate
 - `source/SugarPaceGlanceView.mc` — vue « glance »
 

@@ -27,7 +27,6 @@ The main screen reads top to bottom:
 | **A food tile** | Sends that food (its carbs) to Loop, with an OTP code generated on the fly |
 | **The chart** | Cycles the displayed time window: 4h → 2h → 1h → 30min → 4h. The vertical scale adapts to the window's min/max |
 | **The header** (glucose / profile) | Opens the **temporary profile** selection screen |
-| **Menu** (physical button / `⋮`) | Also opens the temporary profile selection |
 
 ## Temporary profile selection
 
@@ -98,7 +97,6 @@ Views / state / services separation:
 - `source/SugarPaceApp.mc` — lifecycle, service initialization, callbacks
 - `source/SugarPaceView.mc` — main screen (glucose header, chart, food grid)
 - `source/SugarPaceDelegate.mc` — tap handling (food / chart / header)
-- `source/SugarPaceMenuDelegate.mc` — menu
 - `source/TempOverridesView.mc` — profile selection screen + its input delegate
 - `source/SugarPaceGlanceView.mc` — glance view
 
