@@ -2,8 +2,8 @@
 .claude/**
 .DS_Store
 .vscode/**
-DiabetesFoodLoop-settings.json
-DiabetesFoodLoop.prg
-DiabetesFoodLoop.prg.debug.xml
+SugarPace-settings.json
+SugarPace.prg
+SugarPace.prg.debug.xml
 *mir/**
 gen/**

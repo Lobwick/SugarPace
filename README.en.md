@@ -1,8 +1,10 @@
-# Diabetes Food Management — Connect IQ App
+# SugarPace — Connect IQ App
 
 [Français](README.md) · **English**
 
-A Connect IQ app for Garmin devices that lets you track your glucose (via Nightscout) and send carb entries to Loop with a single tap — handy during exercise to treat a low without pulling out your phone.
+> *Pace your sugar.*
+
+**SugarPace** is a Connect IQ app for Garmin Edge bike computers that puts glucose and fueling on the same screen: live glucose tracking (via Nightscout) and one-tap carb entries to your closed-loop system — treat a low while riding, without pulling out your phone. Branding & store copy: [branding/](branding/STORE.md).
 
 ---
 
@@ -79,11 +81,11 @@ Standard Monkey C project (Connect IQ SDK). Build entry point: `monkey.jungle` �
 
 ```bash
 # Build for a device (e.g. edge1050), signed with your developer key
-monkeyc -f monkey.jungle -d edge1050 -o bin/DiabetesFoodManagement.prg -y developer_key
+monkeyc -f monkey.jungle -d edge1050 -o bin/SugarPace.prg -y developer_key
 
 # Run in the simulator
 connectiq                 # starts the simulator
-monkeydo bin/DiabetesFoodManagement.prg edge1050
+monkeydo bin/SugarPace.prg edge1050
 ```
 
 > ⚠️ The type checker can hit an `OutOfMemoryError` on arithmetic over nullable `Number?` values. Keep numeric accumulators non-null (a `seen`/flag pattern) instead of `null` sentinels.
@@ -93,12 +95,12 @@ monkeydo bin/DiabetesFoodManagement.prg edge1050
 Views / state / services separation:
 
 **App & UI**
-- `source/DiabetesFoodLoopApp.mc` — lifecycle, service initialization, callbacks
-- `source/DiabetesFoodLoopView.mc` — main screen (glucose header, chart, food grid)
-- `source/DiabetesFoodLoopDelegate.mc` — tap handling (food / chart / header)
-- `source/DiabetesFoodLoopMenuDelegate.mc` — menu
+- `source/SugarPaceApp.mc` — lifecycle, service initialization, callbacks
+- `source/SugarPaceView.mc` — main screen (glucose header, chart, food grid)
+- `source/SugarPaceDelegate.mc` — tap handling (food / chart / header)
+- `source/SugarPaceMenuDelegate.mc` — menu
 - `source/TempOverridesView.mc` — profile selection screen + its input delegate
-- `source/DiabetesFoodLoopGlanceView.mc` — glance view
+- `source/SugarPaceGlanceView.mc` — glance view
 
 **State (models)**
 - `source/models/AppState.mc` — centralized state (glucose, history, foods, profile, tap regions, chart window)

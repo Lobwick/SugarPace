@@ -6,7 +6,7 @@ import Toybox.System;
 import Toybox.Application;
 
 
-class DiabetesFoodLoopView extends WatchUi.View {
+class SugarPaceView extends WatchUi.View {
 
     private var updateTimer as Timer.Timer?;
     private var appState as AppState;
@@ -34,7 +34,7 @@ class DiabetesFoodLoopView extends WatchUi.View {
 
     //! Fetch the active Nightscout profile and available presets
     function fetchProfile() as Void {
-        var app = Application.getApp() as DiabetesFoodLoopApp;
+        var app = Application.getApp() as SugarPaceApp;
         if (app != null) {
             var nightscoutService = app.getNightscoutService();
             if (nightscoutService != null) {
@@ -468,7 +468,7 @@ class DiabetesFoodLoopView extends WatchUi.View {
     //! Request data update from the app orchestrator
     function requestDataUpdate() as Void {
         // Refresh current glucose value and trend history so the chart stays up to date
-        var app = Application.getApp() as DiabetesFoodLoopApp;
+        var app = Application.getApp() as SugarPaceApp;
         if (app != null) {
             var nightscoutService = app.getNightscoutService();
             if (nightscoutService != null) {

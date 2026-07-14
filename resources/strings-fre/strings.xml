@@ -1,5 +1,5 @@
 <strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
-    <string id="AppName">Gestion Diabète Aliments</string>
+    <string id="AppName">SugarPace</string>
     <string id="temp_overrides_label">Profils Temporaires</string>
     
     <string id="nightscout_token_title">Token Nightscout</string>
@@ -9,5 +9,6 @@
     <string id="default_unit_title">Unité par défaut</string>
     <string id="chart_color_by_zone_title">Colorer les barres selon la zone glycémique</string>
     <string id="loading_foods">Chargement aliments...</string>
+    <string id="open" scope="glance">Ouvrir</string>
     <string id="check_nightscout_config">Vérifiez votre configuration Nightscout</string>
 </strings>

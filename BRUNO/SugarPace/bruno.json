@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "name": "DiabetesFoodManagement",
+  "name": "SugarPace",
   "type": "collection",
   "ignore": [
     "node_modules",

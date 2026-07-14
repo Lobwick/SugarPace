@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- SugarPace — a glucose drop carrying pace chevrons.
+       Sugar = the droplet (universal glucose symbol); Pace = the double
+       forward chevron, the visual language of speed/cadence on bike
+       computers. Flat and high-contrast: reads as a droplet at launcher
+       size (68px), the chevrons appear at full size. Colors match the
+       in-app glucose zones (green in range, orange out). -->
+
+  <!-- Dark rounded tile, same near-black as the app background -->
+  <rect x="0" y="0" width="256" height="256" rx="56" fill="#0B0D10"/>
+
+  <!-- Droplet outline -->
+  <path d="M128 24
+           C 128 24, 60 118, 60 165
+           a 68 68 0 0 0 136 0
+           C 196 118, 128 24, 128 24 Z"
+        fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round"/>
+
+  <!-- Pace chevrons inside the drop: green (in range) leading, orange trailing -->
+  <path d="M100 138 L126 165 L100 192"
+        fill="none" stroke="#00C853" stroke-width="15"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M138 138 L164 165 L138 192"
+        fill="none" stroke="#FF9100" stroke-width="15"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
