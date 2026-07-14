@@ -1,8 +1,10 @@
-# Diabetes Food Management — Connect IQ App
+# SugarPace — Connect IQ App
 
 **Français** · [English](README.en.md)
 
-Application Connect IQ pour appareils Garmin qui permet, depuis la montre/le compteur, de suivre sa glycémie (via Nightscout) et d'envoyer des entrées de glucides à Loop en un tap — pratique pendant l'effort pour resucrer sans sortir son téléphone.
+> *Ton sucre, ton rythme.*
+
+**SugarPace** est une application Connect IQ pour compteurs Garmin Edge qui réunit glycémie et ravitaillement sur le même écran : suivi de la glycémie en direct (via Nightscout) et envoi de glucides à la boucle fermée en un tap — pour resucrer en roulant, sans sortir le téléphone. Identité visuelle et textes store : [branding/](branding/STORE.md).
 
 ---
 
@@ -79,11 +81,11 @@ Projet Monkey C standard (Connect IQ SDK). Point d'entrée du build : `monkey.ju
 
 ```bash
 # Build pour un device (ex. edge1050), signé avec votre clé développeur
-monkeyc -f monkey.jungle -d edge1050 -o bin/DiabetesFoodManagement.prg -y developer_key
+monkeyc -f monkey.jungle -d edge1050 -o bin/SugarPace.prg -y developer_key
 
 # Lancer dans le simulateur
 connectiq                 # démarre le simulateur
-monkeydo bin/DiabetesFoodManagement.prg edge1050
+monkeydo bin/SugarPace.prg edge1050
 ```
 
 > ⚠️ Le type-checker peut atteindre un `OutOfMemoryError` sur de l'arithmétique avec des `Number?` nullables. Garder les accumulateurs numériques non-null (pattern `seen`/drapeau) plutôt que des sentinelles `null`.
@@ -127,12 +129,12 @@ base64 -i developer_key | pbcopy   # macOS
 Séparation vues / état / services :
 
 **App & UI**
-- `source/DiabetesFoodLoopApp.mc` — cycle de vie, initialisation des services, callbacks
-- `source/DiabetesFoodLoopView.mc` — écran principal (en-tête glycémie, graphe, grille d'aliments)
-- `source/DiabetesFoodLoopDelegate.mc` — gestion des taps (aliment / graphe / en-tête)
-- `source/DiabetesFoodLoopMenuDelegate.mc` — menu
+- `source/SugarPaceApp.mc` — cycle de vie, initialisation des services, callbacks
+- `source/SugarPaceView.mc` — écran principal (en-tête glycémie, graphe, grille d'aliments)
+- `source/SugarPaceDelegate.mc` — gestion des taps (aliment / graphe / en-tête)
+- `source/SugarPaceMenuDelegate.mc` — menu
 - `source/TempOverridesView.mc` — écran de sélection de profil + son input delegate
-- `source/DiabetesFoodLoopGlanceView.mc` — vue « glance »
+- `source/SugarPaceGlanceView.mc` — vue « glance »
 
 **État (models)**
 - `source/models/AppState.mc` — état centralisé (glycémie, historique, aliments, profil, régions tactiles, fenêtre du graphe)

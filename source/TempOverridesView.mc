@@ -49,7 +49,7 @@ class TempOverridesView extends WatchUi.View {
 
     function onShow() as Void {
         // Déclencher la récupération des données
-        var app = Application.getApp() as DiabetesFoodLoopApp;
+        var app = Application.getApp() as SugarPaceApp;
         if (app != null) {
             app.getNightscoutService().fetchTempBasalData();
         }
@@ -60,7 +60,7 @@ class TempOverridesView extends WatchUi.View {
     }
 
     function updateData() as Void {
-        var app = Application.getApp() as DiabetesFoodLoopApp;
+        var app = Application.getApp() as SugarPaceApp;
         if (app != null) {
             WatchUi.requestUpdate();
         }
@@ -235,7 +235,7 @@ class TempOverridesInputDelegate extends WatchUi.InputDelegate {
             System.println("No preset selected");
             return;
         }
-        var app = Application.getApp() as DiabetesFoodLoopApp;
+        var app = Application.getApp() as SugarPaceApp;
         if (app != null) {
             var nightscoutService = app.getNightscoutService();
             if (presetName.equals(Constants.DEFAULT_OVERRIDE_PROFIL)) {

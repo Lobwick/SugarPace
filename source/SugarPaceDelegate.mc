@@ -2,7 +2,7 @@ import Toybox.Lang;
 import Toybox.WatchUi;
 import Toybox.System;
 
-class DiabetesFoodLoopDelegate extends WatchUi.BehaviorDelegate {
+class SugarPaceDelegate extends WatchUi.BehaviorDelegate {
 
     private var appState as AppState;
     private var nightscoutService as NightscoutService;
@@ -16,7 +16,7 @@ class DiabetesFoodLoopDelegate extends WatchUi.BehaviorDelegate {
     }
 
     function onMenu() as Boolean {
-        WatchUi.pushView(new Rez.Menus.MainMenu(), new DiabetesFoodLoopMenuDelegate(appState), WatchUi.SLIDE_UP);
+        WatchUi.pushView(new Rez.Menus.MainMenu(), new SugarPaceMenuDelegate(appState), WatchUi.SLIDE_UP);
         return true;
     }
 

@@ -2,29 +2,40 @@ import Toybox.WatchUi;
 import Toybox.Graphics;
 import Toybox.Lang;
 import Toybox.Application;
+import Toybox.System;
 
 (:glance)
-function getDiabetesFoodLoopGlanceView() as [WatchUi.GlanceView] {
-    return [new DiabetesFoodLoopGlanceView()];
+function getSugarPaceGlanceView() as [WatchUi.GlanceView] {
+    return [new SugarPaceGlanceView()];
 }
 
 (:glance)
-class DiabetesFoodLoopGlanceView extends WatchUi.GlanceView {
+class SugarPaceGlanceView extends WatchUi.GlanceView {
 
     function initialize() {
         GlanceView.initialize();
     }
 
     function onUpdate(dc as Graphics.Dc) as Void {
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        
+        // No theme declared and no background drawn: the glance sits on the
+        // stock Garmin card, which follows the display mode (light by day,
+        // dark by night). Only the text color adapts: black on the day
+        // background, white on the night one. Fallback is white because CIQ
+        // glance backgrounds are dark on most devices.
+        var night = true;
+        var settings = System.getDeviceSettings();
+        if (settings has :isNightModeEnabled) {
+            night = settings.isNightModeEnabled;
+        }
+        dc.setColor(night ? Graphics.COLOR_WHITE : Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
+
         var justification = Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER;
         var width = dc.getWidth();
         var height = dc.getHeight();
 
         // Show the last known glucose (cached by the main app), fall back to a
         // prompt if we've never fetched one yet.
-        var text = "Ouvrir";
+        var text = WatchUi.loadResource(Rez.Strings.open);
         var data = Application.Storage.getValue("last_glucose_data");
         var default_unit = Application.Properties.getValue("default_unit").toString();
 

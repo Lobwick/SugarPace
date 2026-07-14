@@ -3,7 +3,7 @@ import Toybox.System;
 import Toybox.WatchUi;
 import Toybox.Application;
 
-class DiabetesFoodLoopMenuDelegate extends WatchUi.MenuInputDelegate {
+class SugarPaceMenuDelegate extends WatchUi.MenuInputDelegate {
     private var appState as AppState;
 
     function initialize(appState as AppState) {
@@ -19,7 +19,7 @@ class DiabetesFoodLoopMenuDelegate extends WatchUi.MenuInputDelegate {
     }
 
     function showTempOverrides() as Void {
-        var app = Application.getApp() as DiabetesFoodLoopApp;
+        var app = Application.getApp() as SugarPaceApp;
         if (app != null) {
             app.getNightscoutService().fetchTempBasalData();
         }

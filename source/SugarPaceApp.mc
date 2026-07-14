@@ -4,7 +4,7 @@ import Toybox.System;
 import Toybox.WatchUi;
 
 (:typecheck([disableBackgroundCheck, disableGlanceCheck]))
-class DiabetesFoodLoopApp extends Application.AppBase {
+class SugarPaceApp extends Application.AppBase {
 
     // Core components
     (:typecheck([disableBackgroundCheck, disableGlanceCheck]))
@@ -16,9 +16,9 @@ class DiabetesFoodLoopApp extends Application.AppBase {
     
     // Views and delegates
     (:typecheck([disableBackgroundCheck, disableGlanceCheck]))
-    private var mainView as DiabetesFoodLoopView?;
+    private var mainView as SugarPaceView?;
     (:typecheck([disableBackgroundCheck, disableGlanceCheck]))
-    private var mainDelegate as DiabetesFoodLoopDelegate?;
+    private var mainDelegate as SugarPaceDelegate?;
 
     function initialize() {
         AppBase.initialize();
@@ -43,6 +43,12 @@ class DiabetesFoodLoopApp extends Application.AppBase {
     function onStop(state as Dictionary?) as Void {
     }
 
+    // The Edge display switched between day and night mode: redraw so the
+    // glance text color follows the new system background.
+    function onNightModeChanged() as Void {
+        WatchUi.requestUpdate();
+    }
+
     // Called when the user changes app settings in Garmin Connect. Re-fetch so
     // a new URL/token/unit takes effect immediately instead of at the next tick.
     (:typecheck([disableBackgroundCheck, disableGlanceCheck]))
@@ -65,8 +71,8 @@ class DiabetesFoodLoopApp extends Application.AppBase {
         // Load static food list from embedded JSON resource
         appState.updateFoodItems(FoodDatabase.loadAll());
         
-        mainView = new DiabetesFoodLoopView(appState);
-        mainDelegate = new DiabetesFoodLoopDelegate(appState, nightscoutService, otpService);
+        mainView = new SugarPaceView(appState);
+        mainDelegate = new SugarPaceDelegate(appState, nightscoutService, otpService);
         return [ mainView, mainDelegate ];
     }
 
@@ -123,7 +129,7 @@ class DiabetesFoodLoopApp extends Application.AppBase {
         return foodsArray;
     }
 
-    function getMainView() as DiabetesFoodLoopView? {
+    function getMainView() as SugarPaceView? {
         return mainView;
     }
 
@@ -140,11 +146,11 @@ class DiabetesFoodLoopApp extends Application.AppBase {
     //! Return the glance view for home screen widget
     (:typecheck(disableBackgroundCheck))
     function getGlanceView() as [ WatchUi.GlanceView ] or [ WatchUi.GlanceView, WatchUi.GlanceViewDelegate ] or Null {
-        return getDiabetesFoodLoopGlanceView();
+        return getSugarPaceGlanceView();
     }
 }
 
 
-function getApp() as DiabetesFoodLoopApp {
-    return Application.getApp() as DiabetesFoodLoopApp;
+function getApp() as SugarPaceApp {
+    return Application.getApp() as SugarPaceApp;
 }
