@@ -1,166 +1,132 @@
 # SugarPace — Connect IQ App
 
-**Français** · [English](README.en.md)
+[Français](README.fr.md) · **English**
 
-> *Ton sucre, ton rythme.*
+> *Pace your sugar.*
 
-**SugarPace** est une application Connect IQ pour compteurs Garmin Edge qui réunit glycémie et ravitaillement sur le même écran : suivi de la glycémie en direct (via Nightscout) et envoi de glucides à la boucle fermée en un tap — pour resucrer en roulant, sans sortir le téléphone. Identité visuelle et textes store : [branding/](branding/STORE.md).
+**SugarPace** is a Connect IQ app for Garmin Edge bike computers that puts glucose and fueling on the same screen: live glucose tracking (via Nightscout) and one-tap carb entries to your closed-loop system — treat a low while riding, without pulling out your phone. Branding & store copy: [branding/](branding/STORE.md).
 
 ---
 
-# 1. Utilisation
+# 1. Usage
 
-## Écran principal
+## Main screen
 
-L'écran principal se lit de haut en bas :
+The main screen reads top to bottom:
 
-- **Glycémie actuelle** en grand, colorée selon la zone (vert = dans la cible, orange = proche des limites, rouge = hors limites), suivie de l'unité et de la **flèche de tendance** (`↑↑`, `↑`, `↗`, `→`, `↘`, `↓`, `↓↓`).
-- **Profil Nightscout actif** (pastille + nom) au centre de l'en-tête.
-- **Fraîcheur** de la donnée à droite (ex. `2m ago`).
-- **Graphe de tendance** en barres sur les dernières heures.
-- **Grille d'aliments** (icône + nom) en bas.
+- **Current glucose** in large type, colored by zone (green = in range, orange = near limits, red = out of range), followed by the unit and the **trend arrow** (`↑↑`, `↑`, `↗`, `→`, `↘`, `↓`, `↓↓`).
+- **Active Nightscout profile** (dot + name) in the center of the header.
+- **Freshness** of the reading on the right (e.g. `2m ago`).
+- **Trend chart** as bars over the last few hours.
+- **Food grid** (icon + name) at the bottom.
 
-## Interactions tactiles
+## Touch interactions
 
-| Zone touchée | Action |
+| Tapped area | Action |
 |---|---|
-| **Une vignette d'aliment** | Envoie cet aliment (ses glucides) à Loop, avec un code OTP généré à la volée |
-| **Le graphe** | Change la fenêtre de temps affichée : 4h → 2h → 1h → 30min → 4h. L'échelle verticale s'adapte au min/max de la fenêtre |
-| **L'en-tête** (glycémie / profil) | Ouvre l'écran de sélection de **profil temporaire** |
-| **Menu** (bouton physique / `⋮`) | Ouvre aussi la sélection de profils temporaires |
+| **A food tile** | Sends that food (its carbs) to Loop, with an OTP code generated on the fly |
+| **The chart** | Cycles the displayed time window: 4h → 2h → 1h → 30min → 4h. The vertical scale adapts to the window's min/max |
+| **The header** (glucose / profile) | Opens the **temporary profile** selection screen |
+| **Menu** (physical button / `⋮`) | Also opens the temporary profile selection |
 
-## Sélection de profil temporaire
+## Temporary profile selection
 
-L'écran liste les profils/overrides disponibles sur Nightscout. Le profil **actif** est repéré par une barre verte et une coche. Toucher un profil l'active ; toucher **Default** annule l'override temporaire en cours.
+The screen lists the profiles/overrides available on Nightscout. The **active** profile is marked with a green bar and a checkmark. Tapping a profile activates it; tapping **Default** cancels the current temporary override.
 
-## Réglages (Garmin Connect / Connect IQ)
+## Settings (Garmin Connect / Connect IQ)
 
-Configurables depuis l'app Garmin Connect (Mobile) ou Connect IQ (Express) :
+Configurable from the Garmin Connect (mobile) or Connect IQ (Express) app:
 
-- **Nightscout URL** — URL de votre instance (ex. `https://mon-nightscout.example.com`)
-- **Nightscout Token** — token d'authentification Nightscout
-- **Secret OTP** — clé TOTP pour Loop (voir § 2)
-- **Default User** — nom associé aux entrées envoyées
-- **Default Unit** — unité affichée (`mg/dl` ou `mmol`)
-- **Colorer les barres selon la zone glycémique** — si activé, chaque barre du graphe prend la couleur de sa zone ; sinon les barres restent grises (défaut)
+- **Nightscout URL** — your instance URL (e.g. `https://my-nightscout.example.com`)
+- **Nightscout Token** — Nightscout authentication token
+- **OTP Secret** — TOTP key for Loop (see § 2)
+- **Default User** — name attached to sent entries
+- **Default Unit** — displayed unit (`mg/dl` or `mmol`)
+- **Color chart bars by glucose zone** — when on, each chart bar takes its zone color; otherwise bars stay gray (default)
 
-> Prérequis Loop : votre Loop doit accepter les entrées distantes (Remote Carbs) via l'API Nightscout `notifications/loop`.
-
----
-
-# 2. Génération du code OTP (secret TOTP)
-
-Le **secret OTP** est indispensable pour que Loop accepte les commandes distantes. Il se récupère **une seule fois** depuis le QR code 2FA de Loop, puis se colle dans les réglages de l'app.
-
-### Étape 1 — Localiser le QR code dans Loop
-1. Dans l'app **Loop**, ouvrez les réglages de sécurité / services distants.
-2. Affichez le **QR code d'authentification à deux facteurs (2FA)** : il encode le secret OTP.
-
-### Étape 2 — Extraire le secret du QR code
-1. Prenez une **capture d'écran** du QR code.
-2. Ouvrez l'outil en ligne [2FA QR Code Extractor](https://stefansundin.github.io/2fa-qr/).
-3. Chargez la capture d'écran.
-4. L'outil renvoie le **secret** (chaîne du type `MNWUPWJFCJRJJ4WSBPC27HJ5CZUM6YKK`).
-
-### Étape 3 — Configurer l'app
-1. Copiez le secret extrait.
-2. Dans Garmin Connect → réglages de l'app → collez-le dans **Secret OTP**.
-3. Sauvegardez.
-
-Au moment d'envoyer un aliment, l'app génère un code TOTP à 6 chiffres (renouvelé toutes les 30 s) à partir de ce secret.
-
-⚠️ **Gardez ce secret confidentiel.** L'heure de la montre doit être synchronisée, sinon les codes seront rejetés.
+> Loop prerequisite: your Loop must accept remote entries (Remote Carbs) via the Nightscout `notifications/loop` API.
 
 ---
 
-# 3. Pour les développeurs
+# 2. Generating the OTP code (TOTP secret)
 
-## Compilation
+The **OTP secret** is required for Loop to accept remote commands. You retrieve it **once** from Loop's 2FA QR code, then paste it into the app settings.
 
-Projet Monkey C standard (Connect IQ SDK). Point d'entrée du build : `monkey.jungle` → `manifest.xml`.
+### Step 1 — Locate the QR code in Loop
+1. In the **Loop** app, open the security / remote services settings.
+2. Display the **two-factor authentication (2FA) QR code**: it encodes the OTP secret.
+
+### Step 2 — Extract the secret from the QR code
+1. Take a **screenshot** of the QR code.
+2. Open the online tool [2FA QR Code Extractor](https://stefansundin.github.io/2fa-qr/).
+3. Upload the screenshot.
+4. The tool returns the **secret** (a string like `MNWUPWJFCJRJJ4WSBPC27HJ5CZUM6YKK`).
+
+### Step 3 — Configure the app
+1. Copy the extracted secret.
+2. In Garmin Connect → app settings → paste it into **OTP Secret**.
+3. Save.
+
+When you send a food, the app generates a 6-digit TOTP code (rotating every 30 s) from this secret.
+
+⚠️ **Keep this secret confidential.** The watch clock must be synced, otherwise codes will be rejected.
+
+---
+
+# 3. For developers
+
+## Building
+
+Standard Monkey C project (Connect IQ SDK). Build entry point: `monkey.jungle` → `manifest.xml`.
 
 ```bash
-# Build pour un device (ex. edge1050), signé avec votre clé développeur
+# Build for a device (e.g. edge1050), signed with your developer key
 monkeyc -f monkey.jungle -d edge1050 -o bin/SugarPace.prg -y developer_key
 
-# Lancer dans le simulateur
-connectiq                 # démarre le simulateur
+# Run in the simulator
+connectiq                 # starts the simulator
 monkeydo bin/SugarPace.prg edge1050
 ```
 
-> ⚠️ Le type-checker peut atteindre un `OutOfMemoryError` sur de l'arithmétique avec des `Number?` nullables. Garder les accumulateurs numériques non-null (pattern `seen`/drapeau) plutôt que des sentinelles `null`.
-
-## Tests unitaires
-
-Tests annotés `(:test)` dans `source/tests/` (crypto OTP avec vecteurs RFC, zones glycémiques, flèches, parsing FoodItem). Ils sont exclus du build normal.
-
-```bash
-# Compiler la cible de test puis l'exécuter dans le simulateur
-monkeyc -f monkey.jungle -d edge1050 -o build/test.prg -y developer_key --unit-test
-connectiq &
-monkeydo build/test.prg edge1050 -t
-```
-
-## Intégration continue (GitHub Actions)
-
-Trois workflows dans `.github/workflows/`, basés sur l'action Docker
-[`blackshadev/garmin-connectiq-build-action`](https://github.com/blackshadev/garmin-connectiq-build-action) (image qui embarque le SDK + les profils device, donc aucun setup SDK à faire) :
-- **`ci.yml`** : pipeline réutilisable — compile les 4 devices (matrice) + compile la cible `--unit-test`.
-- **`pr.yml`** (pull request → main) : appelle `ci.yml`. Gate vert/rouge.
-- **`main.yml`** (push sur main) : appelle `ci.yml`, puis **crée une release** `v<version>` (notes auto-générées + les `.prg` par device) **quand la version de `manifest.xml` change** (tag inexistant).
-
-**Prérequis** (Settings → Secrets → Actions) — un seul, optionnel :
-
-| Type | Nom | Contenu |
-|---|---|---|
-| Secret (opt.) | `DEVELOPER_KEY_BASE64` | `base64` de ta `developer_key`. Sinon une clé jetable est générée (OK pour build/tests ; le paquet store se signe avec ta vraie clé). |
-
-```bash
-# Générer la valeur du secret depuis ta clé
-base64 -i developer_key | pbcopy   # macOS
-```
-
-**Cut a release** : bump `version="X.Y.Z"` de `<iq:application>` dans `manifest.xml`, merge sur `main` → release `vX.Y.Z` créée automatiquement.
-
-> ⚠️ Cette action Docker **compile** seulement (pas de simulateur). Les tests unitaires sont donc **compilés** en CI (le code de test cassé fait échouer le build), mais leur **exécution** reste locale : `monkeydo build/test.prg edge1050 -t`. La version de l'action (`@9.1.1`) fixe la version du SDK utilisée.
+> ⚠️ The type checker can hit an `OutOfMemoryError` on arithmetic over nullable `Number?` values. Keep numeric accumulators non-null (a `seen`/flag pattern) instead of `null` sentinels.
 
 ## Architecture
 
-Séparation vues / état / services :
+Views / state / services separation:
 
 **App & UI**
-- `source/SugarPaceApp.mc` — cycle de vie, initialisation des services, callbacks
-- `source/SugarPaceView.mc` — écran principal (en-tête glycémie, graphe, grille d'aliments)
-- `source/SugarPaceDelegate.mc` — gestion des taps (aliment / graphe / en-tête)
+- `source/SugarPaceApp.mc` — lifecycle, service initialization, callbacks
+- `source/SugarPaceView.mc` — main screen (glucose header, chart, food grid)
+- `source/SugarPaceDelegate.mc` — tap handling (food / chart / header)
 - `source/SugarPaceMenuDelegate.mc` — menu
-- `source/TempOverridesView.mc` — écran de sélection de profil + son input delegate
-- `source/SugarPaceGlanceView.mc` — vue « glance »
+- `source/TempOverridesView.mc` — profile selection screen + its input delegate
+- `source/SugarPaceGlanceView.mc` — glance view
 
-**État (models)**
-- `source/models/AppState.mc` — état centralisé (glycémie, historique, aliments, profil, régions tactiles, fenêtre du graphe)
-- `source/models/GlucoseData.mc` — donnée glycémie (valeur, tendance, zones de couleur)
-- `source/models/FoodItem.mc`, `source/models/FoodDatabase.mc` — aliments
+**State (models)**
+- `source/models/AppState.mc` — centralized state (glucose, history, foods, profile, tap regions, chart window)
+- `source/models/GlucoseData.mc` — glucose reading (value, trend, zone colors)
+- `source/models/FoodItem.mc`, `source/models/FoodDatabase.mc` — foods
 
 **Services**
-- `source/services/NightscoutService.mc` — requêtes Nightscout (glycémie, profils, envoi de glucides). Les requêtes BLE sont volontairement **non concurrentes** (glycémie courante + historique fusionnés en une seule requête ; fetch profil décalé) pour éviter les crashs.
-- `source/services/OtpService.mc` — construction des données d'entrée + code OTP
+- `source/services/NightscoutService.mc` — Nightscout requests (glucose, profiles, carb sending). BLE requests are deliberately **non-concurrent** (current value + history merged into a single request; profile fetch staggered) to avoid crashes.
+- `source/services/OtpService.mc` — builds the entry payload + OTP code
 
 **OTP**
-- `source/otp/Otp.mc` — génération TOTP
+- `source/otp/Otp.mc` — TOTP generation
 - `source/otp/Hmac.mc` — HMAC-SHA1
 - `source/otp/Sha1.mc` — SHA1
-- `source/otp/Convert.mc` — utilitaires (Base32, etc.)
+- `source/otp/Convert.mc` — utilities (Base32, etc.)
 
-**Ressources**
-- `resources/settings/settings.xml` + `resources/properties/properties.xml` — réglages configurables
-- `resources/strings/` (+ `strings-fre/`) — libellés (EN / FR)
+**Resources**
+- `resources/settings/settings.xml` + `resources/properties/properties.xml` — configurable settings
+- `resources/strings/` (+ `strings-fre/`) — labels (EN / FR)
 - `resources/menus/menu.xml` — menus
-- `resources/foods/foods.json` — liste des aliments (les données ; `foods.xml` n'est que la déclaration de ressource)
-- `resources/drawables/` — icônes des aliments
+- `resources/foods/foods.json` — food list (the data; `foods.xml` is just the resource declaration)
+- `resources/drawables/` — food icons
 
-## API Nightscout
+## Nightscout API
 
-**Envoi de glucides** (avec OTP) :
+**Sending carbs** (with OTP):
 
 ```
 POST /api/v2/notifications/loop?token=<token>
@@ -173,19 +139,19 @@ POST /api/v2/notifications/loop?token=<token>
   "otp": "123456",
   "remoteCarbs": 15,
   "remoteAbsorption": 1,
-  "notes": "Nom de l'aliment",
+  "notes": "Food name",
   "units": "mg/dl",
   "created_at": "2025-09-08T12:52:04.000Z"
 }
 ```
 
-**Autres appels** : lecture des entrées glycémie (`/api/v1/entries.json?count=48`), lecture des profils (`/api/v1/profile.json`), overrides (`/api/v1/treatments.json`), activation/annulation d'override (`/api/v2/notifications/loop`).
+**Other calls**: read glucose entries (`/api/v1/entries.json?count=48`), read profiles (`/api/v1/profile.json`), overrides (`/api/v1/treatments.json`), activate/cancel override (`/api/v2/notifications/loop`).
 
-## Aliments
+## Foods
 
-La liste est définie dans `resources/foods/foods.json`. Pour ajouter/modifier un aliment, éditez ce fichier (et `resources/drawables/` pour l'icône).
+The list is defined in `resources/foods/foods.json`. To add/change a food, edit that file (and `resources/drawables/` for the icon).
 
-| Nom | Marque | Catégorie | Portion | Glucides | IG | Lipides | Protéines | Énergie |
+| Name | Brand | Category | Serving | Carbs | GI | Fat | Protein | Energy |
 |---|---|---|---|---|---|---|---|---|
 | Energy Gel+ Red Fruit | Decathlon | GEL | 35 g | 30 g | 80 | 0 g | 0 g | 502 kJ |
 | Energy Gel Red Fruit -3H | Decathlon | GEL | 35 g | 30 g | 85 | 0 g | 0 g | 502 kJ |
@@ -193,26 +159,26 @@ La liste est définie dans `resources/foods/foods.json`. Pour ajouter/modifier u
 | Fruit Jelly | — | JELLIES | 44 g | 35 g | 85 | 0 g | 0 g | 598 kJ |
 | Energy Bar Dates & Nuts | — | BAR | 50 g | 31 g | 55 | 5.5 g | 2.3 g | 800 kJ |
 
-⚠️ Les valeurs d'index glycémique (IG) sont estimées lorsqu'elles ne figurent pas sur l'emballage.
+⚠️ Glycemic index (GI) values are estimated when not printed on the packaging.
 
-## Compatibilité
+## Compatibility
 
-Testé sur **Garmin Edge 1050**. Devices ciblés : Edge 540/550/840/850/1040/1050 (voir `manifest.xml`).
+Tested on **Garmin Edge 1050**. Target devices: Edge 540/550/840/850/1040/1050 (see `manifest.xml`).
 
-## Dépannage
+## Troubleshooting
 
-- **Pas de données** : vérifier l'URL et le token Nightscout.
-- **OTP invalide** : vérifier le secret OTP et la synchro de l'heure de la montre.
-- **Crash à l'ouverture** : symptôme classique de requêtes BLE concurrentes — garder les fetch réseau non simultanés.
+- **No data**: check the Nightscout URL and token.
+- **Invalid OTP**: check the OTP secret and the watch clock sync.
+- **Crash on launch**: classic symptom of concurrent BLE requests — keep network fetches non-simultaneous.
 
-## Sécurité
+## Security
 
-- Code **TOTP** à usage unique (30 s) généré sur l'appareil.
-- Communications **HTTPS** avec Nightscout, accès par token.
+- One-time **TOTP** code (30 s) generated on-device.
+- **HTTPS** communication with Nightscout, token-based access.
 
 ---
 
 ## Support & contributions
 
-- **GitHub Issues** pour bugs et demandes de fonctionnalités.
-- Merci d'indiquer : modèle Garmin, version de l'app, description du problème, logs système si possible.
+- **GitHub Issues** for bugs and feature requests.
+- Please include: Garmin device model, app version, description of the problem, system logs if possible.
