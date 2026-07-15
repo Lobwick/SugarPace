@@ -45,6 +45,8 @@ class AppState {
 
     // UI state
     public var isLoading as Lang.Boolean = false;
+    // Index of the food item most recently sent, or -1. Used for green-flash feedback.
+    public var sentFoodIndex as Lang.Number = -1;
     public var foregroundColor as Graphics.ColorType =  Graphics.COLOR_WHITE;
     public var backgroundColor as Graphics.ColorType =  Graphics.COLOR_BLACK;
 
