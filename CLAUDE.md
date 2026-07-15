@@ -107,10 +107,13 @@ drapeau `seen` au lieu de sentinelles `null`. Préférer aussi des chaînes
 
 ### 2. `Rez.Drawables[stringVar]` ne fonctionne PAS
 L'accès dynamique à une ressource par variable de chaîne échoue **silencieusement**
-en Monkey C (catché par un `try/catch` vide, aucune erreur visible). C'est ce
-qui causait un bug où toutes les images produit retombaient sur le défaut de
-catégorie. Toujours mapper explicitement `string → Rez.Drawables.symbole` via
-une chaîne de `if/else if` (voir `brandDrawableId()` dans `SugarPaceView.mc`).
+en Monkey C (catché par un `try/catch` vide, aucune erreur visible). `Rez.Drawables`
+est un namespace de constantes compilées, pas un dictionnaire runtime.
+
+**Solution retenue** : `DrawableRegistry.mc` centralise le mapping
+`picture_id → Rez.Drawables.symbole` dans un seul Dictionary initialisé en lazy.
+`SugarPaceView.brandDrawableId()` délègue à `DrawableRegistry.get(picture)` —
+la vue n'est plus jamais modifiée lors de l'ajout d'un aliment.
 
 ### 3. Requêtes réseau concurrentes = crash
 Le pont BLE du device crashe l'app sous requêtes `Communications.makeWebRequest`
@@ -156,12 +159,22 @@ par design Garmin.
 ### 8. Images produit : fond, taille, dithering
 - Taille = pixels exacts rendus à l'écran (`drawBitmap` ne redimensionne pas).
   84×84 pour les tuiles de la grille actuelle.
-- Les PNG avec fond transparent + liseré blanc anti-aliasé créent un halo
-  visible sur fond noir. Fix appliqué : re-matte sur fond noir (composite
-  alpha) plutôt que `dithering="none"` (qui durcit les bords en dents de scie
-  — pire, testé et rejeté).
+- **Fond transparent** : les PNG doivent avoir un fond transparent pour s'adapter
+  au mode jour/nuit du device. `drawBitmap` composite l'image sur la couleur de
+  fond de la cellule (`appState.backgroundColor`), qui suit le thème.
 - `drawScaledBitmap` n'existe pas sur ces devices — impossible d'agrandir une
   image par code, il faut fournir un asset à la bonne taille.
+
+## Ajouter un aliment au catalogue
+
+Exactement 4 fichiers à toucher, dans cet ordre :
+
+1. **`resources/foods/foods.json`** — ajouter l'entrée JSON avec `id`, `name`, `brand`, `subcategory`, `picture`, valeurs nutritionnelles.
+2. **`resources/drawables/brands/<picture>.png`** — PNG 84×84, fond **transparent** (le compositing Monkey C gère le mode jour/nuit).
+3. **`resources/drawables/drawables.xml`** — ajouter `<bitmap id="<picture>" filename="brands/<picture>.png" />`.
+4. **`source/DrawableRegistry.mc`** — ajouter `"<picture>" => Rez.Drawables.<picture>,` dans le Dictionary.
+
+`SugarPaceView.mc` ne doit **jamais** être modifié pour un ajout d'aliment.
 
 ## Conventions établies cette session
 

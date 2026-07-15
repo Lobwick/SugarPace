@@ -2,6 +2,7 @@ import Toybox.Lang;
 import Toybox.WatchUi;
 import Toybox.Graphics;
 import Toybox.System;
+import Toybox.Application;
 
 //! Centralized state management for the application
 (:glance, :background)
@@ -37,6 +38,11 @@ class AppState {
     public var overridePresets as Lang.Array = [];
     public var activeProfile as Lang.String = "";
     public var presetCoordinatesProfile as Lang.Array = [];
+    // Food selection: which food IDs the user has chosen to display.
+    // null = not configured (first launch) → all foods shown.
+    // Empty dict = configured but nothing selected → empty grid + message.
+    public var selectedFoodIds as Lang.Dictionary? = null;
+
     // UI state
     public var isLoading as Lang.Boolean = false;
     public var foregroundColor as Graphics.ColorType =  Graphics.COLOR_WHITE;
@@ -212,5 +218,60 @@ class AppState {
     function setLoading(loading as Lang.Boolean) as Void {
         isLoading = loading;
         WatchUi.requestUpdate();
+    }
+
+    //! Load the food selection from persistent storage.
+    //! Call once from SugarPaceApp.getInitialView() (not in initialize() which
+    //! also runs in glance/background context where Storage may be absent).
+    function initializeSelection() as Void {
+        var stored = Application.Storage.getValue("selected_food_ids");
+        if (stored instanceof Lang.Dictionary) {
+            selectedFoodIds = stored;
+        }
+    }
+
+    //! Toggle a food item in/out of the user's selection.
+    //! Persists immediately to Application.Storage and reloads the food grid.
+    function toggleFoodSelection(id as Lang.String) as Void {
+        if (selectedFoodIds == null) {
+            // First toggle: initialise from the full catalogue so everything
+            // that wasn't explicitly toggled stays visible.
+            var allItems = FoodDatabase.loadAllUnfiltered();
+            selectedFoodIds = {} as Lang.Dictionary;
+            for (var i = 0; i < allItems.size(); i++) {
+                var item = allItems[i];
+                if (item instanceof FoodItem) {
+                    selectedFoodIds[item.id] = true;
+                }
+            }
+        }
+        if ((selectedFoodIds as Lang.Dictionary).hasKey(id)) {
+            (selectedFoodIds as Lang.Dictionary).remove(id);
+        } else {
+            (selectedFoodIds as Lang.Dictionary)[id] = true;
+        }
+        Application.Storage.setValue("selected_food_ids", selectedFoodIds);
+        updateFoodItems(FoodDatabase.loadAll(selectedFoodIds));
+    }
+
+    //! True if the given food id is in the current selection (or no selection is
+    //! configured yet, in which case everything is implicitly selected).
+    function isFoodSelected(id as Lang.String) as Lang.Boolean {
+        if (selectedFoodIds == null) {
+            return true;
+        }
+        return (selectedFoodIds as Lang.Dictionary).hasKey(id);
+    }
+
+    //! Count of selected items across the given item list.
+    function countSelected(items as Lang.Array) as Lang.Number {
+        var count = 0;
+        for (var i = 0; i < items.size(); i++) {
+            var item = items[i];
+            if (item instanceof FoodItem && isFoodSelected(item.id)) {
+                count++;
+            }
+        }
+        return count;
     }
 }

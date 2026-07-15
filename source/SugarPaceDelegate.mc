@@ -73,6 +73,14 @@ class SugarPaceDelegate extends WatchUi.BehaviorDelegate {
         return false;
     }
 
+    //! Physical menu button → open food selection (3-level: category > brand > item)
+    function onMenu() as Lang.Boolean {
+        var allItems = FoodDatabase.loadAllUnfiltered();
+        var selView = new FoodSelectionView(appState, allItems);
+        WatchUi.pushView(selView, new FoodSelectionDelegate(appState, allItems, selView), WatchUi.SLIDE_UP);
+        return true;
+    }
+
     //! Open the profile / temp-override selection view
     private function openProfileSelection() as Void {
         // Refresh profiles/active override before showing
