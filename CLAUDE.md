@@ -158,7 +158,7 @@ par design Garmin.
 
 ### 8. Images produit : fond, taille, dithering
 - Taille = pixels exacts rendus à l'écran (`drawBitmap` ne redimensionne pas).
-  84×84 pour les tuiles de la grille actuelle.
+  150x150 pour les tuiles de la grille actuelle.
 - **Fond transparent** : les PNG doivent avoir un fond transparent pour s'adapter
   au mode jour/nuit du device. `drawBitmap` composite l'image sur la couleur de
   fond de la cellule (`appState.backgroundColor`), qui suit le thème.
@@ -170,7 +170,7 @@ par design Garmin.
 Exactement 4 fichiers à toucher, dans cet ordre :
 
 1. **`resources/foods/foods.json`** — ajouter l'entrée JSON avec `id`, `name`, `brand`, `subcategory`, `picture`, valeurs nutritionnelles.
-2. **`resources/drawables/brands/<picture>.png`** — PNG 84×84, fond **transparent** (le compositing Monkey C gère le mode jour/nuit).
+2. **`resources/drawables/brands/<picture>.png`** — PNG 150x150, fond **transparent** (le compositing Monkey C gère le mode jour/nuit).
 3. **`resources/drawables/drawables.xml`** — ajouter `<bitmap id="<picture>" filename="brands/<picture>.png" />`.
 4. **`source/DrawableRegistry.mc`** — ajouter `"<picture>" => Rez.Drawables.<picture>,` dans le Dictionary.
 
