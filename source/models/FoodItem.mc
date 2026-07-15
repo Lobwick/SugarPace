@@ -4,9 +4,10 @@ import Toybox.Lang;
 (:glance, :background)
 class FoodItem {
     
+    public var id as Lang.String;
     public var name as Lang.String;
     public var brand as Lang.String;
-    public var subcategory as Lang.String;  // GEL | JELLIES | BAR | DRINKS
+    public var subcategory as Lang.String;  // GEL | JELLIES | BAR | BOISSON | OTHER
     public var picture as Lang.String?;     // optional brand-specific drawable id
     public var carbs as Lang.Number;
     public var portion_g as Lang.Number;
@@ -17,9 +18,10 @@ class FoodItem {
     public var index as Lang.Number = 0;
 
     function initialize(foodData as Lang.Dictionary, itemIndex as Lang.Number) {
+        id          = foodData.hasKey("id")           ? foodData.get("id").toString()           : itemIndex.toString();
         name        = foodData.hasKey("name")        ? foodData.get("name").toString()        : "Unknown";
         brand       = foodData.hasKey("brand")       ? foodData.get("brand").toString()       : "";
-        subcategory = foodData.hasKey("subcategory") ? foodData.get("subcategory").toString() : "GEL";
+        subcategory = foodData.hasKey("subcategory") ? foodData.get("subcategory").toString() : "OTHER";
         var pictureValue = foodData.hasKey("picture") ? foodData.get("picture") : null;
         picture = pictureValue != null ? pictureValue.toString() : null;
 
