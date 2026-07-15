@@ -397,7 +397,12 @@ class SugarPaceView extends WatchUi.View {
                 continue;
             }
 
-            dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
+            var isSent = (appState.sentFoodIndex == i);
+            if (isSent) {
+                dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_GREEN);
+                dc.fillRectangle(x0, y0, cellWidth, cellHeight);
+            }
+            dc.setColor(isSent ? Graphics.COLOR_GREEN : appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
             dc.drawRectangle(x0, y0, cellWidth, cellHeight);
 
             var bitmap = resolveBitmap(foodItem);
