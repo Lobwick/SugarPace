@@ -12,7 +12,15 @@ env:
   CIQ_ACTION: blackshadev/garmin-connectiq-build-action@9.1.1
 
 jobs:
+  validate-catalogue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate food catalogue consistency
+        run: python3 scripts/validate_foods.py
+
   build:
+    needs: validate-catalogue
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
