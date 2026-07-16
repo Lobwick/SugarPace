@@ -1,4 +1,5 @@
 import Toybox.Lang;
+import Toybox.Timer;
 import Toybox.WatchUi;
 import Toybox.System;
 
@@ -7,6 +8,7 @@ class SugarPaceDelegate extends WatchUi.BehaviorDelegate {
     private var appState as AppState;
     private var nightscoutService as NightscoutService;
     private var otpService as OtpService;
+    private var feedbackTimer as Timer.Timer?;
 
     function initialize(appState as AppState, nightscoutService as NightscoutService, otpService as OtpService) {
         WatchUi.BehaviorDelegate.initialize();
@@ -73,6 +75,14 @@ class SugarPaceDelegate extends WatchUi.BehaviorDelegate {
         return false;
     }
 
+    //! Physical menu button → open food selection (3-level: category > brand > item)
+    function onMenu() as Lang.Boolean {
+        var allItems = FoodDatabase.loadAllUnfiltered();
+        var selView = new FoodSelectionView(appState, allItems);
+        WatchUi.pushView(selView, new FoodSelectionDelegate(appState, allItems, selView), WatchUi.SLIDE_UP);
+        return true;
+    }
+
     //! Open the profile / temp-override selection view
     private function openProfileSelection() as Void {
         // Refresh profiles/active override before showing
@@ -86,12 +96,32 @@ class SugarPaceDelegate extends WatchUi.BehaviorDelegate {
     private function sendFood(food as FoodItem) as Void {
         System.println("Sending food: " + food.name + " with " + food.carbs + " carbs");
 
-        // Create food entry data using OTP service
+        // Find the index of this food item for visual feedback
+        var sentIndex = -1;
+        for (var i = 0; i < appState.foodItems.size(); i++) {
+            var item = appState.foodItems[i];
+            if (item instanceof FoodItem && (item as FoodItem).name.equals(food.name)) {
+                sentIndex = i;
+                break;
+            }
+        }
+        appState.sentFoodIndex = sentIndex;
+        WatchUi.requestUpdate();
+
+        // Clear the highlight after 2 seconds
+        if (feedbackTimer != null) {
+            feedbackTimer.stop();
+        }
+        feedbackTimer = new Timer.Timer();
+        feedbackTimer.start(method(:clearFoodFeedback), 2000, false);
+
         var foodEntryData = otpService.createFoodEntryData(food.toDictionary());
-
         System.println("Food entry data created - notes: " + foodEntryData.get("notes"));
-
-        // Send via Nightscout service
         nightscoutService.sendFoodEntry(foodEntryData);
+    }
+
+    function clearFoodFeedback() as Void {
+        appState.sentFoodIndex = -1;
+        WatchUi.requestUpdate();
     }
 }

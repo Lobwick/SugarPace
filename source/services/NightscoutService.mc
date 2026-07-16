@@ -18,6 +18,11 @@ class NightscoutService {
     private var requestQueue as Lang.Array = [];
     private var requestInFlight as Lang.Boolean = false;
     private var currentResponder as Method?;
+    // Timestamp when the current in-flight request was dispatched.
+    // If the app is suspended mid-request (e.g. during an activity), the callback
+    // may never fire. After REQUEST_TIMEOUT_MS we reset and let the queue drain.
+    private var requestStartTime as Lang.Number = 0;
+    private static const REQUEST_TIMEOUT_MS as Lang.Number = 5000;
 
     function initialize(appState as AppState) {
         self.appState = appState;
@@ -36,12 +41,20 @@ class NightscoutService {
 
     //! Dispatch the next queued request if the bridge is free.
     private function dispatchNext() as Void {
-        if (requestInFlight || requestQueue.size() == 0) {
+        if (requestInFlight) {
+            if (System.getTimer() - requestStartTime < REQUEST_TIMEOUT_MS) {
+                return;
+            }
+            requestInFlight = false;
+            currentResponder = null;
+        }
+        if (requestQueue.size() == 0) {
             return;
         }
         var req = requestQueue[0];
         requestQueue = requestQueue.slice(1, null);
         requestInFlight = true;
+        requestStartTime = System.getTimer();
         currentResponder = req.get("responder") as Method;
         Communications.makeWebRequest(
             req.get("url"),
