@@ -76,7 +76,6 @@ body:
     attributes:
       label: Index glycémique (optionnel)
       description: Laisser vide pour estimation automatique selon la catégorie et les macros.
-      placeholder: ""
     validations:
       required: false
 
