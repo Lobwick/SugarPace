@@ -52,9 +52,22 @@
     "energy_kj": 598
   },
   {
+    "id": "gel_maurten_160",
+    "name": "Gel 160",
+    "brand": "Maurten",
+    "picture": "gel_maurten_160",
+    "subcategory": "GEL",
+    "portion_g": 65,
+    "carbs_g": 40,
+    "gi": 80,
+    "fat_g": 0.0,
+    "protein_g": 0.0,
+    "energy_kj": 680
+  },
+  {
     "id": "bar_energy_dates_nuts_50",
     "name": "Energy Bar Dates & Nuts",
-    "brand": "",
+    "brand": "Decathlon",
     "picture": "bar_energy_dates_nuts",
     "subcategory": "BAR",
     "portion_g": 50,

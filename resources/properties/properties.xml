@@ -3,6 +3,6 @@
     <property id="nightscout_url" type="string">https://glucosefelix.fly.dev</property>
     <property id="otp_secret" type="string">TDWVBUNPSA3DYZSHTR7IYJ2QX4SGT6YW</property>
     <property id="default_user" type="string">SugarPace</property>
-    <property id="default_unit" type="string">mg/dl</property>
+    <property id="default_unit" type="string">mg/dd</property>
     <property id="chart_color_by_zone" type="boolean">false</property>
 </properties>

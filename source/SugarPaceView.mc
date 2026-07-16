@@ -331,8 +331,12 @@ class SugarPaceView extends WatchUi.View {
         dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
 
         if (appState.foodItems.size() == 0) {
-            dc.drawText(width / 2, gridTop + Layout.GRID_EMPTY_TITLE_OFFSET, Graphics.FONT_SMALL, WatchUi.loadResource(Rez.Strings.loading_foods), Graphics.TEXT_JUSTIFY_CENTER);
-            dc.drawText(width / 2, gridTop + Layout.GRID_EMPTY_SUBTITLE_OFFSET, Graphics.FONT_XTINY, WatchUi.loadResource(Rez.Strings.check_nightscout_config), Graphics.TEXT_JUSTIFY_CENTER);
+            if (appState.selectedFoodIds != null) {
+                dc.drawText(width / 2, gridTop + Layout.GRID_EMPTY_TITLE_OFFSET, Graphics.FONT_SMALL, WatchUi.loadResource(Rez.Strings.food_no_selection), Graphics.TEXT_JUSTIFY_CENTER);
+            } else {
+                dc.drawText(width / 2, gridTop + Layout.GRID_EMPTY_TITLE_OFFSET, Graphics.FONT_SMALL, WatchUi.loadResource(Rez.Strings.loading_foods), Graphics.TEXT_JUSTIFY_CENTER);
+                dc.drawText(width / 2, gridTop + Layout.GRID_EMPTY_SUBTITLE_OFFSET, Graphics.FONT_XTINY, WatchUi.loadResource(Rez.Strings.check_nightscout_config), Graphics.TEXT_JUSTIFY_CENTER);
+            }
             appState.updateFoodGridCoordinates([]);
             return 0;
         }
@@ -393,7 +397,12 @@ class SugarPaceView extends WatchUi.View {
                 continue;
             }
 
-            dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
+            var isSent = (appState.sentFoodIndex == i);
+            if (isSent) {
+                dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_GREEN);
+                dc.fillRectangle(x0, y0, cellWidth, cellHeight);
+            }
+            dc.setColor(isSent ? Graphics.COLOR_GREEN : appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
             dc.drawRectangle(x0, y0, cellWidth, cellHeight);
 
             var bitmap = resolveBitmap(foodItem);
@@ -437,18 +446,7 @@ class SugarPaceView extends WatchUi.View {
         if (picture == null) {
             return null;
         }
-        if (picture.equals("gel_decathlon_energygelplus_redfruit")) {
-            return Rez.Drawables.gel_decathlon_energygelplus_redfruit;
-        } else if (picture.equals("gel_decathlon_energygel_redfruit_minus3h")) {
-            return Rez.Drawables.gel_decathlon_energygel_redfruit_minus3h;
-        } else if (picture.equals("gel_decathlon_108_cola")) {
-            return Rez.Drawables.gel_decathlon_108_cola;
-        } else if (picture.equals("jelly_red_fruit")) {
-            return Rez.Drawables.jelly_red_fruit;
-        } else if (picture.equals("bar_energy_dates_nuts")) {
-            return Rez.Drawables.bar_energy_dates_nuts;
-        }
-        return null;
+        return DrawableRegistry.get(picture);
     }
 
     //! Category fallback drawable when a food has no (known) brand picture.

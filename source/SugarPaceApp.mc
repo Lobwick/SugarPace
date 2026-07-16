@@ -68,8 +68,9 @@ class SugarPaceApp extends Application.AppBase {
         
         // Fetch live glucose data (current value + ~4h trend history) from Nightscout
         nightscoutService.fetchGlucoseData();
-        // Load static food list from embedded JSON resource
-        appState.updateFoodItems(FoodDatabase.loadAll());
+        // Load user's food selection from persistent storage, then populate the grid
+        appState.initializeSelection();
+        appState.updateFoodItems(FoodDatabase.loadAll(appState.selectedFoodIds));
         
         mainView = new SugarPaceView(appState);
         mainDelegate = new SugarPaceDelegate(appState, nightscoutService, otpService);
