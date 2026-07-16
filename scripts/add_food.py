@@ -204,7 +204,10 @@ def main():
 
     if args.from_issue_body:
         d = parse_issue_body(args.from_issue_body)
-        run(d["name"], d["brand"], d["subcategory"],
+        # --brand / --name override issue body (provided by workflow from issue title)
+        name  = args.name  if args.name  else d["name"]
+        brand = args.brand if args.brand else d["brand"]
+        run(name, brand, d["subcategory"],
             d["portion_g"], d["carbs_g"], d["fat_g"], d["protein_g"],
             d["energy_kj"], d["gi"], d["image_url"])
     else:
