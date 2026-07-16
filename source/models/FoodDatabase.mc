@@ -97,4 +97,45 @@ class FoodDatabase {
         }
         return result;
     }
+
+    //! Returns all unique brands across all items (order of first appearance).
+    static function getAllBrands(items as Lang.Array) as Lang.Array {
+        var seen = {} as Lang.Dictionary;
+        var result = [] as Lang.Array;
+        for (var i = 0; i < items.size(); i++) {
+            var item = items[i];
+            if (!(item instanceof FoodItem)) { continue; }
+            if (seen.hasKey(item.brand)) { continue; }
+            seen[item.brand] = true;
+            result.add(item.brand);
+        }
+        return result;
+    }
+
+    //! Returns unique subcategories that contain at least one item with the given brand.
+    static function getSubcategoriesForBrand(items as Lang.Array, brand as Lang.String) as Lang.Array {
+        var seen = {} as Lang.Dictionary;
+        var result = [] as Lang.Array;
+        for (var i = 0; i < items.size(); i++) {
+            var item = items[i];
+            if (!(item instanceof FoodItem)) { continue; }
+            if (!item.brand.equals(brand)) { continue; }
+            if (seen.hasKey(item.subcategory)) { continue; }
+            seen[item.subcategory] = true;
+            result.add(item.subcategory);
+        }
+        return result;
+    }
+
+    //! Returns all items for the given brand across all subcategories.
+    static function getItemsForBrand(items as Lang.Array, brand as Lang.String) as Lang.Array {
+        var result = [] as Lang.Array;
+        for (var i = 0; i < items.size(); i++) {
+            var item = items[i];
+            if (item instanceof FoodItem && item.brand.equals(brand)) {
+                result.add(item);
+            }
+        }
+        return result;
+    }
 }
