@@ -1,24 +1,8 @@
 name: Ajouter un aliment
 description: Propose un nouvel aliment au catalogue SugarPace. Une PR sera créée automatiquement.
-title: "add-food: "
+title: "add-food: Marque - Nom du produit"
 labels: ["add-food"]
 body:
-  - type: input
-    id: name
-    attributes:
-      label: Nom du produit
-      placeholder: "Energy Gel Cola"
-    validations:
-      required: true
-
-  - type: input
-    id: brand
-    attributes:
-      label: Marque
-      placeholder: "Decathlon"
-    validations:
-      required: true
-
   - type: dropdown
     id: subcategory
     attributes:
