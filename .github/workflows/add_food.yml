@@ -1,0 +1,86 @@
+name: Add food from issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  add-food:
+    if: contains(github.event.issue.labels.*.name, 'add-food')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install Pillow
+
+      - name: Write issue body to file
+        env:
+          BODY: ${{ github.event.issue.body }}
+        run: echo "$BODY" > /tmp/issue_body.md
+
+      - name: Run add_food script
+        run: python3 scripts/add_food.py --from-issue-body /tmp/issue_body.md
+
+      - name: Validate catalogue consistency
+        run: python3 scripts/validate_foods.py
+
+      - name: Extract product name for branch/PR
+        id: meta
+        env:
+          BODY: ${{ github.event.issue.body }}
+        run: |
+          NAME=$(python3 - <<'PY'
+          import re, os
+          text = os.environ["BODY"]
+          m = re.search(r"### Nom du produit\s*\n+(.+?)(?:\n###|\Z)", text, re.DOTALL)
+          name = m.group(1).strip() if m else "unknown"
+          m2 = re.search(r"### Marque\s*\n+(.+?)(?:\n###|\Z)", text, re.DOTALL)
+          brand = m2.group(1).strip() if m2 else "unknown"
+          slug = f"{brand}_{name}".strip().lower().replace(" ", "_")
+          print(slug)
+          PY
+          )
+          echo "slug=$NAME" >> $GITHUB_OUTPUT
+          echo "branch=add-food/$NAME" >> $GITHUB_OUTPUT
+
+      - name: Create branch and open PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          SLUG: ${{ steps.meta.outputs.slug }}
+          BRANCH: ${{ steps.meta.outputs.branch }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add resources/foods/foods.json \
+                  resources/drawables/drawables.xml \
+                  source/DrawableRegistry.mc \
+                  resources/drawables/brands/
+          git commit -m "feat: add food $SLUG (closes #$ISSUE_NUMBER)"
+          git push origin "$BRANCH"
+          gh pr create \
+            --title "feat: add food $SLUG" \
+            --body "Closes #$ISSUE_NUMBER
+
+Aliment ajouté automatiquement depuis l'issue #$ISSUE_NUMBER.
+
+Fichiers modifiés :
+- \`resources/foods/foods.json\`
+- \`resources/drawables/drawables.xml\`
+- \`source/DrawableRegistry.mc\`
+- \`resources/drawables/brands/${SLUG}.png\`" \
+            --base main \
+            --head "$BRANCH"

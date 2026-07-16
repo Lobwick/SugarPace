@@ -1,0 +1,93 @@
+name: Ajouter un aliment
+description: Propose un nouvel aliment au catalogue SugarPace. Une PR sera créée automatiquement.
+title: "add-food: "
+labels: ["add-food"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Nom du produit
+      placeholder: "Energy Gel Cola"
+    validations:
+      required: true
+
+  - type: input
+    id: brand
+    attributes:
+      label: Marque
+      placeholder: "Decathlon"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: subcategory
+    attributes:
+      label: Catégorie
+      options:
+        - GEL
+        - JELLIES
+        - BAR
+        - OTHER
+    validations:
+      required: true
+
+  - type: input
+    id: portion_g
+    attributes:
+      label: Portion (g)
+      placeholder: "40"
+    validations:
+      required: true
+
+  - type: input
+    id: carbs_g
+    attributes:
+      label: Glucides pour la portion (g)
+      placeholder: "26"
+    validations:
+      required: true
+
+  - type: input
+    id: fat_g
+    attributes:
+      label: Lipides pour la portion (g)
+      placeholder: "0"
+    validations:
+      required: true
+
+  - type: input
+    id: protein_g
+    attributes:
+      label: Protéines pour la portion (g)
+      placeholder: "0"
+    validations:
+      required: true
+
+  - type: input
+    id: energy_kj
+    attributes:
+      label: Énergie pour la portion (kJ)
+      placeholder: "440"
+    validations:
+      required: true
+
+  - type: input
+    id: gi
+    attributes:
+      label: Index glycémique (optionnel)
+      description: Laisser vide pour estimation automatique selon la catégorie et les macros.
+      placeholder: ""
+    validations:
+      required: false
+
+  - type: input
+    id: image_url
+    attributes:
+      label: Image du produit (URL GitHub)
+      description: >
+        Glisser-déposer une image PNG ici dans l'éditeur d'issue → GitHub génère
+        une URL `https://github.com/user-attachments/assets/...` → coller cette URL ci-dessous.
+        L'image sera redimensionnée automatiquement à 150×150 px.
+      placeholder: "https://github.com/user-attachments/assets/..."
+    validations:
+      required: true
