@@ -42,6 +42,8 @@ class AppState {
     // null = not configured (first launch) → all foods shown.
     // Empty dict = configured but nothing selected → empty grid + message.
     public var selectedFoodIds as Lang.Dictionary? = null;
+    // Filter navigation order: false = category→brand (default), true = brand→category.
+    public var filterOrderBrandFirst as Lang.Boolean = false;
 
     // UI state
     public var isLoading as Lang.Boolean = false;
@@ -222,7 +224,7 @@ class AppState {
         WatchUi.requestUpdate();
     }
 
-    //! Load the food selection from persistent storage.
+    //! Load the food selection and filter order from persistent storage.
     //! Call once from SugarPaceApp.getInitialView() (not in initialize() which
     //! also runs in glance/background context where Storage may be absent).
     function initializeSelection() as Void {
@@ -230,6 +232,52 @@ class AppState {
         if (stored instanceof Lang.Dictionary) {
             selectedFoodIds = stored;
         }
+        var order = Application.Storage.getValue("filter_order_brand_first");
+        if (order instanceof Lang.Boolean) {
+            filterOrderBrandFirst = order;
+        }
+    }
+
+    //! Toggle filter navigation order (category→brand ↔ brand→category) and persist.
+    function toggleFilterOrder() as Void {
+        filterOrderBrandFirst = !filterOrderBrandFirst;
+        Application.Storage.setValue("filter_order_brand_first", filterOrderBrandFirst);
+        WatchUi.requestUpdate();
+    }
+
+    //! Toggle all items in scope: if all selected → deselect all; else → select all.
+    //! Persists and refreshes the food grid.
+    function toggleAllForItems(items as Lang.Array) as Void {
+        if (selectedFoodIds == null) {
+            var allItems = FoodDatabase.loadAllUnfiltered();
+            selectedFoodIds = {} as Lang.Dictionary;
+            for (var i = 0; i < allItems.size(); i++) {
+                var item = allItems[i];
+                if (item instanceof FoodItem) {
+                    (selectedFoodIds as Lang.Dictionary)[item.id] = true;
+                }
+            }
+        }
+        var allSelected = true;
+        for (var i = 0; i < items.size(); i++) {
+            var item = items[i];
+            if (!(item instanceof FoodItem)) { continue; }
+            if (!(selectedFoodIds as Lang.Dictionary).hasKey(item.id)) {
+                allSelected = false;
+                break;
+            }
+        }
+        for (var i = 0; i < items.size(); i++) {
+            var item = items[i];
+            if (!(item instanceof FoodItem)) { continue; }
+            if (allSelected) {
+                (selectedFoodIds as Lang.Dictionary).remove(item.id);
+            } else {
+                (selectedFoodIds as Lang.Dictionary)[item.id] = true;
+            }
+        }
+        Application.Storage.setValue("selected_food_ids", selectedFoodIds);
+        updateFoodItems(FoodDatabase.loadAll(selectedFoodIds));
     }
 
     //! Toggle a food item in/out of the user's selection.

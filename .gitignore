@@ -2,9 +2,11 @@
 .claude/**
 .DS_Store
 .vscode/**
-SugarPace-settings.json
+*-settings.json
+.serena/
 SugarPace.prg
 SugarPace.prg.debug.xml
 *mir/**
 gen/**
 .gstack/
+*prg*
