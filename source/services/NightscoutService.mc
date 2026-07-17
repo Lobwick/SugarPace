@@ -22,6 +22,39 @@ function stripLeadingEmoji(s as Lang.String) as Lang.String {
     return s.substring(start, s.length()) as Lang.String;
 }
 
+//! Returns true if a fixed-duration Temporary Override is still within its window.
+//! Parses created_at (ISO 8601 UTC: "YYYY-MM-DDTHH:MM:SS.sssZ") and checks
+//! that now < created_at + duration_minutes.
+function isOverrideStillActive(override as Lang.Dictionary) as Lang.Boolean {
+    var createdAtRaw = override.get("created_at");
+    var durationRaw  = override.get("duration");
+    if (createdAtRaw == null || durationRaw == null) { return false; }
+
+    var durationMin = durationRaw instanceof Lang.Float
+        ? durationRaw.toNumber()
+        : (durationRaw as Lang.Number).toNumber();
+    if (durationMin == null || durationMin <= 0) { return false; }
+
+    // Parse "YYYY-MM-DDTHH:MM:SS..." — only the first 19 chars matter
+    var s = createdAtRaw.toString();
+    if (s.length() < 19) { return false; }
+    var year   = s.substring(0, 4).toNumber();
+    var month  = s.substring(5, 7).toNumber();
+    var day    = s.substring(8, 10).toNumber();
+    var hour   = s.substring(11, 13).toNumber();
+    var minute = s.substring(14, 16).toNumber();
+    var second = s.substring(17, 19).toNumber();
+    if (year == null || month == null || day == null ||
+        hour == null || minute == null || second == null) { return false; }
+
+    var createdAt = Toybox.Time.Gregorian.moment({
+        :year => year, :month => month, :day => day,
+        :hour => hour, :minute => minute, :second => second
+    });
+    var expiresAt = createdAt.add(new Toybox.Time.Duration(durationMin * 60));
+    return Toybox.Time.now().lessThan(expiresAt);
+}
+
 //! Service responsible for all Nightscout API communications
 class NightscoutService {
 
@@ -274,9 +307,14 @@ class NightscoutService {
                                 var durationType = override.get("durationType");
                                 if (durationType != null && durationType.toString().equals("indefinite")) {
                                     isActive = true;
+                                } else {
+                                    // Fixed-duration override: active if created_at + duration > now
+                                    isActive = isOverrideStillActive(override);
                                 }
                             } else if (!override.hasKey("duration") || override.get("duration") == null) {
                                 isActive = true;
+                            } else {
+                                isActive = isOverrideStillActive(override);
                             }
                             
                             if (isActive) {
