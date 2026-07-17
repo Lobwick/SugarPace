@@ -428,8 +428,10 @@ class NightscoutService {
         
         if (responseCode == 200 || responseCode == 201) {
             System.println("Preset activated successfully!");
+            // Optimistic update: show selected preset immediately without refetching.
+            // Immediate refetch causes a race — Loop may process the command after we query,
+            // returning no active override and overwriting the correct preset name with "Default".
             appState.updateActiveProfile(profileToActivate);
-            fetchTempBasalData();
         } else {
             System.println("Error activating preset: " + responseCode);
         }
