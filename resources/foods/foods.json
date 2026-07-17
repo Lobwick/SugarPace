@@ -76,18 +76,5 @@
     "fat_g": 5.5,
     "protein_g": 2.3,
     "energy_kj": 800
-  },
-  {
-    "id": "226ers_isotonic_gel_68g_68",
-    "name": "ISOTONIC GEL 68G",
-    "brand": "226ers",
-    "picture": "226ers_isotonic_gel_68g",
-    "subcategory": "GEL",
-    "portion_g": 68.0,
-    "carbs_g": 22.0,
-    "gi": 80,
-    "fat_g": 0.0,
-    "protein_g": 0.0,
-    "energy_kj": 376
   }
 ]
