@@ -151,17 +151,16 @@ def parse_issue_body(body_file):
         "fat_g":      float(extract("Lipides pour la portion (g)")),
         "protein_g":  float(extract("Protéines pour la portion (g)")),
         "energy_kj":  int(extract("Énergie pour la portion (kJ)")),
-        "gi":         extract("Index glycémique (optionnel)") or None,
         "image_url":  extract("Image du produit (URL GitHub)"),
     }
 
 
 def run(name, brand, subcategory, portion_g, carbs_g, fat_g, protein_g,
-        energy_kj, gi, image_source):
+        energy_kj, image_source):
 
     picture = make_picture(brand, name)
     food_id = make_food_id(picture, portion_g)
-    gi_value = int(gi) if gi else estimate_gi(subcategory, fat_g, protein_g)
+    gi_value = estimate_gi(subcategory, fat_g, protein_g)
 
     entry = {
         "id":         food_id,
@@ -198,7 +197,6 @@ def main():
     parser.add_argument("--fat", type=float, default=0.0)
     parser.add_argument("--protein", type=float, default=0.0)
     parser.add_argument("--energy-kj", type=int)
-    parser.add_argument("--gi", default=None)
     parser.add_argument("--image", help="Local path or URL to the product image")
     args = parser.parse_args()
 
@@ -209,7 +207,7 @@ def main():
         brand = args.brand if args.brand else d["brand"]
         run(name, brand, d["subcategory"],
             d["portion_g"], d["carbs_g"], d["fat_g"], d["protein_g"],
-            d["energy_kj"], d["gi"], d["image_url"])
+            d["energy_kj"], d["image_url"])
     else:
         missing = [f for f in ["name", "brand", "subcategory", "portion", "carbs", "energy_kj", "image"]
                    if getattr(args, f.replace("-", "_")) is None]
@@ -217,7 +215,7 @@ def main():
             parser.error(f"Champs requis manquants : {', '.join(missing)}")
         run(args.name, args.brand, args.subcategory,
             args.portion, args.carbs, args.fat, args.protein,
-            args.energy_kj, args.gi, args.image)
+            args.energy_kj, args.image)
 
 
 if __name__ == "__main__":
