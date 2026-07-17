@@ -2,7 +2,7 @@ name: Add food from issue
 
 on:
   issues:
-    types: [opened]
+    types: [opened, edited, reopened]
 
 jobs:
   add-food:
