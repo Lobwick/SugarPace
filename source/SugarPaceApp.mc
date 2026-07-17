@@ -68,6 +68,8 @@ class SugarPaceApp extends Application.AppBase {
         
         // Fetch live glucose data (current value + ~4h trend history) from Nightscout
         nightscoutService.fetchGlucoseData();
+        // Fetch active override profile and available presets from Nightscout
+        nightscoutService.fetchTempBasalData();
         // Load user's food selection from persistent storage, then populate the grid
         appState.initializeSelection();
         appState.updateFoodItems(FoodDatabase.loadAll(appState.selectedFoodIds));

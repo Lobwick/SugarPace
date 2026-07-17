@@ -410,8 +410,8 @@ class NightscoutService {
         
         if (responseCode == 200 || responseCode == 201) {
             System.println("Preset activated successfully!");
-            appState.updateActiveProfile( profileToActivate);
-            //fetchTempBasalData();
+            appState.updateActiveProfile(profileToActivate);
+            fetchTempBasalData();
         } else {
             System.println("Error activating preset: " + responseCode);
         }
