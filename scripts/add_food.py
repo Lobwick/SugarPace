@@ -137,8 +137,12 @@ def _extract_image_url(raw):
     """Accept a raw URL or GitHub markdown image syntax ![...](url)."""
     if not raw:
         return raw
-    # GitHub drag-and-drop gives: ![filename](https://...)
+    # GitHub drag-and-drop gives markdown: ![filename](https://...)
     m = re.search(r'!\[.*?\]\((https?://\S+)\)', raw)
+    if m:
+        return m.group(1)
+    # Or HTML: <img ... src="https://..." ...>
+    m = re.search(r'<img\b[^>]*\bsrc="(https?://[^"]+)"', raw)
     if m:
         return m.group(1)
     return raw.strip()
