@@ -14,4 +14,5 @@
     <bitmap id="jelly_red_fruit" filename="brands/jelly_red_fruit.png" />
     <bitmap id="bar_energy_dates_nuts" filename="brands/bar_energy_dates_nuts.png" />
     <bitmap id="gel_maurten_160" filename="brands/gel_maurten_160.png" />
+    <bitmap id="marque_nom_du_produit" filename="brands/marque_nom_du_produit.png" />
 </drawables>

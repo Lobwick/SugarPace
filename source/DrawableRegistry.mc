@@ -20,6 +20,7 @@ class DrawableRegistry {
                 "jelly_red_fruit"                           => Rez.Drawables.jelly_red_fruit,
                 "bar_energy_dates_nuts"                     => Rez.Drawables.bar_energy_dates_nuts,
                 "gel_maurten_160"                           => Rez.Drawables.gel_maurten_160,
+                "marque_nom_du_produit"                     => Rez.Drawables.marque_nom_du_produit,
             } as Lang.Dictionary;
         }
         return (_map as Lang.Dictionary).get(pictureId) as Lang.ResourceId?;

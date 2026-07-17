@@ -76,5 +76,18 @@
     "fat_g": 5.5,
     "protein_g": 2.3,
     "energy_kj": 800
+  },
+  {
+    "id": "marque_nom_du_produit_68",
+    "name": "Nom du produit",
+    "brand": "Marque",
+    "picture": "marque_nom_du_produit",
+    "subcategory": "GEL",
+    "portion_g": 68.0,
+    "carbs_g": 22.0,
+    "gi": 80,
+    "fat_g": 0.0,
+    "protein_g": 0.0,
+    "energy_kj": 376
   }
 ]
