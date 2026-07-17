@@ -35,7 +35,9 @@ GI_BASELINES = {"GEL": 80, "JELLIES": 82, "BAR": 55, "OTHER": 65}
 
 
 def slugify(text):
-    return text.strip().lower().replace(" ", "_")
+    import re as _re
+    s = _re.sub(r'[^a-z0-9_]', '_', text.strip().lower())
+    return s.strip('_')
 
 
 def estimate_gi(subcategory, fat_g, protein_g):
@@ -44,7 +46,11 @@ def estimate_gi(subcategory, fat_g, protein_g):
 
 
 def make_picture(brand, name):
-    return slugify(brand) + "_" + slugify(name)
+    picture = slugify(brand) + "_" + slugify(name)
+    # Monkey C identifiers must not start with a digit
+    if picture and picture[0].isdigit():
+        picture = "_" + picture
+    return picture
 
 
 def make_food_id(picture, portion_g):
