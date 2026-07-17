@@ -4,6 +4,24 @@ import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;
 
+//! Strip leading non-printable-ASCII chars (emojis, symbols) from a string.
+//! Loop embeds emoji in preset reason names (e.g. "♦ sport") which don't
+//! render on Garmin devices and prevent .equals() comparisons with preset list names.
+function stripLeadingEmoji(s as Lang.String) as Lang.String {
+    var chars = s.toCharArray();
+    var start = 0;
+    while (start < chars.size()) {
+        var c = chars[start].toNumber();
+        // Skip non-printable-ASCII (emoji, symbols) and leading spaces
+        if (c != null && c > 32 && c <= 126) {
+            break;
+        }
+        start++;
+    }
+    if (start == 0) { return s; }
+    return s.substring(start, s.length()) as Lang.String;
+}
+
 //! Service responsible for all Nightscout API communications
 class NightscoutService {
 
@@ -265,7 +283,7 @@ class NightscoutService {
                                 if (override.hasKey("reason")) {
                                     var reason = override.get("reason");
                                     if (reason != null) {
-                                        var reasonStr = reason.toString();
+                                        var reasonStr = stripLeadingEmoji(reason.toString());
                                         appState.updateActiveProfile(reasonStr);
                                          foundActiveOverride = true;
                                     }
