@@ -58,7 +58,6 @@ def add_to_foods_json(entry):
         print(f"SKIP: '{entry['id']}' already in foods.json")
         return
     foods.append(entry)
-    foods.sort(key=lambda e: e["id"])
     with open(FOODS_JSON, "w") as f:
         json.dump(foods, f, indent=2, ensure_ascii=False)
         f.write("\n")
@@ -85,28 +84,21 @@ def add_to_registry_mc(picture):
     if f'"{picture}"' in mc:
         print(f"SKIP: '{picture}' already in DrawableRegistry.mc")
         return
-    # Find the last entry in the dictionary and insert after it
-    # Pattern: last line matching `"..." => Rez.Drawables...,`
-    last_entry = re.search(
-        r'("[\w]+" *=> *Rez\.Drawables\.[\w]+,)\s*\n(\s*\})',
-        mc,
-        re.DOTALL
-    )
-    if not last_entry:
+    # Insert before the LAST `} as Lang.Dictionary;` using rfind (avoids first-match trap)
+    marker = '} as Lang.Dictionary;'
+    pos = mc.rfind(marker)
+    if pos == -1:
         print("ERROR: could not locate insertion point in DrawableRegistry.mc", file=sys.stderr)
         sys.exit(1)
+    line_start = mc.rfind('\n', 0, pos) + 1
 
     # Align with the longest existing key
     existing_keys = re.findall(r'"([\w]+)"\s*=>', mc)
     max_len = max(len(k) for k in existing_keys) if existing_keys else len(picture)
     pad = max(max_len, len(picture))
 
-    new_line = f'                "{picture}"{"" :{pad - len(picture)}s}  => Rez.Drawables.{picture},'
-    # Replace the closing brace to insert before it
-    mc = mc.replace(
-        last_entry.group(0),
-        last_entry.group(1) + "\n" + new_line + "\n" + "            " + last_entry.group(2)
-    )
+    new_line = f'                "{picture}"{"" :{pad - len(picture)}s}  => Rez.Drawables.{picture},\n'
+    mc = mc[:line_start] + new_line + mc[line_start:]
     with open(REGISTRY_MC, "w") as f:
         f.write(mc)
     print(f"  DrawableRegistry ← {picture}")
