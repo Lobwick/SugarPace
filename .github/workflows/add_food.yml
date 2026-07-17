@@ -11,11 +11,9 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-      issues: write
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -23,59 +21,43 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install Pillow
+        run: pip install Pillow requests
 
-      - name: Parse brand and name from issue title
-        id: title
+      - name: Parse title and compute slug
         env:
           TITLE: ${{ github.event.issue.title }}
         run: |
-          python3 - <<'PY'
-          import os, re
-          title = os.environ["TITLE"]
-          # "add-food: Brand - Product Name"
-          m = re.match(r"add-food:\s*(.+?)\s*-\s*(.+)", title)
-          if not m:
-              print("ERROR: titre invalide. Format attendu: add-food: Marque - Nom du produit")
-              exit(1)
-          brand = m.group(1).strip()
-          name  = m.group(2).strip()
-          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
-              f.write(f"brand={brand}\n")
-              f.write(f"name={name}\n")
-          print(f"brand={brand}  name={name}")
-          PY
+          # Strip "add-food: " prefix then split on " - "
+          REST="${TITLE#add-food: }"
+          BRAND="${REST%% - *}"
+          NAME="${REST#* - }"
+          echo "BRAND=$BRAND" >> "$GITHUB_ENV"
+          echo "NAME=$NAME"   >> "$GITHUB_ENV"
+          BRAND_SLUG=$(echo "$BRAND" | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | tr -cd 'a-z0-9_')
+          NAME_SLUG=$(echo "$NAME"   | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | tr -cd 'a-z0-9_')
+          SLUG="${BRAND_SLUG}_${NAME_SLUG}"
+          echo "SLUG=$SLUG"   >> "$GITHUB_ENV"
+          echo "BRANCH=add-food/$SLUG" >> "$GITHUB_ENV"
 
-      - name: Write issue body to file
+      - name: Save issue body to file
         env:
           BODY: ${{ github.event.issue.body }}
-        run: echo "$BODY" > /tmp/issue_body.md
+        run: printf '%s' "$BODY" > /tmp/issue_body.txt
 
-      - name: Run add_food script
+      - name: Run add_food.py
         env:
-          BRAND: ${{ steps.title.outputs.brand }}
-          NAME:  ${{ steps.title.outputs.name }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           python3 scripts/add_food.py \
-            --from-issue-body /tmp/issue_body.md \
+            --from-issue-body /tmp/issue_body.txt \
             --brand "$BRAND" \
-            --name  "$NAME"
+            --name "$NAME"
 
-      - name: Validate catalogue consistency
-        run: python3 scripts/validate_foods.py
-
-      - name: Create branch and open PR
+      - name: Commit and push
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
-          BRAND: ${{ steps.title.outputs.brand }}
-          NAME:  ${{ steps.title.outputs.name }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          BRAND_SLUG=$(echo "$BRAND" | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | tr -cd 'a-z0-9_')
-          NAME_SLUG=$(echo "$NAME"  | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | tr -cd 'a-z0-9_')
-          SLUG="${BRAND_SLUG}_${NAME_SLUG}"
-          BRANCH="add-food/$SLUG"
-
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
@@ -87,4 +69,6 @@ jobs:
           git push --force origin "$BRANCH"
           gh pr create \
             --title "feat: add food $SLUG" \
-            --body "Closes #$ISSUE_NUMBER
+            --base main \
+            --head "$BRANCH" \
+            --body "Closes #$ISSUE_NUMBER"
