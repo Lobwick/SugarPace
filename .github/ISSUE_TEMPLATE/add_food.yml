@@ -55,14 +55,12 @@ body:
     validations:
       required: true
 
-  - type: input
+  - type: textarea
     id: image_url
     attributes:
-      label: Image du produit (URL GitHub)
+      label: Image du produit
       description: >
-        Glisser-déposer une image PNG ici dans l'éditeur d'issue → GitHub génère
-        une URL `https://github.com/user-attachments/assets/...` → coller cette URL ci-dessous.
-        L'image sera redimensionnée automatiquement à 150×150 px.
-      placeholder: "https://github.com/user-attachments/assets/..."
+        Glisser-déposer l'image directement dans ce champ — GitHub l'uploade
+        automatiquement et insère le lien. L'image sera redimensionnée à 150×150 px.
     validations:
       required: true
