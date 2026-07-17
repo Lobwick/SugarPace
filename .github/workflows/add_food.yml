@@ -71,12 +71,13 @@ jobs:
           BRAND: ${{ steps.title.outputs.brand }}
           NAME:  ${{ steps.title.outputs.name }}
         run: |
-          SLUG=$(python3 -c "
-          import os
-          brand = os.environ['BRAND'].strip().lower().replace(' ', '_')
-          name  = os.environ['NAME'].strip().lower().replace(' ', '_')
-          print(f'{brand}_{name}')
-          ")
+          SLUG=$(python3 - <<'PY'
+import os
+brand = os.environ['BRAND'].strip().lower().replace(' ', '_')
+name  = os.environ['NAME'].strip().lower().replace(' ', '_')
+print(f'{brand}_{name}')
+PY
+          )
           BRANCH="add-food/$SLUG"
 
           git config user.name  "github-actions[bot]"
