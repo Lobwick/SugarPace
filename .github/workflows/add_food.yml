@@ -91,13 +91,3 @@ jobs:
           gh pr create \
             --title "feat: add food $SLUG" \
             --body "Closes #$ISSUE_NUMBER
-
-Ajouté automatiquement depuis l'issue #$ISSUE_NUMBER.
-
-Fichiers modifiés :
-- \`resources/foods/foods.json\`
-- \`resources/drawables/drawables.xml\`
-- \`source/DrawableRegistry.mc\`
-- \`resources/drawables/brands/${SLUG}.png\`" \
-            --base main \
-            --head "$BRANCH"
