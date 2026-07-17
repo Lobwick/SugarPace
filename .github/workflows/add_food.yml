@@ -84,7 +84,7 @@ jobs:
                   source/DrawableRegistry.mc \
                   resources/drawables/brands/
           git commit -m "feat: add food $SLUG (closes #$ISSUE_NUMBER)"
-          git push origin "$BRANCH"
+          git push --force origin "$BRANCH"
           gh pr create \
             --title "feat: add food $SLUG" \
             --body "Closes #$ISSUE_NUMBER
