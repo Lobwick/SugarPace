@@ -21,6 +21,7 @@ class DrawableRegistry {
                 "bar_energy_dates_nuts"                     => Rez.Drawables.bar_energy_dates_nuts,
                 "gel_maurten_160"                           => Rez.Drawables.gel_maurten_160,
                 "_226ers_isotonic_gel_68g"                  => Rez.Drawables._226ers_isotonic_gel_68g,
+                "test_popo"                                 => Rez.Drawables.test_popo,
             } as Lang.Dictionary;
         }
         return (_map as Lang.Dictionary).get(pictureId) as Lang.ResourceId?;

@@ -89,5 +89,18 @@
     "fat_g": 0.0,
     "protein_g": 0.0,
     "energy_kj": 376
+  },
+  {
+    "id": "test_popo_40",
+    "name": "POPO",
+    "brand": "Test",
+    "picture": "test_popo",
+    "subcategory": "GEL",
+    "portion_g": 40.0,
+    "carbs_g": 23.0,
+    "gi": 80,
+    "fat_g": 0.0,
+    "protein_g": 0.0,
+    "energy_kj": 333
   }
 ]
