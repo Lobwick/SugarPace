@@ -47,7 +47,7 @@ L'âge de la mesure (« 3m ago ») est celui de la mesure du capteur. Il passe *
 
 Ouvert en touchant l'en-tête. En haut : les profils temporaires (voir ci-dessous). En bas : **Bolus** — le montant recommandé par Loop (lu sur Nightscout, avec son âge) et un bouton.
 
-⚠️ Envoyer un bolus délivre de **l'insuline réelle**. Le bouton ne fonctionne que si le réglage est activé, si la recommandation a moins de 10 minutes et vaut entre 0,05 et 5 U, et si elle n'a pas déjà été envoyée. Un premier tap arme (« Confirmer »), un second tap dans les 5 s envoie. Aucun retry automatique ; après « Non confirmé », vérifie Loop avant toute autre action. Les limites de Loop (bolus maximum, code à usage unique) restent appliquées.
+⚠️ Envoyer un bolus délivre de **l'insuline réelle**. Le bouton ne fonctionne que si le réglage est activé, si la recommandation a moins de 10 minutes et vaut entre 0,05 et 5 U, et si elle n'a pas déjà été envoyée. Un premier tap arme (« Confirmer »), un second tap dans les 5 s envoie. Aucun retry automatique. Après un échec ambigu (erreur serveur, pas de lien, « Non confirmé »), la dose a **peut-être** été délivrée : l'écran affiche « Vérifie Loop d'abord », et un nouvel essai n'est proposé qu'une fois une recommandation récupérée au moins 15 s après l'échec. Vérifie Loop avant de réessayer. Une requête réseau récemment abandonnée bloque aussi l'envoi pendant une minute (« Réessaie »). Les limites de Loop (bolus maximum, code à usage unique) restent appliquées.
 
 ## Sélection de profil temporaire
 

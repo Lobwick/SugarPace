@@ -75,6 +75,8 @@ class SugarPaceApp extends Application.AppBase {
         nightscoutService.fetchRecommendedBolus();
         // Load user's food selection from persistent storage, then populate the grid
         appState.initializeSelection();
+        // Remember which bolus recommendation was already sent, across restarts
+        appState.restoreBolusGuard();
         appState.updateFoodItems(FoodDatabase.loadAll(appState.selectedFoodIds));
         
         mainView = new SugarPaceView(appState);

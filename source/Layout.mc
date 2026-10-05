@@ -65,6 +65,11 @@ module Layout {
     const BOLUS_BTN_H = 60;
     const BOLUS_BTN_MIN_W = 150;
     const BOLUS_BTN_W_PCT = 0.42;
+    const BOLUS_LABEL_TOP = 6;      // "Bolus" label offset from the section top
+    const BOLUS_AGE_BOTTOM_PAD = 4; // age text offset from the section bottom
+    const BOLUS_BTN_RADIUS = 10;
+    const BOLUS_ERR_GAP = 4;        // error line offset above the section
+    const BOLUS_TICK_MS = 500;      // redraw ticker while Treatments is open
     const ROW_HEIGHT = 54;          // profile row height (shrinks on short screens)
     const ROW_MIN_HEIGHT = 34;
 

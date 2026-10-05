@@ -56,7 +56,8 @@ class AppState {
     // Last failed profile (override) activation: 0 = none, else the HTTP/Garmin code.
     public var profileErrorCode as Lang.Number = 0;
     // Loop's recommended bolus (units), read from Nightscout devicestatus.
-    // INFORMATION ONLY: never used to send or change anything.
+    // Displayed by default; when the opt-in setting "enable_bolus_send" is on it
+    // is also what the guarded two-tap send delivers (see canSendBolus).
     public var hasRecommendedBolus as Lang.Boolean = false;
     public var recommendedBolus as Lang.Float = 0.0;
     // ISO-8601 time at which Loop computed it (loop.timestamp), "" if unknown.
@@ -76,6 +77,14 @@ class AppState {
     // not be sent again until Loop publishes a newer one.
     public var bolusSentForTime as Lang.String = "";
     public var bolusSentUnits as Lang.Float = 0.0;
+    // After an ambiguous failure (5xx, transport, no answer) the dose MAY have
+    // been delivered. A retry is allowed only after a recommendation fetched
+    // BOLUS_RETRY_MIN_WAIT_MS after the failure; the rider is told to check Loop.
+    public var bolusAwaitFreshAfterMs as Lang.Number = -1;
+    public var bolusAwaitFetchIssued as Lang.Boolean = false;
+    public var bolusRetryWarning as Lang.Boolean = false;
+    // System.getTimer() when the current recommendation was received.
+    public var recommendedBolusFetchedMs as Lang.Number = -1;
     public var bolusButtonRegion as Lang.Dictionary? = null;
     // Glucose fetch health: true after a failed request, until the next success.
     public var glucoseFetchFailed as Lang.Boolean = false;
@@ -93,6 +102,7 @@ class AppState {
     function updateRecommendedBolus(units as Lang.Float, isoTime as Lang.String) as Void {
         recommendedBolus = units;
         recommendedBolusTime = isoTime;
+        recommendedBolusFetchedMs = System.getTimer();
         hasRecommendedBolus = true;
         recommendedBolusError = 0;
         WatchUi.requestUpdate();
@@ -116,6 +126,9 @@ class AppState {
             :hour => hour, :minute => minute, :second => second
         });
         var age = Toybox.Time.now().subtract(computedAt).value();
+        // A time in the future (clock error, malformed data) fails closed; only
+        // a tiny skew is tolerated.
+        if (age < -Constants.BOLUS_MAX_FUTURE_SKEW_SEC) { return -1; }
         return age < 0 ? 0 : age;
     }
 
@@ -128,19 +141,70 @@ class AppState {
         if (recommendedBolus < Constants.BOLUS_MIN_UNITS) { return false; }
         if (recommendedBolus > Constants.BOLUS_MAX_UNITS) { return false; }
         if (recommendedBolusTime.equals(bolusSentForTime)) { return false; }
+        // Waiting for a post-failure revalidation of the recommendation
+        if (bolusAwaitFreshAfterMs >= 0 &&
+            recommendedBolusFetchedMs < bolusAwaitFreshAfterMs + Constants.BOLUS_RETRY_MIN_WAIT_MS) {
+            return false;
+        }
         return true;
+    }
+
+    //! Block this recommendation from being sent again, and remember it across
+    //! app restarts. Called BEFORE the request is issued.
+    function markBolusSent(isoTime as Lang.String) as Void {
+        bolusSentForTime = isoTime;
+        try {
+            Application.Storage.setValue("bolus_sent_for", isoTime);
+        } catch (ex) {
+            // A storage failure must not stop the in-memory guard
+        }
+    }
+
+    function clearBolusSentGuard() as Void {
+        markBolusSent("");
+    }
+
+    //! Restore the guard on startup (called from the app, not the constructor).
+    function restoreBolusGuard() as Void {
+        try {
+            var saved = Application.Storage.getValue("bolus_sent_for");
+            if (saved instanceof Lang.String) {
+                bolusSentForTime = saved;
+            }
+        } catch (ex) {
+        }
     }
 
     function setBolusSendState(state as Lang.Number, errorCode as Lang.Number) as Void {
         bolusSendState = state;
         bolusSendErrorCode = errorCode;
         bolusSendChangedMs = System.getTimer();
-        // A definite refusal by the server means nothing was delivered: allow a retry.
-        // For OK / unconfirmed the same recommendation stays blocked.
-        if (state == Constants.SEND_FAILED) {
-            bolusSentForTime = "";
+        if (state == Constants.SEND_OK) {
+            bolusAwaitFreshAfterMs = -1;
+            bolusAwaitFetchIssued = false;
+            bolusRetryWarning = false;
+        } else if (state == Constants.SEND_FAILED || state == Constants.SEND_UNCONFIRMED) {
+            var kind = ErrorText.kind(errorCode);
+            clearBolusSentGuard();
+            if (kind == ErrorText.KIND_AUTH || kind == ErrorText.KIND_CONFIG || kind == ErrorText.KIND_BUSY) {
+                // Refused before Loop could act: nothing delivered, retry is free
+                bolusAwaitFreshAfterMs = -1;
+                bolusRetryWarning = false;
+            } else {
+                // Ambiguous: the dose may have been delivered. Retry only after a
+                // fresh revalidation, with an explicit "check Loop" warning.
+                bolusAwaitFreshAfterMs = bolusSendChangedMs;
+                bolusAwaitFetchIssued = false;
+                bolusRetryWarning = true;
+            }
         }
         WatchUi.requestUpdate();
+    }
+
+    //! True once, when the post-failure revalidation fetch should be issued.
+    function bolusNeedsRevalidationFetch(nowMs as Lang.Number) as Lang.Boolean {
+        if (bolusAwaitFreshAfterMs < 0 || bolusAwaitFetchIssued) { return false; }
+        return nowMs >= bolusAwaitFreshAfterMs + Constants.BOLUS_RETRY_MIN_WAIT_MS;
     }
 
     //! Taps on the bolus button are ignored while sending / just sent / unconfirmed.

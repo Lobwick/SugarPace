@@ -21,6 +21,10 @@ module Constants {
 
     // Fake HTTP code reported to a responder when the request watchdog expires
     const REQUEST_TIMEOUT_CODE = -1;
+    // Fake code: a request was abandoned recently and may still answer late; an
+    // irreversible send is refused until the grace period is over (nothing sent).
+    const QUEUE_BUSY_CODE = -3;
+    const ABANDON_GRACE_MS = 60000;
     // Fake code when URL / token / OTP secret are not filled in (nothing is sent)
     const NOT_CONFIGURED_CODE = -2;
 
@@ -35,6 +39,10 @@ module Constants {
     const BOLUS_MAX_AGE_SEC = 600;    // recommendation older than 10 min can't be sent
     const BOLUS_MIN_UNITS = 0.05;     // below this nothing is sent
     const BOLUS_MAX_UNITS = 5.0;      // above this the button stays disabled (Loop's own max bolus still applies)
+    const BOLUS_MAX_FUTURE_SKEW_SEC = 60; // a recommendation "from the future" beyond this is rejected
+    // After an ambiguous failure a retry is possible only once a recommendation
+    // fetched at least this long after the failure is available (time to look at Loop).
+    const BOLUS_RETRY_MIN_WAIT_MS = 15000;
     const BOLUS_CONFIRM_MS = 5000;    // second tap must come within this window
     const BOLUS_HOLD_OK_MS = 15000;   // "sent" stays shown (and locked) this long
     const BOLUS_HOLD_FAIL_MS = 6000;

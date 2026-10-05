@@ -82,6 +82,9 @@ class NightscoutService {
     // routinely needs several seconds (Garmin allows far longer), so this is a
     // watchdog for lost callbacks, not a latency budget.
     private var requestStartTime as Lang.Number = 0;
+    // Until this System.getTimer() value, an abandoned request may still call
+    // back late: its answer would be mistaken for the current one.
+    private var abandonedUntilMs as Lang.Number = 0;
     private static const REQUEST_TIMEOUT_MS as Lang.Number = 15000;
 
     function initialize(appState as AppState) {
@@ -91,6 +94,16 @@ class NightscoutService {
     //! Set callback for receiving data updates
     function setCallback(callback as Method) as Void {
         self.callback = callback;
+    }
+
+    //! A request was given up on: its callback may still arrive for a while.
+    function noteAbandonedRequest(nowMs as Lang.Number) as Void {
+        abandonedUntilMs = nowMs + Constants.ABANDON_GRACE_MS;
+    }
+
+    //! True while an irreversible request must not be sent (late-callback doubt).
+    function isSendBlockedByDoubt(nowMs as Lang.Number) as Lang.Boolean {
+        return nowMs < abandonedUntilMs;
     }
 
     //! Enqueue a web request; it runs when no other request is in flight.
@@ -116,6 +129,7 @@ class NightscoutService {
             }
             // Lost callback: tell the responder so the UI/state doesn't wait forever.
             var stale = currentResponder;
+            noteAbandonedRequest(System.getTimer());
             requestInFlight = false;
             currentResponder = null;
             if (stale != null) {
@@ -515,6 +529,12 @@ class NightscoutService {
     //! Send a remote bolus entry to Loop (REAL INSULIN). Never retried here, and
     //! never called from tests. Nothing is sent when settings are incomplete.
     function sendBolusEntry(bolusData as Lang.Dictionary) as Void {
+        // A late answer from an abandoned request could be taken for this one's
+        // answer and report "sent" wrongly: refuse, nothing is sent.
+        if (isSendBlockedByDoubt(System.getTimer())) {
+            onReceiveBolusEntryResponse(Constants.QUEUE_BUSY_CODE, null);
+            return;
+        }
         if (getNightscoutUrl().length() == 0 || getNightscoutToken().length() == 0 || !hasOtpSecret()) {
             onReceiveBolusEntryResponse(Constants.NOT_CONFIGURED_CODE, null);
             return;

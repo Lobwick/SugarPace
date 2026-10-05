@@ -182,9 +182,8 @@ function testBolusLockAndDuplicateGuard(logger as Test.Logger) as Boolean {
 
     s.bolusSentForTime = now;
     Test.assertMessage(!s.canSendBolus(), "same recommendation can't be sent twice");
-    s.updateRecommendedBolus(1.5, "2099-01-01T00:00:00Z");
-    // (a different, newer-looking timestamp unlocks only if it is also fresh; a future time reads as age 0)
-    Test.assertMessage(s.canSendBolus(), "a newer recommendation can be sent");
+    s.bolusSentForTime = "2025-05-22T12:30:19Z";
+    Test.assertMessage(s.canSendBolus(), "a different recommendation can be sent");
 
     s.setBolusSendState(Constants.SEND_PENDING, 0);
     var t0 = s.bolusSendChangedMs;
@@ -194,12 +193,42 @@ function testBolusLockAndDuplicateGuard(logger as Test.Logger) as Boolean {
     Test.assertMessage(s.isBolusLocked(t0 + 1000), "just sent -> locked");
     Test.assertMessage(!s.isBolusLocked(t0 + Constants.BOLUS_HOLD_OK_MS), "lock released later");
 
-    // A definite server refusal frees the recommendation for a retry; unconfirmed does not
+    // Failures release the duplicate guard (a retry is the rider's choice), but
+    // ambiguous ones (timeout, transport, 5xx) put the retry behind a
+    // revalidation + "check Loop" warning (see testBolusRetryNeedsRevalidation).
     s.bolusSentForTime = "x";
     s.setBolusSendState(Constants.SEND_UNCONFIRMED, -1);
-    Test.assertEqualMessage(s.bolusSentForTime, "x", "unconfirmed keeps the block");
-    s.setBolusSendState(Constants.SEND_FAILED, 500);
-    Test.assertEqualMessage(s.bolusSentForTime, "", "failed -> retry allowed");
+    Test.assertEqualMessage(s.bolusSentForTime, "", "unconfirmed releases the guard");
+    Test.assertMessage(s.bolusRetryWarning, "...but warns to check Loop");
+    s.bolusSentForTime = "x";
+    s.setBolusSendState(Constants.SEND_FAILED, 401);
+    Test.assertEqualMessage(s.bolusSentForTime, "", "bad token -> nothing was sent, free retry");
+    Test.assertMessage(!s.bolusRetryWarning, "no warning when nothing could have been sent");
+    s.clearBolusSentGuard();
+    return true;
+}
+
+(:test)
+function testBolusGuardSurvivesRestart(logger as Test.Logger) as Boolean {
+    var first = new AppState();
+    first.markBolusSent("2026-10-05T20:49:09Z");
+    var second = new AppState();   // a new app start
+    Test.assertEqualMessage(second.bolusSentForTime, "", "constructor does not read storage");
+    second.restoreBolusGuard();
+    Test.assertEqualMessage(second.bolusSentForTime, "2026-10-05T20:49:09Z", "guard restored");
+    second.clearBolusSentGuard();  // leave no trace
+    var third = new AppState();
+    third.restoreBolusGuard();
+    Test.assertEqualMessage(third.bolusSentForTime, "", "cleared guard stays cleared");
+    return true;
+}
+
+(:test)
+function testBolusFutureTimestampRejected(logger as Test.Logger) as Boolean {
+    var s = new AppState();
+    s.updateRecommendedBolus(1.0, "2099-01-01T00:00:00Z");
+    Test.assertEqualMessage(s.getRecommendedBolusAgeSeconds(), -1, "far future time -> unreadable");
+    Test.assertMessage(!s.canSendBolus(), "future recommendation can't be sent");
     return true;
 }
 
@@ -214,5 +243,43 @@ function testBolusPayloadShape(logger as Test.Logger) as Boolean {
     Test.assertEqualMessage((data.get("otp") as Lang.String).length(), 6, "6-digit OTP");
     Test.assertMessage(data.hasKey("created_at"), "timestamp present");
     Test.assertMessage(data.hasKey("enteredBy"), "enteredBy present");
+    return true;
+}
+
+(:test)
+function testBolusRetryNeedsRevalidation(logger as Test.Logger) as Boolean {
+    var now = new OtpService().formatCurrentTimestamp();
+    var s = new AppState();
+    s.updateRecommendedBolus(1.65, now);
+
+    // Ambiguous failure: retry allowed only after a recommendation fetched >= wait later
+    s.setBolusSendState(Constants.SEND_FAILED, 500);
+    Test.assertMessage(s.bolusRetryWarning, "rider is told to check Loop");
+    var failedAt = s.bolusAwaitFreshAfterMs;
+    s.recommendedBolusFetchedMs = failedAt + Constants.BOLUS_RETRY_MIN_WAIT_MS - 1;
+    Test.assertMessage(!s.canSendBolus(), "too early after the failure -> blocked");
+    Test.assertMessage(!s.bolusNeedsRevalidationFetch(failedAt + 1000), "no fetch before the wait is over");
+    Test.assertMessage(s.bolusNeedsRevalidationFetch(failedAt + Constants.BOLUS_RETRY_MIN_WAIT_MS), "fetch due once the wait is over");
+    s.recommendedBolusFetchedMs = failedAt + Constants.BOLUS_RETRY_MIN_WAIT_MS;
+    Test.assertMessage(s.canSendBolus(), "revalidated -> retry possible");
+
+    // Success clears the waiting state
+    s.setBolusSendState(Constants.SEND_OK, 200);
+    Test.assertMessage(!s.bolusRetryWarning, "success clears the warning");
+
+    // A refusal before Loop could act needs no revalidation
+    s.setBolusSendState(Constants.SEND_FAILED, 401);
+    Test.assertMessage(!s.bolusRetryWarning && s.bolusAwaitFreshAfterMs < 0, "auth refusal: free retry");
+    return true;
+}
+
+(:test)
+function testSendBlockedWhileLateCallbackPossible(logger as Test.Logger) as Boolean {
+    var svc = new NightscoutService(new AppState());
+    Test.assertMessage(!svc.isSendBlockedByDoubt(1000), "nothing abandoned -> not blocked");
+    svc.noteAbandonedRequest(1000);
+    Test.assertMessage(svc.isSendBlockedByDoubt(1000 + 1000), "just abandoned -> blocked");
+    Test.assertMessage(!svc.isSendBlockedByDoubt(1000 + Constants.ABANDON_GRACE_MS), "blocked only for the grace period");
+    Test.assertEqualMessage(ErrorText.kind(Constants.QUEUE_BUSY_CODE), ErrorText.KIND_BUSY, "busy code classified");
     return true;
 }

@@ -21,6 +21,9 @@
     <string id="food_no_selection">Aucun aliment sélectionné</string>
     <string id="err_config_short">À configurer</string>
     <string id="err_config_long">Renseigner les réglages Nightscout</string>
+    <string id="err_busy_short">Réessaie</string>
+    <string id="err_busy_long">Réseau occupé : réessaie dans une minute</string>
+    <string id="bolus_check_loop">Vérifie Loop d'abord</string>
     <string id="err_auth_short">Token invalide</string>
     <string id="err_auth_long">Token invalide : voir réglages</string>
     <string id="err_server_short">Clés serveur</string>

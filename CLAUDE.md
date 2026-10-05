@@ -36,8 +36,11 @@ requête. Respecter ce principe pour toute nouvelle couverture de test.
 
 Fonction **désactivée par défaut** (réglage `enable_bolus_send`). Garde-fous dans
 `AppState` : recommandation lue sans erreur, âge ≤ 10 min, 0,05 ≤ U ≤ 5 U,
-jamais deux fois la même recommandation, confirmation en 2 taps dans les 5 s
-avec le même montant, verrou pendant l'envoi, aucun retry. Le corps envoyé est
+jamais deux fois la même recommandation (garde persistée dans le stockage avant
+l'envoi), heure future rejetée, confirmation en 2 taps dans les 5 s avec le même
+montant, verrou pendant l'envoi, aucun retry automatique, refus d'envoyer pendant
+60 s après une requête abandonnée (callback tardif possible), et après un échec
+ambigu retry seulement après revalidation (≥ 15 s) avec avertissement « vérifie Loop ». Le corps envoyé est
 du JSON plat avec `remoteBolus` en Float (forme validée par curl). Le plafond
 `BOLUS_MAX_UNITS` est dans `Constants.mc`. Ne pas assouplir ces garde-fous sans
 accord explicite de l'utilisateur.

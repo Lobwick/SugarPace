@@ -57,6 +57,14 @@ class TempOverridesView extends WatchUi.View {
     function onShow() as Void {
         appState.profileErrorCode = 0;
         appState.cancelBolusConfirm();
+        // Refresh the recommendation on open; the previous one stays displayed
+        // (with its age) until the new one arrives. A failed refresh disables the button.
+        var shown = Application.getApp() as SugarPaceApp;
+        var svc = shown.getNightscoutService();
+        if (svc != null) {
+            svc.fetchRecommendedBolus();
+        }
+        startBolusTick();
         // Déclencher la récupération des données
         var app = Application.getApp() as SugarPaceApp;
         if (app != null) {
@@ -140,7 +148,7 @@ class TempOverridesView extends WatchUi.View {
         if (appState.profileErrorCode != 0) {
             var fh = dc.getFontHeight(Graphics.FONT_XTINY);
             dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(width / 2, bolusTop - fh - 4, Graphics.FONT_XTINY, ErrorText.longText(appState.profileErrorCode), Graphics.TEXT_JUSTIFY_CENTER);
+            dc.drawText(width / 2, bolusTop - fh - Layout.BOLUS_ERR_GAP, Graphics.FONT_XTINY, ErrorText.longText(appState.profileErrorCode), Graphics.TEXT_JUSTIFY_CENTER);
         }
 
         drawBolusSection(dc, width, bolusTop);
@@ -168,7 +176,7 @@ class TempOverridesView extends WatchUi.View {
         var pad = Layout.BOLUS_PAD;
         var tinyH = dc.getFontHeight(Graphics.FONT_XTINY);
         dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(pad, top + 6, Graphics.FONT_XTINY, WatchUi.loadResource(Rez.Strings.bolus_section), Graphics.TEXT_JUSTIFY_LEFT);
+        dc.drawText(pad, top + Layout.BOLUS_LABEL_TOP, Graphics.FONT_XTINY, WatchUi.loadResource(Rez.Strings.bolus_section), Graphics.TEXT_JUSTIFY_LEFT);
 
         // Recommended amount (same freshness rules as the header: hidden when stale)
         var age = appState.getRecommendedBolusAgeSeconds();
@@ -179,11 +187,15 @@ class TempOverridesView extends WatchUi.View {
             valueColor = Graphics.COLOR_DK_GRAY;
         }
         dc.setColor(valueColor, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(pad, top + 6 + tinyH, Graphics.FONT_MEDIUM, valueText, Graphics.TEXT_JUSTIFY_LEFT);
-        if (valueVisible) {
+        dc.drawText(pad, top + Layout.BOLUS_LABEL_TOP + tinyH, Graphics.FONT_MEDIUM, valueText, Graphics.TEXT_JUSTIFY_LEFT);
+        if (appState.bolusRetryWarning) {
+            // A previous send ended ambiguously: say so instead of the age
+            dc.setColor(Graphics.COLOR_ORANGE, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(pad, top + Layout.BOLUS_SECTION_H - tinyH - Layout.BOLUS_AGE_BOTTOM_PAD, Graphics.FONT_XTINY, WatchUi.loadResource(Rez.Strings.bolus_check_loop), Graphics.TEXT_JUSTIFY_LEFT);
+        } else if (valueVisible) {
             var ageText = age < 60 ? age + "s" : (age / 60) + "m";
             dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(pad, top + Layout.BOLUS_SECTION_H - tinyH - 4, Graphics.FONT_XTINY, ageText + " ago", Graphics.TEXT_JUSTIFY_LEFT);
+            dc.drawText(pad, top + Layout.BOLUS_SECTION_H - tinyH - Layout.BOLUS_AGE_BOTTOM_PAD, Graphics.FONT_XTINY, ageText + " ago", Graphics.TEXT_JUSTIFY_LEFT);
         }
 
         // Button, right side
@@ -225,10 +237,10 @@ class TempOverridesView extends WatchUi.View {
             tappable = true;
         }
         dc.setColor(fill, fill);
-        dc.fillRoundedRectangle(btnX, btnY, btnW, Layout.BOLUS_BTN_H, 10);
+        dc.fillRoundedRectangle(btnX, btnY, btnW, Layout.BOLUS_BTN_H, Layout.BOLUS_BTN_RADIUS);
         dc.setColor(line, Graphics.COLOR_TRANSPARENT);
         dc.setPenWidth(2);
-        dc.drawRoundedRectangle(btnX, btnY, btnW, Layout.BOLUS_BTN_H, 10);
+        dc.drawRoundedRectangle(btnX, btnY, btnW, Layout.BOLUS_BTN_H, Layout.BOLUS_BTN_RADIUS);
         dc.setPenWidth(1);
         dc.setColor(textColor, Graphics.COLOR_TRANSPARENT);
         dc.drawText(btnX + btnW / 2, btnY + (Layout.BOLUS_BTN_H - dc.getFontHeight(Graphics.FONT_SMALL)) / 2, Graphics.FONT_SMALL, label, Graphics.TEXT_JUSTIFY_CENTER);
@@ -266,28 +278,42 @@ class TempOverridesView extends WatchUi.View {
         if (otp == null || service == null) {
             return;
         }
-        appState.bolusSentForTime = appState.recommendedBolusTime;
+        appState.markBolusSent(appState.recommendedBolusTime);
         appState.bolusSentUnits = units;
         appState.setBolusSendState(Constants.SEND_PENDING, 0);
         startBolusTick();
         service.sendBolusEntry(otp.createBolusEntryData(units));
     }
 
+    //! Redraw ticker, alive only while this screen is shown: keeps the age,
+    //! the confirmation countdown and the button state honest.
     private function startBolusTick() as Void {
         if (bolusTimer == null) {
             bolusTimer = new Timer.Timer();
         }
         bolusTimer.stop();
-        bolusTimer.start(method(:onBolusTick), 500, true);
+        bolusTimer.start(method(:onBolusTick), Layout.BOLUS_TICK_MS, true);
+    }
+
+    function onHide() as Void {
+        if (bolusTimer != null) {
+            bolusTimer.stop();
+        }
+        appState.cancelBolusConfirm();
     }
 
     function onBolusTick() as Void {
-        appState.normalizeBolusState(System.getTimer());
-        WatchUi.requestUpdate();
-        var idle = appState.bolusSendState == Constants.SEND_IDLE && appState.bolusConfirmStartMs < 0;
-        if (idle && bolusTimer != null) {
-            bolusTimer.stop();
+        var nowMs = System.getTimer();
+        appState.normalizeBolusState(nowMs);
+        if (appState.bolusNeedsRevalidationFetch(nowMs)) {
+            appState.bolusAwaitFetchIssued = true;
+            var app = Application.getApp() as SugarPaceApp;
+            var svc = app.getNightscoutService();
+            if (svc != null) {
+                svc.fetchRecommendedBolus();
+            }
         }
+        WatchUi.requestUpdate();
     }
 
     //! Draw one full-width list row, Garmin Edge style: left-aligned label, a
