@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:05.015
+SugarPace. Your glucose and your fueling, on your Garmin Edge.
+
+2
+00:00:06.600 --> 00:00:13.544
+Your latest reading from your own Nightscout site, color-coded by range, with the trend arrow and the age of the reading.
+
+3
+00:00:13.994 --> 00:00:18.653
+A chart of the last four hours, and the foods you carry, one tap away.
+
+4
+00:00:20.600 --> 00:00:25.451
+Tap a food tile to send a carb entry. It is secured by a one-time code.
+
+5
+00:00:25.901 --> 00:00:34.841
+The tile shows the result: sending, sent, or failed with a short reason. Double taps are ignored, so an entry is never sent twice.
+
+6
+00:00:36.341 --> 00:00:41.916
+Behind the screen, your Edge uses your phone's connection to talk to your own Nightscout site.
+
+7
+00:00:42.366 --> 00:00:49.230
+Glucose flows from your loop to Nightscout, then to your Edge. Carb entries flow back the other way, to your loop.
+
+8
+00:00:49.680 --> 00:00:54.055
+SugarPace has no server of its own: nothing passes through the developer.
+
+9
+00:00:55.555 --> 00:01:00.557
+The Treatments screen lists your temporary profiles. Tap one to activate it.
+
+10
+00:01:01.007 --> 00:01:07.523
+If the data gets old, the number turns grey after fifteen minutes, so an old value never looks current.
+
+11
+00:01:09.023 --> 00:01:14.669
+Optionally, you can allow sending the bolus that your loop recommends. It is off by default.
+
+12
+00:01:15.119 --> 00:01:25.536
+It needs two taps and a recommendation less than ten minutes old, and it never sends the same one twice. If something goes wrong, the screen tells you to check your loop first.
+
+13
+00:01:25.986 --> 00:01:29.374
+This is real insulin: always confirm on your loop.
+
+14
+00:01:30.874 --> 00:01:42.231
+You need a Nightscout site, a loop that accepts remote entries, and a touchscreen Edge: 840, 850, 1040 or 1050.
+
+15
+00:01:43.631 --> 00:01:50.177
+SugarPace is not a medical device. Always confirm values and decisions with your approved devices.
+
+16
+00:01:50.627 --> 00:01:55.901
+Not affiliated with Garmin, Nightscout, or any loop app. Find it on GitHub.
