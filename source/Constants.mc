@@ -31,6 +31,14 @@ module Constants {
     const SEND_FAILED = 3;       // server/network error: tile red, retry allowed
     const SEND_UNCONFIRMED = 4;  // no answer in time: may or may not have gone through
 
+    // Remote bolus (sending Loop's recommendation). Deliberately strict.
+    const BOLUS_MAX_AGE_SEC = 600;    // recommendation older than 10 min can't be sent
+    const BOLUS_MIN_UNITS = 0.05;     // below this nothing is sent
+    const BOLUS_MAX_UNITS = 5.0;      // above this the button stays disabled (Loop's own max bolus still applies)
+    const BOLUS_CONFIRM_MS = 5000;    // second tap must come within this window
+    const BOLUS_HOLD_OK_MS = 15000;   // "sent" stays shown (and locked) this long
+    const BOLUS_HOLD_FAIL_MS = 6000;
+
     const SEND_TIMEOUT_MS = 30000;  // give up waiting for an answer
     const SEND_HOLD_OK_MS = 2500;   // how long the success state is shown / taps locked
     const SEND_HOLD_FAIL_MS = 5000; // how long a failure is shown

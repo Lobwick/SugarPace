@@ -1,6 +1,13 @@
 <strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
     <string id="AppName">SugarPace</string>
-    <string id="temp_overrides_label">Temp Overrides</string>
+    <string id="temp_overrides_label">Treatments</string>
+    <string id="bolus_section">Bolus</string>
+    <string id="bolus_send">Send</string>
+    <string id="bolus_confirm">Confirm</string>
+    <string id="bolus_none">No bolus</string>
+    <string id="bolus_off">Disabled</string>
+    <string id="bolus_sent">Sent</string>
+    <string id="enable_bolus_send_title">Allow sending Loop's recommended bolus</string>
     
     <string id="nightscout_token_title">Nightscout Token</string>
     <string id="nightscout_url_title">Nightscout URL</string>

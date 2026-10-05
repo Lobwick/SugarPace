@@ -10,6 +10,8 @@ class TempOverridesView extends WatchUi.View {
     private var appState as AppState;
     // Row highlighted for physical-button selection (touch uses coordinates).
     private var focusedIndex as Lang.Number = 0;
+    // Redraw ticker, running only while a bolus confirmation / send is active.
+    private var bolusTimer as Timer.Timer?;
 
     function initialize(appState as AppState) {
         View.initialize();
@@ -54,6 +56,7 @@ class TempOverridesView extends WatchUi.View {
 
     function onShow() as Void {
         appState.profileErrorCode = 0;
+        appState.cancelBolusConfirm();
         // Déclencher la récupération des données
         var app = Application.getApp() as SugarPaceApp;
         if (app != null) {
@@ -93,8 +96,15 @@ class TempOverridesView extends WatchUi.View {
         dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
         dc.drawLine(0, dividerY, width, dividerY);
 
-        var rowHeight = 54;
+        // The bolus section is pinned to the bottom; profile rows share what
+        // is left (they shrink on short screens instead of being cut off).
+        var bolusTop = height - Layout.BOLUS_SECTION_H;
         var yPos = dividerY + 1;
+        var rowCount = 1 + overridePresets.size();
+        var rowHeight = Layout.ROW_HEIGHT;
+        var fitHeight = (bolusTop - yPos) / rowCount;
+        if (fitHeight < rowHeight) { rowHeight = fitHeight; }
+        if (rowHeight < Layout.ROW_MIN_HEIGHT) { rowHeight = Layout.ROW_MIN_HEIGHT; }
 
         // Réinitialiser les coordonnées
         appState.presetCoordinatesProfile = [];
@@ -111,7 +121,7 @@ class TempOverridesView extends WatchUi.View {
         rowIndex += 1;
 
         // One row per preset
-        for (var i = 0; i < overridePresets.size() && yPos < height - rowHeight; i++) {
+        for (var i = 0; i < overridePresets.size() && yPos + rowHeight <= bolusTop; i++) {
             var override = overridePresets[i];
             if (override instanceof Lang.Dictionary && override.hasKey("name")) {
                 var nameStr = override.get("name").toString();
@@ -126,16 +136,157 @@ class TempOverridesView extends WatchUi.View {
             }
         }
 
-        // Last activation failed: say why, in a few words, at the bottom.
+        // Last activation failed: say why, in a few words, just above the bolus section.
         if (appState.profileErrorCode != 0) {
             var fh = dc.getFontHeight(Graphics.FONT_XTINY);
             dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(width / 2, height - fh - 12, Graphics.FONT_XTINY, ErrorText.longText(appState.profileErrorCode), Graphics.TEXT_JUSTIFY_CENTER);
+            dc.drawText(width / 2, bolusTop - fh - 4, Graphics.FONT_XTINY, ErrorText.longText(appState.profileErrorCode), Graphics.TEXT_JUSTIFY_CENTER);
         }
+
+        drawBolusSection(dc, width, bolusTop);
 
         // Keep the focus in range if the preset list shrank
         if (focusedIndex >= rowIndex && rowIndex > 0) {
             focusedIndex = rowIndex - 1;
+        }
+    }
+
+    //! True when the user turned the feature on in the settings (off by default).
+    private function bolusSendEnabled() as Lang.Boolean {
+        var flag = Application.Properties.getValue("enable_bolus_send");
+        return flag instanceof Lang.Boolean && flag;
+    }
+
+    //! Bottom section: Loop's recommended bolus + a two-tap "send" button.
+    private function drawBolusSection(dc as Dc, width as Lang.Number, top as Lang.Number) as Void {
+        var now = System.getTimer();
+        appState.normalizeBolusState(now);
+
+        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.drawLine(0, top, width, top);
+
+        var pad = Layout.BOLUS_PAD;
+        var tinyH = dc.getFontHeight(Graphics.FONT_XTINY);
+        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(pad, top + 6, Graphics.FONT_XTINY, WatchUi.loadResource(Rez.Strings.bolus_section), Graphics.TEXT_JUSTIFY_LEFT);
+
+        // Recommended amount (same freshness rules as the header: hidden when stale)
+        var age = appState.getRecommendedBolusAgeSeconds();
+        var valueVisible = appState.hasRecommendedBolus && age >= 0 && age < Constants.GLUCOSE_STALE_SEC;
+        var valueText = valueVisible ? Units.formatBolus(appState.recommendedBolus) + " U" : "--";
+        var valueColor = Graphics.COLOR_YELLOW;
+        if (!valueVisible || age >= Constants.GLUCOSE_WARN_SEC || appState.recommendedBolusError != 0) {
+            valueColor = Graphics.COLOR_DK_GRAY;
+        }
+        dc.setColor(valueColor, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(pad, top + 6 + tinyH, Graphics.FONT_MEDIUM, valueText, Graphics.TEXT_JUSTIFY_LEFT);
+        if (valueVisible) {
+            var ageText = age < 60 ? age + "s" : (age / 60) + "m";
+            dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(pad, top + Layout.BOLUS_SECTION_H - tinyH - 4, Graphics.FONT_XTINY, ageText + " ago", Graphics.TEXT_JUSTIFY_LEFT);
+        }
+
+        // Button, right side
+        var btnW = (width * Layout.BOLUS_BTN_W_PCT).toNumber();
+        if (btnW < Layout.BOLUS_BTN_MIN_W) { btnW = Layout.BOLUS_BTN_MIN_W; }
+        var btnX = width - pad - btnW;
+        var btnY = top + (Layout.BOLUS_SECTION_H - Layout.BOLUS_BTN_H) / 2;
+
+        var label = "";
+        var fill = Graphics.COLOR_BLACK;
+        var line = Graphics.COLOR_DK_GRAY;
+        var textColor = Graphics.COLOR_DK_GRAY;
+        var state = appState.bolusSendState;
+        var tappable = false;
+
+        if (state == Constants.SEND_PENDING) {
+            label = WatchUi.loadResource(Rez.Strings.send_pending) as Lang.String;
+            fill = Graphics.COLOR_ORANGE; line = Graphics.COLOR_ORANGE; textColor = Graphics.COLOR_BLACK;
+        } else if (state == Constants.SEND_OK) {
+            label = WatchUi.loadResource(Rez.Strings.bolus_sent) as Lang.String;
+            fill = Graphics.COLOR_GREEN; line = Graphics.COLOR_GREEN; textColor = Graphics.COLOR_BLACK;
+        } else if (state == Constants.SEND_UNCONFIRMED) {
+            label = WatchUi.loadResource(Rez.Strings.send_unconfirmed) as Lang.String;
+            fill = Graphics.COLOR_RED; line = Graphics.COLOR_RED; textColor = Graphics.COLOR_BLACK;
+        } else if (state == Constants.SEND_FAILED) {
+            label = ErrorText.shortText(appState.bolusSendErrorCode);
+            fill = Graphics.COLOR_RED; line = Graphics.COLOR_RED; textColor = Graphics.COLOR_BLACK;
+        } else if (!bolusSendEnabled()) {
+            label = WatchUi.loadResource(Rez.Strings.bolus_off) as Lang.String;
+        } else if (!appState.canSendBolus()) {
+            label = WatchUi.loadResource(Rez.Strings.bolus_none) as Lang.String;
+        } else if (appState.isBolusConfirmArmed(now)) {
+            label = WatchUi.loadResource(Rez.Strings.bolus_confirm) as Lang.String;
+            fill = Graphics.COLOR_ORANGE; line = Graphics.COLOR_ORANGE; textColor = Graphics.COLOR_BLACK;
+            tappable = true;
+        } else {
+            label = WatchUi.loadResource(Rez.Strings.bolus_send) as Lang.String;
+            line = Graphics.COLOR_WHITE; textColor = Graphics.COLOR_WHITE;
+            tappable = true;
+        }
+        dc.setColor(fill, fill);
+        dc.fillRoundedRectangle(btnX, btnY, btnW, Layout.BOLUS_BTN_H, 10);
+        dc.setColor(line, Graphics.COLOR_TRANSPARENT);
+        dc.setPenWidth(2);
+        dc.drawRoundedRectangle(btnX, btnY, btnW, Layout.BOLUS_BTN_H, 10);
+        dc.setPenWidth(1);
+        dc.setColor(textColor, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(btnX + btnW / 2, btnY + (Layout.BOLUS_BTN_H - dc.getFontHeight(Graphics.FONT_SMALL)) / 2, Graphics.FONT_SMALL, label, Graphics.TEXT_JUSTIFY_CENTER);
+
+        // Only a button that can act is a tap target
+        appState.bolusButtonRegion = tappable
+            ? { "x0" => btnX, "y0" => btnY, "x1" => btnX + btnW, "y1" => btnY + Layout.BOLUS_BTN_H }
+            : null;
+    }
+
+    function isInBolusButton(x as Lang.Number, y as Lang.Number) as Lang.Boolean {
+        return appState.isPointInRegion(appState.bolusButtonRegion, x, y);
+    }
+
+    //! Two-tap send: the first tap arms a short confirmation window showing the
+    //! amount; a second tap inside it (same amount, same recommendation) sends.
+    //! Called only for a tap inside the button region.
+    function onBolusTap() as Void {
+        var now = System.getTimer();
+        appState.normalizeBolusState(now);
+        if (!bolusSendEnabled() || appState.isBolusLocked(now) || !appState.canSendBolus()) {
+            return;
+        }
+        if (!appState.isBolusConfirmArmed(now)) {
+            appState.armBolusConfirm(now);
+            startBolusTick();
+            return;
+        }
+        // Confirmed: send exactly what was on screen, then block this recommendation
+        var units = appState.bolusArmedUnits;
+        appState.cancelBolusConfirm();
+        var app = Application.getApp() as SugarPaceApp;
+        var otp = app.getOtpService();
+        var service = app.getNightscoutService();
+        if (otp == null || service == null) {
+            return;
+        }
+        appState.bolusSentForTime = appState.recommendedBolusTime;
+        appState.bolusSentUnits = units;
+        appState.setBolusSendState(Constants.SEND_PENDING, 0);
+        startBolusTick();
+        service.sendBolusEntry(otp.createBolusEntryData(units));
+    }
+
+    private function startBolusTick() as Void {
+        if (bolusTimer == null) {
+            bolusTimer = new Timer.Timer();
+        }
+        bolusTimer.stop();
+        bolusTimer.start(method(:onBolusTick), 500, true);
+    }
+
+    function onBolusTick() as Void {
+        appState.normalizeBolusState(System.getTimer());
+        WatchUi.requestUpdate();
+        var idle = appState.bolusSendState == Constants.SEND_IDLE && appState.bolusConfirmStartMs < 0;
+        if (idle && bolusTimer != null) {
+            bolusTimer.stop();
         }
     }
 
@@ -238,6 +389,10 @@ class TempOverridesInputDelegate extends WatchUi.InputDelegate {
 
     function onTap(clickEvent as WatchUi.ClickEvent) as Lang.Boolean {
         var coordinates = clickEvent.getCoordinates();
+        if (view.isInBolusButton(coordinates[0], coordinates[1])) {
+            view.onBolusTap();
+            return true;
+        }
         activatePreset(view.findPresetAtY(coordinates[1])); // Y coordinate
         return true;
     }

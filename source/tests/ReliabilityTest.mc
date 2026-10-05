@@ -99,3 +99,120 @@ function testNotConfiguredKind(logger as Test.Logger) as Boolean {
     Test.assertEqualMessage(ErrorText.kind(Constants.NOT_CONFIGURED_CODE), ErrorText.KIND_CONFIG, "-2 = not configured");
     return true;
 }
+
+(:test)
+function testRecommendedBolusAge(logger as Test.Logger) as Boolean {
+    var s = new AppState();
+    Test.assertEqualMessage(s.getRecommendedBolusAgeSeconds(), -1, "no bolus -> -1 (hidden)");
+
+    // Just computed
+    s.updateRecommendedBolus(1.65, new OtpService().formatCurrentTimestamp());
+    var fresh = s.getRecommendedBolusAgeSeconds();
+    Test.assertMessage(fresh >= 0 && fresh < 5, "fresh bolus age ~0, got " + fresh);
+
+    // Old
+    s.updateRecommendedBolus(1.65, "2025-05-22T12:30:19Z");
+    Test.assertMessage(s.getRecommendedBolusAgeSeconds() >= Constants.GLUCOSE_STALE_SEC, "old bolus is stale");
+
+    // Unreadable time -> hidden, never shown as current
+    s.updateRecommendedBolus(1.65, "garbage");
+    Test.assertEqualMessage(s.getRecommendedBolusAgeSeconds(), -1, "bad time -> -1");
+    return true;
+}
+
+//! ---- Remote bolus: pure logic only. sendBolusEntry is NEVER called here. ----
+
+(:test)
+function testBolusRounding(logger as Test.Logger) as Boolean {
+    Test.assertMessage((Units.roundBolus(0.1) - 0.1).abs() < 0.001, "0.1 stays 0.1");
+    Test.assertMessage((Units.roundBolus(1.63) - 1.65).abs() < 0.001, "1.63 -> 1.65 (0.05 steps)");
+    Test.assertMessage((Units.roundBolus(1.62) - 1.6).abs() < 0.001, "1.62 -> 1.60");
+    Test.assertEqualMessage(Units.formatBolus(1.65), "1.65", "formatted with 2 decimals");
+    return true;
+}
+
+(:test)
+function testCanSendBolusRules(logger as Test.Logger) as Boolean {
+    var now = new OtpService().formatCurrentTimestamp();
+    var s = new AppState();
+    Test.assertMessage(!s.canSendBolus(), "nothing received -> no");
+
+    s.updateRecommendedBolus(1.65, now);
+    Test.assertMessage(s.canSendBolus(), "fresh, in range -> yes");
+
+    s.updateRecommendedBolus(0.0, now);
+    Test.assertMessage(!s.canSendBolus(), "zero -> no");
+    s.updateRecommendedBolus(Constants.BOLUS_MAX_UNITS + 1.0, now);
+    Test.assertMessage(!s.canSendBolus(), "above the cap -> no");
+
+    s.updateRecommendedBolus(1.0, "2025-05-22T12:30:19Z");
+    Test.assertMessage(!s.canSendBolus(), "old recommendation -> no");
+    s.updateRecommendedBolus(1.0, "garbage");
+    Test.assertMessage(!s.canSendBolus(), "unreadable time -> no");
+
+    s.updateRecommendedBolus(1.0, now);
+    s.setRecommendedBolusError(500);
+    Test.assertMessage(!s.canSendBolus(), "last fetch failed -> no");
+    return true;
+}
+
+(:test)
+function testBolusConfirmNeedsSameAmountInWindow(logger as Test.Logger) as Boolean {
+    var now = new OtpService().formatCurrentTimestamp();
+    var s = new AppState();
+    s.updateRecommendedBolus(1.65, now);
+
+    Test.assertMessage(!s.isBolusConfirmArmed(1000), "not armed before the first tap");
+    s.armBolusConfirm(1000);
+    Test.assertMessage(s.isBolusConfirmArmed(1000 + 1000), "armed inside the window");
+    Test.assertMessage(!s.isBolusConfirmArmed(1000 + Constants.BOLUS_CONFIRM_MS + 1), "expired after the window");
+
+    // The amount changes between the two taps: must NOT count as confirmed
+    s.armBolusConfirm(1000);
+    s.updateRecommendedBolus(2.0, now);
+    Test.assertMessage(!s.isBolusConfirmArmed(1500), "different amount -> not confirmed");
+    return true;
+}
+
+(:test)
+function testBolusLockAndDuplicateGuard(logger as Test.Logger) as Boolean {
+    var now = new OtpService().formatCurrentTimestamp();
+    var s = new AppState();
+    s.updateRecommendedBolus(1.65, now);
+
+    s.bolusSentForTime = now;
+    Test.assertMessage(!s.canSendBolus(), "same recommendation can't be sent twice");
+    s.updateRecommendedBolus(1.5, "2099-01-01T00:00:00Z");
+    // (a different, newer-looking timestamp unlocks only if it is also fresh; a future time reads as age 0)
+    Test.assertMessage(s.canSendBolus(), "a newer recommendation can be sent");
+
+    s.setBolusSendState(Constants.SEND_PENDING, 0);
+    var t0 = s.bolusSendChangedMs;
+    Test.assertMessage(s.isBolusLocked(t0 + 1000), "pending -> locked");
+    s.setBolusSendState(Constants.SEND_OK, 200);
+    t0 = s.bolusSendChangedMs;
+    Test.assertMessage(s.isBolusLocked(t0 + 1000), "just sent -> locked");
+    Test.assertMessage(!s.isBolusLocked(t0 + Constants.BOLUS_HOLD_OK_MS), "lock released later");
+
+    // A definite server refusal frees the recommendation for a retry; unconfirmed does not
+    s.bolusSentForTime = "x";
+    s.setBolusSendState(Constants.SEND_UNCONFIRMED, -1);
+    Test.assertEqualMessage(s.bolusSentForTime, "x", "unconfirmed keeps the block");
+    s.setBolusSendState(Constants.SEND_FAILED, 500);
+    Test.assertEqualMessage(s.bolusSentForTime, "", "failed -> retry allowed");
+    return true;
+}
+
+(:test)
+function testBolusPayloadShape(logger as Test.Logger) as Boolean {
+    var data = new OtpService().createBolusEntryData(1.63);
+    Test.assertEqualMessage(data.get("eventType"), "Remote Bolus Entry", "event type");
+    var amount = data.get("remoteBolus");
+    Test.assertMessage(amount instanceof Lang.Float, "remoteBolus is a Float, flat in the body");
+    var amountF = amount as Lang.Float;
+    Test.assertMessage((amountF - 1.65).abs() < 0.001, "rounded to the pump increment");
+    Test.assertEqualMessage((data.get("otp") as Lang.String).length(), 6, "6-digit OTP");
+    Test.assertMessage(data.hasKey("created_at"), "timestamp present");
+    Test.assertMessage(data.hasKey("enteredBy"), "enteredBy present");
+    return true;
+}

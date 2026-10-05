@@ -43,6 +43,12 @@ Il n'y a volontairement **aucun retry automatique** à l'envoi : les glucides ne
 
 L'âge de la mesure (« 3m ago ») est celui de la mesure du capteur. Il passe **orange** après 10 min, **rouge** après 15 min (le chiffre devient alors gris pour qu'une vieille valeur ne rassure jamais à tort). Un **!** rouge signale que la dernière requête a échoué ; l'app réessaie toutes les 30 s.
 
+## Écran Traitements (profils + bolus)
+
+Ouvert en touchant l'en-tête. En haut : les profils temporaires (voir ci-dessous). En bas : **Bolus** — le montant recommandé par Loop (lu sur Nightscout, avec son âge) et un bouton.
+
+⚠️ Envoyer un bolus délivre de **l'insuline réelle**. Le bouton ne fonctionne que si le réglage est activé, si la recommandation a moins de 10 minutes et vaut entre 0,05 et 5 U, et si elle n'a pas déjà été envoyée. Un premier tap arme (« Confirmer »), un second tap dans les 5 s envoie. Aucun retry automatique ; après « Non confirmé », vérifie Loop avant toute autre action. Les limites de Loop (bolus maximum, code à usage unique) restent appliquées.
+
 ## Sélection de profil temporaire
 
 L'écran liste les profils/overrides disponibles sur Nightscout. Le profil **actif** est repéré par une barre verte et une coche. Toucher un profil l'active ; toucher **Default** annule l'override temporaire en cours. En cas d'échec, une ligne rouge en bas indique quoi faire (voir *Dépannage*).
@@ -56,6 +62,7 @@ Configurables depuis l'app Garmin Connect (Mobile) ou Connect IQ (Express) :
 - **Secret OTP** — clé TOTP pour Loop (voir § 2)
 - **Default User** — nom associé aux entrées envoyées
 - **Afficher la glycémie en mmol/L** — décoché (défaut) = mg/dL. Nightscout envoie toujours des mg/dL ; l'app ne convertit que l'affichage et envoie l'unité choisie à Loop
+- **Autoriser l'envoi du bolus recommandé par Loop** — désactivé par défaut. Une fois activé, l'écran *Traitements* peut envoyer le bolus recommandé par Loop après une double confirmation (voir *Écran Traitements*)
 - **Colorer les barres selon la zone glycémique** — si activé, chaque barre du graphe prend la couleur de sa zone ; sinon les barres restent grises (défaut)
 
 > Prérequis Loop : votre Loop doit accepter les entrées distantes (Remote Carbs) via l'API Nightscout `notifications/loop`.

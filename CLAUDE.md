@@ -18,7 +18,10 @@ Docs utilisateur : [README.fr.md](README.fr.md) (FR) / [README.md](README.md) (E
 
 **Ne JAMAIS exécuter, dans un test ou un script de vérification, une des
 fonctions suivantes de `NightscoutService`** : `fetchGlucoseData`,
-`fetchTempBasalData`, `sendFoodEntry`, `activatePreset`, `deactivatePreset`.
+`fetchTempBasalData`, `fetchRecommendedBolus`, `sendFoodEntry`, `sendBolusEntry`,
+`activatePreset`, `deactivatePreset`. **`sendBolusEntry` délivre de l'insuline réelle** :
+ne jamais l'appeler, même indirectement (`onReceiveAuthToken` en succès enchaîne aussi
+une vraie requête, donc ne pas le tester non plus).
 
 Ce sont de vraies requêtes réseau vers l'instance Nightscout personnelle de
 l'utilisateur, connectée à sa boucle fermée réelle. Les déclencher enverrait
@@ -28,6 +31,16 @@ Les tests de `NightscoutServiceTest.mc` n'appellent **que** les handlers de
 parsing (`onReceiveGlucoseData`, `onReceiveTempBasalData`,
 `onReceiveActiveOverride`) avec des données factices — ils ne font aucune
 requête. Respecter ce principe pour toute nouvelle couverture de test.
+
+## Envoi de bolus (écran « Traitements »)
+
+Fonction **désactivée par défaut** (réglage `enable_bolus_send`). Garde-fous dans
+`AppState` : recommandation lue sans erreur, âge ≤ 10 min, 0,05 ≤ U ≤ 5 U,
+jamais deux fois la même recommandation, confirmation en 2 taps dans les 5 s
+avec le même montant, verrou pendant l'envoi, aucun retry. Le corps envoyé est
+du JSON plat avec `remoteBolus` en Float (forme validée par curl). Le plafond
+`BOLUS_MAX_UNITS` est dans `Constants.mc`. Ne pas assouplir ces garde-fous sans
+accord explicite de l'utilisateur.
 
 ## Architecture
 

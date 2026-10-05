@@ -55,6 +55,28 @@ class AppState {
     public var sendErrorCode as Lang.Number = 0;
     // Last failed profile (override) activation: 0 = none, else the HTTP/Garmin code.
     public var profileErrorCode as Lang.Number = 0;
+    // Loop's recommended bolus (units), read from Nightscout devicestatus.
+    // INFORMATION ONLY: never used to send or change anything.
+    public var hasRecommendedBolus as Lang.Boolean = false;
+    public var recommendedBolus as Lang.Float = 0.0;
+    // ISO-8601 time at which Loop computed it (loop.timestamp), "" if unknown.
+    public var recommendedBolusTime as Lang.String = "";
+    // Last failed recommended-bolus fetch: 0 = none, else HTTP / Garmin code.
+    public var recommendedBolusError as Lang.Number = 0;
+    // --- Remote bolus: sending Loop's recommendation (see canSendBolus) ---
+    public var bolusSendState as Lang.Number = Constants.SEND_IDLE;
+    public var bolusSendChangedMs as Lang.Number = 0;
+    public var bolusSendErrorCode as Lang.Number = 0;
+    // First tap arms a confirmation; the second tap (within the window, same
+    // amount, same recommendation) sends. -1 = not armed.
+    public var bolusConfirmStartMs as Lang.Number = -1;
+    public var bolusArmedUnits as Lang.Float = 0.0;
+    public var bolusArmedTime as Lang.String = "";
+    // The recommendation (by its Loop timestamp) that was last sent: it can
+    // not be sent again until Loop publishes a newer one.
+    public var bolusSentForTime as Lang.String = "";
+    public var bolusSentUnits as Lang.Float = 0.0;
+    public var bolusButtonRegion as Lang.Dictionary? = null;
     // Glucose fetch health: true after a failed request, until the next success.
     public var glucoseFetchFailed as Lang.Boolean = false;
     // System.getTimer() of the last glucose fetch attempt, -1 = never.
@@ -66,6 +88,110 @@ class AppState {
 
     function initialize() {
         glucoseData = new GlucoseData();
+    }
+
+    function updateRecommendedBolus(units as Lang.Float, isoTime as Lang.String) as Void {
+        recommendedBolus = units;
+        recommendedBolusTime = isoTime;
+        hasRecommendedBolus = true;
+        recommendedBolusError = 0;
+        WatchUi.requestUpdate();
+    }
+
+    //! Age in seconds of Loop's recommendation (from loop.timestamp), or -1 when
+    //! there is none or its time can't be read. Callers treat -1 as "don't show".
+    function getRecommendedBolusAgeSeconds() as Lang.Number {
+        var s = recommendedBolusTime;
+        if (!hasRecommendedBolus || s.length() < 19) { return -1; }
+        var year   = s.substring(0, 4).toNumber();
+        var month  = s.substring(5, 7).toNumber();
+        var day    = s.substring(8, 10).toNumber();
+        var hour   = s.substring(11, 13).toNumber();
+        var minute = s.substring(14, 16).toNumber();
+        var second = s.substring(17, 19).toNumber();
+        if (year == null || month == null || day == null ||
+            hour == null || minute == null || second == null) { return -1; }
+        var computedAt = Toybox.Time.Gregorian.moment({
+            :year => year, :month => month, :day => day,
+            :hour => hour, :minute => minute, :second => second
+        });
+        var age = Toybox.Time.now().subtract(computedAt).value();
+        return age < 0 ? 0 : age;
+    }
+
+    //! True when the recommendation may be offered for sending: present, read
+    //! without error, young enough, within sane bounds, and not already sent.
+    function canSendBolus() as Lang.Boolean {
+        if (!hasRecommendedBolus || recommendedBolusError != 0) { return false; }
+        var age = getRecommendedBolusAgeSeconds();
+        if (age < 0 || age > Constants.BOLUS_MAX_AGE_SEC) { return false; }
+        if (recommendedBolus < Constants.BOLUS_MIN_UNITS) { return false; }
+        if (recommendedBolus > Constants.BOLUS_MAX_UNITS) { return false; }
+        if (recommendedBolusTime.equals(bolusSentForTime)) { return false; }
+        return true;
+    }
+
+    function setBolusSendState(state as Lang.Number, errorCode as Lang.Number) as Void {
+        bolusSendState = state;
+        bolusSendErrorCode = errorCode;
+        bolusSendChangedMs = System.getTimer();
+        // A definite refusal by the server means nothing was delivered: allow a retry.
+        // For OK / unconfirmed the same recommendation stays blocked.
+        if (state == Constants.SEND_FAILED) {
+            bolusSentForTime = "";
+        }
+        WatchUi.requestUpdate();
+    }
+
+    //! Taps on the bolus button are ignored while sending / just sent / unconfirmed.
+    function isBolusLocked(nowMs as Lang.Number) as Lang.Boolean {
+        var elapsed = nowMs - bolusSendChangedMs;
+        if (bolusSendState == Constants.SEND_PENDING) { return elapsed < Constants.SEND_TIMEOUT_MS; }
+        if (bolusSendState == Constants.SEND_OK) { return elapsed < Constants.BOLUS_HOLD_OK_MS; }
+        if (bolusSendState == Constants.SEND_UNCONFIRMED) { return elapsed < Constants.BOLUS_HOLD_FAIL_MS; }
+        return false;
+    }
+
+    function armBolusConfirm(nowMs as Lang.Number) as Void {
+        bolusConfirmStartMs = nowMs;
+        bolusArmedUnits = recommendedBolus;
+        bolusArmedTime = recommendedBolusTime;
+        WatchUi.requestUpdate();
+    }
+
+    function cancelBolusConfirm() as Void {
+        bolusConfirmStartMs = -1;
+    }
+
+    //! Armed only while the window is open AND the amount/recommendation are
+    //! still exactly what the rider saw when arming.
+    function isBolusConfirmArmed(nowMs as Lang.Number) as Lang.Boolean {
+        if (bolusConfirmStartMs < 0) { return false; }
+        if (nowMs - bolusConfirmStartMs > Constants.BOLUS_CONFIRM_MS) { return false; }
+        if (!bolusArmedTime.equals(recommendedBolusTime)) { return false; }
+        return (bolusArmedUnits - recommendedBolus).abs() < 0.001;
+    }
+
+    //! Expire timed states (confirmation window, pending timeout, result display).
+    function normalizeBolusState(nowMs as Lang.Number) as Void {
+        if (bolusConfirmStartMs >= 0 && !isBolusConfirmArmed(nowMs)) {
+            cancelBolusConfirm();
+        }
+        var elapsed = nowMs - bolusSendChangedMs;
+        if (bolusSendState == Constants.SEND_PENDING) {
+            if (elapsed >= Constants.SEND_TIMEOUT_MS) {
+                setBolusSendState(Constants.SEND_UNCONFIRMED, Constants.REQUEST_TIMEOUT_CODE);
+            }
+        } else if (bolusSendState == Constants.SEND_OK) {
+            if (elapsed >= Constants.BOLUS_HOLD_OK_MS) { setBolusSendState(Constants.SEND_IDLE, 0); }
+        } else if (bolusSendState == Constants.SEND_FAILED || bolusSendState == Constants.SEND_UNCONFIRMED) {
+            if (elapsed >= Constants.BOLUS_HOLD_FAIL_MS) { setBolusSendState(Constants.SEND_IDLE, 0); }
+        }
+    }
+
+    function setRecommendedBolusError(code as Lang.Number) as Void {
+        recommendedBolusError = code;
+        WatchUi.requestUpdate();
     }
 
     function setProfileError(code as Lang.Number) as Void {

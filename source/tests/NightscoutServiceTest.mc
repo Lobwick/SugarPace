@@ -89,3 +89,49 @@ function testParseErrorResilience(logger as Test.Logger) as Boolean {
     Test.assertEqualMessage(appState.activeProfile, Constants.DEFAULT_OVERRIDE_PROFIL, "failed override fetch -> Default");
     return true;
 }
+
+//! Recommended bolus (devicestatus v3 payload). Parsing only: the bearer
+//! step (onReceiveAuthToken success) is NOT tested because it chains into a
+//! real web request.
+(:test)
+function testParseRecommendedBolus(logger as Test.Logger) as Boolean {
+    var appState = new AppState();
+    var svc = new NightscoutService(appState);
+
+    var payload = {
+        "status" => 200,
+        "result" => [ { "loop" => { "recommendedBolus" => 1.65, "timestamp" => "2026-10-05T20:49:09Z" } } ]
+    };
+    svc.onReceiveRecommendedBolus(200, payload as Lang.Dictionary);
+    Test.assertMessage(appState.hasRecommendedBolus, "bolus parsed");
+    Test.assertMessage((appState.recommendedBolus - 1.65).abs() < 0.001, "value 1.65");
+    Test.assertEqualMessage(appState.recommendedBolusTime, "2026-10-05T20:49:09Z", "timestamp kept");
+    Test.assertEqualMessage(appState.recommendedBolusError, 0, "no error");
+
+    // Integer value (e.g. 2 units) is accepted too
+    var intPayload = { "status" => 200, "result" => [ { "loop" => { "recommendedBolus" => 2 } } ] };
+    svc.onReceiveRecommendedBolus(200, intPayload as Lang.Dictionary);
+    Test.assertMessage((appState.recommendedBolus - 2.0).abs() < 0.001, "integer value");
+    return true;
+}
+
+(:test)
+function testRecommendedBolusErrors(logger as Test.Logger) as Boolean {
+    var appState = new AppState();
+    var svc = new NightscoutService(appState);
+
+    svc.onReceiveRecommendedBolus(401, null);
+    Test.assertEqualMessage(appState.recommendedBolusError, 401, "401 reported");
+    Test.assertMessage(!appState.hasRecommendedBolus, "nothing stored on error");
+
+    // 200 but no recommendation / no loop block: error, never a fake 0 units
+    svc.onReceiveRecommendedBolus(200, { "status" => 200, "result" => [ { "loop" => { "iob" => 1 } } ] } as Lang.Dictionary);
+    Test.assertMessage(!appState.hasRecommendedBolus, "missing field is not 0 units");
+    svc.onReceiveRecommendedBolus(200, { "status" => 200, "result" => [] } as Lang.Dictionary);
+    Test.assertMessage(!appState.hasRecommendedBolus, "empty result");
+
+    // Failed authorization must not store a bearer or chain a request
+    svc.onReceiveAuthToken(401, null);
+    Test.assertEqualMessage(appState.recommendedBolusError, 401, "auth failure reported");
+    return true;
+}

@@ -43,6 +43,12 @@ There is deliberately **no automatic retry** on sends, so carbs can never be dou
 
 The age of the reading ("3m ago") is the age of the CGM measurement. It turns **orange** after 10 min, **red** after 15 min (the glucose number then turns gray so an old value never looks reassuring). A red **!** means the last fetch failed; the app retries every 30 s.
 
+## Treatments screen (profiles + bolus)
+
+Opened by tapping the header. Top: temporary profiles (see below). Bottom: **Bolus** — the amount recommended by Loop (read from Nightscout, with its age) and a button.
+
+⚠️ Sending a bolus delivers **real insulin**. The button only works when the setting is on, the recommendation is less than 10 minutes old and between 0.05 and 5 U, and it has not been sent already. Tap once to arm ("Confirm"), tap again within 5 s to send. No automatic retry; after "Unconfirmed", check Loop before doing anything else. Loop's own limits (max bolus, one-time code) still apply.
+
 ## Temporary profile selection
 
 The screen lists the profiles/overrides available on Nightscout. The **active** profile is marked with a green bar and a checkmark. Tapping a profile activates it; tapping **Default** cancels the current temporary override. If it fails, a red line at the bottom says what to do (see *Troubleshooting*).
@@ -56,6 +62,7 @@ Configurable from the Garmin Connect (mobile) or Connect IQ (Express) app:
 - **OTP Secret** — TOTP key for Loop (see § 2)
 - **Default User** — name attached to sent entries
 - **Display glucose in mmol/L** — off (default) = mg/dL. Nightscout always sends mg/dL; the app only converts the display and sends the chosen unit to Loop
+- **Allow sending Loop's recommended bolus** — off by default. When on, the *Treatments* screen can send the bolus recommended by Loop after a two-tap confirmation (see *Treatments screen*)
 - **Color chart bars by glucose zone** — when on, each chart bar takes its zone color; otherwise bars stay gray (default)
 
 > Loop prerequisite: your Loop must accept remote entries (Remote Carbs) via the Nightscout `notifications/loop` API.

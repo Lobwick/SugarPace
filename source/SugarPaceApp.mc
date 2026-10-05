@@ -56,6 +56,7 @@ class SugarPaceApp extends Application.AppBase {
         if (nightscoutService != null) {
             nightscoutService.fetchGlucoseData();
             nightscoutService.fetchTempBasalData();
+            nightscoutService.fetchRecommendedBolus();
         }
         WatchUi.requestUpdate();
     }
@@ -70,6 +71,8 @@ class SugarPaceApp extends Application.AppBase {
         nightscoutService.fetchGlucoseData();
         // Fetch active override profile and available presets from Nightscout
         nightscoutService.fetchTempBasalData();
+        // Loop's recommended bolus (read-only, shown next to the profile)
+        nightscoutService.fetchRecommendedBolus();
         // Load user's food selection from persistent storage, then populate the grid
         appState.initializeSelection();
         appState.updateFoodItems(FoodDatabase.loadAll(appState.selectedFoodIds));
@@ -111,6 +114,18 @@ class SugarPaceApp extends Application.AppBase {
             if (data instanceof Lang.String) {
                 appState.updateActiveProfile(data);
             }
+        } else if (type.equals("bolusEntrySent")) {
+            if (data instanceof Lang.Dictionary) {
+                var bcode = data.get("responseCode");
+                var bcodeNum = bcode instanceof Lang.Number ? bcode : 0;
+                if (data.get("success") == true) {
+                    appState.setBolusSendState(Constants.SEND_OK, bcodeNum);
+                } else if (bcodeNum == Constants.REQUEST_TIMEOUT_CODE) {
+                    appState.setBolusSendState(Constants.SEND_UNCONFIRMED, bcodeNum);
+                } else {
+                    appState.setBolusSendState(Constants.SEND_FAILED, bcodeNum);
+                }
+            }
         } else if (type.equals("foodEntrySent")) {
             if (data instanceof Lang.Dictionary) {
                 var code = data.get("responseCode");
@@ -140,6 +155,10 @@ class SugarPaceApp extends Application.AppBase {
             }
         }
         return foodsArray;
+    }
+
+    function getOtpService() as OtpService? {
+        return otpService;
     }
 
     function getMainView() as SugarPaceView? {
