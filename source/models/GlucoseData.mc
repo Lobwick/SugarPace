@@ -34,7 +34,32 @@ class GlucoseData {
                 direction = directionValue;
             }
         }
-        lastUpdateTime = Time.now();
+        // Prefer the CGM reading's own timestamp so the age shown is the age of
+        // the data, not of the last successful download.
+        var readingTime = data.hasKey("readingTime") ? data.get("readingTime") : null;
+        if (readingTime instanceof Lang.Number && readingTime > 0) {
+            lastUpdateTime = new Time.Moment(readingTime);
+        } else {
+            lastUpdateTime = Time.now();
+        }
+    }
+
+    //! Age of the reading in seconds, or -1 when no reading has been received.
+    function getAgeSeconds() as Lang.Number {
+        if (lastUpdateTime == null) {
+            return -1;
+        }
+        var age = Time.now().subtract(lastUpdateTime).value();
+        return age < 0 ? 0 : age;
+    }
+
+    //! True when the reading is too old to be trusted at a glance.
+    function isStale() as Lang.Boolean {
+        return isStaleAge(getAgeSeconds());
+    }
+
+    static function isStaleAge(ageSec as Lang.Number) as Lang.Boolean {
+        return ageSec >= Constants.GLUCOSE_STALE_SEC;
     }
 
     //! Get direction arrow for display
@@ -63,16 +88,14 @@ class GlucoseData {
             return "---";
         }
         
-        var now = Time.now();
-        var duration = now.subtract(lastUpdateTime);
-        var seconds = duration.value();
+        var seconds = getAgeSeconds();
         
         if (seconds < 60) {
             return seconds + "s";
-        } else {
-            var minutes = seconds / 60;
-            return minutes + "m";
+        } else if (seconds < 7200) {
+            return (seconds / 60) + "m";
         }
+        return (seconds / 3600) + "h";
     }
 
     //! Get trend label (STABLE / RISING / FALLING) derived from the CGM direction

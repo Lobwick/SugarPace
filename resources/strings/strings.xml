@@ -12,6 +12,17 @@
     <string id="loading_foods">Loading foods...</string>
     <string id="food_selection_label">My Foods</string>
     <string id="food_no_selection">No food selected</string>
+    <string id="err_config_short">Set up app</string>
+    <string id="err_config_long">Fill in Nightscout settings</string>
+    <string id="err_auth_short">Bad token</string>
+    <string id="err_auth_long">Invalid token: check settings</string>
+    <string id="err_server_short">Server keys</string>
+    <string id="err_server_long">Server error: add Loop keys (APNs)</string>
+    <string id="err_network_short">No link</string>
+    <string id="err_network_long">No connection to Nightscout</string>
+    <string id="send_pending">Sending...</string>
+    <string id="send_failed">Failed</string>
+    <string id="send_unconfirmed">Unconfirmed</string>
     <string id="open" scope="glance">Open</string>
     <string id="check_nightscout_config">Check your Nightscout configuration</string>
 </strings>

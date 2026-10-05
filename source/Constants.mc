@@ -10,4 +10,28 @@ module Constants {
     const GLUCOSE_NEAR_LOW = 55;
     const GLUCOSE_NEAR_HIGH = 250;
     //TODO les déplacer dans les properties de l'application
+
+    // mg/dL per mmol/L (Nightscout always stores mg/dL; mmol/L is display-only)
+    const MGDL_PER_MMOL = 18.0182;
+
+    // Data freshness (seconds since the CGM reading was taken).
+    const GLUCOSE_EXPECTED_SEC = 290;  // next reading is due: poll faster
+    const GLUCOSE_WARN_SEC = 600;      // 10 min: freshness label turns orange
+    const GLUCOSE_STALE_SEC = 900;     // 15 min: label red, value no longer color-coded
+
+    // Fake HTTP code reported to a responder when the request watchdog expires
+    const REQUEST_TIMEOUT_CODE = -1;
+    // Fake code when URL / token / OTP secret are not filled in (nothing is sent)
+    const NOT_CONFIGURED_CODE = -2;
+
+    // Food send state machine (see AppState.setSendState)
+    const SEND_IDLE = 0;
+    const SEND_PENDING = 1;      // request issued, no answer yet: taps are ignored
+    const SEND_OK = 2;           // server accepted: tile green, taps locked briefly
+    const SEND_FAILED = 3;       // server/network error: tile red, retry allowed
+    const SEND_UNCONFIRMED = 4;  // no answer in time: may or may not have gone through
+
+    const SEND_TIMEOUT_MS = 30000;  // give up waiting for an answer
+    const SEND_HOLD_OK_MS = 2500;   // how long the success state is shown / taps locked
+    const SEND_HOLD_FAIL_MS = 5000; // how long a failure is shown
 }

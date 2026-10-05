@@ -33,6 +33,11 @@ class TempOverridesView extends WatchUi.View {
         }
     }
 
+    //! Hide the previous failure message when a new activation starts.
+    function clearError() as Void {
+        appState.setProfileError(0);
+    }
+
     //! Name of the currently focused row (for physical-button activation).
     function getFocusedName() as Lang.String? {
         if (focusedIndex >= 0 && focusedIndex < appState.presetCoordinatesProfile.size()) {
@@ -48,6 +53,7 @@ class TempOverridesView extends WatchUi.View {
     }
 
     function onShow() as Void {
+        appState.profileErrorCode = 0;
         // Déclencher la récupération des données
         var app = Application.getApp() as SugarPaceApp;
         if (app != null) {
@@ -118,6 +124,13 @@ class TempOverridesView extends WatchUi.View {
                 yPos += rowHeight;
                 rowIndex += 1;
             }
+        }
+
+        // Last activation failed: say why, in a few words, at the bottom.
+        if (appState.profileErrorCode != 0) {
+            var fh = dc.getFontHeight(Graphics.FONT_XTINY);
+            dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(width / 2, height - fh - 12, Graphics.FONT_XTINY, ErrorText.longText(appState.profileErrorCode), Graphics.TEXT_JUSTIFY_CENTER);
         }
 
         // Keep the focus in range if the preset list shrank
@@ -235,6 +248,7 @@ class TempOverridesInputDelegate extends WatchUi.InputDelegate {
             System.println("No preset selected");
             return;
         }
+        view.clearError();
         var app = Application.getApp() as SugarPaceApp;
         if (app != null) {
             var nightscoutService = app.getNightscoutService();

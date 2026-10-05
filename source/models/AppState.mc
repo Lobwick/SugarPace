@@ -49,6 +49,16 @@ class AppState {
     public var isLoading as Lang.Boolean = false;
     // Index of the food item most recently sent, or -1. Used for green-flash feedback.
     public var sentFoodIndex as Lang.Number = -1;
+    // Food send state machine (Constants.SEND_*) + System.getTimer() of the last change.
+    public var sendState as Lang.Number = Constants.SEND_IDLE;
+    public var sendStateChangedMs as Lang.Number = 0;
+    public var sendErrorCode as Lang.Number = 0;
+    // Last failed profile (override) activation: 0 = none, else the HTTP/Garmin code.
+    public var profileErrorCode as Lang.Number = 0;
+    // Glucose fetch health: true after a failed request, until the next success.
+    public var glucoseFetchFailed as Lang.Boolean = false;
+    // System.getTimer() of the last glucose fetch attempt, -1 = never.
+    public var lastFetchAttemptMs as Lang.Number = -1;
     public var foregroundColor as Graphics.ColorType =  Graphics.COLOR_WHITE;
     public var backgroundColor as Graphics.ColorType =  Graphics.COLOR_BLACK;
 
@@ -56,6 +66,60 @@ class AppState {
 
     function initialize() {
         glucoseData = new GlucoseData();
+    }
+
+    function setProfileError(code as Lang.Number) as Void {
+        profileErrorCode = code;
+        WatchUi.requestUpdate();
+    }
+
+    //! Move the food send state machine and stamp the change time.
+    function setSendState(state as Lang.Number, errorCode as Lang.Number) as Void {
+        sendState = state;
+        sendErrorCode = errorCode;
+        sendStateChangedMs = System.getTimer();
+        WatchUi.requestUpdate();
+    }
+
+    //! True while a new food tap must be ignored (answer pending, or success
+    //! just shown): prevents duplicate carb entries from double taps.
+    function isSendLocked() as Lang.Boolean {
+        return isSendLockedAt(System.getTimer());
+    }
+
+    //! The lock also self-expires, so a lost feedback timer can never leave
+    //! the grid permanently unresponsive.
+    function isSendLockedAt(nowMs as Lang.Number) as Lang.Boolean {
+        var elapsed = nowMs - sendStateChangedMs;
+        if (sendState == Constants.SEND_PENDING) {
+            return elapsed < Constants.SEND_TIMEOUT_MS;
+        }
+        if (sendState == Constants.SEND_OK) {
+            return elapsed < Constants.SEND_HOLD_OK_MS;
+        }
+        return false;
+    }
+
+    //! Decide whether the periodic tick should hit the network now.
+    //!  - never fetched, or last fetch failed: retry every RETRY_INTERVAL
+    //!  - reading older than the CGM cadence: poll every STALE_POLL (new value due)
+    //!  - otherwise: wait, the next reading is not due yet
+    function isFetchDue(nowMs as Lang.Number) as Lang.Boolean {
+        if (lastFetchAttemptMs < 0) {
+            return true;
+        }
+        var elapsed = nowMs - lastFetchAttemptMs;
+        if (glucoseFetchFailed) {
+            return elapsed >= Layout.RETRY_INTERVAL_MS;
+        }
+        var age = glucoseData.getAgeSeconds();
+        if (age < 0) {
+            return elapsed >= Layout.RETRY_INTERVAL_MS;
+        }
+        if (age >= Constants.GLUCOSE_EXPECTED_SEC) {
+            return elapsed >= Layout.STALE_POLL_INTERVAL_MS;
+        }
+        return false;
     }
 
     //! Update glucose data and request UI refresh

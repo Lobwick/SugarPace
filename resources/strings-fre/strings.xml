@@ -12,6 +12,17 @@
     <string id="loading_foods">Chargement aliments...</string>
     <string id="food_selection_label">Mes Aliments</string>
     <string id="food_no_selection">Aucun aliment sélectionné</string>
+    <string id="err_config_short">À configurer</string>
+    <string id="err_config_long">Renseigner les réglages Nightscout</string>
+    <string id="err_auth_short">Token invalide</string>
+    <string id="err_auth_long">Token invalide : voir réglages</string>
+    <string id="err_server_short">Clés serveur</string>
+    <string id="err_server_long">Erreur serveur : ajouter clés Loop (APNs)</string>
+    <string id="err_network_short">Pas de lien</string>
+    <string id="err_network_long">Pas de connexion à Nightscout</string>
+    <string id="send_pending">Envoi...</string>
+    <string id="send_failed">Échec</string>
+    <string id="send_unconfirmed">Non confirmé</string>
     <string id="open" scope="glance">Ouvrir</string>
     <string id="check_nightscout_config">Vérifiez votre configuration Nightscout</string>
 </strings>

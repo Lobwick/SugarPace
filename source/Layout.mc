@@ -8,9 +8,11 @@ module Layout {
     // to a number of history points to show.
     const MIN_PER_POINT = 5;
 
-    // How often the main view re-fetches glucose + profile (ms). 5 minutes,
-    // matching the CGM cadence.
-    const REFRESH_INTERVAL_MS = 300000;
+    // The main view wakes up this often and asks AppState.isFetchDue() whether
+    // to hit the network (the CGM posts a reading roughly every 5 minutes).
+    const REFRESH_INTERVAL_MS = 30000;
+    const RETRY_INTERVAL_MS = 30000;      // after a failed fetch
+    const STALE_POLL_INTERVAL_MS = 60000; // reading overdue: new value is imminent
 
     // --- Glucose card (header) ---
     const CARD_TOP = 6;             // top inset of the card

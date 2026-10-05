@@ -112,7 +112,17 @@ class SugarPaceApp extends Application.AppBase {
                 appState.updateActiveProfile(data);
             }
         } else if (type.equals("foodEntrySent")) {
-            // Handle food entry response if needed
+            if (data instanceof Lang.Dictionary) {
+                var code = data.get("responseCode");
+                var codeNum = code instanceof Lang.Number ? code : 0;
+                if (data.get("success") == true) {
+                    appState.setSendState(Constants.SEND_OK, codeNum);
+                } else if (codeNum == Constants.REQUEST_TIMEOUT_CODE) {
+                    appState.setSendState(Constants.SEND_UNCONFIRMED, codeNum);
+                } else {
+                    appState.setSendState(Constants.SEND_FAILED, codeNum);
+                }
+            }
         }
     }
 

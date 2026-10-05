@@ -22,7 +22,7 @@ class SugarPaceView extends WatchUi.View {
 
     // Called when this View is brought to the foreground
     function onShow() as Void {
-        // Refresh on the CGM cadence
+        // Wake up often; requestDataUpdate only hits the network when due
         updateTimer = new Timer.Timer();
         updateTimer.start(method(:requestDataUpdate), Layout.REFRESH_INTERVAL_MS, true);
 
@@ -101,8 +101,10 @@ class SugarPaceView extends WatchUi.View {
         var margin = Layout.CARD_MARGIN;
 
         var bloodSugar = appState.glucoseData.bloodSugarLevel;
-        var default_unit = Application.Properties.getValue("default_unit").toString();
-        var bloodSugarText = bloodSugar > 0 ? bloodSugar.toString() : "--";
+        var default_unit = Units.label();
+        var bloodSugarText = bloodSugar > 0 ? Units.format(bloodSugar) : "--";
+        var ageSec = appState.glucoseData.getAgeSeconds();
+        var stale = GlucoseData.isStaleAge(ageSec);
 
         var innerX = margin;
         var valueY = cardTop;
@@ -117,7 +119,12 @@ class SugarPaceView extends WatchUi.View {
         // signals the state at a glance.
         var numberHeight = dc.getFontHeight(numberFont);
         var unitHeight = dc.getFontHeight(Graphics.FONT_XTINY);
+        // A stale reading is greyed out: a green number must never imply the
+        // glucose is fine when the data is 15+ minutes old.
         var zoneColor = bloodSugar > 0 ? GlucoseData.getZoneColor(bloodSugar) : appState.foregroundColor;
+        if (bloodSugar > 0 && stale) {
+            zoneColor = Graphics.COLOR_DK_GRAY;
+        }
         dc.setColor(zoneColor, Graphics.COLOR_TRANSPARENT);
         dc.drawText(innerX, valueY, numberFont, bloodSugarText, Graphics.TEXT_JUSTIFY_LEFT);
 
@@ -145,11 +152,20 @@ class SugarPaceView extends WatchUi.View {
         if (colTop < valueY) { colTop = valueY; }
 
         var freshnessText = bloodSugar > 0 ? appState.glucoseData.getTimeSinceUpdate() + " ago" : "";
+        if (bloodSugar > 0 && appState.glucoseFetchFailed) {
+            freshnessText = "! " + freshnessText;
+        }
         var rightColWidth = dc.getTextWidthInPixels(freshnessText, Graphics.FONT_XTINY);
         var rightColLeft = width - margin - rightColWidth;
 
         if (bloodSugar > 0) {
-            dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+            var freshColor = Graphics.COLOR_LT_GRAY;
+            if (stale || appState.glucoseFetchFailed) {
+                freshColor = Graphics.COLOR_RED;
+            } else if (ageSec >= Constants.GLUCOSE_WARN_SEC) {
+                freshColor = Graphics.COLOR_ORANGE;
+            }
+            dc.setColor(freshColor, Graphics.COLOR_TRANSPARENT);
             dc.drawText(width - margin, colTop, Graphics.FONT_XTINY, freshnessText, Graphics.TEXT_JUSTIFY_RIGHT);
         }
 
@@ -397,12 +413,25 @@ class SugarPaceView extends WatchUi.View {
                 continue;
             }
 
-            var isSent = (appState.sentFoodIndex == i);
+            var isSent = (appState.sentFoodIndex == i && appState.sendState != Constants.SEND_IDLE);
+            var sentColor = Graphics.COLOR_GREEN;
+            var statusText = "";
             if (isSent) {
-                dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_GREEN);
+                var st = appState.sendState;
+                if (st == Constants.SEND_PENDING) {
+                    sentColor = Graphics.COLOR_ORANGE;
+                    statusText = WatchUi.loadResource(Rez.Strings.send_pending) as Lang.String;
+                } else if (st == Constants.SEND_FAILED) {
+                    sentColor = Graphics.COLOR_RED;
+                    statusText = ErrorText.shortText(appState.sendErrorCode);
+                } else if (st == Constants.SEND_UNCONFIRMED) {
+                    sentColor = Graphics.COLOR_RED;
+                    statusText = WatchUi.loadResource(Rez.Strings.send_unconfirmed) as Lang.String;
+                }
+                dc.setColor(sentColor, sentColor);
                 dc.fillRectangle(x0, y0, cellWidth, cellHeight);
             }
-            dc.setColor(isSent ? Graphics.COLOR_GREEN : appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
+            dc.setColor(isSent ? sentColor : appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
             dc.drawRectangle(x0, y0, cellWidth, cellHeight);
 
             var bitmap = resolveBitmap(foodItem);
@@ -415,8 +444,10 @@ class SugarPaceView extends WatchUi.View {
                 dc.drawBitmap(bx, by, bitmap);
             }
 
-            dc.setColor(appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(x0 + cellWidth / 2, y0 + cellHeight - Layout.GRID_NAME_LIFT, Graphics.FONT_XTINY, foodItem.name, Graphics.TEXT_JUSTIFY_CENTER);
+            // Name band: the food name, or the send status while it is active.
+            // (Text on the coloured tile is black for contrast.)
+            dc.setColor(isSent ? Graphics.COLOR_BLACK : appState.foregroundColor, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(x0 + cellWidth / 2, y0 + cellHeight - Layout.GRID_NAME_LIFT, Graphics.FONT_XTINY, statusText.length() > 0 ? statusText : foodItem.name, Graphics.TEXT_JUSTIFY_CENTER);
         }
 
         dc.clearClip();
@@ -465,6 +496,11 @@ class SugarPaceView extends WatchUi.View {
     }
     //! Request data update from the app orchestrator
     function requestDataUpdate() as Void {
+        // Redraw so the data age ("3m ago") keeps counting up even without a fetch
+        WatchUi.requestUpdate();
+        if (!appState.isFetchDue(System.getTimer())) {
+            return;
+        }
         // Refresh current glucose value and trend history so the chart stays up to date
         var app = Application.getApp() as SugarPaceApp;
         if (app != null) {

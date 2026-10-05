@@ -71,9 +71,12 @@ class NightscoutService {
     private var currentResponder as Method?;
     // Timestamp when the current in-flight request was dispatched.
     // If the app is suspended mid-request (e.g. during an activity), the callback
-    // may never fire. After REQUEST_TIMEOUT_MS we reset and let the queue drain.
+    // may never fire. After REQUEST_TIMEOUT_MS we report a timeout to the
+    // request's responder and let the queue drain. The BLE bridge to the phone
+    // routinely needs several seconds (Garmin allows far longer), so this is a
+    // watchdog for lost callbacks, not a latency budget.
     private var requestStartTime as Lang.Number = 0;
-    private static const REQUEST_TIMEOUT_MS as Lang.Number = 5000;
+    private static const REQUEST_TIMEOUT_MS as Lang.Number = 15000;
 
     function initialize(appState as AppState) {
         self.appState = appState;
@@ -85,8 +88,17 @@ class NightscoutService {
     }
 
     //! Enqueue a web request; it runs when no other request is in flight.
-    private function enqueue(url as Lang.String, params as Lang.Dictionary, options as Lang.Dictionary, responder as Method) as Void {
-        requestQueue.add({ "url" => url, "params" => params, "options" => options, "responder" => responder });
+    //! `urgent` requests (user actions like sending carbs) jump ahead of the
+    //! queued background fetches.
+    private function enqueue(url as Lang.String, params as Lang.Dictionary, options as Lang.Dictionary, responder as Method, urgent as Lang.Boolean) as Void {
+        var req = { "url" => url, "params" => params, "options" => options, "responder" => responder };
+        if (urgent) {
+            var reordered = [req];
+            reordered.addAll(requestQueue);
+            requestQueue = reordered;
+        } else {
+            requestQueue.add(req);
+        }
         dispatchNext();
     }
 
@@ -96,10 +108,16 @@ class NightscoutService {
             if (System.getTimer() - requestStartTime < REQUEST_TIMEOUT_MS) {
                 return;
             }
+            // Lost callback: tell the responder so the UI/state doesn't wait forever.
+            var stale = currentResponder;
             requestInFlight = false;
             currentResponder = null;
+            if (stale != null) {
+                stale.invoke(Constants.REQUEST_TIMEOUT_CODE, null);
+            }
         }
-        if (requestQueue.size() == 0) {
+        // The responder above may itself have queued + dispatched a request.
+        if (requestQueue.size() == 0 || requestInFlight) {
             return;
         }
         var req = requestQueue[0];
@@ -118,6 +136,10 @@ class NightscoutService {
     //! Single completion hook: forwards to the request's own responder, then
     //! frees the bridge and dispatches the next queued request.
     function onRequestComplete(responseCode as Lang.Number, data as Lang.Dictionary?) as Void {
+        // Late answer to a request already given up on (watchdog): ignore it.
+        if (!requestInFlight) {
+            return;
+        }
         var responder = currentResponder;
         requestInFlight = false;
         currentResponder = null;
@@ -135,6 +157,7 @@ class NightscoutService {
         
         if (baseUrl.length() == 0 || token.length() == 0) {
             System.println("Nightscout URL or token not configured");
+            appState.setProfileError(Constants.NOT_CONFIGURED_CODE);
             return;
         }
         
@@ -158,7 +181,8 @@ class NightscoutService {
                 },
                 :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
             },
-            self.method(:onReceivePresetActivationResponse)
+            self.method(:onReceivePresetActivationResponse),
+            true
         );
     }
 
@@ -168,6 +192,7 @@ class NightscoutService {
         
         if (baseUrl.length() == 0 || token.length() == 0) {
             System.println("Nightscout URL or token not configured");
+            appState.setProfileError(Constants.NOT_CONFIGURED_CODE);
             return;
         }
         
@@ -190,7 +215,8 @@ class NightscoutService {
                 },
                 :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
             },
-            self.method(:onReceivePresetActivationResponse)
+            self.method(:onReceivePresetActivationResponse),
+            true
         );
     }
 
@@ -198,7 +224,7 @@ class NightscoutService {
     //! current value (most recent entry) and the ~4h history used for the
     //! trend chart, avoiding two concurrent BLE requests.
     function fetchGlucoseData() as Void {
-        
+        appState.lastFetchAttemptMs = System.getTimer();
         var url = buildUrl("/api/v1/entries.json?count=48");
 
         enqueue(
@@ -210,7 +236,8 @@ class NightscoutService {
                     "Content-Type" => Communications.REQUEST_CONTENT_TYPE_URL_ENCODED
                 }
             },
-            self.method(:onReceiveGlucoseData)
+            self.method(:onReceiveGlucoseData),
+            false
         );
     }
 
@@ -234,7 +261,8 @@ class NightscoutService {
                     "Content-Type" => Communications.REQUEST_CONTENT_TYPE_URL_ENCODED
                 }
             },
-            method(:onReceiveTempBasalData)
+            method(:onReceiveTempBasalData),
+            false
         );
 
         var overrideUrl = baseUrl + "/api/v1/treatments.json?find[eventType]=Temporary%20Override&count=5&token=" + token;
@@ -247,7 +275,8 @@ class NightscoutService {
                     "Content-Type" => Communications.REQUEST_CONTENT_TYPE_URL_ENCODED
                 }
             },
-            method(:onReceiveActiveOverride)
+            method(:onReceiveActiveOverride),
+            false
         );
     }
 
@@ -356,9 +385,14 @@ class NightscoutService {
 
     //! Send food entry to Loop via Nightscout notifications API
     function sendFoodEntry(foodData as Lang.Dictionary) as Void {
+        // Nothing to send to: report it on the tile instead of a doomed request
+        if (getNightscoutUrl().length() == 0 || getNightscoutToken().length() == 0 || !hasOtpSecret()) {
+            onReceiveFoodEntryResponse(Constants.NOT_CONFIGURED_CODE, null);
+            return;
+        }
         var url = getNightscoutUrl() + "/api/v2/notifications/loop?token=" + getNightscoutToken();
         
-        System.println("Sending food data: " + foodData.get("notes") + " with " + foodData.get("remoteCarbs") + " carbs, OTP: " + foodData.get("otp"));
+        System.println("Sending food data: " + foodData.get("notes") + " with " + foodData.get("remoteCarbs") + " carbs");
 
         enqueue(
             url,
@@ -370,8 +404,14 @@ class NightscoutService {
                 },
                 :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
             },
-            self.method(:onReceiveFoodEntryResponse)
+            self.method(:onReceiveFoodEntryResponse),
+            true
         );
+    }
+
+    private function hasOtpSecret() as Lang.Boolean {
+        var secret = Application.Properties.getValue("otp_secret");
+        return secret != null && secret.toString().length() > 0;
     }
 
     //! Build URL with base Nightscout URL and token
@@ -399,7 +439,17 @@ class NightscoutService {
     //! (a single request, to avoid overloading the BLE request queue).
     function onReceiveGlucoseData(responseCode as Lang.Number, data as Lang.Dictionary?) as Void {
         System.println("onReceiveGlucoseData responseCode=" + responseCode);
-        if (responseCode == 200 && data != null && callback != null) {
+        if (responseCode != 200 || data == null) {
+            // Surface the failure (stale indicator + faster retry by the view);
+            // the last good value stays on screen and simply ages.
+            appState.glucoseFetchFailed = true;
+            if (callback != null) {
+                callback.invoke("glucoseError", responseCode);
+            }
+            WatchUi.requestUpdate();
+            return;
+        }
+        if (callback != null) {
             try {
                 if (data instanceof Lang.Array && data.size() > 0) {
                     System.println("onReceiveGlucoseData entries received: " + data.size());
@@ -410,6 +460,13 @@ class NightscoutService {
                             "trendRate" => entry.hasKey("trendRate") ? entry.get("trendRate") : 0.0,
                             "direction" => entry.hasKey("direction") ? entry.get("direction") : "Flat"
                         };
+                        // CGM reading time (Nightscout "date" is epoch ms) so the
+                        // displayed age is the data's age, not the download's.
+                        var readingMs = entry.hasKey("date") ? entry.get("date") : null;
+                        if (readingMs instanceof Lang.Number || readingMs instanceof Lang.Long) {
+                            glucoseData.put("readingTime", (readingMs / 1000).toNumber());
+                        }
+                        appState.glucoseFetchFailed = false;
                         
                         callback.invoke("glucose", glucoseData);
                     }
@@ -470,8 +527,10 @@ class NightscoutService {
             // Immediate refetch causes a race — Loop may process the command after we query,
             // returning no active override and overwriting the correct preset name with "Default".
             appState.updateActiveProfile(profileToActivate);
+            appState.setProfileError(0);
         } else {
             System.println("Error activating preset: " + responseCode);
+            appState.setProfileError(responseCode);
         }
     }
 }

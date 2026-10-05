@@ -51,6 +51,11 @@ class SugarPaceDelegate extends WatchUi.BehaviorDelegate {
 
         var foundFood = appState.findFoodItemAtPoint(x, y);
         if (foundFood != null) {
+            // Ignore taps while a send is pending / just confirmed so a double
+            // tap can never push the same carbs twice.
+            if (appState.isSendLocked()) {
+                return true;
+            }
             System.println("Tap detected food: " + foundFood.name);
             sendFood(foundFood);
             return true;
@@ -106,22 +111,48 @@ class SugarPaceDelegate extends WatchUi.BehaviorDelegate {
             }
         }
         appState.sentFoodIndex = sentIndex;
-        WatchUi.requestUpdate();
+        appState.setSendState(Constants.SEND_PENDING, 0);
 
-        // Clear the highlight after 2 seconds
+        // One timer drives the whole feedback: it gives up on a missing answer
+        // and clears the tile highlight once the result has been shown.
         if (feedbackTimer != null) {
             feedbackTimer.stop();
         }
         feedbackTimer = new Timer.Timer();
-        feedbackTimer.start(method(:clearFoodFeedback), 2000, false);
+        feedbackTimer.start(method(:onSendTick), 500, true);
 
         var foodEntryData = otpService.createFoodEntryData(food.toDictionary());
         System.println("Food entry data created - notes: " + foodEntryData.get("notes"));
         nightscoutService.sendFoodEntry(foodEntryData);
     }
 
+    //! Periodic check of the send state (every 500 ms while a send is active).
+    function onSendTick() as Void {
+        var elapsed = System.getTimer() - appState.sendStateChangedMs;
+        var state = appState.sendState;
+        if (state == Constants.SEND_PENDING) {
+            if (elapsed >= Constants.SEND_TIMEOUT_MS) {
+                appState.setSendState(Constants.SEND_UNCONFIRMED, Constants.REQUEST_TIMEOUT_CODE);
+            }
+        } else if (state == Constants.SEND_OK) {
+            if (elapsed >= Constants.SEND_HOLD_OK_MS) {
+                clearFoodFeedback();
+            }
+        } else if (state == Constants.SEND_FAILED || state == Constants.SEND_UNCONFIRMED) {
+            if (elapsed >= Constants.SEND_HOLD_FAIL_MS) {
+                clearFoodFeedback();
+            }
+        } else {
+            clearFoodFeedback();
+        }
+    }
+
     function clearFoodFeedback() as Void {
+        if (feedbackTimer != null) {
+            feedbackTimer.stop();
+            feedbackTimer = null;
+        }
         appState.sentFoodIndex = -1;
-        WatchUi.requestUpdate();
+        appState.setSendState(Constants.SEND_IDLE, 0);
     }
 }
