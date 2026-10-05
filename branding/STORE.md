@@ -16,61 +16,12 @@ Logo source: [logo.svg](logo.svg) (launcher icon derived at 68×68 in
 
 ---
 
-## Connect IQ Store — English
+## Connect IQ Store
 
-**Name:** SugarPace
-**Tagline:** Pace your sugar.
-
-**Description:**
-
-SugarPace puts your glucose and your fueling on the same screen — your Edge.
-
-Built by and for type 1 diabetic endurance riders on closed-loop systems: see your glucose at a glance, and log carbs to your loop in one tap when you refuel mid-ride. No phone, no menus, no stopping.
-
-FEATURES
-• Live glucose from your Nightscout site: value color-coded by range (green/orange/red), trend arrow, data freshness
-• Glucose history chart — tap it to cycle 4h / 2h / 1h / 30 min windows
-• One-tap fueling: tap a food tile (gels, jellies, bars) to send a remote carb entry to your loop, secured by a one-time password (TOTP)
-• Temporary override profiles: see the active profile, tap the header to switch
-• Home-screen glance with your latest reading
-• Option: color the chart bars by glucose zone
-
-REQUIREMENTS
-• A Nightscout site (URL + API token)
-• A closed-loop setup that accepts OTP-secured remote carb entries
-• Configure URL, token, OTP secret and unit in the app settings (Garmin Connect app)
-
-DISCLAIMER
-SugarPace is not a medical device and must never be the sole basis for treatment decisions. It displays data from your own Nightscout service and sends carb entries to a system that you configure and control. Always confirm values and decisions with approved medical devices. Use at your own risk.
-
----
-
-## Connect IQ Store — Français
-
-**Nom :** SugarPace
-**Tagline :** Ton sucre, ton rythme.
-
-**Description :**
-
-SugarPace réunit ta glycémie et ton ravitaillement sur le même écran : ton Edge.
-
-Conçue par et pour les sportifs d'endurance diabétiques de type 1 sous boucle fermée : vois ta glycémie d'un coup d'œil, et envoie tes glucides à ta boucle en un seul tap quand tu te ravitailles en roulant. Sans téléphone, sans menus, sans t'arrêter.
-
-FONCTIONNALITÉS
-• Glycémie en direct depuis ton site Nightscout : valeur colorée selon la zone (vert/orange/rouge), flèche de tendance, fraîcheur de la donnée
-• Graphique d'historique — tape dessus pour passer de 4h à 2h / 1h / 30 min
-• Ravitaillement en un tap : touche une vignette d'aliment (gels, pâtes de fruits, barres) pour envoyer une entrée de glucides à ta boucle, sécurisée par mot de passe à usage unique (TOTP)
-• Profils temporaires (overrides) : profil actif visible, changement en tapant l'en-tête
-• Glance sur l'écran d'accueil avec ta dernière mesure
-• Option : colorer les barres du graphique selon la zone glycémique
-
-PRÉREQUIS
-• Un site Nightscout (URL + token API)
-• Une boucle fermée acceptant les entrées de glucides distantes sécurisées par OTP
-• URL, token, secret OTP et unité à configurer dans les réglages de l'app (application Garmin Connect)
-
-AVERTISSEMENT
-SugarPace n'est pas un dispositif médical et ne doit jamais être la seule base d'une décision de traitement. L'app affiche les données de ton propre service Nightscout et envoie des glucides à un système que tu configures et contrôles. Vérifie toujours les valeurs et les décisions avec des dispositifs médicaux approuvés. Utilisation à tes risques.
+Les textes de la fiche du store (EN/FR), les nouveautés, la politique de
+confidentialité, les captures d'écran à prévoir et les risques de refus sont
+dans **[PUBLISH.md](PUBLISH.md)** (rédigés selon les App Review Guidelines :
+pas d'allégation médicale, dépendances déclarées, non-affiliation).
 
 ---
 
