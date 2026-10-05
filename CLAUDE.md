@@ -12,7 +12,7 @@ type 1 sous boucle fermée.
 
 Repo : `git@github.com:Lobwick/SugarPace.git`
 Branding / textes store : voir [branding/STORE.md](branding/STORE.md).
-Docs utilisateur : [README.md](README.md) (FR) / [README.en.md](README.en.md) (EN).
+Docs utilisateur : [README.fr.md](README.fr.md) (FR) / [README.md](README.md) (EN).
 
 ## ⚠️ Règle de sécurité absolue
 
@@ -72,7 +72,7 @@ Garmin Connect settings (Properties)
 - `source/models/` — `AppState`, `GlucoseData`, `FoodItem`, `FoodDatabase`
 - `source/services/` — `NightscoutService` (réseau), `OtpService` (payload + TOTP)
 - `source/otp/` — implémentation TOTP/HOTP RFC 6238 (Otp, Hmac, Sha1, Convert)
-- `source/tests/` — 24 tests `(:test)`, voir section Tests
+- `source/tests/` — 30 tests `(:test)`, voir section Tests
 
 ## Build & test (commandes vérifiées cette session)
 
@@ -148,6 +148,12 @@ tactile (`onTap`, `onSwipe`) — inutilisable au bouton sauf le scroll (`onKey`
 gère déjà UP/DOWN). Retirés du manifest en attendant une navigation au bouton
 complète (focus + Enter). Voir Backlog.
 
+### 7bis. Crash "critical error" du compilateur sur la glance
+Un calcul `Time.now()… - x` / comparaison dans le code atteignable depuis la
+glance fait planter monkeybrains (erreur "critical", sans détail). Garder la
+glance minimale ; l'indicateur de donnée périmée n'existe donc que dans la vue
+principale.
+
 ### 7. Widgets Garmin ≠ glances Connect IQ
 Deux surfaces distinctes sur Edge 1040/1050 : la **liste de glances** (accueil,
 swipe horizontal) reçoit les apps Connect IQ automatiquement à l'installation ;
@@ -202,7 +208,7 @@ Exactement 4 fichiers à toucher, dans cet ordre :
   jamais d'offset horaire codé en dur (bug corrigé cette session dans
   `OtpService.formatCurrentTimestamp`).
 
-## Tests (24 au total, tous exécutés et vérifiés PASS dans le sim)
+## Tests (30 au total ; les 6 de `ReliabilityTest.mc` compilent mais n'ont pas encore été exécutés dans le sim)
 
 | Fichier | Couvre |
 |---|---|
@@ -212,6 +218,7 @@ Exactement 4 fichiers à toucher, dans cet ordre :
 | `AppStateTest.mc` | hit-testing, cycle fenêtre courbe, clamp scroll, recherche aliment par tap |
 | `FoodDatabaseTest.mc` | chargement `foods.json` embarqué |
 | `OtpServiceTest.mc` | timestamp UTC, payload carb-entry Loop |
+| `ReliabilityTest.mc` | conversion mg/dL→mmol/L, âge de la donnée, planning des fetch, verrou anti double-tap, flag d'échec réseau |
 | `NightscoutServiceTest.mc` | **parsing seulement** (voir règle de sécurité ci-dessus) |
 
 Pas de couverture pour : rendu (`SugarPaceView`, math du chart, layout
@@ -262,10 +269,13 @@ launcher 68×68 dans `resources/drawables/logo.png`.
   Connect IQ visible pendant l'activité elle-même (à côté puissance/vitesse),
   probablement plus utile en usage réel que le glance home. Nécessiterait un
   type d'app séparé dans le manifest, réutilisant `NightscoutService`/`GlucoseData`.
-- **Rotation du secret OTP et du token Nightscout** commités en clair dans
-  `resources/properties/properties.xml` — géré ainsi volontairement pour
-  faciliter les tests locaux, mais **à faire tourner avant toute publication
-  publique du repo** (ou avant de rendre le repo public tout court).
+- **Secrets** : `properties.xml` n'a plus que des valeurs par défaut vides
+  (URL, token, secret OTP). Pour tester en local, les saisir dans le sim
+  (Edit Persistent Storage > Application.Properties data) — ne jamais les
+  remettre dans le fichier. Reste à **faire tourner le token et le secret OTP**
+  (ils sont encore dans l'historique git) avant de publier le repo ; les
+  `.bru` de `BRUNO/` sont chiffrés par git-crypt (`.gitattributes`), la clé
+  est dans `.git/git-crypt/keys/default` — l'exporter hors du repo.
 - **Tests d'exécution en CI** : actuellement seule la compilation des tests
   est vérifiée en CI (l'action Docker ne lance pas le simulateur). Ajouter un
   job séparé avec sim headless (xvfb) si l'exécution réelle en CI devient

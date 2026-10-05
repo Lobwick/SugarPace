@@ -24,13 +24,28 @@ The main screen reads top to bottom:
 
 | Tapped area | Action |
 |---|---|
-| **A food tile** | Sends that food (its carbs) to Loop, with an OTP code generated on the fly |
+| **A food tile** | Sends that food (its carbs) to Loop, with an OTP code generated on the fly. The tile shows the result (see *Send feedback*) and further taps are ignored while sending, so a double tap can't send twice |
 | **The chart** | Cycles the displayed time window: 4h → 2h → 1h → 30min → 4h. The vertical scale adapts to the window's min/max |
 | **The header** (glucose / profile) | Opens the **temporary profile** selection screen |
 
+## Send feedback
+
+| Tile | Meaning |
+|---|---|
+| Orange, "Sending…" | Request in progress — taps are ignored |
+| Green | Accepted by the server |
+| Red + short message | Failed — see the table in *Troubleshooting* |
+| Red, "Unconfirmed" | No answer within 30 s: the entry **may** have gone through — check Loop before tapping again |
+
+There is deliberately **no automatic retry** on sends, so carbs can never be doubled.
+
+## Data freshness
+
+The age of the reading ("3m ago") is the age of the CGM measurement. It turns **orange** after 10 min, **red** after 15 min (the glucose number then turns gray so an old value never looks reassuring). A red **!** means the last fetch failed; the app retries every 30 s.
+
 ## Temporary profile selection
 
-The screen lists the profiles/overrides available on Nightscout. The **active** profile is marked with a green bar and a checkmark. Tapping a profile activates it; tapping **Default** cancels the current temporary override.
+The screen lists the profiles/overrides available on Nightscout. The **active** profile is marked with a green bar and a checkmark. Tapping a profile activates it; tapping **Default** cancels the current temporary override. If it fails, a red line at the bottom says what to do (see *Troubleshooting*).
 
 ## Settings (Garmin Connect / Connect IQ)
 
@@ -40,7 +55,7 @@ Configurable from the Garmin Connect (mobile) or Connect IQ (Express) app:
 - **Nightscout Token** — Nightscout authentication token
 - **OTP Secret** — TOTP key for Loop (see § 2)
 - **Default User** — name attached to sent entries
-- **Default Unit** — displayed unit (`mg/dl` or `mmol`)
+- **Display glucose in mmol/L** — off (default) = mg/dL. Nightscout always sends mg/dL; the app only converts the display and sends the chosen unit to Loop
 - **Color chart bars by glucose zone** — when on, each chart bar takes its zone color; otherwise bars stay gray (default)
 
 > Loop prerequisite: your Loop must accept remote entries (Remote Carbs) via the Nightscout `notifications/loop` API.
@@ -161,12 +176,34 @@ The list is defined in `resources/foods/foods.json`. To add/change a food, edit 
 
 ## Compatibility
 
-Tested on **Garmin Edge 1050**. Target devices: Edge 540/550/840/850/1040/1050 (see `manifest.xml`).
+Tested on **Garmin Edge 1050**. Target devices (touchscreen only): Edge 840/850/1040/1050 (see `manifest.xml`).
 
 ## Troubleshooting
 
 - **No data**: check the Nightscout URL and token.
 - **Invalid OTP**: check the OTP secret and the watch clock sync.
+
+**Messages shown after a failed send / profile change:**
+
+| Message | Code | What to do |
+|---|---|---|
+| **Set up app** / *Fill in Nightscout settings* | — | URL, token or OTP secret is empty. Fill them in the app settings (nothing was sent) |
+| **Bad token** / *Invalid token: check settings* | 401, 403 | The Nightscout token is wrong or lacks write access. Check **Nightscout Token** in the app settings and the subject's role in Nightscout (Admin Tools) |
+| **Server keys** / *Server error: add Loop keys (APNs)* | 5xx (typically 500) | Nightscout is reachable but its Loop push config is missing. Set `ENABLE=… loop` and the variables below on your server |
+| **No link** / *No connection to Nightscout* | negative | The Edge has no link to the phone (Bluetooth / Garmin Connect Mobile) or Nightscout is unreachable |
+| **Unconfirmed** | timeout | Check Loop before retrying |
+| **Failed NNN** | other | Raw HTTP code, see your Nightscout logs |
+
+**Loop remote commands — server variables** (Nightscout `500 … reading 'apnsKey'`):
+
+| Variable | Where to find it |
+|---|---|
+| `LOOP_DEVELOPER_TEAM_ID` | Apple Developer → Account → Membership details (Team ID) |
+| `LOOP_APNS_KEY_ID` | Apple Developer → Certificates, Identifiers & Profiles → Keys (Key ID) |
+| `LOOP_APNS_KEY` | Contents of the `.p8` file, downloadable **only once** when the key is created (APNs enabled) |
+| `LOOP_PUSH_SERVER_ENVIRONMENT` | `development` if Loop was built with Xcode, `production` if from TestFlight |
+
+The Team ID must be the one that signed your Loop. See LoopDocs ("Remote Control") for details. Example on Fly.io: `fly secrets set -a <app> LOOP_APNS_KEY="$(cat AuthKey_XXXXXXXXXX.p8)" …`.
 - **Crash on launch**: classic symptom of concurrent BLE requests — keep network fetches non-simultaneous.
 
 ## Security

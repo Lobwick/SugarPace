@@ -24,13 +24,28 @@ L'écran principal se lit de haut en bas :
 
 | Zone touchée | Action |
 |---|---|
-| **Une vignette d'aliment** | Envoie cet aliment (ses glucides) à Loop, avec un code OTP généré à la volée |
+| **Une vignette d'aliment** | Envoie cet aliment (ses glucides) à Loop, avec un code OTP généré à la volée. La vignette affiche le résultat (voir *Retour d'envoi*) et les taps suivants sont ignorés pendant l'envoi : un double tap ne peut pas envoyer deux fois |
 | **Le graphe** | Change la fenêtre de temps affichée : 4h → 2h → 1h → 30min → 4h. L'échelle verticale s'adapte au min/max de la fenêtre |
 | **L'en-tête** (glycémie / profil) | Ouvre l'écran de sélection de **profil temporaire** |
 
+## Retour d'envoi
+
+| Vignette | Signification |
+|---|---|
+| Orange, « Envoi... » | Requête en cours — les taps sont ignorés |
+| Verte | Acceptée par le serveur |
+| Rouge + message court | Échec — voir le tableau de *Dépannage* |
+| Rouge, « Non confirmé » | Pas de réponse en 30 s : l'entrée a **peut-être** été envoyée — vérifie Loop avant de retaper |
+
+Il n'y a volontairement **aucun retry automatique** à l'envoi : les glucides ne peuvent jamais être doublés.
+
+## Fraîcheur des données
+
+L'âge de la mesure (« 3m ago ») est celui de la mesure du capteur. Il passe **orange** après 10 min, **rouge** après 15 min (le chiffre devient alors gris pour qu'une vieille valeur ne rassure jamais à tort). Un **!** rouge signale que la dernière requête a échoué ; l'app réessaie toutes les 30 s.
+
 ## Sélection de profil temporaire
 
-L'écran liste les profils/overrides disponibles sur Nightscout. Le profil **actif** est repéré par une barre verte et une coche. Toucher un profil l'active ; toucher **Default** annule l'override temporaire en cours.
+L'écran liste les profils/overrides disponibles sur Nightscout. Le profil **actif** est repéré par une barre verte et une coche. Toucher un profil l'active ; toucher **Default** annule l'override temporaire en cours. En cas d'échec, une ligne rouge en bas indique quoi faire (voir *Dépannage*).
 
 ## Réglages (Garmin Connect / Connect IQ)
 
@@ -40,7 +55,7 @@ Configurables depuis l'app Garmin Connect (Mobile) ou Connect IQ (Express) :
 - **Nightscout Token** — token d'authentification Nightscout
 - **Secret OTP** — clé TOTP pour Loop (voir § 2)
 - **Default User** — nom associé aux entrées envoyées
-- **Default Unit** — unité affichée (`mg/dl` ou `mmol`)
+- **Afficher la glycémie en mmol/L** — décoché (défaut) = mg/dL. Nightscout envoie toujours des mg/dL ; l'app ne convertit que l'affichage et envoie l'unité choisie à Loop
 - **Colorer les barres selon la zone glycémique** — si activé, chaque barre du graphe prend la couleur de sa zone ; sinon les barres restent grises (défaut)
 
 > Prérequis Loop : votre Loop doit accepter les entrées distantes (Remote Carbs) via l'API Nightscout `notifications/loop`.
@@ -195,12 +210,34 @@ La liste est définie dans `resources/foods/foods.json`. Pour ajouter/modifier u
 
 ## Compatibilité
 
-Testé sur **Garmin Edge 1050**. Devices ciblés : Edge 540/550/840/850/1040/1050 (voir `manifest.xml`).
+Testé sur **Garmin Edge 1050**. Devices ciblés (écran tactile uniquement) : Edge 840/850/1040/1050 (voir `manifest.xml`).
 
 ## Dépannage
 
 - **Pas de données** : vérifier l'URL et le token Nightscout.
 - **OTP invalide** : vérifier le secret OTP et la synchro de l'heure de la montre.
+
+**Messages affichés après un envoi / changement de profil raté :**
+
+| Message | Code | Que faire |
+|---|---|---|
+| **À configurer** / *Renseigner les réglages Nightscout* | — | URL, token ou secret OTP vide. Les renseigner dans les réglages de l'app (rien n'a été envoyé) |
+| **Token invalide** / *Token invalide : voir réglages* | 401, 403 | Le token Nightscout est faux ou sans droit d'écriture. Vérifier **Nightscout Token** dans les réglages et le rôle du sujet dans Nightscout (Admin Tools) |
+| **Clés serveur** / *Erreur serveur : ajouter clés Loop (APNs)* | 5xx (souvent 500) | Nightscout répond mais sa config push Loop manque. Définir `ENABLE=… loop` et les variables ci-dessous sur le serveur |
+| **Pas de lien** / *Pas de connexion à Nightscout* | négatif | L'Edge n'a pas de lien avec le téléphone (Bluetooth / Garmin Connect Mobile) ou Nightscout est injoignable |
+| **Non confirmé** | timeout | Vérifier Loop avant de réessayer |
+| **Échec NNN** | autre | Code HTTP brut, voir les logs Nightscout |
+
+**Commandes à distance Loop — variables serveur** (Nightscout `500 … reading 'apnsKey'`) :
+
+| Variable | Où la trouver |
+|---|---|
+| `LOOP_DEVELOPER_TEAM_ID` | Apple Developer → Account → Membership details (Team ID) |
+| `LOOP_APNS_KEY_ID` | Apple Developer → Certificates, Identifiers & Profiles → Keys (Key ID) |
+| `LOOP_APNS_KEY` | Contenu du fichier `.p8`, téléchargeable **une seule fois** à la création de la clé (APNs activé) |
+| `LOOP_PUSH_SERVER_ENVIRONMENT` | `development` si Loop est compilé avec Xcode, `production` si installé via TestFlight |
+
+Le Team ID doit être celui qui a signé ton Loop. Détails : LoopDocs (« Remote Control »). Exemple sur Fly.io : `fly secrets set -a <app> LOOP_APNS_KEY="$(cat AuthKey_XXXXXXXXXX.p8)" …`.
 - **Crash à l'ouverture** : symptôme classique de requêtes BLE concurrentes — garder les fetch réseau non simultanés.
 
 ## Sécurité
