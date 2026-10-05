@@ -37,12 +37,12 @@ class SugarPaceGlanceView extends WatchUi.GlanceView {
         // prompt if we've never fetched one yet.
         var text = WatchUi.loadResource(Rez.Strings.open);
         var data = Application.Storage.getValue("last_glucose_data");
-        var default_unit = Application.Properties.getValue("default_unit").toString();
+        var default_unit = Units.label();
 
         if (data instanceof Lang.Dictionary && data.hasKey("bloodSugar")) {
             var sgv = data.get("bloodSugar");
             if (sgv != null && sgv instanceof Lang.Number && sgv > 0) {
-                text = sgv.toString() + " " + default_unit;
+                text = Units.format(sgv) + " " + default_unit;
             }
         }
         dc.drawText(width / 2, height / 2, Graphics.FONT_MEDIUM, text, justification);

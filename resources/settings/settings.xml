@@ -11,8 +11,8 @@
      <setting propertyKey="@Properties.default_user" title="@Strings.default_user_title">
         <settingConfig type="alphaNumeric" required="false" />
     </setting>
-     <setting propertyKey="@Properties.default_unit" title="@Strings.default_unit_title">
-        <settingConfig type="alphaNumeric" required="false" />
+    <setting propertyKey="@Properties.use_mmol" title="@Strings.use_mmol_title">
+        <settingConfig type="boolean" />
     </setting>
     <setting propertyKey="@Properties.chart_color_by_zone" title="@Strings.chart_color_by_zone_title">
         <settingConfig type="boolean" />

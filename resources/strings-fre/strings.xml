@@ -8,6 +8,7 @@
     <string id="default_user_title">Utilisateur par défaut</string>
     <string id="default_unit_title">Unité par défaut</string>
     <string id="chart_color_by_zone_title">Colorer les barres selon la zone glycémique</string>
+    <string id="use_mmol_title">Afficher la glycémie en mmol/L</string>
     <string id="loading_foods">Chargement aliments...</string>
     <string id="food_selection_label">Mes Aliments</string>
     <string id="food_no_selection">Aucun aliment sélectionné</string>

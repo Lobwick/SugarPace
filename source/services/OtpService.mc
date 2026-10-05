@@ -42,7 +42,7 @@ class OtpService {
         var foodName = foodItem.hasKey("name") ? foodItem.get("name").toString() : "Unknown food";
         var carbs = foodItem.hasKey("carbs_g") ? foodItem.get("carbs_g") : 0;
         var default_user =  Application.Properties.getValue("default_user");
-        var default_unit =  Application.Properties.getValue("default_unit");
+        var default_unit = Units.label();
 
 
         return {

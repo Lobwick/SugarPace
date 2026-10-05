@@ -8,6 +8,7 @@
     <string id="default_user_title">Default User</string>
     <string id="default_unit_title">Default Unit</string>
     <string id="chart_color_by_zone_title">Color chart bars by glucose zone</string>
+    <string id="use_mmol_title">Display glucose in mmol/L</string>
     <string id="loading_foods">Loading foods...</string>
     <string id="food_selection_label">My Foods</string>
     <string id="food_no_selection">No food selected</string>
