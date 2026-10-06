@@ -16,7 +16,7 @@ const LABELS = {
     glucose: "glucose", carbs: "carb entries", noServer: "No SugarPace server", viaPhone: "via the phone's connection",
     fresh: "Fresh", warn: "Getting old", stale: "Too old: greyed out",
     optIn: "Allow sending the recommended bolus", off: "OFF by default",
-    k1: "Off by default", k2: "Two taps, same amount", k3: "Recommendation under 10 min old", k4: "Never the same one twice",
+    k1: "Off by default", k2: "Two taps, same amount", k3: "Recommendation under 10 min old", k4: "No immediate repeat",
     k5: "Unsure? Check your loop first", real: "Real insulin: always confirm on your loop",
     need: "What you need", n1: "A Nightscout site", n2: "A loop accepting remote entries", n3: "Touchscreen Edge", n3b: "840 · 850 · 1040 · 1050",
     notMed: "Not a medical device", notAff: "Not affiliated with Garmin, Nightscout or any loop app",
@@ -33,7 +33,7 @@ const LABELS = {
     glucose: "glycémie", carbs: "entrées de glucides", noServer: "Aucun serveur SugarPace", viaPhone: "via la connexion du téléphone",
     fresh: "Récente", warn: "Elle vieillit", stale: "Trop ancienne : grisée",
     optIn: "Autoriser l'envoi du bolus recommandé", off: "DÉSACTIVÉ par défaut",
-    k1: "Désactivé par défaut", k2: "Deux taps, même montant", k3: "Recommandation de moins de 10 min", k4: "Jamais deux fois la même",
+    k1: "Désactivé par défaut", k2: "Deux taps, même montant", k3: "Recommandation de moins de 10 min", k4: "Pas de renvoi immédiat",
     k5: "Un doute ? Vérifie ta boucle d'abord", real: "Insuline réelle : confirme toujours sur ta boucle",
     need: "Ce qu'il te faut", n1: "Un site Nightscout", n2: "Une boucle acceptant les entrées à distance", n3: "Edge tactile", n3b: "840 · 850 · 1040 · 1050",
     notMed: "Pas un dispositif médical", notAff: "Sans affiliation avec Garmin, Nightscout ou une application de boucle",
@@ -42,6 +42,8 @@ const LABELS = {
 };
 const LBL = LABELS[LANG];
 
+/* NOTE: the device mock-ups reproduce the real app screens, whose chart labels ("4h ago", "Now")
+ * and reading age ("2m ago") are English in every language: they are NOT translated on purpose. */
 /* the SugarPace logo (same paths as branding/logo.svg), drawn at (cx, cy) with scale k */
 const DROP = new Path2D("M128 24C128 24 60 118 60 165a68 68 0 0 0 136 0C196 118 128 24 128 24Z");
 function logo(cx, cy, k, drawP, chevP) {
@@ -94,7 +96,7 @@ const SCENES = {
   /* ------------------------------------------------------------------ tap */
   tap(lt) {
     background();
-    const second = lt >= 9.6;
+    const second = lt >= 5.4;
     let mode = "idle";
     if (lt >= 4.2 && lt < 6.4) mode = "pending";
     else if (lt >= 6.4) mode = "ok";
@@ -107,7 +109,7 @@ const SCENES = {
     const a = placed(130, 40, 0.88, (x, y) => mainScreen(x, y, st));
     const tp = a.tile(1);
     touch(lt, 3.6, tp.x, tp.y);
-    touch(lt, 9.4, tp.x, tp.y);
+    touch(lt, 5.2, tp.x, tp.y);   // a second tap while pending: ignored
     // right column: the one-time code
     const px = 600;
     const pc = prog(lt, 1.0, 1.6);
@@ -125,7 +127,7 @@ const SCENES = {
       fillRR(px + 30, 370 + i * 46, 26, 26, 6, c, p);
       txt(s, px + 72, 392 + i * 46, 26, C.ink, "left", "600", p);
     });
-    if (second) txt("× " + LBL.dbl, 850, 566, 30, C.orange, "center", "700", prog(lt, 9.8, 10.4));
+    if (second) txt("× " + LBL.dbl, 850, 566, 30, C.orange, "center", "700", prog(lt, 5.4, 6.0));
   },
 
   /* ----------------------------------------------------------------- flow */

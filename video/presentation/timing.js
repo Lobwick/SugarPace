@@ -4,7 +4,7 @@ window.TIMING = {
   "lang": "en",
   "voice": "Daniel",
   "estimate": false,
-  "total": 116.801,
+  "total": 117.37,
   "scenes": [
    {
     "id": "intro",
@@ -25,12 +25,12 @@ window.TIMING = {
     "lines": [
      {
       "t0": 6.6,
-      "t1": 13.544,
+      "t1": 13.555,
       "text": "Your latest reading from your own Nightscout site, color-coded by range, with the trend arrow and the age of the reading."
      },
      {
-      "t0": 13.994,
-      "t1": 18.653,
+      "t0": 14.005,
+      "t1": 18.629,
       "text": "A chart of the last four hours, and the foods you carry, one tap away."
      }
     ]
@@ -38,106 +38,106 @@ window.TIMING = {
    {
     "id": "tap",
     "start": 20.0,
-    "dur": 15.741,
+    "dur": 16.112,
     "lines": [
      {
       "t0": 20.6,
-      "t1": 25.451,
+      "t1": 25.416,
       "text": "Tap a food tile to send a carb entry. It is secured by a one-time code."
      },
      {
-      "t0": 25.901,
-      "t1": 34.841,
-      "text": "The tile shows the result: sending, sent, or failed with a short reason. Double taps are ignored, so an entry is never sent twice."
+      "t0": 25.866,
+      "t1": 35.212,
+      "text": "The tile shows the result: sending, sent, or failed with a short reason. Immediate repeat taps are ignored, to limit accidental duplicates."
      }
     ]
    },
    {
     "id": "flow",
-    "start": 35.741,
+    "start": 36.112,
     "dur": 19.215,
     "lines": [
      {
-      "t0": 36.341,
-      "t1": 41.916,
+      "t0": 36.712,
+      "t1": 42.287,
       "text": "Behind the screen, your Edge uses your phone's connection to talk to your own Nightscout site."
      },
      {
-      "t0": 42.366,
-      "t1": 49.23,
+      "t0": 42.737,
+      "t1": 49.601,
       "text": "Glucose flows from your loop to Nightscout, then to your Edge. Carb entries flow back the other way, to your loop."
      },
      {
-      "t0": 49.68,
-      "t1": 54.055,
+      "t0": 50.051,
+      "t1": 54.427,
       "text": "SugarPace has no server of its own: nothing passes through the developer."
      }
     ]
    },
    {
     "id": "treat",
-    "start": 54.955,
+    "start": 55.327,
     "dur": 13.468,
     "lines": [
      {
-      "t0": 55.555,
-      "t1": 60.557,
+      "t0": 55.927,
+      "t1": 60.928,
       "text": "The Treatments screen lists your temporary profiles. Tap one to activate it."
      },
      {
-      "t0": 61.007,
-      "t1": 67.523,
+      "t0": 61.378,
+      "t1": 67.894,
       "text": "If the data gets old, the number turns grey after fifteen minutes, so an old value never looks current."
      }
     ]
    },
    {
     "id": "bolus",
-    "start": 68.423,
-    "dur": 21.851,
+    "start": 68.794,
+    "dur": 22.048,
     "lines": [
      {
-      "t0": 69.023,
-      "t1": 74.669,
+      "t0": 69.394,
+      "t1": 75.04,
       "text": "Optionally, you can allow sending the bolus that your loop recommends. It is off by default."
      },
      {
-      "t0": 75.119,
-      "t1": 85.536,
-      "text": "It needs two taps and a recommendation less than ten minutes old, and it never sends the same one twice. If something goes wrong, the screen tells you to check your loop first."
+      "t0": 75.49,
+      "t1": 86.105,
+      "text": "It needs two taps and a recommendation less than ten minutes old, and an immediate repeat of the same one is blocked. If something goes wrong, the screen tells you to check your loop first."
      },
      {
-      "t0": 85.986,
-      "t1": 89.374,
+      "t0": 86.555,
+      "t1": 89.942,
       "text": "This is real insulin: always confirm on your loop."
      }
     ]
    },
    {
     "id": "need",
-    "start": 90.274,
+    "start": 90.843,
     "dur": 12.857,
     "lines": [
      {
-      "t0": 90.874,
-      "t1": 102.231,
+      "t0": 91.442,
+      "t1": 102.799,
       "text": "You need a Nightscout site, a loop that accepts remote entries, and a touchscreen Edge: 840, 850, 1040 or 1050."
      }
     ]
    },
    {
     "id": "outro",
-    "start": 103.131,
+    "start": 103.699,
     "dur": 13.67,
     "lines": [
      {
-      "t0": 103.631,
-      "t1": 110.177,
+      "t0": 104.199,
+      "t1": 110.746,
       "text": "SugarPace is not a medical device. Always confirm values and decisions with your approved devices."
      },
      {
-      "t0": 110.627,
-      "t1": 115.901,
+      "t0": 111.196,
+      "t1": 116.47,
       "text": "Not affiliated with Garmin, Nightscout, or any loop app. Find it on GitHub."
      }
     ]
@@ -148,7 +148,7 @@ window.TIMING = {
   "lang": "fr",
   "voice": "Flo (Français (France))",
   "estimate": false,
-  "total": 122.084,
+  "total": 123.067,
   "scenes": [
    {
     "id": "intro",
@@ -182,7 +182,7 @@ window.TIMING = {
    {
     "id": "tap",
     "start": 20.544,
-    "dur": 17.666,
+    "dur": 18.394,
     "lines": [
      {
       "t0": 21.144,
@@ -191,97 +191,97 @@ window.TIMING = {
      },
      {
       "t0": 27.622,
-      "t1": 37.31,
-      "text": "La vignette affiche le résultat : envoi, envoyé, ou échec avec une courte raison. Les doubles taps sont ignorés : une entrée n'est jamais envoyée deux fois."
+      "t1": 38.038,
+      "text": "La vignette affiche le résultat : envoi, envoyé, ou échec avec une courte raison. Les taps répétés immédiatement sont ignorés, pour limiter les doublons accidentels."
      }
     ]
    },
    {
     "id": "flow",
-    "start": 38.21,
+    "start": 38.938,
     "dur": 21.542,
     "lines": [
      {
-      "t0": 38.81,
-      "t1": 45.029,
+      "t0": 39.538,
+      "t1": 45.757,
       "text": "Derrière l'écran, ton Edge utilise la connexion de ton téléphone pour parler à ton propre site Nightscout."
      },
      {
-      "t0": 45.479,
-      "t1": 53.594,
+      "t0": 46.207,
+      "t1": 54.322,
       "text": "La glycémie circule de ta boucle vers Nightscout, puis vers ton Edge. Les entrées de glucides font le chemin inverse, vers ta boucle."
      },
      {
-      "t0": 54.044,
-      "t1": 58.852,
+      "t0": 54.772,
+      "t1": 59.581,
       "text": "SugarPace n'a aucun serveur à lui : rien ne passe par le développeur."
      }
     ]
    },
    {
     "id": "treat",
-    "start": 59.752,
+    "start": 60.481,
     "dur": 13,
     "lines": [
      {
-      "t0": 60.352,
-      "t1": 64.918,
+      "t0": 61.081,
+      "t1": 65.646,
       "text": "L'écran Traitements liste tes profils temporaires. Touche-en un pour l'activer."
      },
      {
-      "t0": 65.368,
-      "t1": 71.818,
+      "t0": 66.096,
+      "t1": 72.547,
       "text": "Si la donnée vieillit, le chiffre devient gris après quinze minutes : une vieille valeur ne paraît jamais récente."
      }
     ]
    },
    {
     "id": "bolus",
-    "start": 72.752,
-    "dur": 21.913,
+    "start": 73.481,
+    "dur": 22.167,
     "lines": [
      {
-      "t0": 73.352,
-      "t1": 79.421,
+      "t0": 74.081,
+      "t1": 80.15,
       "text": "En option, tu peux autoriser l'envoi du bolus recommandé par ta boucle. C'est désactivé par défaut."
      },
      {
-      "t0": 79.871,
-      "t1": 89.698,
-      "text": "Il faut deux taps et une recommandation de moins de dix minutes, et la même n'est jamais envoyée deux fois. Si quelque chose se passe mal, l'écran te dit de vérifier ta boucle d'abord."
+      "t0": 80.6,
+      "t1": 90.68,
+      "text": "Il faut deux taps et une recommandation de moins de dix minutes, et un renvoi immédiat de la même est bloqué. Si quelque chose se passe mal, l'écran te dit de vérifier ta boucle d'abord."
      },
      {
-      "t0": 90.148,
-      "t1": 93.765,
+      "t0": 91.13,
+      "t1": 94.748,
       "text": "C'est de l'insuline réelle : confirme toujours sur ta boucle."
      }
     ]
    },
    {
     "id": "need",
-    "start": 94.665,
+    "start": 95.648,
     "dur": 11.974,
     "lines": [
      {
-      "t0": 95.265,
-      "t1": 105.739,
+      "t0": 96.248,
+      "t1": 106.722,
       "text": "Il te faut un site Nightscout, une boucle qui accepte les entrées à distance, et un Edge tactile : 840, 850, 1040 ou 1050."
      }
     ]
    },
    {
     "id": "outro",
-    "start": 106.639,
+    "start": 107.622,
     "dur": 15.444,
     "lines": [
      {
-      "t0": 107.139,
-      "t1": 114.526,
+      "t0": 108.122,
+      "t1": 115.509,
       "text": "SugarPace n'est pas un dispositif médical. Vérifie toujours les valeurs et les décisions avec tes dispositifs approuvés."
      },
      {
-      "t0": 114.976,
-      "t1": 121.184,
+      "t0": 115.959,
+      "t1": 122.167,
       "text": "Sans affiliation avec Garmin, Nightscout ou une application de boucle. À retrouver sur GitHub."
      }
     ]

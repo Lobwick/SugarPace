@@ -28,6 +28,13 @@ to `render.py` to write one PNG at t = 30 s. Preview in a browser:
 `dist/` and `video/*/audio/` are git-ignored (generated).
 
 ## Notes
+- The device mock-ups reproduce the real app screens, whose chart labels ("4h ago", "Now") and reading
+  age ("2m ago") are English in every language, so they stay English in the French video on purpose.
+- `render.py` refuses to build an MP4 from estimated timing (`narrate.py --estimate`), which would pair
+  stale audio with new timing; `--still` is still allowed.
+- The bolus scene presents a feature that lives in PR #21: merge that PR first.
+- The "never sent twice" claim is deliberately avoided: after an unconfirmed request a retry can duplicate
+  an entry, so the narration says repeat taps are ignored "to limit accidental duplicates".
 - Subtitles are drawn inside the picture and also written as `.vtt`.
 - The voice is the system voice (Daniel / Flo); `narrate.py` is the only place to swap it.
 - Wording is deliberately "display and entry tool": no medical claims, the optional

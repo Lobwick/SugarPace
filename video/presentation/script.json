@@ -18,9 +18,9 @@
 
     {"id": "tap", "min": 15,
      "en": ["Tap a food tile to send a carb entry. It is secured by a one-time code.",
-            "The tile shows the result: sending, sent, or failed with a short reason. Double taps are ignored, so an entry is never sent twice."],
+            "The tile shows the result: sending, sent, or failed with a short reason. Immediate repeat taps are ignored, to limit accidental duplicates."],
      "fr": ["Touche une vignette d'aliment pour envoyer une entrée de glucides. Elle est sécurisée par un code à usage unique.",
-            "La vignette affiche le résultat : envoi, envoyé, ou échec avec une courte raison. Les doubles taps sont ignorés : une entrée n'est jamais envoyée deux fois."]},
+            "La vignette affiche le résultat : envoi, envoyé, ou échec avec une courte raison. Les taps répétés immédiatement sont ignorés, pour limiter les doublons accidentels."]},
 
     {"id": "flow", "min": 17,
      "en": ["Behind the screen, your Edge uses your phone's connection to talk to your own Nightscout site.",
@@ -38,10 +38,10 @@
 
     {"id": "bolus", "min": 18,
      "en": ["Optionally, you can allow sending the bolus that your loop recommends. It is off by default.",
-            "It needs two taps and a recommendation less than ten minutes old, and it never sends the same one twice. If something goes wrong, the screen tells you to check your loop first.",
+            "It needs two taps and a recommendation less than ten minutes old, and an immediate repeat of the same one is blocked. If something goes wrong, the screen tells you to check your loop first.",
             "This is real insulin: always confirm on your loop."],
      "fr": ["En option, tu peux autoriser l'envoi du bolus recommandé par ta boucle. C'est désactivé par défaut.",
-            "Il faut deux taps et une recommandation de moins de dix minutes, et la même n'est jamais envoyée deux fois. Si quelque chose se passe mal, l'écran te dit de vérifier ta boucle d'abord.",
+            "Il faut deux taps et une recommandation de moins de dix minutes, et un renvoi immédiat de la même est bloqué. Si quelque chose se passe mal, l'écran te dit de vérifier ta boucle d'abord.",
             "C'est de l'insuline réelle : confirme toujours sur ta boucle."]},
 
     {"id": "need", "min": 10,

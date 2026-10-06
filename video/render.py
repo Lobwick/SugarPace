@@ -16,6 +16,8 @@ import argparse
 import base64
 import functools
 import http.server
+import json
+import re
 import shutil
 import subprocess
 import sys
@@ -26,6 +28,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 FPS = 30
 RES = {"720": 1.0, "1080": 1.5, "1440": 2.0}
+
+
+def timing_is_estimate(episode, lang):
+    """True if timing.js was written by `narrate.py --estimate` (no matching audio)."""
+    text = (ROOT / episode / "timing.js").read_text(encoding="utf-8")
+    m = re.search(r"window\.TIMING\s*=\s*(\{.*\});", text, re.S)
+    return bool(m and json.loads(m.group(1)).get(lang, {}).get("estimate"))
 
 
 def serve(directory):
@@ -70,6 +79,10 @@ def main():
             browser.close()
             return 0
 
+        if timing_is_estimate(args.episode, args.lang):
+            print("timing.js holds ESTIMATED timing (narrate.py --estimate): any audio on disk is stale. "
+                  "Run video/narrate.py without --estimate first (--still is still allowed).", file=sys.stderr)
+            return 1
         if not shutil.which("ffmpeg"):
             print("ffmpeg not found (brew install ffmpeg)", file=sys.stderr)
             return 1
