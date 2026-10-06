@@ -101,7 +101,10 @@ function testGlucoseFailureFlagsStale(logger as Test.Logger) as Boolean {
 function testErrorKinds(logger as Test.Logger) as Boolean {
     Test.assertEqualMessage(ErrorText.kind(401), ErrorText.KIND_AUTH, "401 = token");
     Test.assertEqualMessage(ErrorText.kind(403), ErrorText.KIND_AUTH, "403 = token");
+    Test.assertEqualMessage(ErrorText.kind(499), ErrorText.KIND_OTHER, "4xx other than auth remains raw");
     Test.assertEqualMessage(ErrorText.kind(500), ErrorText.KIND_SERVER, "500 = server config");
+    Test.assertEqualMessage(ErrorText.kind(599), ErrorText.KIND_SERVER, "599 = last server code");
+    Test.assertEqualMessage(ErrorText.kind(600), ErrorText.KIND_OTHER, "600 is outside the server range");
     Test.assertEqualMessage(ErrorText.kind(502), ErrorText.KIND_SERVER, "5xx = server");
     Test.assertEqualMessage(ErrorText.kind(-104), ErrorText.KIND_NETWORK, "negative = no link");
     Test.assertEqualMessage(ErrorText.kind(404), ErrorText.KIND_OTHER, "other codes keep the raw code");

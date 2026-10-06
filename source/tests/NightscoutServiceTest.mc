@@ -89,3 +89,52 @@ function testParseErrorResilience(logger as Test.Logger) as Boolean {
     Test.assertEqualMessage(appState.activeProfile, Constants.DEFAULT_OVERRIDE_PROFIL, "failed override fetch -> Default");
     return true;
 }
+
+(:test)
+function testOverrideActivityAndNameNormalization(logger as Test.Logger) as Boolean {
+    Test.assertMessage(!isOverrideStillActive({} as Lang.Dictionary), "missing override fields are inactive");
+    Test.assertMessage(!isOverrideStillActive({ "created_at" => "2026-01-01", "duration" => 10 } as Lang.Dictionary),
+        "short timestamp is inactive");
+    Test.assertMessage(!isOverrideStillActive({ "created_at" => "2000-01-01T00:00:00Z", "duration" => 0 } as Lang.Dictionary),
+        "zero duration is inactive");
+    Test.assertMessage(!isOverrideStillActive({ "created_at" => "2000-01-01T00:00:00Z", "duration" => 10 } as Lang.Dictionary),
+        "expired fixed-duration override is inactive");
+    Test.assertMessage(isOverrideStillActive({
+        "created_at" => new OtpService().formatCurrentTimestamp(),
+        "duration" => 10.0
+    } as Lang.Dictionary), "recent fixed-duration override is active");
+
+    Test.assertEqualMessage(stripLeadingEmoji("sport"), "sport", "plain ASCII name is unchanged");
+    Test.assertEqualMessage(stripLeadingEmoji("  ♦ sport"), "sport", "leading spaces and symbol are removed");
+    Test.assertEqualMessage(stripLeadingEmoji("♦"), "", "symbol-only name becomes empty");
+    return true;
+}
+
+(:test)
+function testFoodEntryResponseParsingOnly(logger as Test.Logger) as Boolean {
+    var svc = new NightscoutService(new AppState());
+    var cap = new CaptureCallback();
+    svc.setCallback(cap.method(:onCallback));
+
+    svc.onReceiveFoodEntryResponse(200, "ok");
+    var result = cap.captured.get("foodEntrySent") as Lang.Dictionary;
+    Test.assertMessage(result.get("success"), "HTTP 200 is successful");
+    Test.assertEqualMessage(result.get("responseCode"), 200, "response code is reported");
+
+    svc.onReceiveFoodEntryResponse(500, null);
+    result = cap.captured.get("foodEntrySent") as Lang.Dictionary;
+    Test.assertMessage(!result.get("success"), "non-200 is unsuccessful");
+    Test.assertEqualMessage(result.get("responseCode"), 500, "failure code is reported");
+    return true;
+}
+
+(:test)
+function testParseGlucoseEmptyResponse(logger as Test.Logger) as Boolean {
+    var svc = new NightscoutService(new AppState());
+    var cap = new CaptureCallback();
+    svc.setCallback(cap.method(:onCallback));
+    svc.onReceiveGlucoseData(200, [] as Lang.Dictionary);
+    Test.assertMessage(!cap.captured.hasKey("glucose"), "empty response does not publish a current reading");
+    Test.assertMessage(!cap.captured.hasKey("glucoseHistory"), "empty response does not publish history");
+    return true;
+}
