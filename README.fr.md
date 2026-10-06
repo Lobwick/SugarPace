@@ -24,7 +24,7 @@ L'écran principal se lit de haut en bas :
 
 | Zone touchée | Action |
 |---|---|
-| **Une vignette d'aliment** | Envoie cet aliment (ses glucides) à Loop, avec un code OTP généré à la volée. La vignette affiche le résultat (voir *Retour d'envoi*) et les taps suivants sont ignorés pendant l'envoi : un double tap ne peut pas envoyer deux fois |
+| **Une vignette d'aliment** | Envoie cet aliment (ses glucides) à Loop, avec un code OTP généré à la volée. La vignette affiche le résultat (voir *Retour d'envoi*) et les taps suivants sont ignorés pendant l'envoi, pour limiter les doublons accidentels (pas une garantie absolue : voir « Non confirmé » ci-dessous) |
 | **Le graphe** | Change la fenêtre de temps affichée : 4h → 2h → 1h → 30min → 4h. L'échelle verticale s'adapte au min/max de la fenêtre |
 | **L'en-tête** (glycémie / profil) | Ouvre l'écran de sélection de **profil temporaire** |
 
@@ -37,11 +37,17 @@ L'écran principal se lit de haut en bas :
 | Rouge + message court | Échec — voir le tableau de *Dépannage* |
 | Rouge, « Non confirmé » | Pas de réponse en 30 s : l'entrée a **peut-être** été envoyée — vérifie Loop avant de retaper |
 
-Il n'y a volontairement **aucun retry automatique** à l'envoi : les glucides ne peuvent jamais être doublés.
+Il n'y a volontairement **aucun retry automatique** à l'envoi : ce qui limite les doublons. Une requête partie sans réponse (« Non confirmé ») a peut-être atteint Loop : vérifie-la avant de retaper.
 
 ## Fraîcheur des données
 
 L'âge de la mesure (« 3m ago ») est celui de la mesure du capteur. Il passe **orange** après 10 min, **rouge** après 15 min (le chiffre devient alors gris pour qu'une vieille valeur ne rassure jamais à tort). Un **!** rouge signale que la dernière requête a échoué ; l'app réessaie toutes les 30 s.
+
+## Écran Traitements (profils + bolus)
+
+Ouvert en touchant l'en-tête. En haut : les profils temporaires (voir ci-dessous). En bas : **Bolus** — le montant recommandé par Loop (lu sur Nightscout, avec son âge) et un bouton.
+
+⚠️ Envoyer un bolus délivre de **l'insuline réelle**. Le bouton ne fonctionne que si le réglage est activé, si la recommandation a moins de 10 minutes et vaut entre 0,05 et 5 U, et si elle n'a pas déjà été envoyée. Un premier tap arme (« Confirmer »), un second tap dans les 5 s envoie. Aucun retry automatique. Après un échec ambigu (erreur serveur, pas de lien, « Non confirmé »), la dose a **peut-être** été délivrée : l'écran affiche « Vérifie Loop d'abord », et un nouvel essai n'est proposé qu'une fois une recommandation récupérée au moins 15 s après l'échec (cette retenue survit à un redémarrage, et une requête encore en file après 10 s est annulée : elle ne peut pas être livrée après coup). Vérifie Loop avant de réessayer. **Choix assumé :** si cette revérification renvoie la *même* recommandation, elle peut être renvoyée (c'est à toi de décider ; le risque est de doubler une dose si la première requête est bien arrivée à Loop, d'où l'avertissement et l'attente de 15 s). La garde anti-doublon est enregistrée avant l'envoi et rien n'est envoyé si elle ne peut pas l'être. Une requête réseau récemment abandonnée bloque aussi l'envoi pendant une minute (« Réessaie »). Les limites de Loop (bolus maximum, code à usage unique) restent appliquées.
 
 ## Sélection de profil temporaire
 
@@ -56,6 +62,7 @@ Configurables depuis l'app Garmin Connect (Mobile) ou Connect IQ (Express) :
 - **Secret OTP** — clé TOTP pour Loop (voir § 2)
 - **Default User** — nom associé aux entrées envoyées
 - **Afficher la glycémie en mmol/L** — décoché (défaut) = mg/dL. Nightscout envoie toujours des mg/dL ; l'app ne convertit que l'affichage et envoie l'unité choisie à Loop
+- **Autoriser l'envoi du bolus recommandé par Loop** — désactivé par défaut. Une fois activé, l'écran *Traitements* peut envoyer le bolus recommandé par Loop après une double confirmation (voir *Écran Traitements*)
 - **Colorer les barres selon la zone glycémique** — si activé, chaque barre du graphe prend la couleur de sa zone ; sinon les barres restent grises (défaut)
 
 > Prérequis Loop : votre Loop doit accepter les entrées distantes (Remote Carbs) via l'API Nightscout `notifications/loop`.

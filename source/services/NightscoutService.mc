@@ -61,6 +61,12 @@ class NightscoutService {
     private var callback as Method?;
     private var profileToActivate as Lang.String = "";
 
+    // API v3 bearer (JWT) obtained from the Nightscout access token, cached in
+    // memory only until shortly before it expires (epoch seconds).
+    private var bearerToken as Lang.String = "";
+    private var bearerExpiry as Lang.Number = 0;
+    private static const BEARER_MARGIN_SEC as Lang.Number = 60;
+
     private var appState as AppState;
 
     // Serialized request queue: the device's BLE bridge is unreliable under
@@ -76,6 +82,9 @@ class NightscoutService {
     // routinely needs several seconds (Garmin allows far longer), so this is a
     // watchdog for lost callbacks, not a latency budget.
     private var requestStartTime as Lang.Number = 0;
+    // Until this System.getTimer() value, an abandoned request may still call
+    // back late: its answer would be mistaken for the current one.
+    private var abandonedUntilMs as Lang.Number = 0;
     private static const REQUEST_TIMEOUT_MS as Lang.Number = 15000;
 
     function initialize(appState as AppState) {
@@ -87,11 +96,25 @@ class NightscoutService {
         self.callback = callback;
     }
 
+    //! A request was given up on: its callback may still arrive for a while.
+    function noteAbandonedRequest(nowMs as Lang.Number) as Void {
+        abandonedUntilMs = nowMs + Constants.ABANDON_GRACE_MS;
+    }
+
+    //! True while an irreversible request must not be sent (late-callback doubt).
+    function isSendBlockedByDoubt(nowMs as Lang.Number) as Lang.Boolean {
+        return nowMs < abandonedUntilMs;
+    }
+
     //! Enqueue a web request; it runs when no other request is in flight.
     //! `urgent` requests (user actions like sending carbs) jump ahead of the
     //! queued background fetches.
     private function enqueue(url as Lang.String, params as Lang.Dictionary, options as Lang.Dictionary, responder as Method, urgent as Lang.Boolean) as Void {
-        var req = { "url" => url, "params" => params, "options" => options, "responder" => responder };
+        enqueueRequest({ "url" => url, "params" => params, "options" => options, "responder" => responder }, urgent);
+    }
+
+    //! Same, for an already built request (the bolus request carries a "bolus" mark).
+    private function enqueueRequest(req as Lang.Dictionary, urgent as Lang.Boolean) as Void {
         if (urgent) {
             var reordered = [req];
             reordered.addAll(requestQueue);
@@ -110,6 +133,7 @@ class NightscoutService {
             }
             // Lost callback: tell the responder so the UI/state doesn't wait forever.
             var stale = currentResponder;
+            noteAbandonedRequest(System.getTimer());
             requestInFlight = false;
             currentResponder = null;
             if (stale != null) {
@@ -122,9 +146,21 @@ class NightscoutService {
         }
         var req = requestQueue[0];
         requestQueue = requestQueue.slice(1, null);
+        // A bolus that waited too long in the queue is dropped HERE, at dispatch
+        // time (not by a screen timer): it can never be delivered after the rider
+        // was told it did not go. The responder reports "nothing sent".
+        if (req.hasKey("bolus") && isBolusQueueExpired(req.get("queuedAt") as Lang.Number, System.getTimer())) {
+            var dropped = req.get("responder") as Method;
+            dropped.invoke(Constants.QUEUE_BUSY_CODE, null);
+            dispatchNext();
+            return;
+        }
         requestInFlight = true;
         requestStartTime = System.getTimer();
         currentResponder = req.get("responder") as Method;
+        if (req.hasKey("bolus")) {
+            appState.bolusDispatchedMs = requestStartTime;
+        }
         Communications.makeWebRequest(
             req.get("url"),
             req.get("params"),
@@ -382,6 +418,191 @@ class NightscoutService {
     }
 
     
+
+    //! Fetch Loop's recommended bolus (read-only, informational).
+    //! Step 1: exchange the access token for a bearer (API v3 needs one) via
+    //! /api/v2/authorization/request/<token>; step 2: read the latest
+    //! devicestatus via /api/v3/devicestatus. The bearer is cached until it
+    //! is about to expire, so most calls only do step 2.
+    function fetchRecommendedBolus() as Void {
+        if (getNightscoutUrl().length() == 0 || getNightscoutToken().length() == 0) {
+            appState.setRecommendedBolusError(Constants.NOT_CONFIGURED_CODE);
+            return;
+        }
+        if (hasValidBearer()) {
+            requestDeviceStatus();
+            return;
+        }
+        enqueue(
+            getNightscoutUrl() + "/api/v2/authorization/request/" + getNightscoutToken(),
+            {},
+            {
+                :method => Communications.HTTP_REQUEST_METHOD_GET,
+                :headers => {
+                    "Content-Type" => Communications.REQUEST_CONTENT_TYPE_URL_ENCODED
+                }
+            },
+            self.method(:onReceiveAuthToken),
+            false
+        );
+    }
+
+    private function hasValidBearer() as Lang.Boolean {
+        if (bearerToken.length() == 0) {
+            return false;
+        }
+        return Toybox.Time.now().value() < bearerExpiry - BEARER_MARGIN_SEC;
+    }
+
+    //! Step 2: latest devicestatus, newest first, only the "loop" object.
+    private function requestDeviceStatus() as Void {
+        enqueue(
+            getNightscoutUrl() + "/api/v3/devicestatus?limit=1&sort%24desc=created_at&fields=loop",
+            {},
+            {
+                :method => Communications.HTTP_REQUEST_METHOD_GET,
+                :headers => {
+                    "Content-Type" => Communications.REQUEST_CONTENT_TYPE_URL_ENCODED,
+                    "Authorization" => "Bearer " + bearerToken
+                }
+            },
+            self.method(:onReceiveRecommendedBolus),
+            true
+        );
+    }
+
+    //! Authorization response: { "token": "<jwt>", "exp": <epoch s>, ... }.
+    //! On success, chains straight into the devicestatus request.
+    function onReceiveAuthToken(responseCode as Lang.Number, data as Lang.Dictionary?) as Void {
+        bearerToken = "";
+        bearerExpiry = 0;
+        if (responseCode != 200 || data == null || !(data instanceof Lang.Dictionary)) {
+            appState.setRecommendedBolusError(responseCode);
+            return;
+        }
+        var token = data.get("token");
+        if (!(token instanceof Lang.String) || token.length() == 0) {
+            appState.setRecommendedBolusError(responseCode);
+            return;
+        }
+        bearerToken = token;
+        var exp = data.get("exp");
+        if (exp instanceof Lang.Number) {
+            bearerExpiry = exp;
+        } else {
+            // No expiry given: don't cache across calls
+            bearerExpiry = 0;
+        }
+        requestDeviceStatus();
+    }
+
+    //! devicestatus v3 response: { "status": 200, "result": [ { "loop": { "recommendedBolus": 1.65, "timestamp": "..." } } ] }
+    function onReceiveRecommendedBolus(responseCode as Lang.Number, data as Lang.Dictionary?) as Void {
+        if (responseCode == 401 || responseCode == 403) {
+            // Bearer rejected or expired: forget it so the next call re-authenticates
+            bearerToken = "";
+            bearerExpiry = 0;
+        }
+        if (responseCode != 200 || data == null || !(data instanceof Lang.Dictionary)) {
+            appState.setRecommendedBolusError(responseCode);
+            return;
+        }
+        try {
+            var result = data.get("result");
+            if (!(result instanceof Lang.Array) || result.size() == 0) {
+                appState.setRecommendedBolusError(responseCode);
+                return;
+            }
+            var entry = result[0];
+            if (!(entry instanceof Lang.Dictionary)) {
+                appState.setRecommendedBolusError(responseCode);
+                return;
+            }
+            var loopData = entry.get("loop");
+            if (!(loopData instanceof Lang.Dictionary)) {
+                appState.setRecommendedBolusError(responseCode);
+                return;
+            }
+            var bolus = loopData.get("recommendedBolus");
+            var units = 0.0;
+            if (bolus instanceof Lang.Float) {
+                units = bolus;
+            } else if (bolus instanceof Lang.Number) {
+                units = bolus.toFloat();
+            } else {
+                // No recommendation published in this status
+                appState.setRecommendedBolusError(responseCode);
+                return;
+            }
+            var stamp = loopData.get("timestamp");
+            var isoTime = stamp instanceof Lang.String ? stamp : "";
+            appState.updateRecommendedBolus(units, isoTime);
+        } catch (e) {
+            appState.setRecommendedBolusError(responseCode);
+        }
+    }
+
+    //! Send a remote bolus entry to Loop (REAL INSULIN). Never retried here, and
+    //! never called from tests. Nothing is sent when settings are incomplete.
+    function sendBolusEntry(bolusData as Lang.Dictionary) as Void {
+        // A late answer from an abandoned request could be taken for this one's
+        // answer and report "sent" wrongly: refuse, nothing is sent.
+        if (isSendBlockedByDoubt(System.getTimer())) {
+            onReceiveBolusEntryResponse(Constants.QUEUE_BUSY_CODE, null);
+            return;
+        }
+        if (getNightscoutUrl().length() == 0 || getNightscoutToken().length() == 0 || !hasOtpSecret()) {
+            onReceiveBolusEntryResponse(Constants.NOT_CONFIGURED_CODE, null);
+            return;
+        }
+        System.println("Sending remote bolus entry");
+        enqueueRequest({
+            "url" => getNightscoutUrl() + "/api/v2/notifications/loop?token=" + getNightscoutToken(),
+            "params" => bolusData,
+            "options" => {
+                :method => Communications.HTTP_REQUEST_METHOD_POST,
+                :headers => {
+                    "Content-Type" => Communications.REQUEST_CONTENT_TYPE_JSON
+                },
+                :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
+            },
+            "responder" => self.method(:onReceiveBolusEntryResponse),
+            "bolus" => true,
+            "queuedAt" => System.getTimer()
+        }, true);
+    }
+
+    //! True when a queued bolus has waited longer than allowed.
+    function isBolusQueueExpired(queuedAtMs as Lang.Number, nowMs as Lang.Number) as Lang.Boolean {
+        return nowMs - queuedAtMs >= Constants.BOLUS_QUEUE_WAIT_MS;
+    }
+
+    //! Remove a bolus request that is still waiting in the queue (not dispatched).
+    //! Returns true if one was removed: it can then never be delivered.
+    function cancelQueuedBolus() as Lang.Boolean {
+        var kept = [];
+        var removed = false;
+        for (var i = 0; i < requestQueue.size(); i++) {
+            var req = requestQueue[i];
+            if (req instanceof Lang.Dictionary && req.hasKey("bolus")) {
+                removed = true;
+            } else {
+                kept.add(req);
+            }
+        }
+        requestQueue = kept;
+        return removed;
+    }
+
+    function onReceiveBolusEntryResponse(responseCode as Lang.Number, data as Lang.String?) as Void {
+        System.println("Bolus entry response code: " + responseCode);
+        if (callback != null) {
+            callback.invoke("bolusEntrySent", {
+                "success" => responseCode == 200,
+                "responseCode" => responseCode
+            });
+        }
+    }
 
     //! Send food entry to Loop via Nightscout notifications API
     function sendFoodEntry(foodData as Lang.Dictionary) as Void {

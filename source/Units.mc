@@ -24,6 +24,16 @@ module Units {
         return formatAs(mgdl, isMmol());
     }
 
+    //! Round a bolus to the 0.05 U pump increment.
+    function roundBolus(units as Lang.Float) as Lang.Float {
+        return ((units * 20.0 + 0.5).toNumber()).toFloat() / 20.0;
+    }
+
+    //! Bolus as sent / shown: "1.65"
+    function formatBolus(units as Lang.Float) as Lang.String {
+        return roundBolus(units).format("%.2f");
+    }
+
     function formatAs(mgdl as Lang.Number, mmol as Lang.Boolean) as Lang.String {
         if (mmol) {
             return (mgdl.toFloat() / Constants.MGDL_PER_MMOL).format("%.1f");

@@ -24,7 +24,7 @@ The main screen reads top to bottom:
 
 | Tapped area | Action |
 |---|---|
-| **A food tile** | Sends that food (its carbs) to Loop, with an OTP code generated on the fly. The tile shows the result (see *Send feedback*) and further taps are ignored while sending, so a double tap can't send twice |
+| **A food tile** | Sends that food (its carbs) to Loop, with an OTP code generated on the fly. The tile shows the result (see *Send feedback*) and further taps are ignored while sending, to limit accidental duplicates (not an absolute guarantee: see "Unconfirmed" below) |
 | **The chart** | Cycles the displayed time window: 4h → 2h → 1h → 30min → 4h. The vertical scale adapts to the window's min/max |
 | **The header** (glucose / profile) | Opens the **temporary profile** selection screen |
 
@@ -37,11 +37,17 @@ The main screen reads top to bottom:
 | Red + short message | Failed — see the table in *Troubleshooting* |
 | Red, "Unconfirmed" | No answer within 30 s: the entry **may** have gone through — check Loop before tapping again |
 
-There is deliberately **no automatic retry** on sends, so carbs can never be doubled.
+There is deliberately **no automatic retry** on sends, which limits duplicates. A request sent without a reply ("Unconfirmed") may still have reached Loop, so check it before tapping again.
 
 ## Data freshness
 
 The age of the reading ("3m ago") is the age of the CGM measurement. It turns **orange** after 10 min, **red** after 15 min (the glucose number then turns gray so an old value never looks reassuring). A red **!** means the last fetch failed; the app retries every 30 s.
+
+## Treatments screen (profiles + bolus)
+
+Opened by tapping the header. Top: temporary profiles (see below). Bottom: **Bolus** — the amount recommended by Loop (read from Nightscout, with its age) and a button.
+
+⚠️ Sending a bolus delivers **real insulin**. The button only works when the setting is on, the recommendation is less than 10 minutes old and between 0.05 and 5 U, and it has not been sent already. Tap once to arm ("Confirm"), tap again within 5 s to send. No automatic retry. After an ambiguous failure (server error, no link, "Unconfirmed") the dose **may** have been delivered: the screen says "Check Loop first", and a retry is only offered once a recommendation fetched at least 15 s after the failure is available (this hold survives an app restart, and a request still queued after 10 s is cancelled so it can never be delivered late). Check Loop before retrying. **Deliberate design choice:** if that revalidation returns the *same* recommendation, it can be sent again (the rider owns this decision; the risk is a duplicate dose if the first request did reach Loop, which is why the warning and the 15 s wait exist). The duplicate guard is saved before sending and nothing is sent if it cannot be saved. A recently abandoned network request also blocks sending for a minute ("Retry soon"). Loop's own limits (max bolus, one-time code) still apply.
 
 ## Temporary profile selection
 
@@ -56,6 +62,7 @@ Configurable from the Garmin Connect (mobile) or Connect IQ (Express) app:
 - **OTP Secret** — TOTP key for Loop (see § 2)
 - **Default User** — name attached to sent entries
 - **Display glucose in mmol/L** — off (default) = mg/dL. Nightscout always sends mg/dL; the app only converts the display and sends the chosen unit to Loop
+- **Allow sending Loop's recommended bolus** — off by default. When on, the *Treatments* screen can send the bolus recommended by Loop after a two-tap confirmation (see *Treatments screen*)
 - **Color chart bars by glucose zone** — when on, each chart bar takes its zone color; otherwise bars stay gray (default)
 
 > Loop prerequisite: your Loop must accept remote entries (Remote Carbs) via the Nightscout `notifications/loop` API.

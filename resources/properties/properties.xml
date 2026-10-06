@@ -3,6 +3,7 @@
     <property id="nightscout_url" type="string"></property>
     <property id="otp_secret" type="string"></property>
     <property id="default_user" type="string">SugarPace</property>
+    <property id="enable_bolus_send" type="boolean">false</property>
     <property id="use_mmol" type="boolean">false</property>
     <property id="chart_color_by_zone" type="boolean">false</property>
 </properties>

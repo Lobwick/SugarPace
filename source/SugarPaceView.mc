@@ -169,25 +169,57 @@ class SugarPaceView extends WatchUi.View {
             dc.drawText(width - margin, colTop, Graphics.FONT_XTINY, freshnessText, Graphics.TEXT_JUSTIFY_RIGHT);
         }
 
-        // Active Nightscout profile: a small accent dot + name, flat and
-        // centered in the gap between the number and the right-hand column.
-        var activeProfile = appState.activeProfile;
-        if (activeProfile != null && activeProfile.length() > 0) {
-            var dotRadius = Layout.PROFILE_DOT_RADIUS;
-            var dotGap = Layout.PROFILE_DOT_GAP;
-            var profileTextW = dc.getTextWidthInPixels(activeProfile, Graphics.FONT_XTINY);
-            var blockW = dotRadius * 2 + dotGap + profileTextW;
-            var gapLeft = leftContentRight + Layout.PROFILE_SIDE_GAP;
-            var gapRight = rightColLeft - Layout.PROFILE_SIDE_GAP;
-            // Only draw if there is enough room so it never collides
-            if (gapRight - gapLeft >= blockW) {
-                var blockLeft = (gapLeft + gapRight) / 2 - blockW / 2;
-                var centerY = valueY + numberHeight / 2;
-                dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
-                dc.fillCircle(blockLeft + dotRadius, centerY, dotRadius);
-                dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-                dc.drawText(blockLeft + dotRadius * 2 + dotGap, centerY - unitHeight / 2, Graphics.FONT_XTINY, activeProfile, Graphics.TEXT_JUSTIFY_LEFT);
+        // Loop's recommended bolus (information only): shown next to the
+        // profile chip, only while it is fresh. A stale or unreadable time
+        // hides it so an old value can never look current.
+        var bolusText = "";
+        var bolusColor = Graphics.COLOR_YELLOW;
+        if (appState.hasRecommendedBolus) {
+            var bolusAge = appState.getRecommendedBolusAgeSeconds();
+            if (bolusAge >= 0 && bolusAge < Constants.GLUCOSE_STALE_SEC) {
+                bolusText = appState.recommendedBolus.format("%.2f") + "U";
+                if (bolusAge >= Constants.GLUCOSE_WARN_SEC || appState.recommendedBolusError != 0) {
+                    bolusColor = Graphics.COLOR_DK_GRAY;
+                }
             }
+        }
+
+        // Active Nightscout profile (dot + name) and the bolus value, centered
+        // in the gap between the number and the right-hand column. One line if
+        // both fit, else the bolus goes under the chip; never overlapping.
+        var activeProfile = appState.activeProfile;
+        var hasProfile = activeProfile != null && activeProfile.length() > 0;
+        var gapLeft = leftContentRight + Layout.PROFILE_SIDE_GAP;
+        var gapRight = rightColLeft - Layout.PROFILE_SIDE_GAP;
+        var gapW = gapRight - gapLeft;
+        var gapCenter = (gapLeft + gapRight) / 2;
+        var centerY = valueY + numberHeight / 2;
+        var bolusW = bolusText.length() > 0 ? dc.getTextWidthInPixels(bolusText, Graphics.FONT_XTINY) : 0;
+        var chipW = 0;
+        if (hasProfile) {
+            chipW = Layout.PROFILE_DOT_RADIUS * 2 + Layout.PROFILE_DOT_GAP + dc.getTextWidthInPixels(activeProfile, Graphics.FONT_XTINY);
+        }
+        var chipFits = hasProfile && chipW <= gapW;
+        var sameLine = chipFits && bolusW > 0 && chipW + Layout.BOLUS_GAP + bolusW <= gapW;
+        var bolusFits = bolusW > 0 && bolusW <= gapW;
+
+        if (sameLine) {
+            var blockW = chipW + Layout.BOLUS_GAP + bolusW;
+            var blockLeft = gapCenter - blockW / 2;
+            drawProfileChip(dc, blockLeft, centerY, activeProfile, unitHeight);
+            dc.setColor(bolusColor, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(blockLeft + chipW + Layout.BOLUS_GAP, centerY - unitHeight / 2, Graphics.FONT_XTINY, bolusText, Graphics.TEXT_JUSTIFY_LEFT);
+        } else if (chipFits && bolusFits) {
+            // Stacked: chip above, bolus centered under it
+            var chipY = centerY - unitHeight / 2 - Layout.BOLUS_LINE_GAP;
+            drawProfileChip(dc, gapCenter - chipW / 2, chipY, activeProfile, unitHeight);
+            dc.setColor(bolusColor, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(gapCenter, chipY + unitHeight / 2 + Layout.BOLUS_LINE_GAP, Graphics.FONT_XTINY, bolusText, Graphics.TEXT_JUSTIFY_CENTER);
+        } else if (chipFits) {
+            drawProfileChip(dc, gapCenter - chipW / 2, centerY, activeProfile, unitHeight);
+        } else if (bolusFits) {
+            dc.setColor(bolusColor, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(gapCenter, centerY - unitHeight / 2, Graphics.FONT_XTINY, bolusText, Graphics.TEXT_JUSTIFY_CENTER);
         }
 
         // Trend chart below the header. Its height is a fraction of the screen
@@ -212,6 +244,15 @@ class SugarPaceView extends WatchUi.View {
         appState.updateChartRegion(innerX, chartTop, width - margin, cardBottom);
 
         return cardBottom;
+    }
+
+    //! Accent dot + profile name, left edge at x, vertically centered on cy.
+    private function drawProfileChip(dc as Dc, x as Lang.Number, cy as Lang.Number, name as Lang.String, textHeight as Lang.Number) as Void {
+        var r = Layout.PROFILE_DOT_RADIUS;
+        dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
+        dc.fillCircle(x + r, cy, r);
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(x + r * 2 + Layout.PROFILE_DOT_GAP, cy - textHeight / 2, Graphics.FONT_XTINY, name, Graphics.TEXT_JUSTIFY_LEFT);
     }
 
     //! Draw the last ~4h glucose trend as a bar chart between (x0,y0) and (x1,y1)
@@ -509,6 +550,7 @@ class SugarPaceView extends WatchUi.View {
                 // Both queued and serialized by NightscoutService
                 nightscoutService.fetchGlucoseData();
                 nightscoutService.fetchTempBasalData();
+                nightscoutService.fetchRecommendedBolus();
             }
         }
     }

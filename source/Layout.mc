@@ -44,6 +44,8 @@ module Layout {
     const PROFILE_DOT_RADIUS = 4;
     const PROFILE_DOT_GAP = 7;      // gap between the dot and the profile name
     const PROFILE_SIDE_GAP = 10;    // min free space on each side of the chip
+    const BOLUS_GAP = 12;           // gap between the profile chip and the bolus value
+    const BOLUS_LINE_GAP = 2;       // vertical gap when the bolus is stacked under the chip
 
     // --- Food grid ---
     const GRID_MARGIN = 12;
@@ -56,6 +58,20 @@ module Layout {
     const GRID_NAME_LIFT = 24;      // name baseline, measured up from the cell bottom
     const GRID_EMPTY_TITLE_OFFSET = 20;
     const GRID_EMPTY_SUBTITLE_OFFSET = 50;
+
+    // --- Treatments screen: bolus section pinned at the bottom ---
+    const BOLUS_SECTION_H = 100;
+    const BOLUS_PAD = 20;           // left/right inset
+    const BOLUS_BTN_H = 60;
+    const BOLUS_BTN_MIN_W = 150;
+    const BOLUS_BTN_W_PCT = 0.42;
+    const BOLUS_LABEL_TOP = 6;      // "Bolus" label offset from the section top
+    const BOLUS_AGE_BOTTOM_PAD = 4; // age text offset from the section bottom
+    const BOLUS_BTN_RADIUS = 10;
+    const BOLUS_ERR_GAP = 4;        // error line offset above the section
+    const BOLUS_TICK_MS = 500;      // redraw ticker while Treatments is open
+    const ROW_HEIGHT = 54;          // profile row height (shrinks on short screens)
+    const ROW_MIN_HEIGHT = 34;
 
     // --- Scrolling ---
     const SCROLL_STEP = 150;        // px moved per swipe / key press

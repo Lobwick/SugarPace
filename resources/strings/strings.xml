@@ -1,6 +1,13 @@
 <strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
     <string id="AppName">SugarPace</string>
-    <string id="temp_overrides_label">Temp Overrides</string>
+    <string id="temp_overrides_label">Treatments</string>
+    <string id="bolus_section">Bolus</string>
+    <string id="bolus_send">Send</string>
+    <string id="bolus_confirm">Confirm</string>
+    <string id="bolus_none">No bolus</string>
+    <string id="bolus_off">Disabled</string>
+    <string id="bolus_sent">Sent</string>
+    <string id="enable_bolus_send_title">Allow sending Loop's recommended bolus</string>
     
     <string id="nightscout_token_title">Nightscout Token</string>
     <string id="nightscout_url_title">Nightscout URL</string>
@@ -14,6 +21,11 @@
     <string id="food_no_selection">No food selected</string>
     <string id="err_config_short">Set up app</string>
     <string id="err_config_long">Fill in Nightscout settings</string>
+    <string id="err_guard_short">Not saved</string>
+    <string id="err_guard_long">Safety guard not saved: nothing sent</string>
+    <string id="err_busy_short">Retry soon</string>
+    <string id="err_busy_long">Network busy: retry in a minute</string>
+    <string id="bolus_check_loop">Check Loop first</string>
     <string id="err_auth_short">Bad token</string>
     <string id="err_auth_long">Invalid token: check settings</string>
     <string id="err_server_short">Server keys</string>

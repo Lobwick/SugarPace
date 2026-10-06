@@ -37,6 +37,18 @@ class OtpService {
         ]);
     }
 
+    //! Remote bolus entry for Loop, flat JSON with a numeric remoteBolus (the
+    //! shape verified with curl). The amount is rounded to the 0.05 U pump increment.
+    function createBolusEntryData(units as Lang.Float) as Lang.Dictionary {
+        return {
+            "eventType" => "Remote Bolus Entry",
+            "otp" => generateOtp(),
+            "remoteBolus" => Units.roundBolus(units),
+            "enteredBy" => Application.Properties.getValue("default_user"),
+            "created_at" => formatCurrentTimestamp()
+        };
+    }
+
     //! Create food entry data structure for Loop API
     function createFoodEntryData(foodItem as Lang.Dictionary) as Lang.Dictionary {
         var foodName = foodItem.hasKey("name") ? foodItem.get("name").toString() : "Unknown food";
