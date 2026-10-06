@@ -24,7 +24,7 @@ The main screen reads top to bottom:
 
 | Tapped area | Action |
 |---|---|
-| **A food tile** | Sends that food (its carbs) to Loop, with an OTP code generated on the fly. The tile shows the result (see *Send feedback*) and further taps are ignored while sending, so a double tap can't send twice |
+| **A food tile** | Sends that food (its carbs) to Loop, with an OTP code generated on the fly. The tile shows the result (see *Send feedback*) and further taps are ignored while sending, to limit accidental duplicates (not an absolute guarantee: see "Unconfirmed" below) |
 | **The chart** | Cycles the displayed time window: 4h → 2h → 1h → 30min → 4h. The vertical scale adapts to the window's min/max |
 | **The header** (glucose / profile) | Opens the **temporary profile** selection screen |
 
@@ -37,7 +37,7 @@ The main screen reads top to bottom:
 | Red + short message | Failed — see the table in *Troubleshooting* |
 | Red, "Unconfirmed" | No answer within 30 s: the entry **may** have gone through — check Loop before tapping again |
 
-There is deliberately **no automatic retry** on sends, so carbs can never be doubled.
+There is deliberately **no automatic retry** on sends, which limits duplicates. A request sent without a reply ("Unconfirmed") may still have reached Loop, so check it before tapping again.
 
 ## Data freshness
 

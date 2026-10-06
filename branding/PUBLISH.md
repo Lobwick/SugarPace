@@ -70,7 +70,7 @@ SugarPace puts your glucose readings and your carb logging on the screen of your
 WHAT IT DOES
 • Shows your latest glucose reading from your own Nightscout site, color-coded by range, with trend arrow and the age of the reading. Readings older than 15 minutes are greyed out and flagged.
 • Bar chart of the last 4 h / 2 h / 1 h / 30 min (tap the chart to switch).
-• One-tap carb entry: tap a food tile (gel, jelly, bar…) to send a carb entry to your Nightscout-connected system. Each entry is secured by a one-time code (TOTP). The tile shows the result (sending / sent / failed with a short reason). Double taps are ignored so an entry is never sent twice.
+• One-tap carb entry: tap a food tile (gel, jelly, bar…) to send a carb entry to your Nightscout-connected system. Each entry is secured by a one-time code (TOTP). The tile shows the result (sending / sent / failed with a short reason). Repeated taps are ignored to limit accidental duplicates.
 • Temporary profile (override) selection: see the active profile and switch from the screen.
 • Home-screen glance with your latest reading.
 • mg/dL or mmol/L display, English and French.
@@ -98,7 +98,7 @@ SugarPace affiche ta glycémie et te permet d'enregistrer tes glucides directeme
 CE QUE FAIT L'APPLICATION
 • Affiche ta dernière mesure de glycémie depuis ton propre site Nightscout, colorée selon la zone, avec flèche de tendance et ancienneté de la mesure. Une mesure de plus de 15 minutes est grisée et signalée.
 • Graphique des 4 h / 2 h / 1 h / 30 min (touche le graphique pour changer).
-• Saisie de glucides en un tap : touche une vignette d'aliment (gel, pâte de fruits, barre…) pour envoyer une entrée de glucides à ton système relié à Nightscout. Chaque entrée est sécurisée par un code à usage unique (TOTP). La vignette affiche le résultat (envoi / envoyé / échec avec une courte raison). Les doubles taps sont ignorés : une entrée n'est jamais envoyée deux fois.
+• Saisie de glucides en un tap : touche une vignette d'aliment (gel, pâte de fruits, barre…) pour envoyer une entrée de glucides à ton système relié à Nightscout. Chaque entrée est sécurisée par un code à usage unique (TOTP). La vignette affiche le résultat (envoi / envoyé / échec avec une courte raison). Les taps répétés sont ignorés pour limiter les doublons accidentels.
 • Sélection du profil temporaire (override) : profil actif visible, changement depuis l'écran.
 • Glance sur l'écran d'accueil avec ta dernière mesure.
 • Affichage en mg/dL ou mmol/L, en français et en anglais.
@@ -120,14 +120,14 @@ SugarPace ne collecte, ne stocke et ne partage aucune donnée sur un serveur qui
 
 **EN:**
 - Display glucose in mmol/L (new setting).
-- Clear feedback when sending carbs: sending / sent / failed with a short reason. Double taps are ignored.
+- Clear feedback when sending carbs: sending / sent / failed with a short reason. Repeated taps are ignored to limit accidental duplicates.
 - Age of the glucose reading shown honestly: orange after 10 min, red and greyed out after 15 min; automatic retry after a failed refresh.
 - Profile screen now explains why a change failed.
 - Safer behavior when the app is not configured yet.
 
 **FR :**
 - Affichage de la glycémie en mmol/L (nouveau réglage).
-- Retour clair à l'envoi de glucides : envoi / envoyé / échec avec une courte raison. Les doubles taps sont ignorés.
+- Retour clair à l'envoi de glucides : envoi / envoyé / échec avec une courte raison. Les taps répétés sont ignorés pour limiter les doublons accidentels.
 - Ancienneté de la mesure affichée sans ambiguïté : orange après 10 min, rouge et grisée après 15 min ; nouvelle tentative automatique après un échec.
 - L'écran des profils explique pourquoi un changement a échoué.
 - Comportement plus sûr tant que l'app n'est pas configurée.

@@ -24,7 +24,7 @@ L'écran principal se lit de haut en bas :
 
 | Zone touchée | Action |
 |---|---|
-| **Une vignette d'aliment** | Envoie cet aliment (ses glucides) à Loop, avec un code OTP généré à la volée. La vignette affiche le résultat (voir *Retour d'envoi*) et les taps suivants sont ignorés pendant l'envoi : un double tap ne peut pas envoyer deux fois |
+| **Une vignette d'aliment** | Envoie cet aliment (ses glucides) à Loop, avec un code OTP généré à la volée. La vignette affiche le résultat (voir *Retour d'envoi*) et les taps suivants sont ignorés pendant l'envoi, pour limiter les doublons accidentels (pas une garantie absolue : voir « Non confirmé » ci-dessous) |
 | **Le graphe** | Change la fenêtre de temps affichée : 4h → 2h → 1h → 30min → 4h. L'échelle verticale s'adapte au min/max de la fenêtre |
 | **L'en-tête** (glycémie / profil) | Ouvre l'écran de sélection de **profil temporaire** |
 
@@ -37,7 +37,7 @@ L'écran principal se lit de haut en bas :
 | Rouge + message court | Échec — voir le tableau de *Dépannage* |
 | Rouge, « Non confirmé » | Pas de réponse en 30 s : l'entrée a **peut-être** été envoyée — vérifie Loop avant de retaper |
 
-Il n'y a volontairement **aucun retry automatique** à l'envoi : les glucides ne peuvent jamais être doublés.
+Il n'y a volontairement **aucun retry automatique** à l'envoi : ce qui limite les doublons. Une requête partie sans réponse (« Non confirmé ») a peut-être atteint Loop : vérifie-la avant de retaper.
 
 ## Fraîcheur des données
 
