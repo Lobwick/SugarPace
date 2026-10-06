@@ -12,7 +12,8 @@ type 1 sous boucle fermée.
 
 Repo : `git@github.com:Lobwick/SugarPace.git`
 Branding / textes store : voir [branding/STORE.md](branding/STORE.md).
-Docs utilisateur : [README.fr.md](README.fr.md) (FR) / [README.md](README.md) (EN).
+Docs utilisateur : [README.md](README.md) (EN puis FR dans le même fichier, doc utilisateur uniquement).
+Doc développeur (EN uniquement) : [DEVELOPERS.md](DEVELOPERS.md).
 
 ## ⚠️ Règle de sécurité absolue
 
