@@ -278,7 +278,11 @@ class TempOverridesView extends WatchUi.View {
         if (otp == null || service == null) {
             return;
         }
-        appState.markBolusSent(appState.recommendedBolusTime);
+        // Persist-before-send: if the guard can't be saved, NOTHING is sent
+        if (!appState.markBolusSent(appState.recommendedBolusTime)) {
+            appState.setBolusSendState(Constants.SEND_FAILED, Constants.GUARD_FAILED_CODE);
+            return;
+        }
         appState.bolusSentUnits = units;
         appState.setBolusSendState(Constants.SEND_PENDING, 0);
         startBolusTick();
@@ -306,8 +310,9 @@ class TempOverridesView extends WatchUi.View {
         var nowMs = System.getTimer();
         var app = Application.getApp() as SugarPaceApp;
         var svc = app.getNightscoutService();
-        // A bolus still queued behind another request is cancelled after a while
-        // (nothing sent), instead of being left able to deliver later.
+        // Visible-side quick cancel of a bolus still queued behind another request.
+        // The hard guarantee lives in NightscoutService.dispatchNext (queue expiry
+        // at dispatch time), which also holds if this screen is closed.
         if (appState.bolusSendState == Constants.SEND_PENDING && appState.bolusDispatchedMs < 0 &&
             nowMs - appState.bolusSendChangedMs >= Constants.BOLUS_QUEUE_WAIT_MS && svc != null) {
             if (svc.cancelQueuedBolus()) {

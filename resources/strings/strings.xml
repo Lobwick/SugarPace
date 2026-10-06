@@ -21,6 +21,8 @@
     <string id="food_no_selection">No food selected</string>
     <string id="err_config_short">Set up app</string>
     <string id="err_config_long">Fill in Nightscout settings</string>
+    <string id="err_guard_short">Not saved</string>
+    <string id="err_guard_long">Safety guard not saved: nothing sent</string>
     <string id="err_busy_short">Retry soon</string>
     <string id="err_busy_long">Network busy: retry in a minute</string>
     <string id="bolus_check_loop">Check Loop first</string>

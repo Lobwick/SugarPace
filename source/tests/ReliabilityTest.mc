@@ -331,3 +331,23 @@ function testSendBlockedWhileLateCallbackPossible(logger as Test.Logger) as Bool
     Test.assertEqualMessage(ErrorText.kind(Constants.QUEUE_BUSY_CODE), ErrorText.KIND_BUSY, "busy code classified");
     return true;
 }
+
+(:test)
+function testBolusGuardPersistenceIsObservable(logger as Test.Logger) as Boolean {
+    var s = new AppState();
+    Test.assertMessage(s.markBolusSent("2026-10-05T20:49:09Z"), "saved: markBolusSent reports success");
+    Test.assertEqualMessage(ErrorText.kind(Constants.GUARD_FAILED_CODE), ErrorText.KIND_STORAGE, "storage failure classified");
+    // A guard that could not be saved is a refusal before anything was sent: free retry
+    s.setBolusSendState(Constants.SEND_FAILED, Constants.GUARD_FAILED_CODE);
+    Test.assertEqualMessage(s.bolusSentForTime, "", "unsaved guard released, nothing was sent");
+    Test.assertMessage(!s.isAwaitingRevalidation(), "no retry hold: nothing could have been sent");
+    return true;
+}
+
+(:test)
+function testBolusQueueExpiryDecision(logger as Test.Logger) as Boolean {
+    var svc = new NightscoutService(new AppState());
+    Test.assertMessage(!svc.isBolusQueueExpired(1000, 1000 + Constants.BOLUS_QUEUE_WAIT_MS - 1), "not expired yet");
+    Test.assertMessage(svc.isBolusQueueExpired(1000, 1000 + Constants.BOLUS_QUEUE_WAIT_MS), "expired: dropped at dispatch, never sent late");
+    return true;
+}

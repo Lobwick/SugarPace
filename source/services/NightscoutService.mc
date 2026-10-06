@@ -146,6 +146,15 @@ class NightscoutService {
         }
         var req = requestQueue[0];
         requestQueue = requestQueue.slice(1, null);
+        // A bolus that waited too long in the queue is dropped HERE, at dispatch
+        // time (not by a screen timer): it can never be delivered after the rider
+        // was told it did not go. The responder reports "nothing sent".
+        if (req.hasKey("bolus") && isBolusQueueExpired(req.get("queuedAt") as Lang.Number, System.getTimer())) {
+            var dropped = req.get("responder") as Method;
+            dropped.invoke(Constants.QUEUE_BUSY_CODE, null);
+            dispatchNext();
+            return;
+        }
         requestInFlight = true;
         requestStartTime = System.getTimer();
         currentResponder = req.get("responder") as Method;
@@ -558,8 +567,14 @@ class NightscoutService {
                 :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
             },
             "responder" => self.method(:onReceiveBolusEntryResponse),
-            "bolus" => true
+            "bolus" => true,
+            "queuedAt" => System.getTimer()
         }, true);
+    }
+
+    //! True when a queued bolus has waited longer than allowed.
+    function isBolusQueueExpired(queuedAtMs as Lang.Number, nowMs as Lang.Number) as Lang.Boolean {
+        return nowMs - queuedAtMs >= Constants.BOLUS_QUEUE_WAIT_MS;
     }
 
     //! Remove a bolus request that is still waiting in the queue (not dispatched).

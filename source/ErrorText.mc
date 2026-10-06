@@ -10,6 +10,7 @@ module ErrorText {
     const KIND_NETWORK = 3;  // negative Garmin codes: no phone / BLE / timeout
     const KIND_CONFIG = 4;   // URL / token / OTP secret not filled in
     const KIND_BUSY = 5;     // recent abandoned request: retry in a minute (nothing sent)
+    const KIND_STORAGE = 6;  // the safety guard could not be saved (nothing sent)
 
     function kind(code as Lang.Number) as Lang.Number {
         if (code == Constants.NOT_CONFIGURED_CODE) {
@@ -17,6 +18,9 @@ module ErrorText {
         }
         if (code == Constants.QUEUE_BUSY_CODE) {
             return KIND_BUSY;
+        }
+        if (code == Constants.GUARD_FAILED_CODE) {
+            return KIND_STORAGE;
         }
         if (code == 401 || code == 403) {
             return KIND_AUTH;
@@ -33,6 +37,9 @@ module ErrorText {
     //! A few words, for a food tile.
     function shortText(code as Lang.Number) as Lang.String {
         var k = kind(code);
+        if (k == KIND_STORAGE) {
+            return WatchUi.loadResource(Rez.Strings.err_guard_short) as Lang.String;
+        }
         if (k == KIND_BUSY) {
             return WatchUi.loadResource(Rez.Strings.err_busy_short) as Lang.String;
         }
@@ -55,6 +62,9 @@ module ErrorText {
     //! One line telling what to do, for the profile screen.
     function longText(code as Lang.Number) as Lang.String {
         var k = kind(code);
+        if (k == KIND_STORAGE) {
+            return WatchUi.loadResource(Rez.Strings.err_guard_long) as Lang.String;
+        }
         if (k == KIND_BUSY) {
             return WatchUi.loadResource(Rez.Strings.err_busy_long) as Lang.String;
         }

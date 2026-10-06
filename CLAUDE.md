@@ -42,7 +42,9 @@ montant, verrou pendant l'envoi, aucun retry automatique, refus d'envoyer pendan
 60 s après une requête abandonnée (callback tardif possible), et après un échec
 ambigu la garde est CONSERVÉE (persistée avec son horodatage) et le retry reste retenu
 jusqu'à une recommandation récupérée ≥ 15 s après l'échec (survit à un redémarrage),
-avec avertissement « vérifie Loop » ; le délai de 30 s compte depuis l'envoi réel et
+avec avertissement « vérifie Loop ». **Choix assumé de l'utilisateur, contre l'avis de la revue Copilot** :
+si cette revérification renvoie la MÊME recommandation, elle redevient envoyable (risque connu de
+doubler une dose déjà livrée ; l'avertissement et le test avec Loop sous les yeux sont la parade) ; le délai de 30 s compte depuis l'envoi réel et
 un bolus encore en file après 10 s est annulé (jamais livré après coup). Le corps envoyé est
 du JSON plat avec `remoteBolus` en Float (forme validée par curl). Le plafond
 `BOLUS_MAX_UNITS` est dans `Constants.mc`. Ne pas assouplir ces garde-fous sans

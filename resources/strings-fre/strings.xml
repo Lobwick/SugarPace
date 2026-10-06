@@ -21,6 +21,8 @@
     <string id="food_no_selection">Aucun aliment sélectionné</string>
     <string id="err_config_short">À configurer</string>
     <string id="err_config_long">Renseigner les réglages Nightscout</string>
+    <string id="err_guard_short">Non enregistré</string>
+    <string id="err_guard_long">Garde de sécurité non enregistrée : rien envoyé</string>
     <string id="err_busy_short">Réessaie</string>
     <string id="err_busy_long">Réseau occupé : réessaie dans une minute</string>
     <string id="bolus_check_loop">Vérifie Loop d'abord</string>

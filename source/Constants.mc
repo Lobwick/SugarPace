@@ -24,6 +24,8 @@ module Constants {
     // Fake code: a request was abandoned recently and may still answer late; an
     // irreversible send is refused until the grace period is over (nothing sent).
     const QUEUE_BUSY_CODE = -3;
+    // Fake code: the duplicate-send guard could not be saved, so nothing was sent.
+    const GUARD_FAILED_CODE = -4;
     const ABANDON_GRACE_MS = 60000;
     // Fake code when URL / token / OTP secret are not filled in (nothing is sent)
     const NOT_CONFIGURED_CODE = -2;

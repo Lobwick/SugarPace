@@ -150,12 +150,17 @@ class AppState {
 
     //! Block this recommendation from being sent again, and remember it across
     //! app restarts. Called BEFORE the request is issued.
-    function markBolusSent(isoTime as Lang.String) as Void {
+    //! Returns true only if the guard was really saved (written, then read back):
+    //! a caller that is about to do something irreversible must abort on false.
+    //! The in-memory guard is set either way.
+    function markBolusSent(isoTime as Lang.String) as Lang.Boolean {
         bolusSentForTime = isoTime;
         try {
             Application.Storage.setValue("bolus_sent_for", isoTime);
+            var back = Application.Storage.getValue("bolus_sent_for");
+            return back instanceof Lang.String && back.equals(isoTime);
         } catch (ex) {
-            // A storage failure must not stop the in-memory guard
+            return false;
         }
     }
 
@@ -214,7 +219,8 @@ class AppState {
             setBolusAwait(-1);
         } else if (state == Constants.SEND_FAILED || state == Constants.SEND_UNCONFIRMED) {
             var kind = ErrorText.kind(errorCode);
-            if (kind == ErrorText.KIND_AUTH || kind == ErrorText.KIND_CONFIG || kind == ErrorText.KIND_BUSY) {
+            if (kind == ErrorText.KIND_AUTH || kind == ErrorText.KIND_CONFIG || kind == ErrorText.KIND_BUSY ||
+                kind == ErrorText.KIND_STORAGE) {
                 // Refused / cancelled before Loop could act: nothing delivered, retry is free
                 clearBolusSentGuard();
                 setBolusAwait(-1);
