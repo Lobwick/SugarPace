@@ -9,7 +9,7 @@ on:
 
 # Pin to the action tag matching the desired SDK version.
 env:
-  CIQ_ACTION: blackshadev/garmin-connectiq-build-action@9.1.1
+  CIQ_ACTION: blackshadev/garmin-connectiq-build-action@9.2.0
 
 jobs:
   validate-catalogue:
@@ -43,7 +43,7 @@ jobs:
           fi
 
       - name: Build ${{ matrix.device }}
-        uses: blackshadev/garmin-connectiq-build-action@9.1.1
+        uses: blackshadev/garmin-connectiq-build-action@9.2.0
         with:
           developerKey: ./developer_key
           projectJungle: ./monkey.jungle
@@ -78,7 +78,7 @@ jobs:
       # the build. NB: this Docker action builds only — it does not run the
       # simulator, so test *execution* stays local (`monkeydo <prg> <dev> -t`).
       - name: Compile unit tests
-        uses: blackshadev/garmin-connectiq-build-action@9.1.1
+        uses: blackshadev/garmin-connectiq-build-action@9.2.0
         with:
           developerKey: ./developer_key
           projectJungle: ./monkey.jungle

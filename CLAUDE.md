@@ -229,7 +229,7 @@ responsive) — nécessite un `Dc`, vérification visuelle au sim uniquement.
 `.github/workflows/` : `ci.yml` (réutilisable, matrice 4 devices + compile
 `--unit-test`), `pr.yml` (appelle ci.yml), `main.yml` (ci.yml + release
 auto sur bump de version dans `manifest.xml`). Basé sur l'action Docker
-`blackshadev/garmin-connectiq-build-action@9.1.1` (image avec SDK + devices
+`blackshadev/garmin-connectiq-build-action@9.2.0` (image avec SDK + devices
 embarqués, pas de setup manuel). Cette action **compile uniquement** — les
 tests sont compilés en CI mais pas exécutés (exécution reste locale).
 
