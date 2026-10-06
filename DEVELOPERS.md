@@ -175,6 +175,34 @@ By hand, touch exactly four things, in this order:
 5. **Widgets vs glances**: Connect IQ apps appear in the glance list; the native widget drawer cannot list them.
 6. **Product images**: sizes are exact pixels, backgrounds must be transparent, and `drawScaledBitmap` does not exist on these devices.
 
+## The data field (`datafield/`)
+
+A second app, a **read-only data field** for the activity screens: it shows the latest glucose and its trend (for example `112 ↗`), puts the age of the reading in the label (`Glucose 3m`), and records the glucose in the activity's FIT file (developer field 0, mg/dL, one value per record; Garmin Connect charts it after the activity). It never sends anything to Nightscout, and a reading older than 15 minutes shows `--` and is not written to the FIT file.
+
+Why a separate app: widgets and data fields are sandboxed from each other. There is no way to share storage or call code between two apps on the device, so the data field fetches by itself (one `entries.json?count=1` request from the foreground, only when a new reading is due) and has its own settings in Garmin Connect (URL, token, mmol/L).
+
+```
+datafield/
+  manifest.xml          type="datafield", its own app id, Communications + FitContributor
+  monkey.jungle         base.sourcePath = source;../source/models/GlucoseData.mc;../source/Units.mc;../source/Constants.mc
+  source/               SugarPaceFieldApp, SugarPaceField (SimpleDataField), EntriesParser, tests/
+  resources/            strings (EN/FR), properties, settings, fitfields.xml, launcher icon
+```
+
+**Shared code by source path.** The data field compiles three widget files in place (no copy): `GlucoseData.mc` (zones, arrows, data age), `Units.mc` (mg/dL ↔ mmol/L) and `Constants.mc`. Rules for those files: never add code that sends or needs the widget's classes (`AppState`, `NightscoutService`, `Rez` strings), keep them small (the data field has **128 KB** of memory in all, versus 1 MB for the widget), and the widget's own `monkey.jungle` sets `base.sourcePath = source` explicitly, otherwise the default search would also pick up `datafield/source`. They must not carry a `(:background)` annotation, which would force the `Background` permission on the data field.
+
+Build and test (same SDK variables as above):
+
+```bash
+cd datafield
+java -Xms1g -jar "$SDK/bin/monkeybrains.jar" -o field.prg -f monkey.jungle -y "$KEY" -d edge1050 -w
+java -Xms1g -jar "$SDK/bin/monkeybrains.jar" -o field-test.prg -f monkey.jungle -y "$KEY" -d edge1050 --unit-test -w
+```
+
+CI builds it on the four devices and compiles its tests (`build-datafield`, `test-compile-datafield`). The tests make no request; the safety rule above applies to the data field as well.
+
+**Not verified yet on a real device:** a foreground web request from a data field (the docs allow it since API 5.0.0), the real memory use under the 128 KB limit (the compiled `.prg` is about 105 KB; check the simulator's memory view), and how `112 ↗` renders in each layout (1 to 6 fields).
+
 ## Releasing to the Connect IQ Store
 
 See [`branding/PUBLISH.md`](branding/PUBLISH.md) (form fields, store texts in English and French, risks, order of steps), [`branding/STORE.md`](branding/STORE.md) (repository text, logo brief) and [`PRIVACY.md`](PRIVACY.md) (privacy policy). Before exporting: the default Nightscout URL, token and OTP secret must stay empty in `properties.xml`.

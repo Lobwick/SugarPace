@@ -30,6 +30,15 @@ parsing (`onReceiveGlucoseData`, `onReceiveTempBasalData`,
 `onReceiveActiveOverride`) avec des données factices — ils ne font aucune
 requête. Respecter ce principe pour toute nouvelle couverture de test.
 
+## Data field (`datafield/`)
+
+App séparée en **lecture seule** : affiche « 112 ↗ » (+ âge dans le label) et écrit la glycémie
+dans le FIT (champ développeur 0). Code partagé avec le widget **par chemin de sources**
+(`datafield/monkey.jungle` compile `source/models/GlucoseData.mc`, `source/Units.mc`,
+`source/Constants.mc` sur place) : ne jamais y mettre d'envoi ni de dépendance au reste du widget,
+ni d'annotation `(:background)`. Le `monkey.jungle` du widget fixe `base.sourcePath = source`.
+Limite mémoire d'un data field : 128 Ko. Détails : [DEVELOPERS.md](DEVELOPERS.md).
+
 ## Architecture
 
 ```
