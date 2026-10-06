@@ -33,6 +33,20 @@ function testReadingTimeDrivesAge(logger as Test.Logger) as Boolean {
 }
 
 (:test)
+function testStaleAgeBoundaryAndFutureTimestamp(logger as Test.Logger) as Boolean {
+    var threshold = Constants.GLUCOSE_STALE_SEC;
+    Test.assertMessage(!GlucoseData.isStaleAge(threshold - 1), "one second before threshold is fresh");
+    Test.assertMessage(GlucoseData.isStaleAge(threshold), "threshold is stale");
+    Test.assertMessage(GlucoseData.isStaleAge(threshold + 1), "one second after threshold is stale");
+
+    var g = new GlucoseData();
+    g.update({ "bloodSugar" => 110, "readingTime" => Time.now().value() + 60 });
+    Test.assertEqualMessage(g.getAgeSeconds(), 0, "future CGM timestamp clamps age to zero");
+    Test.assertMessage(!g.isStale(), "future CGM timestamp is not stale");
+    return true;
+}
+
+(:test)
 function testFetchScheduling(logger as Test.Logger) as Boolean {
     var s = new AppState();
     Test.assertMessage(s.isFetchDue(1000), "never fetched -> due");
