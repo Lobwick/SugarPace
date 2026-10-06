@@ -15,6 +15,8 @@ function testIsPointInRegion(logger as Test.Logger) as Boolean {
     Test.assertMessage(!s.isPointInRegion(region, 5, 30), "left of region");
     Test.assertMessage(!s.isPointInRegion(region, 30, 60), "below region");
     Test.assertMessage(!s.isPointInRegion(null, 30, 30), "null region is a miss");
+    Test.assertMessage(!s.isPointInRegion({ "x0" => "bad", "y0" => 10, "x1" => 50, "y1" => 50 }, 30, 30),
+        "malformed region is a miss");
     return true;
 }
 
@@ -59,5 +61,51 @@ function testFindFoodItemAtPoint(logger as Test.Logger) as Boolean {
     Test.assertEqualMessage(hit.name, "B", "second tile hit");
 
     Test.assertMessage(s.findFoodItemAtPoint(500, 500) == null, "point outside every tile");
+    return true;
+}
+
+(:test)
+function testFoodSelectionNavigation(logger as Test.Logger) as Boolean {
+    var s = new AppState();
+    s.navigateDown();
+    Test.assertEqualMessage(s.selectedFoodIndex, 0, "empty food list cannot navigate");
+    Test.assertMessage(s.getSelectedFoodItem() == null, "empty list has no selected item");
+
+    s.updateFoodItems([
+        { "name" => "A", "carbs_g" => 10 },
+        { "name" => "B", "carbs_g" => 20 }
+    ]);
+    var selected = s.getSelectedFoodItem();
+    Test.assertMessage(selected != null, "first item exists after load");
+    Test.assertEqualMessage(selected.name, "A", "first item is selected after load");
+    s.navigateUp();
+    Test.assertEqualMessage(s.selectedFoodIndex, 1, "navigate up wraps to last item");
+    s.navigateDown();
+    Test.assertEqualMessage(s.selectedFoodIndex, 0, "navigate down wraps to first item");
+    s.setSelectedFoodIndex(1);
+    selected = s.getSelectedFoodItem();
+    Test.assertMessage(selected != null, "selected item exists");
+    Test.assertEqualMessage(selected.name, "B", "valid index selects matching item");
+    s.setSelectedFoodIndex(-1);
+    s.setSelectedFoodIndex(2);
+    Test.assertEqualMessage(s.selectedFoodIndex, 1, "out-of-range selection is ignored");
+
+    s.updateFoodItems([]);
+    s.navigateUp();
+    s.navigateDown();
+    Test.assertMessage(s.getSelectedFoodItem() == null, "empty list remains safely unselected");
+    return true;
+}
+
+(:test)
+function testFindFoodItemAtPointRejectsInvalidCoordinates(logger as Test.Logger) as Boolean {
+    var s = new AppState();
+    s.updateFoodItems([{ "name" => "A", "carbs_g" => 10 }]);
+    s.updateFoodGridCoordinates([
+        123,
+        { "x0" => "bad", "y0" => 0, "x1" => 100, "y1" => 100, "index" => 0 },
+        { "x0" => 0, "y0" => 0, "x1" => 100, "y1" => 100, "index" => 4 }
+    ]);
+    Test.assertMessage(s.findFoodItemAtPoint(50, 50) == null, "invalid coordinate records and indices are ignored");
     return true;
 }

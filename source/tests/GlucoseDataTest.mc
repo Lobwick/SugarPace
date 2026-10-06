@@ -1,5 +1,6 @@
 import Toybox.Lang;
 import Toybox.Graphics;
+import Toybox.Time;
 using Toybox.Test;
 
 //! Unit tests for GlucoseData: zone coloring thresholds, trend arrows and labels.
@@ -60,5 +61,35 @@ function testTrendLabel(logger as Test.Logger) as Boolean {
 function testTimeSinceUpdateNoData(logger as Test.Logger) as Boolean {
     var g = new GlucoseData();
     Test.assertEqualMessage(g.getTimeSinceUpdate(), "---", "no reading -> placeholder");
+    return true;
+}
+
+(:test)
+function testUpdateIgnoresWrongTypes(logger as Test.Logger) as Boolean {
+    var g = new GlucoseData();
+    g.update({ "bloodSugar" => 145, "trendRate" => 1.5, "direction" => "SingleUp" });
+    g.update({ "bloodSugar" => "120", "trendRate" => 2, "direction" => 10 });
+    Test.assertEqualMessage(g.bloodSugarLevel, 145, "invalid glucose type leaves prior value unchanged");
+    Test.assertEqualMessage(g.trendRate, 1.5, "integer trend rate is ignored");
+    Test.assertEqualMessage(g.direction, "SingleUp", "invalid direction type leaves prior value unchanged");
+    return true;
+}
+
+(:test)
+function testFreshnessFormattingBoundaries(logger as Test.Logger) as Boolean {
+    var now = Time.now().value();
+    var g = new GlucoseData();
+
+    g.lastUpdateTime = new Time.Moment(now - 59);
+    Test.assertEqualMessage(g.getTimeSinceUpdate(), "59s", "age below one minute uses seconds");
+    g.lastUpdateTime = new Time.Moment(now - 60);
+    Test.assertEqualMessage(g.getTimeSinceUpdate(), "1m", "one minute uses minutes");
+    g.lastUpdateTime = new Time.Moment(now - 7199);
+    Test.assertEqualMessage(g.getTimeSinceUpdate(), "119m", "age below two hours uses minutes");
+    g.lastUpdateTime = new Time.Moment(now - 7200);
+    Test.assertEqualMessage(g.getTimeSinceUpdate(), "2h", "two hours uses hours");
+
+    g.bloodSugarLevel = 70;
+    Test.assertEqualMessage(g.getCurrentZoneColor(), Graphics.COLOR_GREEN, "current value uses shared zone color");
     return true;
 }

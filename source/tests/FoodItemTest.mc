@@ -20,8 +20,42 @@ function testFoodItemDefaults(logger as Test.Logger) as Boolean {
     var item = new FoodItem({ "carbs_g" => 45 }, 0);
     Test.assertEqualMessage(item.name, "Unknown", "missing name -> Unknown");
     Test.assertEqualMessage(item.carbs, 45, "numeric carbs kept");
-    Test.assertEqualMessage(item.subcategory, "GEL", "missing subcategory -> GEL");
+    Test.assertEqualMessage(item.id, "0", "missing id falls back to index");
+    Test.assertEqualMessage(item.brand, "", "missing brand defaults to empty");
+    Test.assertEqualMessage(item.subcategory, "OTHER", "missing subcategory -> OTHER");
     Test.assertMessage(item.picture == null, "missing picture -> null");
+    Test.assertEqualMessage(item.portion_g, 0, "missing portion defaults to zero");
+    Test.assertEqualMessage(item.gi, 0, "missing GI defaults to zero");
+    Test.assertEqualMessage(item.energy_kj, 0, "missing energy defaults to zero");
+    Test.assertEqualMessage(item.fat_g, 0.0, "missing fat defaults to zero");
+    Test.assertEqualMessage(item.protein_g, 0.0, "missing protein defaults to zero");
+    return true;
+}
+
+(:test)
+function testFoodItemCoercesNutritionValues(logger as Test.Logger) as Boolean {
+    var item = new FoodItem({
+        "id" => 42,
+        "name" => 7,
+        "brand" => "Test",
+        "subcategory" => "BAR",
+        "picture" => 12,
+        "carbs_g" => true,
+        "portion_g" => [12],
+        "gi" => "55",
+        "energy_kj" => 900,
+        "fat_g" => 2,
+        "protein_g" => "3.5"
+    }, 4);
+    Test.assertEqualMessage(item.id, "42", "id is normalized to string");
+    Test.assertEqualMessage(item.name, "7", "name is normalized to string");
+    Test.assertEqualMessage(item.picture, "12", "picture is normalized to string");
+    Test.assertEqualMessage(item.carbs, 0, "invalid carbs default to zero");
+    Test.assertEqualMessage(item.portion_g, 12, "float portion is converted to integer");
+    Test.assertEqualMessage(item.gi, 55, "string GI is converted to integer");
+    Test.assertEqualMessage(item.energy_kj, 900, "integer energy is kept");
+    Test.assertEqualMessage(item.fat_g, 2.0, "integer fat is converted to float");
+    Test.assertEqualMessage(item.protein_g, 3.5, "string protein is converted to float");
     return true;
 }
 

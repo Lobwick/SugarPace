@@ -12,6 +12,8 @@ function testBase32Decode(logger as Test.Logger) as Boolean {
         Convert.base32decode2HexString("MZXW6YTBOI"),
         "666F6F626172",
         "base32('foobar') should decode to hex 666F6F626172");
+    Test.assertEqualMessage(Convert.base32decode2HexString("mz"), "66", "base32 accepts lowercase and ignores remaining bits");
+    Test.assertEqualMessage(Convert.base32decode2HexString(""), "", "empty base32 input decodes to empty hex");
     return true;
 }
 
@@ -65,6 +67,6 @@ function testHotpVectors(logger as Test.Logger) as Boolean {
 (:test)
 function testHotpDigitClamp(logger as Test.Logger) as Boolean {
     var keyHex = "3132333435363738393031323334353637383930";
-    Test.assertEqualMessage(Otp.generateHotpSha1(keyHex, 0, 6).length(), 6, "6-digit HOTP length");
+    Test.assertEqualMessage(Otp.generateHotpSha1(keyHex, 0, 9), "00755224", "digit count is capped at eight and left-padded");
     return true;
 }

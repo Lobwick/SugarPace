@@ -33,6 +33,20 @@ function testReadingTimeDrivesAge(logger as Test.Logger) as Boolean {
 }
 
 (:test)
+function testStaleAgeBoundaryAndFutureTimestamp(logger as Test.Logger) as Boolean {
+    var threshold = Constants.GLUCOSE_STALE_SEC;
+    Test.assertMessage(!GlucoseData.isStaleAge(threshold - 1), "one second before threshold is fresh");
+    Test.assertMessage(GlucoseData.isStaleAge(threshold), "threshold is stale");
+    Test.assertMessage(GlucoseData.isStaleAge(threshold + 1), "one second after threshold is stale");
+
+    var g = new GlucoseData();
+    g.update({ "bloodSugar" => 110, "readingTime" => Time.now().value() + 60 });
+    Test.assertEqualMessage(g.getAgeSeconds(), 0, "future CGM timestamp clamps age to zero");
+    Test.assertMessage(!g.isStale(), "future CGM timestamp is not stale");
+    return true;
+}
+
+(:test)
 function testFetchScheduling(logger as Test.Logger) as Boolean {
     var s = new AppState();
     Test.assertMessage(s.isFetchDue(1000), "never fetched -> due");
@@ -87,7 +101,10 @@ function testGlucoseFailureFlagsStale(logger as Test.Logger) as Boolean {
 function testErrorKinds(logger as Test.Logger) as Boolean {
     Test.assertEqualMessage(ErrorText.kind(401), ErrorText.KIND_AUTH, "401 = token");
     Test.assertEqualMessage(ErrorText.kind(403), ErrorText.KIND_AUTH, "403 = token");
+    Test.assertEqualMessage(ErrorText.kind(499), ErrorText.KIND_OTHER, "4xx other than auth remains raw");
     Test.assertEqualMessage(ErrorText.kind(500), ErrorText.KIND_SERVER, "500 = server config");
+    Test.assertEqualMessage(ErrorText.kind(599), ErrorText.KIND_SERVER, "599 = last server code");
+    Test.assertEqualMessage(ErrorText.kind(600), ErrorText.KIND_OTHER, "600 is outside the server range");
     Test.assertEqualMessage(ErrorText.kind(502), ErrorText.KIND_SERVER, "5xx = server");
     Test.assertEqualMessage(ErrorText.kind(-104), ErrorText.KIND_NETWORK, "negative = no link");
     Test.assertEqualMessage(ErrorText.kind(404), ErrorText.KIND_OTHER, "other codes keep the raw code");
