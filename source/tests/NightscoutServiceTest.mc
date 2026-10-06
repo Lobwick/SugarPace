@@ -118,12 +118,12 @@ function testFoodEntryResponseParsingOnly(logger as Test.Logger) as Boolean {
 
     svc.onReceiveFoodEntryResponse(200, "ok");
     var result = cap.captured.get("foodEntrySent") as Lang.Dictionary;
-    Test.assertMessage(result.get("success"), "HTTP 200 is successful");
+    Test.assertMessage(result.get("success") == true, "HTTP 200 is successful");
     Test.assertEqualMessage(result.get("responseCode"), 200, "response code is reported");
 
     svc.onReceiveFoodEntryResponse(500, null);
     result = cap.captured.get("foodEntrySent") as Lang.Dictionary;
-    Test.assertMessage(!result.get("success"), "non-200 is unsuccessful");
+    Test.assertMessage(result.get("success") == false, "non-200 is unsuccessful");
     Test.assertEqualMessage(result.get("responseCode"), 500, "failure code is reported");
     return true;
 }
