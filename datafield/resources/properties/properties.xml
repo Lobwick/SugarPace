@@ -1,0 +1,5 @@
+<properties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
+    <property id="nightscout_token" type="string"></property>
+    <property id="nightscout_url" type="string"></property>
+    <property id="use_mmol" type="boolean">false</property>
+</properties>

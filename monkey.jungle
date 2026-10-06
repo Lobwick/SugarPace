@@ -1,1 +1,4 @@
 project.manifest = manifest.xml
+
+# Explicit: without it the default search also picks up datafield/source.
+base.sourcePath = source

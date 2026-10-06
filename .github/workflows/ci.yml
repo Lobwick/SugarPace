@@ -86,3 +86,64 @@ jobs:
           device: edge1050
           outputPath: ./out/test.prg
           extraArgs: "--unit-test"
+
+  # The read-only data field (datafield/). It compiles a few widget files from
+  # ../source through its own monkey.jungle, so a change to the shared code that
+  # breaks the data field fails here.
+  build-datafield:
+    needs: validate-catalogue
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        device: [edge840, edge850, edge1040, edge1050]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Provide developer key
+        env:
+          KEY_B64: ${{ secrets.DEVELOPER_KEY_BASE64 }}
+        run: |
+          set -euo pipefail
+          if [ -n "${KEY_B64:-}" ]; then
+            echo "$KEY_B64" | base64 -d > developer_key
+          else
+            openssl genrsa -out dk.pem 4096
+            openssl pkcs8 -topk8 -inform PEM -outform DER -in dk.pem -out developer_key -nocrypt
+          fi
+
+      - name: Build data field ${{ matrix.device }}
+        uses: blackshadev/garmin-connectiq-build-action@9.2.0
+        with:
+          developerKey: ./developer_key
+          projectJungle: ./datafield/monkey.jungle
+          typeCheck: "1"
+          device: ${{ matrix.device }}
+          outputPath: ./out/field-${{ matrix.device }}.prg
+
+  test-compile-datafield:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Provide developer key
+        env:
+          KEY_B64: ${{ secrets.DEVELOPER_KEY_BASE64 }}
+        run: |
+          set -euo pipefail
+          if [ -n "${KEY_B64:-}" ]; then
+            echo "$KEY_B64" | base64 -d > developer_key
+          else
+            openssl genrsa -out dk.pem 4096
+            openssl pkcs8 -topk8 -inform PEM -outform DER -in dk.pem -out developer_key -nocrypt
+          fi
+
+      - name: Compile data field unit tests
+        uses: blackshadev/garmin-connectiq-build-action@9.2.0
+        with:
+          developerKey: ./developer_key
+          projectJungle: ./datafield/monkey.jungle
+          typeCheck: "1"
+          device: edge1050
+          outputPath: ./out/field-test.prg
+          extraArgs: "--unit-test"
