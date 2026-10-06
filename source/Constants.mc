@@ -41,8 +41,12 @@ module Constants {
     const BOLUS_MAX_UNITS = 5.0;      // above this the button stays disabled (Loop's own max bolus still applies)
     const BOLUS_MAX_FUTURE_SKEW_SEC = 60; // a recommendation "from the future" beyond this is rejected
     // After an ambiguous failure a retry is possible only once a recommendation
-    // fetched at least this long after the failure is available (time to look at Loop).
-    const BOLUS_RETRY_MIN_WAIT_MS = 15000;
+    // fetched at least this many seconds after the failure is available (time to
+    // look at Loop). Wall-clock seconds, so it survives an app restart.
+    const BOLUS_RETRY_MIN_WAIT_SEC = 15;
+    // A bolus request still queued (not dispatched) after this long is cancelled:
+    // it must never be delivered after the rider was told it did not go.
+    const BOLUS_QUEUE_WAIT_MS = 10000;
     const BOLUS_CONFIRM_MS = 5000;    // second tap must come within this window
     const BOLUS_HOLD_OK_MS = 15000;   // "sent" stays shown (and locked) this long
     const BOLUS_HOLD_FAIL_MS = 6000;

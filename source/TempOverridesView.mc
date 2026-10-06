@@ -188,7 +188,7 @@ class TempOverridesView extends WatchUi.View {
         }
         dc.setColor(valueColor, Graphics.COLOR_TRANSPARENT);
         dc.drawText(pad, top + Layout.BOLUS_LABEL_TOP + tinyH, Graphics.FONT_MEDIUM, valueText, Graphics.TEXT_JUSTIFY_LEFT);
-        if (appState.bolusRetryWarning) {
+        if (appState.isAwaitingRevalidation()) {
             // A previous send ended ambiguously: say so instead of the age
             dc.setColor(Graphics.COLOR_ORANGE, Graphics.COLOR_TRANSPARENT);
             dc.drawText(pad, top + Layout.BOLUS_SECTION_H - tinyH - Layout.BOLUS_AGE_BOTTOM_PAD, Graphics.FONT_XTINY, WatchUi.loadResource(Rez.Strings.bolus_check_loop), Graphics.TEXT_JUSTIFY_LEFT);
@@ -304,11 +304,19 @@ class TempOverridesView extends WatchUi.View {
 
     function onBolusTick() as Void {
         var nowMs = System.getTimer();
+        var app = Application.getApp() as SugarPaceApp;
+        var svc = app.getNightscoutService();
+        // A bolus still queued behind another request is cancelled after a while
+        // (nothing sent), instead of being left able to deliver later.
+        if (appState.bolusSendState == Constants.SEND_PENDING && appState.bolusDispatchedMs < 0 &&
+            nowMs - appState.bolusSendChangedMs >= Constants.BOLUS_QUEUE_WAIT_MS && svc != null) {
+            if (svc.cancelQueuedBolus()) {
+                appState.setBolusSendState(Constants.SEND_FAILED, Constants.QUEUE_BUSY_CODE);
+            }
+        }
         appState.normalizeBolusState(nowMs);
-        if (appState.bolusNeedsRevalidationFetch(nowMs)) {
+        if (appState.bolusNeedsRevalidationFetch(Toybox.Time.now().value())) {
             appState.bolusAwaitFetchIssued = true;
-            var app = Application.getApp() as SugarPaceApp;
-            var svc = app.getNightscoutService();
             if (svc != null) {
                 svc.fetchRecommendedBolus();
             }

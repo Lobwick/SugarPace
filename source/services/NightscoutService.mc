@@ -110,7 +110,11 @@ class NightscoutService {
     //! `urgent` requests (user actions like sending carbs) jump ahead of the
     //! queued background fetches.
     private function enqueue(url as Lang.String, params as Lang.Dictionary, options as Lang.Dictionary, responder as Method, urgent as Lang.Boolean) as Void {
-        var req = { "url" => url, "params" => params, "options" => options, "responder" => responder };
+        enqueueRequest({ "url" => url, "params" => params, "options" => options, "responder" => responder }, urgent);
+    }
+
+    //! Same, for an already built request (the bolus request carries a "bolus" mark).
+    private function enqueueRequest(req as Lang.Dictionary, urgent as Lang.Boolean) as Void {
         if (urgent) {
             var reordered = [req];
             reordered.addAll(requestQueue);
@@ -145,6 +149,9 @@ class NightscoutService {
         requestInFlight = true;
         requestStartTime = System.getTimer();
         currentResponder = req.get("responder") as Method;
+        if (req.hasKey("bolus")) {
+            appState.bolusDispatchedMs = requestStartTime;
+        }
         Communications.makeWebRequest(
             req.get("url"),
             req.get("params"),
@@ -540,19 +547,36 @@ class NightscoutService {
             return;
         }
         System.println("Sending remote bolus entry");
-        enqueue(
-            getNightscoutUrl() + "/api/v2/notifications/loop?token=" + getNightscoutToken(),
-            bolusData,
-            {
+        enqueueRequest({
+            "url" => getNightscoutUrl() + "/api/v2/notifications/loop?token=" + getNightscoutToken(),
+            "params" => bolusData,
+            "options" => {
                 :method => Communications.HTTP_REQUEST_METHOD_POST,
                 :headers => {
                     "Content-Type" => Communications.REQUEST_CONTENT_TYPE_JSON
                 },
                 :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
             },
-            self.method(:onReceiveBolusEntryResponse),
-            true
-        );
+            "responder" => self.method(:onReceiveBolusEntryResponse),
+            "bolus" => true
+        }, true);
+    }
+
+    //! Remove a bolus request that is still waiting in the queue (not dispatched).
+    //! Returns true if one was removed: it can then never be delivered.
+    function cancelQueuedBolus() as Lang.Boolean {
+        var kept = [];
+        var removed = false;
+        for (var i = 0; i < requestQueue.size(); i++) {
+            var req = requestQueue[i];
+            if (req instanceof Lang.Dictionary && req.hasKey("bolus")) {
+                removed = true;
+            } else {
+                kept.add(req);
+            }
+        }
+        requestQueue = kept;
+        return removed;
     }
 
     function onReceiveBolusEntryResponse(responseCode as Lang.Number, data as Lang.String?) as Void {

@@ -193,17 +193,25 @@ function testBolusLockAndDuplicateGuard(logger as Test.Logger) as Boolean {
     Test.assertMessage(s.isBolusLocked(t0 + 1000), "just sent -> locked");
     Test.assertMessage(!s.isBolusLocked(t0 + Constants.BOLUS_HOLD_OK_MS), "lock released later");
 
-    // Failures release the duplicate guard (a retry is the rider's choice), but
-    // ambiguous ones (timeout, transport, 5xx) put the retry behind a
-    // revalidation + "check Loop" warning (see testBolusRetryNeedsRevalidation).
-    s.bolusSentForTime = "x";
+    // Ambiguous outcomes (timeout, transport, 5xx) KEEP the duplicate guard and
+    // hold the retry behind a revalidation; a refusal before Loop could act
+    // (auth / not configured / cancelled in the queue) releases it.
+    s.markBolusSent("x");
     s.setBolusSendState(Constants.SEND_UNCONFIRMED, -1);
-    Test.assertEqualMessage(s.bolusSentForTime, "", "unconfirmed releases the guard");
-    Test.assertMessage(s.bolusRetryWarning, "...but warns to check Loop");
-    s.bolusSentForTime = "x";
+    Test.assertEqualMessage(s.bolusSentForTime, "x", "unconfirmed keeps the guard");
+    Test.assertMessage(s.isAwaitingRevalidation(), "...and holds the retry");
+    s.setBolusSendState(Constants.SEND_FAILED, 500);
+    Test.assertEqualMessage(s.bolusSentForTime, "x", "5xx keeps the guard");
+    s.setBolusSendState(Constants.SEND_OK, 200);   // a late success after the ambiguity
+    Test.assertEqualMessage(s.bolusSentForTime, "x", "late success keeps the guard");
+    Test.assertMessage(!s.isAwaitingRevalidation(), "delivered: no retry hold needed");
+    s.markBolusSent("y");
     s.setBolusSendState(Constants.SEND_FAILED, 401);
-    Test.assertEqualMessage(s.bolusSentForTime, "", "bad token -> nothing was sent, free retry");
-    Test.assertMessage(!s.bolusRetryWarning, "no warning when nothing could have been sent");
+    Test.assertEqualMessage(s.bolusSentForTime, "", "bad token -> nothing was sent, guard released");
+    Test.assertMessage(!s.isAwaitingRevalidation(), "no hold when nothing could have been sent");
+    s.markBolusSent("z");
+    s.setBolusSendState(Constants.SEND_FAILED, Constants.QUEUE_BUSY_CODE);
+    Test.assertEqualMessage(s.bolusSentForTime, "", "cancelled in the queue -> guard released");
     s.clearBolusSentGuard();
     return true;
 }
@@ -250,26 +258,66 @@ function testBolusPayloadShape(logger as Test.Logger) as Boolean {
 function testBolusRetryNeedsRevalidation(logger as Test.Logger) as Boolean {
     var now = new OtpService().formatCurrentTimestamp();
     var s = new AppState();
+    s.markBolusSent(now);
     s.updateRecommendedBolus(1.65, now);
+    Test.assertMessage(!s.canSendBolus(), "just sent: blocked");
 
-    // Ambiguous failure: retry allowed only after a recommendation fetched >= wait later
+    // Ambiguous failure: guard kept, retry held until a fetch >= wait AFTER the failure
     s.setBolusSendState(Constants.SEND_FAILED, 500);
-    Test.assertMessage(s.bolusRetryWarning, "rider is told to check Loop");
-    var failedAt = s.bolusAwaitFreshAfterMs;
-    s.recommendedBolusFetchedMs = failedAt + Constants.BOLUS_RETRY_MIN_WAIT_MS - 1;
-    Test.assertMessage(!s.canSendBolus(), "too early after the failure -> blocked");
-    Test.assertMessage(!s.bolusNeedsRevalidationFetch(failedAt + 1000), "no fetch before the wait is over");
-    Test.assertMessage(s.bolusNeedsRevalidationFetch(failedAt + Constants.BOLUS_RETRY_MIN_WAIT_MS), "fetch due once the wait is over");
-    s.recommendedBolusFetchedMs = failedAt + Constants.BOLUS_RETRY_MIN_WAIT_MS;
-    Test.assertMessage(s.canSendBolus(), "revalidated -> retry possible");
+    Test.assertMessage(s.isAwaitingRevalidation(), "rider is told to check Loop");
+    var failedAt = s.bolusAwaitEpoch;
+    s.finishRevalidationIfDue(failedAt + Constants.BOLUS_RETRY_MIN_WAIT_SEC - 1);
+    Test.assertMessage(s.isAwaitingRevalidation() && !s.canSendBolus(), "too early -> still held and blocked");
+    Test.assertMessage(!s.bolusNeedsRevalidationFetch(failedAt + 1), "no fetch before the wait is over");
+    Test.assertMessage(s.bolusNeedsRevalidationFetch(failedAt + Constants.BOLUS_RETRY_MIN_WAIT_SEC), "fetch due once the wait is over");
+    s.finishRevalidationIfDue(failedAt + Constants.BOLUS_RETRY_MIN_WAIT_SEC);
+    Test.assertMessage(!s.isAwaitingRevalidation(), "revalidated: hold lifted");
+    Test.assertEqualMessage(s.bolusSentForTime, "", "...and the guard released");
+    Test.assertMessage(s.canSendBolus(), "retry possible only now");
 
     // Success clears the waiting state
     s.setBolusSendState(Constants.SEND_OK, 200);
-    Test.assertMessage(!s.bolusRetryWarning, "success clears the warning");
+    Test.assertMessage(!s.isAwaitingRevalidation(), "success clears the hold");
+    s.clearBolusSentGuard();
+    return true;
+}
 
-    // A refusal before Loop could act needs no revalidation
-    s.setBolusSendState(Constants.SEND_FAILED, 401);
-    Test.assertMessage(!s.bolusRetryWarning && s.bolusAwaitFreshAfterMs < 0, "auth refusal: free retry");
+(:test)
+function testBolusHoldSurvivesRestart(logger as Test.Logger) as Boolean {
+    var first = new AppState();
+    first.markBolusSent("2026-10-05T20:49:09Z");
+    first.setBolusSendState(Constants.SEND_UNCONFIRMED, -1);   // ambiguous: guard + hold persisted
+    var second = new AppState();                                // app restart
+    second.restoreBolusGuard();
+    Test.assertEqualMessage(second.bolusSentForTime, "2026-10-05T20:49:09Z", "guard restored after ambiguous failure");
+    Test.assertMessage(second.isAwaitingRevalidation(), "hold restored: the 15 s wait is not lost");
+    second.setBolusAwait(-1);
+    second.clearBolusSentGuard();   // leave no trace
+    var third = new AppState();
+    third.restoreBolusGuard();
+    Test.assertMessage(!third.isAwaitingRevalidation() && third.bolusSentForTime.equals(""), "cleared stays cleared");
+    return true;
+}
+
+(:test)
+function testBolusTimeoutCountsFromDispatch(logger as Test.Logger) as Boolean {
+    var s = new AppState();
+    s.setBolusSendState(Constants.SEND_PENDING, 0);
+    var t0 = s.bolusSendChangedMs;
+    // Still queued (never dispatched): never declared unconfirmed, stays locked
+    s.normalizeBolusState(t0 + Constants.SEND_TIMEOUT_MS + 5000);
+    Test.assertEqualMessage(s.bolusSendState, Constants.SEND_PENDING, "queued request is not 'unconfirmed'");
+    Test.assertMessage(s.isBolusLocked(t0 + Constants.SEND_TIMEOUT_MS + 5000), "...and stays locked");
+    // Dispatched: the answer timeout counts from the dispatch
+    s.bolusDispatchedMs = t0 + 20000;
+    s.normalizeBolusState(t0 + 20000 + Constants.SEND_TIMEOUT_MS - 1);
+    Test.assertEqualMessage(s.bolusSendState, Constants.SEND_PENDING, "not yet timed out");
+    s.normalizeBolusState(t0 + 20000 + Constants.SEND_TIMEOUT_MS);
+    Test.assertEqualMessage(s.bolusSendState, Constants.SEND_UNCONFIRMED, "timed out from dispatch -> unconfirmed");
+    s.setBolusAwait(-1);
+    s.clearBolusSentGuard();
+    var svc = new NightscoutService(new AppState());
+    Test.assertMessage(!svc.cancelQueuedBolus(), "nothing queued: nothing to cancel");
     return true;
 }
 

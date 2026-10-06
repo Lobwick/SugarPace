@@ -78,13 +78,16 @@ class AppState {
     public var bolusSentForTime as Lang.String = "";
     public var bolusSentUnits as Lang.Float = 0.0;
     // After an ambiguous failure (5xx, transport, no answer) the dose MAY have
-    // been delivered. A retry is allowed only after a recommendation fetched
-    // BOLUS_RETRY_MIN_WAIT_MS after the failure; the rider is told to check Loop.
-    public var bolusAwaitFreshAfterMs as Lang.Number = -1;
+    // been delivered: the duplicate guard is KEPT (and persisted, with this epoch)
+    // until a recommendation fetched BOLUS_RETRY_MIN_WAIT_SEC after the failure
+    // arrives. -1 = not waiting. The rider is told to check Loop meanwhile.
+    public var bolusAwaitEpoch as Lang.Number = -1;
     public var bolusAwaitFetchIssued as Lang.Boolean = false;
-    public var bolusRetryWarning as Lang.Boolean = false;
-    // System.getTimer() when the current recommendation was received.
-    public var recommendedBolusFetchedMs as Lang.Number = -1;
+    // Wall-clock seconds when the current recommendation was received.
+    public var recommendedBolusFetchedEpoch as Lang.Number = -1;
+    // System.getTimer() when the bolus request was actually dispatched to the
+    // network (-1 while it is still queued): the 30 s answer timeout counts from here.
+    public var bolusDispatchedMs as Lang.Number = -1;
     public var bolusButtonRegion as Lang.Dictionary? = null;
     // Glucose fetch health: true after a failed request, until the next success.
     public var glucoseFetchFailed as Lang.Boolean = false;
@@ -102,9 +105,10 @@ class AppState {
     function updateRecommendedBolus(units as Lang.Float, isoTime as Lang.String) as Void {
         recommendedBolus = units;
         recommendedBolusTime = isoTime;
-        recommendedBolusFetchedMs = System.getTimer();
+        recommendedBolusFetchedEpoch = Toybox.Time.now().value();
         hasRecommendedBolus = true;
         recommendedBolusError = 0;
+        finishRevalidationIfDue(recommendedBolusFetchedEpoch);
         WatchUi.requestUpdate();
     }
 
@@ -141,11 +145,6 @@ class AppState {
         if (recommendedBolus < Constants.BOLUS_MIN_UNITS) { return false; }
         if (recommendedBolus > Constants.BOLUS_MAX_UNITS) { return false; }
         if (recommendedBolusTime.equals(bolusSentForTime)) { return false; }
-        // Waiting for a post-failure revalidation of the recommendation
-        if (bolusAwaitFreshAfterMs >= 0 &&
-            recommendedBolusFetchedMs < bolusAwaitFreshAfterMs + Constants.BOLUS_RETRY_MIN_WAIT_MS) {
-            return false;
-        }
         return true;
     }
 
@@ -164,12 +163,41 @@ class AppState {
         markBolusSent("");
     }
 
-    //! Restore the guard on startup (called from the app, not the constructor).
+    //! Persist (or clear, with -1) the "waiting for revalidation" epoch.
+    function setBolusAwait(epoch as Lang.Number) as Void {
+        bolusAwaitEpoch = epoch;
+        bolusAwaitFetchIssued = false;
+        try {
+            Application.Storage.setValue("bolus_await_epoch", epoch);
+        } catch (ex) {
+        }
+    }
+
+    //! True while a retry is held back after an ambiguous failure.
+    function isAwaitingRevalidation() as Lang.Boolean {
+        return bolusAwaitEpoch >= 0;
+    }
+
+    //! A recommendation fetched long enough after the failure lifts the hold and
+    //! releases the guard; only then can the same recommendation be sent again.
+    function finishRevalidationIfDue(fetchedEpoch as Lang.Number) as Void {
+        if (bolusAwaitEpoch >= 0 && fetchedEpoch >= bolusAwaitEpoch + Constants.BOLUS_RETRY_MIN_WAIT_SEC) {
+            clearBolusSentGuard();
+            setBolusAwait(-1);
+        }
+    }
+
+    //! Restore guard AND revalidation hold on startup (called from the app, not
+    //! the constructor), so a restart can't make the same recommendation sendable.
     function restoreBolusGuard() as Void {
         try {
             var saved = Application.Storage.getValue("bolus_sent_for");
             if (saved instanceof Lang.String) {
                 bolusSentForTime = saved;
+            }
+            var awaiting = Application.Storage.getValue("bolus_await_epoch");
+            if (awaiting instanceof Lang.Number) {
+                bolusAwaitEpoch = awaiting;
             }
         } catch (ex) {
         }
@@ -179,38 +207,39 @@ class AppState {
         bolusSendState = state;
         bolusSendErrorCode = errorCode;
         bolusSendChangedMs = System.getTimer();
-        if (state == Constants.SEND_OK) {
-            bolusAwaitFreshAfterMs = -1;
-            bolusAwaitFetchIssued = false;
-            bolusRetryWarning = false;
+        if (state == Constants.SEND_PENDING) {
+            bolusDispatchedMs = -1;
+        } else if (state == Constants.SEND_OK) {
+            // Delivered: the guard stays so it can't be sent again; no retry hold needed.
+            setBolusAwait(-1);
         } else if (state == Constants.SEND_FAILED || state == Constants.SEND_UNCONFIRMED) {
             var kind = ErrorText.kind(errorCode);
-            clearBolusSentGuard();
             if (kind == ErrorText.KIND_AUTH || kind == ErrorText.KIND_CONFIG || kind == ErrorText.KIND_BUSY) {
-                // Refused before Loop could act: nothing delivered, retry is free
-                bolusAwaitFreshAfterMs = -1;
-                bolusRetryWarning = false;
+                // Refused / cancelled before Loop could act: nothing delivered, retry is free
+                clearBolusSentGuard();
+                setBolusAwait(-1);
             } else {
-                // Ambiguous: the dose may have been delivered. Retry only after a
-                // fresh revalidation, with an explicit "check Loop" warning.
-                bolusAwaitFreshAfterMs = bolusSendChangedMs;
-                bolusAwaitFetchIssued = false;
-                bolusRetryWarning = true;
+                // Ambiguous: the dose may have been delivered. KEEP the guard and hold
+                // the retry until a revalidating fetch (a late success can still arrive).
+                setBolusAwait(Toybox.Time.now().value());
             }
         }
         WatchUi.requestUpdate();
     }
 
     //! True once, when the post-failure revalidation fetch should be issued.
-    function bolusNeedsRevalidationFetch(nowMs as Lang.Number) as Lang.Boolean {
-        if (bolusAwaitFreshAfterMs < 0 || bolusAwaitFetchIssued) { return false; }
-        return nowMs >= bolusAwaitFreshAfterMs + Constants.BOLUS_RETRY_MIN_WAIT_MS;
+    function bolusNeedsRevalidationFetch(nowEpoch as Lang.Number) as Lang.Boolean {
+        if (bolusAwaitEpoch < 0 || bolusAwaitFetchIssued) { return false; }
+        return nowEpoch >= bolusAwaitEpoch + Constants.BOLUS_RETRY_MIN_WAIT_SEC;
     }
 
     //! Taps on the bolus button are ignored while sending / just sent / unconfirmed.
     function isBolusLocked(nowMs as Lang.Number) as Lang.Boolean {
         var elapsed = nowMs - bolusSendChangedMs;
-        if (bolusSendState == Constants.SEND_PENDING) { return elapsed < Constants.SEND_TIMEOUT_MS; }
+        if (bolusSendState == Constants.SEND_PENDING) {
+            // Locked while queued, and until the answer timeout after dispatch
+            return bolusDispatchedMs < 0 || nowMs - bolusDispatchedMs < Constants.SEND_TIMEOUT_MS;
+        }
         if (bolusSendState == Constants.SEND_OK) { return elapsed < Constants.BOLUS_HOLD_OK_MS; }
         if (bolusSendState == Constants.SEND_UNCONFIRMED) { return elapsed < Constants.BOLUS_HOLD_FAIL_MS; }
         return false;
@@ -243,7 +272,9 @@ class AppState {
         }
         var elapsed = nowMs - bolusSendChangedMs;
         if (bolusSendState == Constants.SEND_PENDING) {
-            if (elapsed >= Constants.SEND_TIMEOUT_MS) {
+            // The timeout counts from the actual dispatch, never from the tap: a
+            // request still queued is cancelled by the view, not declared "unconfirmed".
+            if (bolusDispatchedMs >= 0 && nowMs - bolusDispatchedMs >= Constants.SEND_TIMEOUT_MS) {
                 setBolusSendState(Constants.SEND_UNCONFIRMED, Constants.REQUEST_TIMEOUT_CODE);
             }
         } else if (bolusSendState == Constants.SEND_OK) {
