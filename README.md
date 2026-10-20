@@ -4,6 +4,8 @@
 
 > *Pace your sugar.*
 
+![alt text](branding/hero.png)
+
 ---
 
 <a id="english"></a>
@@ -39,6 +41,8 @@
 
 ### Main screen
 
+![alt text](branding/screenshors/home.png)
+
 From top to bottom:
 
 - **Current glucose**, large and colored by zone (green = in range, orange = near the limits, red = out of range), then the unit and the **trend arrow** (`↑↑`, `↑`, `↗`, `→`, `↘`, `↓`, `↓↓`).
@@ -72,6 +76,8 @@ The age shown ("3m ago") is the age of the sensor reading, not of the download. 
 
 ### Temporary profiles
 
+![alt text](branding/screenshors/profils.png)
+
 Tap the header to see the temporary profiles (overrides) defined in your loop. The active one has a green bar and a checkmark. Tap a profile to activate it, or **Default** to cancel the current override. If it fails, a red line at the bottom tells you what to do.
 
 ## Settings
@@ -99,6 +105,8 @@ Your loop only accepts remote commands with a one-time code. SugarPace computes 
 ⚠️ **Keep this secret private.** Anyone who has it can generate valid codes. The clock of your Edge must be correct, otherwise codes will be rejected.
 
 ## Foods
+
+![alt text](branding/screenshors/foods_selector.png)
 
 SugarPace comes with a small catalogue. Open the menu button on the Edge to choose which foods appear on your screen.
 
@@ -186,6 +194,8 @@ Open a **GitHub issue** for bugs and feature requests. Please include your Garmi
 
 ### Écran principal
 
+![alt text](branding/screenshors/home.png)
+
 De haut en bas :
 
 - **La glycémie**, en grand et colorée selon la zone (vert = dans la cible, orange = proche des limites, rouge = hors cible), puis l'unité et la **flèche de tendance** (`↑↑`, `↑`, `↗`, `→`, `↘`, `↓`, `↓↓`).
@@ -219,6 +229,8 @@ L'âge affiché (« 3m ago ») est celui de la mesure du capteur, pas du téléc
 
 ### Profils temporaires
 
+![alt text](branding/screenshors/profils.png)
+
 Touche l'en-tête pour voir les profils temporaires (overrides) définis dans ta boucle. Le profil actif a une barre verte et une coche. Touche un profil pour l'activer, ou **Default** pour annuler l'override en cours. En cas d'échec, une ligne rouge en bas indique quoi faire.
 
 ## Réglages
@@ -246,6 +258,8 @@ Ta boucle n'accepte les commandes à distance qu'avec un code à usage unique. S
 ⚠️ **Garde ce secret confidentiel.** Toute personne qui l'a peut générer des codes valides. L'heure de ton Edge doit être correcte, sinon les codes seront rejetés.
 
 ## Aliments
+
+![alt text](branding/screenshors/foods_selector.png)
 
 SugarPace est livré avec un petit catalogue. Ouvre le bouton de menu de l'Edge pour choisir les aliments affichés à l'écran.
 
