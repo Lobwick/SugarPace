@@ -1,0 +1,57 @@
+{
+  "title": {"en": "SugarPace — presentation", "fr": "SugarPace — présentation"},
+  "voices": {"en": "Daniel", "fr": "Flo (Français (France))"},
+  "lexicon": {
+    "fr": {"SugarPace": "Chougueur Péïce", "Nightscout": "Naïte scaoute", "Loop": "Loupe", "OTP": "O T P", "Edge": "Èdj", "TOTP": "T O T P"},
+    "en": {"SugarPace": "Sugar Pace", "Nightscout": "Night scout", "OTP": "O T P", "TOTP": "T O T P"}
+  },
+  "scenes": [
+    {"id": "intro", "min": 6, "lead": 0.8,
+     "en": ["SugarPace. Your glucose and your fueling, on your Garmin Edge."],
+     "fr": ["SugarPace. Ta glycémie et ton ravitaillement, sur ton Garmin Edge."]},
+
+    {"id": "screen", "min": 14,
+     "en": ["Your latest reading from your own Nightscout site, color-coded by range, with the trend arrow and the age of the reading.",
+            "A chart of the last four hours, and the foods you carry, one tap away."],
+     "fr": ["Ta dernière mesure depuis ton propre site Nightscout, colorée selon la zone, avec la flèche de tendance et l'âge de la mesure.",
+            "Un graphique des quatre dernières heures, et les aliments que tu emportes, à un tap."]},
+
+    {"id": "tap", "min": 15,
+     "en": ["Tap a food tile to send a carb entry. It is secured by a one-time code.",
+            "The tile shows the result: sending, sent, or failed with a short reason. Immediate repeat taps are ignored, to limit accidental duplicates."],
+     "fr": ["Touche une vignette d'aliment pour envoyer une entrée de glucides. Elle est sécurisée par un code à usage unique.",
+            "La vignette affiche le résultat : envoi, envoyé, ou échec avec une courte raison. Les taps répétés immédiatement sont ignorés, pour limiter les doublons accidentels."]},
+
+    {"id": "flow", "min": 17,
+     "en": ["Behind the screen, your Edge uses your phone's connection to talk to your own Nightscout site.",
+            "Glucose flows from your loop to Nightscout, then to your Edge. Carb entries flow back the other way, to your loop.",
+            "SugarPace has no server of its own: nothing passes through the developer."],
+     "fr": ["Derrière l'écran, ton Edge utilise la connexion de ton téléphone pour parler à ton propre site Nightscout.",
+            "La glycémie circule de ta boucle vers Nightscout, puis vers ton Edge. Les entrées de glucides font le chemin inverse, vers ta boucle.",
+            "SugarPace n'a aucun serveur à lui : rien ne passe par le développeur."]},
+
+    {"id": "treat", "min": 13,
+     "en": ["The Treatments screen lists your temporary profiles. Tap one to activate it.",
+            "If the data gets old, the number turns grey after fifteen minutes, so an old value never looks current."],
+     "fr": ["L'écran Traitements liste tes profils temporaires. Touche-en un pour l'activer.",
+            "Si la donnée vieillit, le chiffre devient gris après quinze minutes : une vieille valeur ne paraît jamais récente."]},
+
+    {"id": "bolus", "min": 18,
+     "en": ["Optionally, you can allow sending the bolus that your loop recommends. It is off by default.",
+            "It needs two taps and a recommendation less than ten minutes old, and an immediate repeat of the same one is blocked. If something goes wrong, the screen tells you to check your loop first.",
+            "This is real insulin: always confirm on your loop."],
+     "fr": ["En option, tu peux autoriser l'envoi du bolus recommandé par ta boucle. C'est désactivé par défaut.",
+            "Il faut deux taps et une recommandation de moins de dix minutes, et un renvoi immédiat de la même est bloqué. Si quelque chose se passe mal, l'écran te dit de vérifier ta boucle d'abord.",
+            "C'est de l'insuline réelle : confirme toujours sur ta boucle."]},
+
+    {"id": "need", "min": 10,
+     "en": ["You need a Nightscout site, a loop that accepts remote entries, and a touchscreen Edge: 840, 850, 1040 or 1050."],
+     "fr": ["Il te faut un site Nightscout, une boucle qui accepte les entrées à distance, et un Edge tactile : 840, 850, 1040 ou 1050."]},
+
+    {"id": "outro", "min": 12, "lead": 0.5,
+     "en": ["SugarPace is not a medical device. Always confirm values and decisions with your approved devices.",
+            "Not affiliated with Garmin, Nightscout, or any loop app. Find it on GitHub."],
+     "fr": ["SugarPace n'est pas un dispositif médical. Vérifie toujours les valeurs et les décisions avec tes dispositifs approuvés.",
+            "Sans affiliation avec Garmin, Nightscout ou une application de boucle. À retrouver sur GitHub."]}
+  ]
+}
