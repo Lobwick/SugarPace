@@ -1,0 +1,9 @@
+<resources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
+    <!-- Developer field id 0: the glucose (always mg/dL, integer) recorded with each
+         record message, shown as a chart in Garmin Connect after the activity. -->
+    <fitContributions>
+        <fitField id="0" displayInChart="true" sortOrder="0" precision="0"
+                  chartTitle="@Strings.fit_chart" dataLabel="@Strings.fit_data"
+                  unitLabel="@Strings.fit_unit" fillColor="#00C853" />
+    </fitContributions>
+</resources>

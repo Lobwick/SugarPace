@@ -1,0 +1,6 @@
+project.manifest = manifest.xml
+
+# Shared code: these files are compiled from the widget's source tree (no copy),
+# so the glucose zones, trend arrows, data age and unit conversion stay identical
+# in both apps. Only code that sends nothing is shared.
+base.sourcePath = source;../source/models/GlucoseData.mc;../source/Units.mc;../source/Constants.mc
